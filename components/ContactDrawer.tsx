@@ -32,9 +32,9 @@ export default function ContactDrawer() {
       )
 
       // GA4 — Formulario de email enviado con éxito
-      gtagEvent('form_submit', {
+      gtagEvent('click_mail', {
         event_category: 'contact',
-        event_label: 'email_form',
+        event_label: 'email_form_submit',
         method: 'email',
       })
 
