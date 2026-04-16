@@ -26,39 +26,39 @@ const stack = [
 
 export default function Solution() {
   return (
-    <section id="soluciones" className="py-24 bg-white relative overflow-hidden text-foreground">
+    <section id="soluciones" className="py-20 md:py-24 bg-white relative overflow-hidden text-foreground">
         {/* Subtle Glow Effects */}
         <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px]" />
         
-      <div className="container px-4 mx-auto">
-        <div className="flex flex-col lg:flex-row gap-20 items-center">
-          <div className="flex-1">
-            <h2 className="text-4xl md:text-6xl font-black mb-8 leading-[1.1] tracking-tight">
+      <div className="container px-6 mx-auto">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+          <div className="flex-1 text-center lg:text-left">
+            <h2 className="text-3xl md:text-6xl font-black mb-6 md:mb-8 leading-[1.1] tracking-tight">
               La empresa de IA en Barcelona que acompaña tu <span className="text-secondary">crecimiento 24/7</span>.
             </h2>
 
-            <div className="space-y-6 mb-12 text-foreground/70 text-lg leading-relaxed font-medium">
+            <div className="space-y-6 mb-10 md:mb-12 text-foreground/70 text-lg leading-relaxed font-medium max-w-2xl mx-auto lg:mx-0">
                 <p>
-                    En <strong>AutoProcessX</strong> somos especialistas en <strong>inteligencia artificial para empresas</strong> en Barcelona. Combinamos automatización de procesos, aplicaciones IA corporativas y chatbots personalizados en un ecosistema único diseñado para eliminar la carga operativa de tu equipo.
+                    En <strong>AutoProcessX</strong> somos especialistas en <strong>inteligencia artificial para empresas</strong> en Barcelona. Combinamos automatización de procesos, aplicaciones IA corporativas y chatbots personalizados.
                 </p>
                 <p>
-                    Analizamos tus procesos para implementar la solución más efectiva: desde <strong>workflow automation con n8n</strong> hasta <strong>sistemas multi agent systems</strong> entrenados con tus propios datos. Somos la empresa de IA que tu negocio necesita para escalar sin fricciones.
+                    Analizamos tus procesos para implementar la solución más efectiva: desde <strong>workflow automation con n8n</strong> hasta <strong>sistemas multi agent systems</strong> entrenados con tus propios datos.
                 </p>
             </div>
 
-            <ul className="space-y-8 mb-12">
+            <ul className="space-y-6 md:space-y-8 mb-10 md:mb-12 text-left w-full max-w-2xl mx-auto lg:mx-0">
                 {[
                     {
-                        title: "Automatización Inteligente de Procesos",
-                        desc: "Diseñamos sistemas de workflow automation que eliminan el 80% de tareas repetitivas. Desde la automatización de procesos administrativos hasta la automatización de ventas y email marketing."
+                        title: "Automatización de Procesos",
+                        desc: "Diseñamos sistemas de workflow automation que eliminan el 80% de tareas repetitivas."
                     },
                     {
                         title: "IA para Empresas a Medida",
-                        desc: "Desarrollamos aplicaciones de inteligencia artificial empresarial con arquitectura RAG, LLMs entrenados con tus datos y agentes autónomos que toman decisiones estratégicas sin intervención humana."
+                        desc: "Desarrollamos aplicaciones empresariales con arquitectura RAG y LLMs entrenados con tus datos."
                     },
                     {
-                        title: "AI Chatbot e IA en Marketing Digital",
-                        desc: "Implementamos chatbots personalizados con inteligencia artificial para marketing y ventas. Automatización email marketing, AI online chat y agentes que trabajan en todos tus canales digitales."
+                        title: "AI Chatbot & Marketing",
+                        desc: "Implementamos chatbots inteligentes para WhatsApp y web que cualifican prospectos 24/7."
                     }
                 ].map((item, i) => (
                     <li key={i} className="flex items-start gap-4">
@@ -72,7 +72,7 @@ export default function Solution() {
             </ul>
           </div>
 
-          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
             {stack.map((item, index) => (
               <motion.div
                 key={index}
@@ -80,7 +80,7 @@ export default function Solution() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`p-10 rounded-[40px] bg-muted border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 ${index === 1 ? 'sm:mt-12' : ''}`}
+                className={`p-8 md:p-10 rounded-[32px] md:rounded-[40px] bg-muted border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col items-center text-center sm:items-start sm:text-left ${index === 1 ? 'sm:mt-12' : ''}`}
               >
                 <div className="mb-6 p-4 rounded-2xl bg-white shadow-sm text-primary w-fit">
                     {item.icon}
@@ -92,10 +92,10 @@ export default function Solution() {
                 </p>
               </motion.div>
             ))}
-            <div className="p-10 rounded-[40px] bg-primary text-white flex flex-col justify-center items-center text-center shadow-lg shadow-primary/20">
+            <div className="p-8 md:p-10 rounded-[32px] md:rounded-[40px] bg-primary text-white flex flex-col justify-center items-center text-center shadow-lg shadow-primary/20">
                 <Zap className="h-10 w-10 text-white mb-6" />
                 <div className="text-white/80 font-bold mb-2 uppercase tracking-widest text-xs">Resultado Final</div>
-                <div className="text-4xl font-black tracking-tighter">Impacto Real</div>
+                <div className="text-3xl md:text-4xl font-black tracking-tighter">Impacto Real</div>
             </div>
           </div>
         </div>

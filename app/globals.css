@@ -32,26 +32,43 @@
   --radius: 0.75rem;
 }
 
+/* ── Mobile-first base ─────────────────────────────── */
 html {
   scroll-behavior: smooth;
+  /* Eliminate rubber-band / overscroll effect on iOS & Chrome Android */
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: auto;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  /* No bounce-scroll on mobile */
+  overscroll-behavior: none;
+  /* Prevent horizontal overflow caused by wide children */
+  overflow-x: hidden;
+  width: 100%;
 }
 
-/* Custom Scrollbar */
+/* Ensure images & embeds never blow past viewport */
+img,
+video,
+iframe,
+svg {
+  max-width: 100%;
+}
+
+/* ── Custom Scrollbar (desktop) ─────────────────────── */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #020617;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
+  background: #cbd5e1;
+  border-radius: 99px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #94a3b8;
 }

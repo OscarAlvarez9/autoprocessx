@@ -32,18 +32,18 @@ const pains = [
 
 export default function PainPoints() {
   return (
-    <section id="pains" className="py-24 bg-white text-foreground">
-      <div className="container px-4 mx-auto">
-        <div className="text-center mb-20 max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-8">
+    <section id="pains" className="py-20 md:py-24 bg-white text-foreground">
+      <div className="container px-6 mx-auto">
+        <div className="text-center mb-16 md:mb-20 max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-6xl font-black tracking-tight mb-6 md:mb-8">
             El coste oculto de <span className="text-primary">no automatizar</span>.
           </h2>
-          <p className="max-w-2xl mx-auto text-foreground/60 text-xl font-medium leading-relaxed">
+          <p className="max-w-2xl mx-auto text-foreground/60 text-lg md:text-xl font-medium leading-relaxed">
             Si tu empresa sigue con procesos manuales mientras la competencia usa inteligencia artificial para empresas, estás perdiendo competitividad cada semana.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {pains.map((pain, index) => (
             <motion.div
               key={index}
@@ -51,7 +51,7 @@ export default function PainPoints() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="p-10 rounded-[32px] bg-muted border border-transparent hover:border-primary/20 transition-all group"
+              className="p-8 md:p-10 rounded-[32px] bg-muted border border-transparent hover:border-primary/20 transition-all group flex flex-col items-center text-center lg:items-start lg:text-left"
             >
               <div className="mb-6 p-4 rounded-2xl bg-white shadow-md text-primary w-fit group-hover:scale-110 transition-transform">
                 {pain.icon}
@@ -67,9 +67,9 @@ export default function PainPoints() {
           ))}
         </div>
 
-        <div className="mt-20 p-10 rounded-[40px] bg-muted border border-gray-100 text-center">
-            <p className="text-foreground text-xl font-bold">
-                <span className="text-primary">Dato Real:</span> Recuperamos una media de <span className="text-3xl font-black tracking-tighter text-secondary">1.200€</span> en costes operativos por empleado <span className="text-foreground/50"> cada mes</span>.
+        <div className="mt-16 md:mt-20 p-8 md:p-10 rounded-[32px] md:rounded-[40px] bg-muted border border-gray-100 text-center">
+            <p className="text-foreground text-lg md:text-xl font-bold">
+                <span className="text-primary">Dato Real:</span> Recuperamos una media de <span className="text-2xl md:text-3xl font-black tracking-tighter text-secondary">1.200€</span> en costes operativos por empleado <span className="text-foreground/50"> cada mes</span>.
             </p>
         </div>
       </div>

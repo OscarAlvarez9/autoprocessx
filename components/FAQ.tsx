@@ -9,46 +9,42 @@ import {
 
 const faqs = [
   {
-    q: "¿Qué es la automatización inteligente de procesos?",
-    a: "La automatización inteligente combina workflow automation (n8n, RPA) con inteligencia artificial para empresas. A diferencia de la automatización robótica de procesos clásica, los agentes IA entienden el contexto, toman decisiones y aprenden de tus datos en lugar de seguir reglas fijas."
+    q: "¿Qué es la automatización inteligente?",
+    a: "La automatización inteligente combina workflow automation (n8n, RPA) con inteligencia artificial. Los agentes IA entienden el contexto, toman decisiones y aprenden de tus datos."
   },
   {
-    q: "¿Qué procesos se pueden automatizar con IA?",
-    a: "Cualquier tarea repetitiva digital: automatización de procesos administrativos, email marketing, generación de informes, onboarding documental, gestión de CRM, cualificación de leads con AI chatbot, y análisis de documentos legales o técnicos con LLMs."
+    q: "¿Qué procesos se pueden automatizar?",
+    a: "Cualquier tarea digital repetitiva: administración, email marketing, generación de informes, CRM, cualificación de leads y análisis de documentos complejos."
   },
   {
-    q: "¿Cuánto cuesta implementar inteligencia artificial para mi empresa?",
-    a: "Los proyectos de ia para empresas oscilan entre 2.500€ y 4.500€ según la complejidad. El mantenimiento recurrente (MRR) varía entre 500€ y 1.500€/mes para asegurar que tus agentes siempre estén optimizados."
+    q: "¿Cuánto cuesta implementar IA?",
+    a: "Los proyectos suelen oscilar entre 2.500€ y 4.500€. Ofrecemos mantenimiento experto para asegurar que tus sistemas sigan optimizados a medida que creces."
   },
   {
-    q: "¿Cuánto tarda estar en marcha la automatización?",
-    a: "Un flujo de workflow automation crítico suele estar listo y testeado en 10 a 15 días laborales. Un sistema completo de aplicaciones IA con arquitectura RAG puede requerir entre 3 y 6 semanas."
+    q: "¿Cuánto tarda estar en marcha?",
+    a: "Un flujo crítico suele estar listo en 10-15 días. Sistemas complejos con arquitectura RAG pueden requerir entre 3 y 6 semanas."
   },
   {
-    q: "¿Qué diferencia hay entre un AI chatbot y un chatbot convencional?",
-    a: "Un AI chatbot usa procesamiento de lenguaje natural (NLP) e inteligencia artificial para entender la intención real del usuario, adaptarse al contexto y tomar decisiones. Un chatbot convencional solo sigue árboles de decisión fijos sin comprensión real."
-  },
-  {
-    q: "¿Mis datos están seguros con vuestra IA empresarial?",
-    a: "Totalmente. Usamos n8n en infraestructura propia y modelos LLM con privacidad empresarial (Zero Data Retention). Tus datos nunca se usan para entrenar modelos públicos. Cumplimos ISO 27001 y GDPR."
+    q: "¿Mis datos están seguros?",
+    a: "Totalmente. Usamos infraestructura propia y modelos con privacidad empresarial. Tus datos nunca se usan para entrenar modelos públicos y cumplimos con GDPR."
   }
 ]
 
 export default function FAQ() {
   return (
-    <section id="faq" className="py-24 bg-background">
-      <div className="container px-4 mx-auto max-w-3xl">
-        <h2 className="text-3xl font-black text-foreground md:text-5xl mb-16 text-center tracking-tight">
+    <section id="faq" className="py-20 md:py-24 bg-background">
+      <div className="container px-6 mx-auto max-w-3xl">
+        <h2 className="text-3xl font-black text-foreground md:text-5xl mb-12 md:mb-16 text-center tracking-tight">
             Preguntas frecuentes sobre <span className="text-primary italic">IA para empresas</span>
         </h2>
         
         <Accordion type="single" collapsible className="w-full">
           {faqs.map((faq, i) => (
-            <AccordionItem key={i} value={`item-${i}`} className="border-gray-100 mb-4 px-6 rounded-3xl bg-muted/50 border overflow-hidden">
-              <AccordionTrigger className="text-foreground hover:text-primary text-left font-bold py-8 transition-colors no-underline hover:no-underline">
+            <AccordionItem key={i} value={`item-${i}`} className="border-gray-100 mb-4 px-4 md:px-6 rounded-3xl bg-muted/50 border overflow-hidden">
+              <AccordionTrigger className="text-foreground hover:text-primary text-left font-bold py-6 md:py-8 transition-colors no-underline hover:no-underline text-base md:text-lg">
                 {faq.q}
               </AccordionTrigger>
-              <AccordionContent className="text-foreground/60 leading-relaxed pb-8 font-medium italic">
+              <AccordionContent className="text-foreground/60 leading-relaxed pb-6 md:pb-8 font-medium italic text-sm md:text-base">
                 {faq.a}
               </AccordionContent>
             </AccordionItem>
