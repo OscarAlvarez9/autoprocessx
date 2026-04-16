@@ -6,6 +6,7 @@ import { useContactDrawer } from "@/context/ContactDrawerContext"
 import { X, MessageCircle, Mail, ArrowRight, Send, CheckCircle2, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import emailjs from '@emailjs/browser'
+import { gtagEvent } from "@/lib/gtag"
 
 export default function ContactDrawer() {
   const { isOpen, closeDrawer } = useContactDrawer()
@@ -29,6 +30,13 @@ export default function ContactDrawer() {
         },
         'WGplfo4snkyBY6ZQo'
       )
+
+      // GA4 — Formulario de email enviado con éxito
+      gtagEvent('form_submit', {
+        event_category: 'contact',
+        event_label: 'email_form',
+        method: 'email',
+      })
 
       setView("success")
       setTimeout(() => {
@@ -194,6 +202,13 @@ export default function ContactDrawer() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="block"
+                                    onClick={() =>
+                                      gtagEvent('cta_click', {
+                                        event_category: 'contact',
+                                        event_label: 'whatsapp_button',
+                                        method: 'whatsapp',
+                                      })
+                                    }
                                 >
                                     <Button 
                                         className="w-full h-18 bg-[#25D366] text-white font-black text-lg rounded-full shadow-xl shadow-[#25D366]/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-3"

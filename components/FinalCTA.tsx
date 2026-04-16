@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { MessageCircle } from "lucide-react"
 import { useContactDrawer } from "@/context/ContactDrawerContext"
+import { gtagEvent } from "@/lib/gtag"
 
 export default function FinalCTA() {
   const { openDrawer } = useContactDrawer()
@@ -41,7 +42,14 @@ export default function FinalCTA() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Button 
                       size="lg" 
-                      onClick={openDrawer}
+                      onClick={() => {
+                        gtagEvent('cta_click', {
+                          event_category: 'cta',
+                          event_label: 'auditoria_gratuita',
+                          location: 'final_cta_section',
+                        })
+                        openDrawer()
+                      }}
                       className="px-10 h-18 text-lg font-black bg-white text-primary hover:bg-white/90 transition-all rounded-full border-none shadow-2xl shadow-white/10 w-full sm:w-auto"
                   >
                       Auditoría Gratuita
@@ -49,7 +57,14 @@ export default function FinalCTA() {
                   <Button 
                       size="lg" 
                       variant="ghost"
-                      onClick={openDrawer}
+                      onClick={() => {
+                        gtagEvent('cta_click', {
+                          event_category: 'cta',
+                          event_label: 'whatsapp_directo',
+                          location: 'final_cta_section',
+                        })
+                        openDrawer()
+                      }}
                       className="px-10 h-18 text-lg font-black border-2 border-white/50 text-white hover:bg-white/10 transition-all rounded-full w-full sm:w-auto flex items-center gap-3 backdrop-blur-md"
                   >
                       <MessageCircle className="h-5 w-5 text-secondary" />
