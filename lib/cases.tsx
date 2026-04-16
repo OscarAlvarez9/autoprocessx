@@ -114,7 +114,7 @@ export const caseStudies: CaseStudy[] = [
         metric: "7 módulos integrados",
         secondaryMetric: "Producción activa",
         tags: ["Next.js", "n8n", "Claude", "PostgreSQL", "Agentes IA"],
-        logo: "/assets/ai_intelligence_icon_17745383238.png",
+        logo: "/assets/platform_dashboard.png",
         image: "/assets/platform_dashboard.png",
         metricsArray: [
             { label: "Módulos en producción", value: "7", icon: <Layers className="h-4 w-4 text-primary" /> },

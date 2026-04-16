@@ -94,7 +94,7 @@ export default function CasosDeExito() {
                                 <div className="w-full lg:w-[55%] relative group">
                                     <div className="absolute -inset-4 bg-gradient-to-br from-primary/5 to-transparent rounded-[64px] md:rounded-[80px] -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                                    <div className={`relative ${project.theme === 'dark' || project.image.includes('workflow') || project.image.includes('platform') ? 'aspect-auto min-h-[400px] bg-[#0a0a0a]' : 'aspect-[4/3] bg-white'} rounded-[40px] md:rounded-[64px] overflow-hidden border border-gray-100 shadow-xl group-hover:shadow-2xl transition-all duration-700 flex items-center justify-center`}>
+                                    <div className={`relative ${project.theme === 'dark' || project.image.includes('workflow') || (project.image.includes('platform') && !project.image.includes('dashboard')) ? 'aspect-auto min-h-[400px] bg-[#0a0a0a]' : 'aspect-[4/3] bg-white'} rounded-[40px] md:rounded-[64px] overflow-hidden border border-gray-100 shadow-xl group-hover:shadow-2xl transition-all duration-700 flex items-center justify-center`}>
                                         <Image
                                             src={project.image}
                                             alt={project.title}
@@ -106,12 +106,7 @@ export default function CasosDeExito() {
 
                                         {/* Technical Overlay */}
                                         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/20 to-transparent" />
-                                        {project.result && (
-                                            <div className="absolute top-10 right-10 flex flex-col items-end gap-3 font-black">
-                                                <span className="text-7xl text-secondary tracking-tighter drop-shadow-[0_8px_30px_rgba(0,0,0,0.2)]">{project.result}</span>
-                                                <span className="px-4 py-1.5 rounded-full bg-white text-[10px] text-primary uppercase tracking-[0.2em] shadow-xl border border-gray-100">{project.resultLabel}</span>
-                                            </div>
-                                        )}
+
                                     </div>
 
                                     {/* Action Button - No Orange Hover */}

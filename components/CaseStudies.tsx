@@ -58,7 +58,7 @@ export default function CaseStudies() {
                                 src={project.logo} 
                                 alt={project.title} 
                                 fill={true}
-                                className="object-contain p-12 lg:group-hover:scale-105 transition-transform duration-[2000ms] ease-out"
+                                className={`${project.logo.includes('platform') || project.logo.includes('dashboard') || project.logo.includes('opoai') ? 'object-cover' : 'object-contain p-12'} lg:group-hover:scale-105 transition-transform duration-[2000ms] ease-out`}
                             />
                             {/* Technical Overlay */}
                             <div className="absolute inset-x-0 bottom-0 h-32 lg:h-40 bg-gradient-to-t from-black/5 lg:from-black/5 to-transparent pointer-events-none" />
