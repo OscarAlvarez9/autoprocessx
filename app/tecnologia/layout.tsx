@@ -5,7 +5,7 @@ const techPageSchema = {
   "@type": "WebPage",
   name: "Stack Tecnológico — AutoProcessX",
   url: "https://www.autoprocessx.com/tecnologia",
-  description: "Stack tecnológico enterprise de AutoProcessX: n8n (Gold Partner), Claude 3.5 Sonnet, GPT-4o, Gemini 1.5 Pro, PostgreSQL, AWS y bases vectoriales Pinecone. Infraestructura de automatización IA para empresas.",
+  description: "Stack tecnológico enterprise de AutoProcessX: n8n, Claude 3.5 Sonnet, GPT-4o, Gemini 1.5 Pro, PostgreSQL, AWS y bases vectoriales Pinecone. Infraestructura de automatización IA para empresas.",
   mainEntity: {
     "@type": "ItemList",
     name: "Tecnologías de Automatización IA",
@@ -76,7 +76,7 @@ const breadcrumbSchema = {
 export const metadata: Metadata = {
   title: "Stack Tecnológico IA Barcelona | n8n, GPT-4o, AWS",
   description: "El stack tecnológico de AutoProcessX: automatización con n8n, LLMs de última generación y arquitecturas RAG para empresas en Barcelona. Agencia IA en Barcelona.",
-  keywords: ["workflow automation", "vector embedding", "llm monitoring", "n8n Gold Partner Barcelona", "infraestructura IA empresa", "automatización de inteligencia artificial", "arquitectura RAG", "tecnología LLM empresarial"],
+  keywords: ["workflow automation", "vector embedding", "llm monitoring", "infraestructura IA empresa", "automatización de inteligencia artificial", "arquitectura RAG", "tecnología LLM empresarial"],
   openGraph: {
     title: "Stack Tecnológico IA Barcelona | n8n, GPT-4o, AWS | AutoProcessX",
     description: "Stack enterprise en Barcelona: Claude, GPT-4o, AWS y Pinecone. Infraestructura de automatización IA para empresas.",

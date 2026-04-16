@@ -48,7 +48,7 @@ export default function Footer() {
         </div>
         
         <div className="text-center text-[10px] font-black uppercase tracking-[0.2em] border-t border-gray-100 pt-10 opacity-30">
-          © {new Date().getFullYear()} AutoProcessX — Empresa de Inteligencia Artificial y Automatización de Procesos en Barcelona · n8n Gold Partner
+          © {new Date().getFullYear()} AutoProcessX — Empresa de Inteligencia Artificial y Automatización de Procesos en Barcelona
         </div>
       </div>
     </footer>

@@ -21,7 +21,7 @@ export default function Hero() {
                 {/* Branding Status */}
                 <div className="flex items-center gap-6 mb-12">
                     <div className="h-[2px] w-12 bg-primary" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.5em] text-primary">Agencia IA · n8n Gold Partner · Barcelona</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.5em] text-primary">Agencia IA · Barcelona</span>
                 </div>
 
                 {/* Dominant Headline */}
@@ -39,7 +39,7 @@ export default function Hero() {
                 <div className="space-y-6 mb-16">
                     {[
                         { num: "01", label: "AI Chatbot & Automatización Email Marketing", sub: "Web · WhatsApp · Campañas IA" },
-                        { num: "02", label: "Workflow Automation con n8n", sub: "Gold Partner · Flujos Inteligentes" },
+                        { num: "02", label: "Workflow Automation con n8n", sub: "Flujos Inteligentes" },
                         { num: "03", label: "Aplicaciones IA para Empresas", sub: "RAG · Multi Agent Systems · LLMs" },
                     ].map((layer, j) => (
                         <div key={j} className="flex items-center gap-6 group cursor-default">

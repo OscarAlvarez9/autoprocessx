@@ -15,7 +15,7 @@ const techCategories = [
     icon: <Layers className="h-6 w-6 text-accent" />,
     description: "No hacemos 'workflows por hacer'. Diseñamos pipelines resilientes con control de errores avanzado y lógica condicional compleja.",
     technologies: [
-      { name: "n8n", sub: "Instancias Dedicadas", badge: "Gold Partner" },
+      { name: "n8n", sub: "Instancias Dedicadas", badge: "" },
       { name: "Make", sub: "Enterprise Plans", badge: "Pro" },
       { name: "TypeScript Node", sub: "Custom Logic", badge: "Core" }
     ]

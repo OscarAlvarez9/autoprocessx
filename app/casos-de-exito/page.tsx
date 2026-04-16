@@ -98,9 +98,9 @@ export default function CasosDeExito() {
                                         <Image
                                             src={project.image}
                                             alt={project.title}
-                                            fill={false}
                                             width={1400}
                                             height={800}
+                                            sizes="(max-width: 768px) 100vw, 55vw"
                                             className={`w-full h-auto ${project.image.includes('workflow') ? 'p-8 md:p-12' : 'object-cover'} group-hover:scale-[1.03] transition-transform duration-[2000ms] ease-out`}
                                         />
 

@@ -115,12 +115,12 @@ export const caseStudies: CaseStudy[] = [
         secondaryMetric: "Producción activa",
         tags: ["Next.js", "n8n", "Claude", "PostgreSQL", "Agentes IA"],
         logo: "/assets/ai_intelligence_icon_17745383238.png",
-        image: "/assets/platform_agents.png",
+        image: "/assets/platform_dashboard.png",
         metricsArray: [
             { label: "Módulos en producción", value: "7", icon: <Layers className="h-4 w-4 text-primary" /> },
             { label: "Automatización interna", value: "100%", icon: <ShieldCheck className="h-4 w-4 text-primary" /> }
         ],
-        theme: "dark",
+        theme: "light",
         stack: [
             { name: "Next.js + TypeScript", role: "Frontend y API Routes de la plataforma" },
             { name: "PostgreSQL + Prisma", role: "Base de datos relacional y ORM" },

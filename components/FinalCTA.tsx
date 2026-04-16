@@ -9,7 +9,7 @@ export default function FinalCTA() {
   const { openDrawer } = useContactDrawer()
 
   return (
-    <section className="px-4 pb-32 md:px-8 relative z-10">
+    <section className="px-4 py-32 md:px-8 relative z-10">
       <div className="max-w-6xl mx-auto py-24 bg-primary text-white rounded-[48px] md:rounded-[80px] overflow-hidden relative shadow-2xl shadow-primary/30">
         {/* Background Decorative Elements */}
         <div className="absolute inset-0 z-0 text-white/5 pointer-events-none">
