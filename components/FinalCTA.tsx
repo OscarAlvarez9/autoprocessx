@@ -43,7 +43,7 @@ export default function FinalCTA() {
                   <Button 
                       size="lg" 
                       onClick={() => {
-                        gtagEvent('cta_click', {
+                        gtagEvent('click_cta_to_form', {
                           event_category: 'cta',
                           event_label: 'auditoria_gratuita',
                           location: 'final_cta_section',
@@ -58,7 +58,7 @@ export default function FinalCTA() {
                       size="lg" 
                       variant="ghost"
                       onClick={() => {
-                        gtagEvent('cta_click', {
+                        gtagEvent('click_cta_to_form', {
                           event_category: 'cta',
                           event_label: 'whatsapp_directo',
                           location: 'final_cta_section',
