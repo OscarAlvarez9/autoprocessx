@@ -20,6 +20,7 @@ export interface CaseStudy {
     secondaryMetric: string
     tags: string[]
     logo: string
+    logoOverlay?: string
     image: string
     metricsArray: CaseMetric[]
     theme: string
@@ -150,7 +151,7 @@ export const caseStudies: CaseStudy[] = [
         metric: "9 módulos integrados",
         secondaryMetric: "Producción activa",
         tags: ["Next.js", "Claude", "PostgreSQL", "n8n", "RAG"],
-        logo: "/assets/opoai_dashboard.png",
+        logo: "/assets/opoai_logo.png",
         image: "/assets/opoai_dashboard.png",
         metricsArray: [
             { label: "Módulos en producción", value: "9", icon: <BookOpen className="h-4 w-4 text-primary" /> },

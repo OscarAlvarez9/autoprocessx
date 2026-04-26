@@ -1,76 +1,78 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Check, X } from "lucide-react"
+import { Check, X, ShieldAlert, Cpu } from "lucide-react"
+import DarkBackground from "@/components/DarkBackground"
 
 const features = [
-  { name: "Cero límites de tareas", ap: true, others: false },
-  { name: "IA Especializada (Claude/Gemini)", ap: true, others: false },
-  { name: "Código Abierto & Privacidad", ap: true, others: false },
-  { name: "Coste por ejecución $0", ap: true, others: false },
-  { name: "Mantenimiento & Estrategia", ap: true, others: false },
-  { name: "Escalabilidad Personalizada", ap: true, others: "Parcial" },
+    { name: "SLA de Infraestructura", ap: "Garantizado", others: "N/A" },
+    { name: "Propiedad del Código Source", ap: "100% Cliente", others: "Propiedad SaaS" },
+    { name: "IA No-Determinística (RAG)", ap: "Arquitectura SOTA", others: "Chatbots Básicos" },
+    { name: "Coste por Tarea", ap: "0€ (Scale-Out)", others: "Coste por Zap" },
+    { name: "Escalabilidad de Pipeline", ap: "Infinita (n8n Engine)", others: "Límites de Plan" },
+    { name: "Seguridad de Datos", ap: "Entorno Privado", others: "Cloud Compartido" },
 ]
 
 export default function Comparison() {
-  return (
-    <section id="tech" className="py-20 md:py-24 bg-background">
-      <div className="container px-6 mx-auto">
-        <h2 className="text-3xl font-black text-foreground md:text-5xl mb-12 md:mb-16 text-center tracking-tight">
-            Por qué <span className="text-primary underline decoration-primary/20 decoration-8 underline-offset-4">AutoProcessX</span> y no Zapier
-        </h2>
+    return (
+        <section id="tech-benchmarking" className="py-24 md:py-28 relative overflow-hidden">
+            <DarkBackground accent="neutral" secondaryAccent="accent" intensity="soft" />
 
-        <div className="max-w-4xl mx-auto overflow-x-auto rounded-[32px] border border-gray-100 bg-white shadow-2xl shadow-primary/5 scrollbar-hide">
-          <table className="w-full text-left border-collapse min-w-[600px]">
-            <thead>
-              <tr className="bg-muted/50 text-[10px] md:text-xs font-black uppercase tracking-widest text-foreground/40">
-                <th className="p-6 md:p-8 border-b border-gray-100">Característica</th>
-                <th className="p-6 md:p-8 border-b border-gray-100 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-primary/5 opacity-40 -z-10" />
-                    <span className="text-primary tracking-[0.2em] whitespace-nowrap">AutoProcessX (n8n)</span>
-                </th>
-                <th className="p-6 md:p-8 border-b border-gray-100 opacity-50 whitespace-nowrap">Zapier / Make</th>
-              </tr>
-            </thead>
-            <tbody>
-              {features.map((f, i) => (
-                <tr key={i} className="border-b border-gray-50 last:border-0 hover:bg-muted/30 transition-colors group">
-                  <td className="p-6 md:p-8 text-foreground/70 font-bold group-hover:text-primary transition-colors text-sm md:text-base">{f.name}</td>
-                  <td className="p-6 md:p-8 relative">
-                    {/* Subtle column highlight */}
-                    <div className="absolute inset-0 bg-primary/[0.02] border-x border-primary/[0.05]" />
-                    <div className="relative flex items-center justify-center">
-                        {f.ap === true ? (
-                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-primary/10 text-primary flex items-center justify-center shadow-sm shrink-0">
-                                <Check className="h-5 w-5 md:h-6 md:w-6" strokeWidth={3} />
-                            </div>
-                        ) : (
-                            <span className="text-xs md:text-sm font-black text-primary">{f.ap}</span>
-                        )}
+            <div className="container relative z-10 px-6 mx-auto">
+                <div className="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
+                    <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-[10px] font-black uppercase tracking-[0.3em] mb-8">
+                        <ShieldAlert className="h-3.5 w-3.5" />
+                        No construimos &quot;Zaps&quot;. Construimos sistemas.
                     </div>
-                  </td>
-                  <td className="p-6 md:p-8">
-                    <div className="flex items-center justify-center">
-                        {f.others === true ? (
-                            <Check className="h-5 w-5 md:h-6 md:w-6 text-foreground/20" />
-                        ) : f.others === false ? (
-                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-red-50 text-red-400/50 flex items-center justify-center shrink-0">
-                                <X className="h-5 w-5 md:h-6 md:w-6" strokeWidth={3} />
-                            </div>
-                        ) : (
-                            <span className="px-2 py-1 md:px-3 md:py-1 bg-amber-50 text-amber-500 text-[9px] md:text-[10px] font-black uppercase tracking-widest rounded-lg whitespace-nowrap">
-                                {f.others}
-                            </span>
-                        )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="text-center mt-6 text-[10px] text-foreground/30 font-bold uppercase tracking-widest sm:hidden">Desliza para ver la tabla completa →</p>
-      </div>
-    </section>
-  )
+                    <h2 className="text-3xl md:text-5xl font-black text-white mb-5 leading-[1.05] tracking-tight">
+                        Zapier y Make son parches. <br className="hidden md:block" />
+                        <span className="text-accent">Nosotros, plataforma.</span>
+                    </h2>
+                    <p className="text-white/65 text-base md:text-lg font-medium leading-relaxed max-w-2xl mx-auto">
+                        Desplegamos arquitectura de plataforma que orquesta tu empresa sin límites artificiales ni coste por tarea.
+                    </p>
+                </div>
+
+                <div className="max-w-5xl mx-auto overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0F1424] shadow-2xl backdrop-blur-xl">
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="bg-[#0F1424] text-[10px] font-black uppercase tracking-[0.3em] text-white/40">
+                                <th className="p-6 md:p-8 border-b border-white/10">Protocol Spec</th>
+                                <th className="p-6 md:p-8 border-b border-white/10 text-accent relative">
+                                    <div className="absolute inset-0 bg-accent/5" />
+                                    <span className="relative z-10 flex items-center gap-2.5">
+                                        <Cpu className="h-3.5 w-3.5" /> AutoProcessX
+                                    </span>
+                                </th>
+                                <th className="p-6 md:p-8 border-b border-white/10 opacity-50">Generic Automation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {features.map((f, i) => (
+                                <tr key={i} className="border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors group">
+                                    <td className="p-6 md:p-8 text-white/70 font-bold text-sm">{f.name}</td>
+                                    <td className="p-6 md:p-8 relative">
+                                        <div className="absolute inset-0 bg-accent/[0.03] border-x border-accent/10" />
+                                        <div className="relative flex items-center gap-2.5">
+                                            <Check className="h-4 w-4 text-accent shrink-0" />
+                                            <span className="text-white font-black tracking-tight text-sm md:text-base group-hover:text-accent transition-colors">
+                                                {f.ap}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td className="p-6 md:p-8">
+                                        <div className="flex items-center gap-2.5">
+                                            <X className="h-4 w-4 text-white/20 shrink-0" />
+                                            <span className="text-white/40 text-sm font-medium group-hover:text-white/60 transition-colors">
+                                                {f.others}
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    )
 }

@@ -6,29 +6,37 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   
-  --color-primary: #0F47AF;
-  --color-primary-foreground: #FFFFFF;
-  
-  --color-secondary: #059669;
-  --color-secondary-foreground: #FFFFFF;
-  
-  --color-accent: #F97316;
-  --color-accent-foreground: #FFFFFF;
-  
+  --color-primary: #FBBF24;
+  --color-primary-foreground: #05070F;
+
+  --color-secondary: #F59E0B;
+  --color-secondary-foreground: #05070F;
+
+  --color-accent: #FBBF24;
+  --color-accent-foreground: #05070F;
+
+  /* Categorical Accents — amber-led palette */
+  --accent-amber: #FBBF24;
+  --accent-amber-deep: #F59E0B;
+  --accent-amber-soft: #FCD34D;
+  --accent-cyan: #22D3EE;
+  --accent-emerald: #10B981;
+  --accent-violet: #A855F7;
+
   --color-destructive: #ef4444;
   --color-destructive-foreground: #FFFFFF;
-  
-  --color-muted: #F9FAFB;
+
+  --color-muted: #0B0F1C;
   --color-muted-foreground: #64748b;
-  
-  --color-border: #e2e8f0;
-  --color-input: #e2e8f0;
-  --color-ring: #0F47AF;
+
+  --color-border: #1A2236;
+  --color-input: #1A2236;
+  --color-ring: #FBBF24;
 }
 
 :root {
-  --background: #FFFFFF;
-  --foreground: #1F2937;
+  --background: #05070F;
+  --foreground: #FFFFFF;
   --radius: 0.75rem;
 }
 

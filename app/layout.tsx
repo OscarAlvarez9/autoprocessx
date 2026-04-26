@@ -95,12 +95,16 @@ export default function RootLayout({
     >
       <head suppressHydrationWarning>
         {/* Google Tag Manager */}
-        <Script
-          id="gtm-script"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WD6GMRVN');`,
-          }}
+        <Script id="gtm-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+          `}
+        </Script>
+        <Script 
+          id="gtm-script" 
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-WD6GMRVN"
+          strategy="afterInteractive" 
         />
         {/* End Google Tag Manager */}
         {/* Google Analytics */}
@@ -140,13 +144,6 @@ export default function RootLayout({
         </noscript>
         {/* End Google Tag Manager (noscript) */}
         <ContactDrawerProvider>
-          {/* Global Flagship Background */}
-          <div className="fixed inset-0 z-0 opacity-[0.4] pointer-events-none">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-            {/* Fading bottom edge to blend seamlessly if needed */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/80" />
-          </div>
-
           <div className="relative z-10 flex flex-col min-h-full">
               {children}
           </div>

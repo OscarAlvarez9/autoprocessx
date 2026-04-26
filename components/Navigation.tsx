@@ -4,22 +4,22 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { X, Menu, ChevronDown } from "lucide-react"
+import { X, Menu, ChevronDown, Terminal, Activity } from "lucide-react"
 
 import { useContactDrawer } from "@/context/ContactDrawerContext"
 
 const navLinks = [
   {
-    label: "Servicios",
+    label: "Sistemas",
     children: [
       { href: "/servicios/automatizaciones", label: "Automatizaciones IA", sub: "Infraestructura completa y agentes autónomos." },
       { href: "/servicios/aplicaciones-ia", label: "Aplicaciones IA (RAG)", sub: "Entrenamiento con documentos propios." },
       { href: "/servicios/ai-chatbot", label: "AI Chatbot", sub: "Chat online para web y WhatsApp 24/7." },
     ],
   },
-  { label: "Casos", href: "/casos-de-exito" },
+  { label: "Registro", href: "/casos-de-exito" },
   { label: "Stack", href: "/tecnologia" },
-  { label: "Empresa", href: "/sobre-nosotros" },
+  { label: "Firma", href: "/sobre-nosotros" },
 ]
 
 export default function Navigation() {
@@ -48,63 +48,64 @@ export default function Navigation() {
   return (
     <>
       <header
-        className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[calc(100%-1.5rem)] max-w-6xl ${
-          scrolled ? "top-3" : "top-5"
+        className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-700 w-[calc(100%-2rem)] max-w-7xl ${
+          scrolled ? "top-4" : "top-8"
         }`}
       >
         <div
           className={`
-            mx-auto flex items-center justify-between px-4 sm:px-6 py-2.5 
-            rounded-full border border-white/40 
-            bg-background/70 backdrop-blur-xl
-            shadow-[0_8px_32px_0_rgba(0,0,0,0.05)]
-            transition-all duration-500
-            ${scrolled ? "bg-background/90 shadow-lg border-white/60" : ""}
+            mx-auto flex items-center justify-between px-8 py-3
+            rounded-2xl border border-white/10
+            bg-[#0F1424]/70 backdrop-blur-3xl
+            transition-all duration-700
+            ${scrolled ? "shadow-[0_8px_30px_-12px_rgba(251,191,36,0.25)] border-accent/20 bg-[#0F1424]/90" : ""}
           `}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group shrink-0" onClick={closeMobile}>
-            <div className="relative w-8 h-8 flex items-center justify-center">
-              <div className="absolute inset-0 bg-primary/20 rounded-lg blur-md group-hover:bg-primary/30 transition-all" />
-              <svg className="w-6 h-6 text-primary relative z-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 4L4 12L12 20L20 12L12 4Z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M12 9L9 12L12 15L15 12L12 9Z" fill="currentColor"/>
-              </svg>
+          <Link href="/" className="flex items-center gap-3 group shrink-0" onClick={closeMobile}>
+            <div className="relative w-10 h-10 flex items-center justify-center bg-[#0F1424] rounded-xl border border-white/5 group-hover:border-accent/50 transition-all">
+              <Terminal className="w-5 h-5 text-accent group-hover:scale-110 transition-transform" />
+              <div className="absolute -inset-1 bg-accent/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-            <div className="flex items-center">
-              <span className="text-xl font-black tracking-tight text-foreground">AutoProcess</span>
-              <span className="text-xl font-black tracking-tight text-primary ml-0.5 group-hover:scale-110 inline-block transition-transform origin-left">X</span>
+            <div className="flex flex-col">
+              <span className="text-lg font-black tracking-tight text-white uppercase italic leading-none">AutoProcess<span className="text-accent ml-0.5">X</span></span>
+              <span className="text-[7px] font-black tracking-[0.4em] text-white/30 uppercase mt-1">Platform Engineering</span>
             </div>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6 text-[11px] font-bold uppercase tracking-wider text-foreground/80">
+          <nav className="hidden lg:flex items-center gap-10 text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
             <div className="relative group">
-              <button className="hover:text-primary transition-colors flex items-center gap-1">
-                Servicios
-                <ChevronDown className="w-3 h-3 mt-0.5" />
+              <button className="hover:text-accent transition-colors flex items-center gap-2 uppercase tracking-[0.3em]">
+                Sistemas
+                <ChevronDown className="w-3 h-3 text-accent group-hover:text-accent transition-colors" />
               </button>
-              <div className="absolute top-full -left-4 pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
-                <div className="bg-background/95 backdrop-blur-xl border border-muted rounded-3xl p-2 w-64 shadow-2xl">
+              <div className="absolute top-full -left-10 pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+                <div className="bg-[#05070F] border border-white/10 rounded-[32px] p-2 w-80 shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] backdrop-blur-3xl">
                   {navLinks[0].children!.map((item) => (
-                    <Link key={item.href} href={item.href} className="block p-4 hover:bg-muted rounded-2xl transition-colors group/item">
-                      <p className="text-foreground font-bold text-[11px] mb-1 group-hover/item:text-primary transition-colors uppercase">{item.label}</p>
-                      <p className="text-[10px] text-foreground/40 normal-case leading-relaxed font-normal">{item.sub}</p>
+                    <Link key={item.href} href={item.href} className="block p-4 hover:bg-white/[0.03] rounded-[24px] transition-all group/item border border-transparent hover:border-white/5">
+                      <p className="text-white font-black text-[10px] tracking-[0.2em] mb-1 group-hover/item:text-accent transition-colors uppercase italic">{item.label}</p>
+                      <p className="text-[9px] text-white/30 normal-case leading-tight font-medium italic">{item.sub}</p>
                     </Link>
                   ))}
                 </div>
               </div>
             </div>
-            <Link href="/casos-de-exito" className="hover:text-primary transition-colors">Casos</Link>
-            <Link href="/tecnologia" className="hover:text-primary transition-colors">Stack</Link>
-            <Link href="/sobre-nosotros" className="hover:text-primary transition-colors">Empresa</Link>
+            {navLinks.slice(1).map((link) => (
+              <Link key={link.href} href={link.href!} className="hover:text-accent transition-colors tracking-[0.3em]">{link.label}</Link>
+            ))}
           </nav>
 
           {/* Right side */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-[#0F1424] border border-white/5">
+                <Activity className="h-3 w-3 text-accent animate-pulse" />
+                <span className="text-[9px] font-black text-white/40 uppercase tracking-[0.2em] italic">Live Status</span>
+            </div>
+
             <Button
               onClick={() => { openDrawer(); closeMobile() }}
-              className="hidden sm:flex bg-primary hover:bg-primary/90 text-[10px] font-black uppercase tracking-widest text-white rounded-full px-5 py-5 shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95"
+              className="hidden sm:flex bg-white text-black hover:bg-accent h-12 rounded-xl px-10 text-[9px] font-black uppercase tracking-[0.3em] transition-all hover:scale-105 active:scale-95 shadow-2xl"
             >
               Contactar
             </Button>
@@ -113,7 +114,7 @@ export default function Navigation() {
             <button
               onClick={() => setMobileOpen((v) => !v)}
               aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary transition-all active:scale-95"
+              className="lg:hidden flex items-center justify-center w-12 h-12 rounded-xl bg-[#0F1424] text-white border border-white/5 transition-all active:scale-95"
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -131,51 +132,42 @@ export default function Navigation() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 md:hidden"
+              transition={{ duration: 0.5 }}
+              className="fixed inset-0 bg-black/90 backdrop-blur-2xl z-[60] lg:hidden"
               onClick={closeMobile}
             />
 
             {/* Panel */}
             <motion.div
               key="panel"
-              initial={{ opacity: 0, y: -20, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.97 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed top-0 left-0 right-0 z-50 md:hidden bg-background/98 backdrop-blur-2xl border-b border-border shadow-2xl pt-24 pb-8 px-6 overflow-y-auto max-h-screen"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed top-0 right-0 bottom-0 w-full md:w-[450px] z-[70] lg:hidden bg-[#05070F] border-l border-white/5 pt-32 pb-12 px-10 flex flex-col"
             >
-              {/* Logo close row */}
-              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[calc(100%-1.5rem)] flex items-center justify-between">
-                <Link href="/" className="flex items-center gap-2 group" onClick={closeMobile}>
-                  <div className="relative w-8 h-8 flex items-center justify-center">
-                    <div className="absolute inset-0 bg-primary/20 rounded-lg blur-md" />
-                    <svg className="w-6 h-6 text-primary relative z-10" viewBox="0 0 24 24" fill="none">
-                      <path d="M12 4L4 12L12 20L20 12L12 4Z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M12 9L9 12L12 15L15 12L12 9Z" fill="currentColor"/>
-                    </svg>
-                  </div>
-                  <span className="text-xl font-black tracking-tight text-foreground">AutoProcess<span className="text-primary">X</span></span>
-                </Link>
-                <button
-                  onClick={closeMobile}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+              <div className="absolute top-10 left-10 flex items-center gap-3">
+                 <Terminal className="h-6 w-6 text-accent" />
+                 <span className="text-xl font-black italic uppercase text-white">Registry Access</span>
               </div>
 
+              <button
+                onClick={closeMobile}
+                className="absolute top-8 right-8 flex items-center justify-center w-14 h-14 rounded-2xl bg-[#0F1424] text-white border border-white/5"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
               {/* Nav Items */}
-              <nav className="flex flex-col gap-1">
-                {/* Servicios accordion */}
+              <nav className="flex flex-col gap-2 mt-12">
                 <div>
                   <button
                     onClick={() => setServicesOpen((v) => !v)}
-                    className="w-full flex items-center justify-between py-4 px-2 text-base font-black uppercase tracking-widest text-foreground border-b border-border/50"
+                    className="w-full flex items-center justify-between py-6 text-2xl font-black uppercase tracking-tighter text-white border-b border-white/5 italic"
                   >
-                    Servicios
-                    <motion.div animate={{ rotate: servicesOpen ? 180 : 0 }} transition={{ duration: 0.25 }}>
-                      <ChevronDown className="w-4 h-4 text-primary" />
+                    Sistemas
+                    <motion.div animate={{ rotate: servicesOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                      <ChevronDown className="w-6 h-6 text-accent" />
                     </motion.div>
                   </button>
                   <AnimatePresence>
@@ -184,19 +176,19 @@ export default function Navigation() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25 }}
+                        transition={{ duration: 0.4 }}
                         className="overflow-hidden"
                       >
-                        <div className="py-2 pl-4 flex flex-col gap-1">
+                        <div className="py-4 flex flex-col gap-2 pl-6">
                           {navLinks[0].children!.map((item) => (
                             <Link
                               key={item.href}
                               href={item.href}
                               onClick={closeMobile}
-                              className="block py-3 px-3 rounded-2xl hover:bg-muted active:bg-muted transition-colors"
+                              className="block py-4 border-l-2 border-white/5 pl-6 hover:border-accent group"
                             >
-                              <p className="text-foreground font-bold text-[11px] uppercase tracking-widest">{item.label}</p>
-                              <p className="text-[10px] text-foreground/40 mt-0.5">{item.sub}</p>
+                              <p className="text-white font-black text-[11px] uppercase tracking-widest group-hover:text-accent transition-colors">{item.label}</p>
+                              <p className="text-[10px] text-white/30 mt-1 italic leading-tight">{item.sub}</p>
                             </Link>
                           ))}
                         </div>
@@ -206,28 +198,27 @@ export default function Navigation() {
                 </div>
 
                 {[
-                  { href: "/casos-de-exito", label: "Casos de Éxito" },
+                  { href: "/casos-de-exito", label: "Registro de Despliegue" },
                   { href: "/tecnologia", label: "Stack Tecnológico" },
-                  { href: "/sobre-nosotros", label: "Empresa" },
+                  { href: "/sobre-nosotros", label: "Sobre la Firma" },
                 ].map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={closeMobile}
-                    className="py-4 px-2 text-base font-black uppercase tracking-widest text-foreground border-b border-border/50 hover:text-primary active:text-primary transition-colors"
+                    className="py-6 text-2xl font-black uppercase tracking-tighter text-white border-b border-white/5 hover:text-accent transition-colors italic text-left"
                   >
                     {link.label}
                   </Link>
                 ))}
               </nav>
 
-              {/* CTA */}
-              <div className="mt-8">
+              <div className="mt-auto">
                 <Button
                   onClick={() => { openDrawer(); closeMobile() }}
-                  className="w-full bg-primary hover:bg-primary/90 text-sm font-black uppercase tracking-widest text-white rounded-2xl h-14 shadow-lg shadow-primary/20 transition-all active:scale-95"
+                  className="w-full bg-accent text-black hover:bg-white text-xs font-black uppercase tracking-[0.3em] rounded-2xl h-20 shadow-2xl transition-all active:scale-95"
                 >
-                  Contactar Ahora
+                  Iniciar Protocolo
                 </Button>
               </div>
             </motion.div>

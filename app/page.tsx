@@ -4,7 +4,10 @@ import Navigation from "@/components/Navigation"
 import PainPoints from "@/components/PainPoints"
 import Solution from "@/components/Solution"
 import CaseStudies from "@/components/CaseStudies"
+import OwnProducts from "@/components/OwnProducts"
 import Services from "@/components/Services"
+import Verticals from "@/components/Verticals"
+import ManifestoDivider from "@/components/ManifestoDivider"
 import ROICalculator from "@/components/ROICalculator"
 import Comparison from "@/components/Comparison"
 import FAQ from "@/components/FAQ"
@@ -24,13 +27,16 @@ export default function Home() {
     <main className="min-h-screen bg-background text-foreground selection:bg-primary/20">
       <Navigation />
       <Hero />
-      <ROICalculator />
+      <Comparison />
+      <OwnProducts />
 
-      <PainPoints />
-      <Solution />
       <Services />
       <CaseStudies />
-      <Comparison />
+      <Verticals />
+      <ManifestoDivider />
+      <PainPoints />
+      <Solution />
+      <ROICalculator />
       <FinalCTA />
       <FAQ />
       <Footer />

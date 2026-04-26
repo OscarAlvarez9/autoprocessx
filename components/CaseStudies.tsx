@@ -1,121 +1,132 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Rocket, CheckCircle2, ArrowUpRight, Globe } from "lucide-react"
+import { ArrowUpRight, Globe, Activity } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 import { caseStudies } from "@/lib/cases"
+import DarkBackground from "@/components/DarkBackground"
 
 export default function CaseStudies() {
-  return (
-    <section id="casos" className="py-20 lg:py-40 bg-white text-foreground overflow-hidden">
-      <div className="container px-6 mx-auto">
-        {/* Flagship Header */}
-        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between mb-16 lg:mb-32 gap-10 lg:gap-12 text-center lg:text-left">
-            <div className="max-w-3xl">
-                <div className="flex items-center justify-center lg:justify-start gap-4 lg:gap-6 mb-6 lg:mb-8">
-                    <div className="h-[2px] w-8 lg:w-12 bg-secondary" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] lg:tracking-[0.5em] text-secondary">Proyectos Activos</span>
+    return (
+        <section id="casos" className="py-24 md:py-28 text-white overflow-hidden relative">
+            <DarkBackground accent="neutral" secondaryAccent="accent" intensity="soft" />
+
+            <div className="container relative z-10 px-6 mx-auto">
+                {/* Header */}
+                <div className="flex flex-col lg:flex-row items-end justify-between mb-16 md:mb-20 gap-8">
+                    <div className="max-w-3xl">
+                        <div className="flex items-center gap-4 mb-8">
+                            <div className="h-[2px] w-10 bg-accent opacity-50" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40">
+                                Active Deployment Registry
+                            </span>
+                        </div>
+                        <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.05] mb-5">
+                            Modelos de <span className="text-accent">producción</span>.
+                        </h2>
+                        <p className="text-base md:text-lg text-white/65 font-medium leading-relaxed max-w-2xl">
+                            Infraestructuras críticas desplegadas y operativas. Registros técnicos de optimización y retorno sobre capital.
+                        </p>
+                    </div>
+
+                    <div className="hidden lg:flex items-center gap-4 px-5 py-3 rounded-2xl bg-[#0F1424] border border-white/10 backdrop-blur-xl">
+                        <Activity className="h-3.5 w-3.5 text-accent animate-pulse" />
+                        <div>
+                            <div className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 mb-0.5">
+                                Telemetry Active
+                            </div>
+                            <div className="text-sm font-black text-white tracking-tight">SLA 99.9% Verified</div>
+                        </div>
+                    </div>
                 </div>
-                <h2 className="text-3xl md:text-6xl lg:text-[84px] font-black mb-6 lg:mb-10 tracking-tighter leading-[1] lg:leading-[0.9] text-foreground">
-                    Nuestros proyectos y <br className="hidden md:block" />
-                    <span className="text-secondary italic">socios activos.</span>
-                </h2>
-                <p className="text-foreground/40 text-lg md:text-xl lg:text-2xl font-medium max-w-xl mx-auto lg:mx-0 leading-relaxed italic">
-                    Nos enfocamos en resultados tangibles: procesos ágiles, equipos ligeros y una base sólida para crecer.
-                </p>
-            </div>
-            
-            <div className="w-full lg:w-auto lg:pt-20">
-                <div className="p-6 lg:p-8 rounded-[24px] lg:rounded-[32px] bg-muted/30 border border-gray-100 backdrop-blur-xl inline-block">
-                    <div className="flex items-center justify-center lg:justify-start gap-3 lg:gap-4 mb-2 lg:mb-4">
-                        <div className="h-3 w-3 lg:h-4 lg:w-4 rounded-full bg-secondary animate-pulse" />
-                        <span className="text-[10px] font-black uppercase tracking-widest opacity-40">System Tracking</span>
-                    </div>
-                    <div className="text-xl lg:text-2xl font-black text-foreground tracking-tighter italic">Performance Active</div>
+
+                {/* Cases — compact grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 max-w-5xl mx-auto">
+                    {caseStudies.map((project, i) => (
+                        <motion.div
+                            key={i}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.08 }}
+                            className="group flex flex-col rounded-2xl overflow-hidden bg-[#0F1424] border border-white/10 hover:border-accent/30 transition-all"
+                        >
+                            {/* Visual */}
+                            <div
+                                className={`relative ${project.theme === "dark" || project.logo.includes("workflow") ? "bg-[#0F1424]" : "bg-white"} aspect-[16/10] overflow-hidden`}
+                            >
+                                <Image
+                                    src={project.logo}
+                                    alt={project.title}
+                                    fill={true}
+                                    className={`${project.logo.includes("platform") || project.logo.includes("dashboard") ? "object-cover" : "object-contain p-8 md:p-10"} group-hover:scale-105 transition-transform duration-700 ease-out`}
+                                />
+
+                                {/* Telemetry badge */}
+                                <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-xl border border-white/10 px-2.5 py-1 rounded-md text-white font-mono text-[9px] z-20">
+                                    <div className="flex items-center gap-1.5">
+                                        <div className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                                        <span className="font-black uppercase tracking-[0.2em]">
+                                            APX-{project.id}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Content */}
+                            <div className="flex flex-col p-5 md:p-6">
+                                <div className="flex items-center gap-2 mb-3">
+                                    <div className="px-2 py-0.5 rounded-md bg-[#0F1424] text-white/60 text-[9px] font-black uppercase tracking-[0.25em] border border-white/10">
+                                        {project.client}
+                                    </div>
+                                </div>
+
+                                <h3 className="text-lg md:text-xl font-black mb-2 tracking-tight leading-tight">
+                                    {project.title}
+                                </h3>
+                                <p className="text-white/55 mb-4 text-sm font-medium leading-relaxed line-clamp-3">
+                                    {project.desc}
+                                </p>
+
+                                <div className="flex flex-wrap gap-1.5 mb-4">
+                                    {project.tags?.slice(0, 3).map((tag: string, idx: number) => (
+                                        <span
+                                            key={idx}
+                                            className="px-2 py-0.5 rounded bg-[#0F1424] text-[9px] font-black uppercase tracking-[0.2em] text-white/50 border border-white/10"
+                                        >
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                <div className="mt-auto pt-4 border-t border-white/10">
+                                    <Link href={`/casos-de-exito/${project.slug}`}>
+                                        <Button className="w-full h-10 rounded-lg bg-transparent border border-white/15 text-white hover:bg-accent hover:text-black hover:border-accent transition-all font-black uppercase tracking-[0.25em] text-[10px] active:scale-95">
+                                            Auditar arquitectura
+                                            <ArrowUpRight className="ml-2 h-3.5 w-3.5" />
+                                        </Button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* Registry CTA */}
+                <div className="mt-16 md:mt-20 text-center">
+                    <Link href="/casos-de-exito">
+                        <Button className="h-14 px-8 rounded-xl bg-accent text-black hover:bg-white text-sm font-black tracking-wide shadow-lg shadow-accent/20 transition-all active:scale-95">
+                            <span className="flex items-center gap-2">
+                                Acceder al registro completo
+                                <Globe className="h-4 w-4" />
+                            </span>
+                        </Button>
+                    </Link>
                 </div>
             </div>
-        </div>
-
-        {/* Flagship Case Grid */}
-        <div className="space-y-24 lg:space-y-32">
-            {caseStudies.map((project, i) => (
-                <motion.div 
-                    key={i}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className={`flex flex-col lg:flex-row gap-8 lg:gap-16 items-center ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
-                >
-                    {/* Visual Side */}
-                    <div className="w-full lg:w-1/2 relative group">
-                        <div className="hidden lg:block absolute -inset-4 bg-gradient-to-br from-gray-100 to-transparent rounded-[72px] -z-10 opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
-                        <div className={`relative ${project.theme === 'dark' || project.logo.includes('workflow') ? 'aspect-auto min-h-[250px] md:min-h-[300px] bg-[#0a0a0a]' : 'aspect-[4/3] bg-white'} rounded-[32px] md:rounded-[64px] overflow-hidden border border-gray-100 shadow-xl lg:shadow-2xl flex items-center justify-center`}>
-                            <Image 
-                                src={project.logo} 
-                                alt={project.title} 
-                                fill={true}
-                                className={`${project.logo.includes('platform') || project.logo.includes('dashboard') || project.logo.includes('opoai') ? 'object-cover' : 'object-contain p-8 md:p-12'} lg:group-hover:scale-105 transition-transform duration-[2000ms] ease-out`}
-                            />
-                            {/* Technical Overlay */}
-                            <div className="absolute inset-x-0 bottom-0 h-32 lg:h-40 bg-gradient-to-t from-black/5 lg:from-black/5 to-transparent pointer-events-none" />
-                        </div>
-                    </div>
-
-                    {/* Content Side */}
-                    <div className="w-full lg:w-1/2 text-center lg:text-left lg:px-4 flex flex-col items-center lg:items-start">
-                        <div className="flex items-center gap-4 lg:gap-6 mb-6 lg:mb-10 w-full">
-                            <span className="text-primary text-3xl lg:text-4xl font-black italic opacity-20">{project.id}</span>
-                            <div className="h-[1px] flex-grow bg-gray-100" />
-                            <div className="px-3 py-1.5 lg:px-5 lg:py-2 rounded-full bg-primary/5 text-primary text-[9px] lg:text-[10px] font-black uppercase tracking-widest border border-primary/10 shrink-0">{project.client}</div>
-                        </div>
-                        
-                        <h3 className="text-3xl md:text-5xl font-black mb-4 lg:mb-8 tracking-tighter leading-tight text-foreground">{project.title}</h3>
-                        <p className="text-foreground/50 mb-8 lg:mb-12 text-base md:text-lg lg:text-xl font-medium leading-relaxed italic max-w-xl">{project.desc}</p>
-                        
-                        <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8 lg:mb-12">
-                            {project.tags?.map((tag: string, idx: number) => (
-                                <span key={idx} className="px-3 py-1.5 rounded-full bg-muted text-[10px] font-black uppercase tracking-widest text-foreground/50 border border-gray-100">
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-
-                        <div className="w-full sm:w-auto">
-                            <Link href={`/casos-de-exito/${project.slug}`} className="block w-full">
-                                <Button 
-                                    size="lg" 
-                                    variant="outline"
-                                    className="w-full sm:w-auto h-14 md:h-16 px-8 lg:px-10 rounded-2xl border-2 border-primary/10 text-primary font-black hover:bg-primary/5 group transition-all"
-                                >
-                                    <span className="flex items-center justify-center gap-3">
-                                        Explorar Specs
-                                        <ArrowUpRight className="h-4 w-4 lg:h-5 lg:w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                                    </span>
-                                </Button>
-                            </Link>
-                        </div>
-                    </div>
-                </motion.div>
-            ))}
-        </div>
-
-        {/* Global CTA */}
-        <div className="mt-24 md:mt-40 text-center">
-             <Link href="/casos-de-exito">
-                 <Button className="h-16 md:h-20 px-8 md:px-12 rounded-full bg-primary hover:bg-primary/90 text-white text-lg md:text-xl font-black shadow-[0_20px_40px_-10px_rgba(15,71,175,0.3)] transition-all hover:scale-105 group active:scale-95">
-                    <span className="flex items-center gap-4">
-                        <span className="hidden sm:inline">Explorar más despliegues</span>
-                        <span className="sm:hidden">Ver despliegues</span>
-                        <Globe className="h-5 w-5 md:h-6 md:w-6 group-hover:rotate-12 transition-transform duration-500" />
-                    </span>
-                 </Button>
-             </Link>
-        </div>
-      </div>
-    </section>
-  )
+        </section>
+    )
 }

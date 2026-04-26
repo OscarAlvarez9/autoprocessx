@@ -1,101 +1,105 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Database, Zap, Cpu, Search, CheckCircle2 } from "lucide-react"
+import { Database, Zap, Cpu, Search, CheckCircle2, LayoutPanelLeft } from "lucide-react"
 
 const stack = [
   {
-    icon: <Database className="h-5 w-5 text-blue-400" />,
-    name: "n8n",
-    label: "Motor Central",
-    desc: "El cerebro que conecta más de 400 herramientas sin límites de tareas ni licencias abusivas."
+    icon: <Database className="h-5 w-5 text-primary" />,
+    name: "n8n Core",
+    label: "Orquestador Real-Time",
+    desc: "Infraestructura robusta sin límites de tareas ni costes ocultos por ejecución."
   },
   {
-    icon: <Cpu className="h-5 w-5 text-purple-400" />,
-    name: "Claude & Gemini",
-    label: "IA Cognitiva",
-    desc: "Análisis crítico de documentos legales, médicos y técnicos con razonamiento humano."
+    icon: <Cpu className="h-5 w-5 text-secondary" />,
+    name: "Custom Agentic AI",
+    label: "Cerebro Cognitivo",
+    desc: "Sistemas multi-agente que razonan, deciden y operan sobre tus propios datos."
   },
   {
-    icon: <Search className="h-5 w-5 text-green-400" />,
-    name: "Perplexity",
-    label: "Búsqueda RTS",
-    desc: "Informa tus procesos con datos extraídos de la web en tiempo real y fuentes citadas."
+    icon: <Search className="h-5 w-5 text-accent" />,
+    name: "Blueprint Architect",
+    label: "Diseño Estructural",
+    desc: "No configuramos herramientas; diseñamos la arquitectura técnica de tu negocio."
   }
 ]
 
 export default function Solution() {
   return (
-    <section id="soluciones" className="py-20 md:py-24 bg-white relative overflow-hidden text-foreground">
-        {/* Subtle Glow Effects */}
-        <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px]" />
+    <section id="soluciones" className="py-24 md:py-40 bg-[#0F1424] relative overflow-hidden text-white">
+        {/* Blueprint Grid Overlay */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
         
-      <div className="container px-6 mx-auto">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+        {/* Subtle Glows */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
+
+      <div className="container px-6 mx-auto relative z-10">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 items-center">
           <div className="flex-1 text-center lg:text-left">
-            <h2 className="text-3xl md:text-6xl font-black mb-6 md:mb-8 leading-[1.1] tracking-tight">
-              La empresa de IA en Barcelona que acompaña tu <span className="text-secondary">crecimiento 24/7</span>.
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/40 text-[9px] font-black uppercase tracking-widest mb-8">
+              <LayoutPanelLeft className="h-3 w-3" /> System Architecture
+            </div>
+            
+            <h2 className="text-4xl md:text-7xl font-black mb-8 leading-[0.9] tracking-tighter">
+              Acompañamiento técnico para <span className="text-primary italic">líderes de mercado.</span>
             </h2>
 
-            <div className="space-y-6 mb-10 md:mb-12 text-foreground/70 text-lg leading-relaxed font-medium max-w-2xl mx-auto lg:mx-0">
-                <p>
-                    En <strong>AutoProcessX</strong> somos especialistas en <strong>inteligencia artificial para empresas</strong> en Barcelona. Combinamos automatización de procesos, aplicaciones IA corporativas y chatbots personalizados.
-                </p>
-                <p>
-                    Analizamos tus procesos para implementar la solución más efectiva: desde <strong>workflow automation con n8n</strong> hasta <strong>sistemas multi agent systems</strong> entrenados con tus propios datos.
-                </p>
-            </div>
+            <p className="text-white/50 text-lg md:text-xl font-medium mb-12 max-w-2xl leading-tight">
+                Diseñamos ecosistemas digitales donde la IA no es un plugin, es el sistema operativo. <span className="text-white">Ingeniería pura aplicada a la rentabilidad.</span>
+            </p>
 
-            <ul className="space-y-6 md:space-y-8 mb-10 md:mb-12 text-left w-full max-w-2xl mx-auto lg:mx-0">
+            <div className="grid grid-cols-1 gap-6 mb-12">
                 {[
                     {
-                        title: "Automatización de Procesos",
-                        desc: "Diseñamos sistemas de workflow automation que eliminan el 80% de tareas repetitivas."
+                        title: "Infraestructuras Escalables",
+                        desc: "Nuestros sistemas están preparados para procesar millones de datos sin degradación."
                     },
                     {
-                        title: "IA para Empresas a Medida",
-                        desc: "Desarrollamos aplicaciones empresariales con arquitectura RAG y LLMs entrenados con tus datos."
-                    },
-                    {
-                        title: "AI Chatbot & Marketing",
-                        desc: "Implementamos chatbots inteligentes para WhatsApp y web que cualifican prospectos 24/7."
+                        title: "Gobierno de Datos & Privacidad",
+                        desc: "Tu información nunca sale de tu infraestructura controlada. Tú eres el dueño."
                     }
                 ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-4">
+                    <div key={i} className="flex items-start gap-4 p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm">
                         <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
                         <div>
-                            <span className="font-bold text-foreground block mb-1 text-lg">{item.title}</span>
-                            <span className="text-foreground/60 text-base font-medium leading-relaxed">{item.desc}</span>
+                            <span className="font-black text-white block mb-1 text-base uppercase tracking-tight">{item.title}</span>
+                            <span className="text-white/40 text-sm font-medium leading-relaxed">{item.desc}</span>
                         </div>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
           </div>
 
           <div className="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
             {stack.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`p-8 md:p-10 rounded-[32px] md:rounded-[40px] bg-muted border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col items-center text-center sm:items-start sm:text-left ${index === 1 ? 'sm:mt-12' : ''}`}
+                className={`p-10 rounded-[48px] bg-white/5 border border-white/10 backdrop-blur-md hover:bg-white/10 transition-all duration-500 group ${index === 1 ? 'sm:mt-12' : ''}`}
               >
-                <div className="mb-6 p-4 rounded-2xl bg-white shadow-sm text-primary w-fit">
+                <div className="mb-6 p-4 rounded-3xl bg-white/10 text-white shadow-xl group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-500 w-fit">
                     {item.icon}
                 </div>
-                <div className="mb-2 text-[10px] font-black tracking-[0.15em] text-foreground/40 uppercase">{item.label}</div>
-                <div className="mb-4 text-2xl font-black text-foreground tracking-tight">{item.name}</div>
-                <p className="text-foreground/60 text-sm leading-relaxed font-medium">
+                <div className="mb-2 text-[9px] font-black tracking-[0.2em] text-white/30 uppercase">{item.label}</div>
+                <div className="mb-4 text-2xl font-black text-white tracking-tight">{item.name}</div>
+                <p className="text-white/40 text-xs leading-relaxed font-medium">
                     {item.desc}
                 </p>
               </motion.div>
             ))}
-            <div className="p-8 md:p-10 rounded-[32px] md:rounded-[40px] bg-primary text-white flex flex-col justify-center items-center text-center shadow-lg shadow-primary/20">
-                <Zap className="h-10 w-10 text-white mb-6" />
-                <div className="text-white/80 font-bold mb-2 uppercase tracking-widest text-xs">Resultado Final</div>
-                <div className="text-3xl md:text-4xl font-black tracking-tighter">Impacto Real</div>
+            <div className="p-10 rounded-[48px] bg-primary text-white flex flex-col justify-center items-center text-center shadow-2xl shadow-primary/20 group relative overflow-hidden">
+                <motion.div 
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 opacity-10 bg-[radial-gradient(circle,rgba(255,255,255,0.2)_1px,transparent_1px)] bg-[size:20px_20px]" 
+                />
+                <Zap className="h-10 w-10 text-white mb-6 relative z-10" />
+                <div className="text-white/60 font-black mb-2 uppercase tracking-widest text-[9px] relative z-10">Status: Optimized</div>
+                <div className="text-3xl font-black tracking-tighter relative z-10">Crecimiento Técnico</div>
             </div>
           </div>
         </div>
