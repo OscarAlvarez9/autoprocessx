@@ -1,219 +1,449 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Cpu, ShieldCheck, Zap, Database, Globe, Layers, ArrowUpRight, Code2, GitBranch, TerminalSquare, Terminal, Activity, Monitor, ChevronRight } from "lucide-react"
-import Image from "next/image"
+import {
+    Workflow,
+    MessageCircle,
+    Layers,
+    ShieldCheck,
+    Cpu,
+    Database,
+    GitBranch,
+    Server,
+    Lock,
+    Activity,
+    Sparkles,
+    Code2,
+    ArrowRight,
+} from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import Navigation from "@/components/Navigation"
 import Footer from "@/components/Footer"
 import FinalCTA from "@/components/FinalCTA"
+import Breadcrumbs from "@/components/Breadcrumbs"
+import FAQ from "@/components/FAQ"
+import { techFaqs } from "@/lib/faqs"
 
-const techCategories = [
-  {
-    title: "Orquestación Lógica",
-    icon: <Layers className="h-6 w-6" />,
-    description: "Diseñamos pipelines lógicos con control de errores avanzado y redundancia sistémica para máxima resiliencia.",
-    technologies: [
-      { name: "n8n Dedicated", sub: "Engine Orquestador", badge: "Core" },
-      { name: "Node.js Custom", sub: "Lógica de Negocio", badge: "Native" },
-      { name: "TypeScript 5.0", sub: "Tipado Estricto", badge: "Scale" }
-    ]
-  },
-  {
-    title: "Cognición & LLMs",
-    icon: <Cpu className="h-6 w-6" />,
-    description: "Prompting sistemático, arquitecturas RAG y control de temperatura para una IA coherente y determinista.",
-    technologies: [
-      { name: "Claude 3.5 Sonnet", sub: "Modelado Contextual", badge: "Anthropic" },
-      { name: "GPT-4o Multi", sub: "Razonamiento Complejo", badge: "OpenAI" },
-      { name: "Gemini 1.5 Pro", sub: "Ventanas de Contexto", badge: "DeepMind" }
-    ]
-  },
-  {
-    title: "Data Architecture",
-    icon: <Database className="h-6 w-6" />,
-    description: "Bases de datos vectoriales y relacionales diseñadas para la persistencia y recuperación eficiente de conocimiento.",
-    technologies: [
-      { name: "PostgreSQL", sub: "Cerebro Relacional", badge: "Supabase" },
-      { name: "Pinecone / Vector", sub: "Indexación Semántica", badge: "Embedding" },
-      { name: "Storage Bucket", sub: "Data Persistence", badge: "Cloud" }
-    ]
-  }
+type StackItem = { name: string; role: string }
+
+interface ServiceStack {
+    id: string
+    title: string
+    href: string
+    icon: React.ReactNode
+    eyebrow: string
+    summary: string
+    layers: { label: string; icon: React.ReactNode; items: StackItem[] }[]
+}
+
+const serviceStacks: ServiceStack[] = [
+    {
+        id: "automatizaciones",
+        title: "Automatizaciones",
+        href: "/servicios/automatizaciones",
+        icon: <Workflow className="h-5 w-5" />,
+        eyebrow: "Workflow Engineering",
+        summary: "Pipelines resilientes orquestados con n8n, agentes IA y conectores nativos. Coste 0€ por tarea, escalable bajo tu firewall.",
+        layers: [
+            {
+                label: "Orquestación",
+                icon: <Workflow className="h-3.5 w-3.5" />,
+                items: [
+                    { name: "n8n self-hosted", role: "Motor de workflows con código custom y conectores nativos" },
+                    { name: "Node.js + TypeScript", role: "Lógica de negocio en nodos personalizados" },
+                    { name: "Webhooks + Cron", role: "Triggers basados en eventos y ejecuciones programadas" },
+                ],
+            },
+            {
+                label: "Inteligencia",
+                icon: <Sparkles className="h-3.5 w-3.5" />,
+                items: [
+                    { name: "Claude 3.5 Sonnet", role: "Razonamiento, redacción y clasificación de tareas" },
+                    { name: "GPT-4o", role: "Tareas multimodales y procesamiento de imagen/voz" },
+                    { name: "DataForSEO API", role: "Datos reales de SERP y keywords para SEO" },
+                ],
+            },
+            {
+                label: "Datos & Storage",
+                icon: <Database className="h-3.5 w-3.5" />,
+                items: [
+                    { name: "Google Sheets / Excel", role: "Capa de exportación y reporting ejecutivo" },
+                    { name: "PostgreSQL", role: "Persistencia de estados y trazabilidad de ejecuciones" },
+                    { name: "S3 / Storage Bucket", role: "Almacenamiento de assets y resultados" },
+                ],
+            },
+            {
+                label: "Integraciones",
+                icon: <GitBranch className="h-3.5 w-3.5" />,
+                items: [
+                    { name: "WhatsApp Business / Slack", role: "Notificaciones de estado y alertas en producción" },
+                    { name: "Google Workspace", role: "Gmail, Calendar, Drive, Sheets, Docs" },
+                    { name: "GSC + GA4", role: "Reporting SEO autónomo por dominio" },
+                ],
+            },
+        ],
+    },
+    {
+        id: "chatbots",
+        title: "Chatbots IA",
+        href: "/servicios/ai-chatbot",
+        icon: <MessageCircle className="h-5 w-5" />,
+        eyebrow: "Conversational AI",
+        summary: "Agentes conversacionales con RAG sobre tu base de conocimiento. Web, WhatsApp, Instagram, Telegram — un agente unificado por canal.",
+        layers: [
+            {
+                label: "Modelos",
+                icon: <Cpu className="h-3.5 w-3.5" />,
+                items: [
+                    { name: "Claude 3.5 Sonnet", role: "Tono, razonamiento y baja tasa de alucinación" },
+                    { name: "GPT-4o mini", role: "Latencia mínima para respuestas rápidas" },
+                    { name: "Llama 3 / Mistral", role: "Modelos open-source en servidor propio sin APIs externas" },
+                ],
+            },
+            {
+                label: "RAG & Recuperación",
+                icon: <Layers className="h-3.5 w-3.5" />,
+                items: [
+                    { name: "pgvector / Pinecone", role: "Vector DB para búsqueda semántica de documentos" },
+                    { name: "OpenAI text-embedding-3", role: "Embeddings de tu documentación oficial" },
+                    { name: "Cross-encoder re-ranking", role: "Re-ordenado de resultados para máxima relevancia" },
+                ],
+            },
+            {
+                label: "Canales",
+                icon: <MessageCircle className="h-3.5 w-3.5" />,
+                items: [
+                    { name: "Widget Web (React)", role: "Componente embebible en cualquier site" },
+                    { name: "WhatsApp Business API", role: "Conversaciones nativas con plantillas aprobadas" },
+                    { name: "Instagram / Telegram", role: "DMs gestionados desde la misma capa de orquestación" },
+                ],
+            },
+            {
+                label: "Backend",
+                icon: <Server className="h-3.5 w-3.5" />,
+                items: [
+                    { name: "Next.js API Routes", role: "Endpoints serverless para sesiones y memoria" },
+                    { name: "PostgreSQL + Prisma", role: "Histórico conversacional y CRM integrado" },
+                    { name: "Redis", role: "Caché de embeddings y rate-limiting" },
+                ],
+            },
+        ],
+    },
+    {
+        id: "plataformas",
+        title: "Plataformas IA",
+        href: "/servicios/aplicaciones-ia",
+        icon: <Layers className="h-5 w-5" />,
+        eyebrow: "Platform Engineering",
+        summary: "Entorno corporativo unificado: CRM, pipeline, tareas, propuestas, agentes autónomos y RAG sobre tus datos. Bajo tu firewall.",
+        layers: [
+            {
+                label: "Frontend",
+                icon: <Code2 className="h-3.5 w-3.5" />,
+                items: [
+                    { name: "Next.js 16 App Router", role: "Server Components, streaming y rendering híbrido" },
+                    { name: "TypeScript estricto", role: "Tipado end-to-end con Zod en boundaries" },
+                    { name: "Tailwind v4 + shadcn/ui", role: "Sistema de diseño consistente y accesible" },
+                ],
+            },
+            {
+                label: "Backend",
+                icon: <Server className="h-3.5 w-3.5" />,
+                items: [
+                    { name: "Next.js Route Handlers", role: "API REST + Server Actions para mutaciones" },
+                    { name: "Prisma + PostgreSQL", role: "ORM con migraciones versionadas y schema relacional" },
+                    { name: "n8n", role: "Motor de orquestación para flujos asíncronos" },
+                ],
+            },
+            {
+                label: "IA & Agentes",
+                icon: <Sparkles className="h-3.5 w-3.5" />,
+                items: [
+                    { name: "Claude 3.5 Sonnet", role: "Agentes con acceso a módulos vía tool calling" },
+                    { name: "Vector DB (pgvector)", role: "RAG sobre documentación corporativa" },
+                    { name: "OpenAI Embeddings", role: "Indexación semántica de bases de conocimiento" },
+                ],
+            },
+            {
+                label: "Infra & DevOps",
+                icon: <GitBranch className="h-3.5 w-3.5" />,
+                items: [
+                    { name: "AWS / GCP / On-Premise", role: "Despliegue en tu cuenta cloud o servidor propio" },
+                    { name: "Docker + GitHub Actions", role: "CI/CD con builds reproducibles" },
+                    { name: "Sentry + Logtail", role: "Observabilidad y alertas ante fallos críticos" },
+                ],
+            },
+        ],
+    },
+]
+
+const principles = [
+    {
+        icon: <Lock className="h-5 w-5" />,
+        title: "Soberanía técnica",
+        desc: "Código fuente, datos y agentes en tu repositorio. Sin licencias por usuario ni dependencia de proveedores externos críticos.",
+    },
+    {
+        icon: <Server className="h-5 w-5" />,
+        title: "On-Premise opcional",
+        desc: "Desplegamos toda la stack en tu servidor sin conexión a APIs externas si lo requiere tu cumplimiento.",
+    },
+    {
+        icon: <Activity className="h-5 w-5" />,
+        title: "Producción real",
+        desc: "Sistemas en operación 24/7 con SLA verificado, retries, alertas y observabilidad completa.",
+    },
+    {
+        icon: <ShieldCheck className="h-5 w-5" />,
+        title: "Zero Retention",
+        desc: "Acuerdos con proveedores LLM para que tus datos no se usen en entrenamiento. Cifrado AES-256 en reposo.",
+    },
+]
+
+const security = [
+    "Zero Data Retention",
+    "AES-256 cifrado",
+    "TLS 1.3 en tránsito",
+    "RGPD compliant",
+    "ISO 27001 ready",
+    "On-Premise capable",
 ]
 
 export default function Tecnologia() {
-  return (
-    <main className="min-h-screen bg-[#05070F] text-white selection:bg-primary/20">
-      <Navigation />
+    return (
+        <main className="min-h-screen bg-[#05070F] text-white selection:bg-amber-400/30">
+            <Navigation />
 
-      {/* Hero: Engineering Context */}
-      <div className="relative pt-40 pb-32 overflow-hidden border-b border-white/5">
-        <motion.div 
-            animate={{ top: ['-20%', '120%'] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-            className="absolute left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-accent/30 to-transparent z-10"
-        />
+            {/* Hero */}
+            <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
+                <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-amber-500/[0.07] blur-[180px] rounded-full pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-300/[0.05] blur-[140px] rounded-full pointer-events-none" />
 
-        <div className="container relative z-10 px-6 mx-auto">
-          <div className="flex items-center gap-2 text-[10px] font-black text-white/40 mb-12 uppercase tracking-[0.4em]">
-            <Link href="/" className="hover:text-accent transition-colors">Core</Link>
-            <ChevronRight className="h-3 w-3" />
-            <span className="text-white">System Architecture Specs</span>
-          </div>
+                <motion.div
+                    animate={{ top: ["-20%", "120%"] }}
+                    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                    className="absolute left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400/30 to-transparent z-10"
+                />
 
-          <div className="flex flex-col lg:flex-row gap-20 items-center">
-            <div className="w-full lg:w-3/5">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-accent text-[10px] font-black uppercase tracking-[0.3em] mb-10"
-              >
-                <Monitor className="h-3 w-3 animate-pulse" />
-                Full Stack Verification: STABLE
-              </motion.div>
+                <div className="container relative z-10 px-6 mx-auto max-w-6xl">
+                    <Breadcrumbs items={[{ label: "Tecnología" }]} className="mb-10 md:mb-14" />
 
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-6xl md:text-[100px] font-black tracking-tighter mb-10 leading-[0.85]"
-              >
-                Infraestructura de <br />
-                <span className="text-accent italic">Misión Crítica.</span>
-              </motion.h1>
+                    <div className="text-center max-w-4xl mx-auto">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.92 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 backdrop-blur-md mb-7"
+                        >
+                            <span className="relative flex h-2 w-2">
+                                <span className="absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75 animate-ping" />
+                                <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
+                            </span>
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-200">
+                                Stack & Architecture · Production Verified
+                            </span>
+                        </motion.div>
 
-              <motion.p
-                className="text-xl md:text-2xl text-white/50 font-medium leading-tight mb-14 max-w-2xl"
-              >
-                Stack tecnológico de grado industrial para la orquestación de sistemas multi-agente y flujos de datos complejos. Sin parches temporales.
-              </motion.p>
+                        <motion.h1
+                            initial={{ opacity: 0, y: 24 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-[-0.025em] leading-[1] mb-6"
+                        >
+                            Un stack.{" "}
+                            <span className="relative inline-block">
+                                <span
+                                    className="relative z-10 bg-gradient-to-br from-amber-200 via-amber-300 to-amber-500 bg-clip-text text-transparent"
+                                    style={{ filter: "drop-shadow(0 0 24px rgba(251,191,36,0.35))" }}
+                                >
+                                    Tres servicios
+                                </span>
+                            </span>
+                            .
+                        </motion.h1>
 
-              <div className="flex flex-wrap gap-4">
-                <Link href="https://booking.setmore.com/scheduleappointment/5502c3a5-1773-45a7-9388-f3da7aa86326">
-                  <Button className="bg-accent hover:bg-accent/90 text-white h-16 px-12 rounded-2xl font-black text-lg border-none shadow-2xl shadow-accent/20 hover:scale-105 transition-all">
-                    Descargar Tech Stack PDF
-                  </Button>
-                </Link>
-              </div>
-            </div>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-base md:text-lg text-white/65 font-medium leading-relaxed max-w-2xl mx-auto mb-10"
+                        >
+                            Misma filosofía técnica desplegada en automatizaciones, chatbots y plataformas. Sin SaaS de terceros — todo bajo tu control.
+                        </motion.p>
 
-            <div className="w-full lg:w-2/5 relative">
-                <div className="absolute -inset-10 bg-accent/20 blur-[100px] opacity-30 rounded-full" />
-                <div className="relative p-1 bg-white/5 rounded-[48px] border border-white/10 overflow-hidden aspect-square flex items-center justify-center grayscale opacity-50 contrast-125">
-                    <Image 
-                        src="/assets/logo_premium_v6.png"
-                        alt="Infrastructure Graphic"
-                        width={800}
-                        height={800}
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Philosophy Section: Manifesto style */}
-      <section className="py-24 md:py-48 bg-[#0F1424] border-b border-white/5 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
-        <div className="container px-6 mx-auto relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
-                <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/40 text-[9px] font-black uppercase tracking-widest mb-10">
-                      <Terminal className="h-3 w-3" /> Core Engineering Philosophy
-                    </div>
-                    <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-none mb-12">
-                        Ingeniería, <br/>
-                        <span className="text-accent italic">no parches.</span>
-                    </h2>
-                    <p className="text-white/40 text-xl font-medium leading-tight max-w-2xl mb-12">
-                        La robustez de un sistema se mide por su capacidad de escalar bajo estrés. Diseñamos arquitecturas modulares que evolucionan con tu revenue.
-                    </p>
-                    <div className="flex items-start gap-4 p-8 rounded-3xl bg-white/[0.02] border border-white/5 decoration-accent decoration-2 italic font-medium text-white/60">
-                        "Nos encargamos de la complejidad técnica para que tú te encargues del crecimiento exponencial."
-                    </div>
-                </div>
-                
-                <div className="space-y-6">
-                    <div className="flex items-start gap-6 p-10 rounded-[40px] bg-white/[0.02] border border-white/5 hover:border-accent/20 transition-all">
-                        <TerminalSquare className="h-8 w-8 text-accent shrink-0" />
-                        <div>
-                            <h4 className="font-black text-xl mb-2 uppercase tracking-tight">Code-First Logic</h4>
-                            <p className="text-white/30 text-xs font-medium leading-relaxed">Nodos personalizados en TypeScript y Python cuando las herramientas no-code alcanzan su límite técnico.</p>
-                        </div>
-                    </div>
-                    <div className="flex items-start gap-6 p-10 rounded-[40px] bg-accent/10 border border-accent/20">
-                        <GitBranch className="h-8 w-8 text-accent shrink-0" />
-                        <div>
-                            <h4 className="font-black text-xl mb-2 uppercase tracking-tight text-accent">Data-Driven Pipelines</h4>
-                            <p className="text-white/60 text-xs font-medium leading-relaxed">Saneamiento y normalización de datos antes de cualquier automatización. Integridad absoluta de la información.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </section>
-
-      {/* Tech Grid: Modular Units */}
-      <section className="py-24 md:py-48 bg-[#05070F]">
-        <div className="container px-6 mx-auto">
-            <div className="mb-24">
-                <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-none mb-4">Stack <span className="text-accent italic">Certificado</span></h2>
-                <p className="text-white/40 text-lg font-medium">Arquitecturas validadas en más de 250 despliegues en producción.</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {techCategories.map((cat, i) => (
-                    <motion.div 
-                        key={i}
-                        className="p-12 rounded-[56px] bg-white/[0.02] border border-white/5 hover:border-accent/30 transition-all group relative overflow-hidden"
-                    >
-                        <div className="h-14 w-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-10 group-hover:bg-accent group-hover:text-white transition-all text-accent">
-                            {cat.icon}
-                        </div>
-                        <h3 className="text-3xl font-black mb-4 tracking-tight">{cat.title}</h3>
-                        <p className="text-white/30 font-medium mb-12 text-sm leading-tight h-16">{cat.description}</p>
-                        
-                        <div className="space-y-3">
-                            {cat.technologies.map((tech, j) => (
-                                <div key={j} className="flex items-center justify-between p-5 rounded-3xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.05] transition-all">
-                                    <div>
-                                        <h4 className="font-black text-white tracking-tight text-xs">{tech.name}</h4>
-                                        <p className="text-[9px] uppercase font-bold text-white/30 tracking-widest leading-none mt-1">{tech.sub}</p>
-                                    </div>
-                                    <span className="px-3 py-1 bg-white/5 text-accent border border-white/10 text-[8px] font-black uppercase tracking-widest rounded-lg">
-                                        {tech.badge}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.3 }}
+                            className="flex flex-wrap justify-center gap-2"
+                        >
+                            {serviceStacks.map((s) => (
+                                <a
+                                    key={s.id}
+                                    href={`#${s.id}`}
+                                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/[0.04] border border-white/10 hover:border-amber-400/40 hover:bg-amber-400/[0.06] transition-all group"
+                                >
+                                    <span className="text-amber-300">{s.icon}</span>
+                                    <span className="text-[11px] font-black uppercase tracking-[0.2em] text-white/85 group-hover:text-white">
+                                        {s.title}
                                     </span>
-                                </div>
+                                </a>
                             ))}
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Service stacks */}
+            <section className="py-16 md:py-20 bg-[#05070F]">
+                <div className="container px-6 mx-auto max-w-6xl space-y-16 md:space-y-24">
+                    {serviceStacks.map((service, i) => (
+                        <motion.div
+                            key={service.id}
+                            id={service.id}
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-80px" }}
+                            transition={{ duration: 0.6 }}
+                            className="scroll-mt-24"
+                        >
+                            {/* Service header */}
+                            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8 md:mb-10">
+                                <div className="max-w-2xl">
+                                    <div className="flex items-center gap-3 mb-3">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.35em] text-amber-400 tabular-nums">
+                                            0{i + 1}
+                                        </span>
+                                        <div className="h-[1px] flex-1 max-w-[60px] bg-amber-400/30" />
+                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">
+                                            {service.eyebrow}
+                                        </span>
+                                    </div>
+                                    <h2 className="text-3xl md:text-5xl font-black text-white leading-[1.05] tracking-tight mb-3">
+                                        Stack para <span className="text-accent">{service.title}</span>
+                                    </h2>
+                                    <p className="text-white/60 text-sm md:text-base font-medium leading-relaxed">
+                                        {service.summary}
+                                    </p>
+                                </div>
+
+                                <Link href={service.href}>
+                                    <Button className="h-11 px-5 rounded-xl bg-white/[0.04] border border-white/15 hover:border-amber-400/50 hover:bg-amber-400/10 text-white text-xs font-black uppercase tracking-[0.2em] transition-all flex items-center gap-2">
+                                        Ver servicio
+                                        <ArrowRight className="h-3.5 w-3.5" />
+                                    </Button>
+                                </Link>
+                            </div>
+
+                            {/* Layers grid */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                                {service.layers.map((layer) => (
+                                    <div
+                                        key={layer.label}
+                                        className="rounded-2xl border border-white/10 bg-[#0F1424] hover:border-amber-400/25 transition-colors overflow-hidden"
+                                    >
+                                        {/* Layer header */}
+                                        <div className="flex items-center gap-2.5 px-5 md:px-6 py-3.5 border-b border-white/10 bg-white/[0.02]">
+                                            <span className="h-7 w-7 rounded-lg bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-300">
+                                                {layer.icon}
+                                            </span>
+                                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/85">
+                                                {layer.label}
+                                            </span>
+                                            <div className="ml-auto h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+                                        </div>
+
+                                        {/* Items */}
+                                        <ul className="divide-y divide-white/5">
+                                            {layer.items.map((item) => (
+                                                <li
+                                                    key={item.name}
+                                                    className="px-5 md:px-6 py-3.5 hover:bg-white/[0.02] transition-colors"
+                                                >
+                                                    <div className="flex items-baseline gap-3">
+                                                        <span className="text-sm font-black text-white tracking-tight shrink-0">
+                                                            {item.name}
+                                                        </span>
+                                                        <span className="h-[1px] flex-1 bg-white/5 translate-y-[-2px]" />
+                                                    </div>
+                                                    <p className="text-xs text-white/50 font-medium leading-snug mt-1">
+                                                        {item.role}
+                                                    </p>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+            </section>
+
+            {/* Principles */}
+            <section className="py-16 md:py-24 bg-[#05070F] border-t border-white/5 relative overflow-hidden">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-amber-500/[0.05] blur-[160px] rounded-full pointer-events-none" />
+                <div className="container px-6 mx-auto max-w-6xl relative z-10">
+                    <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-black uppercase tracking-[0.3em] mb-6">
+                            <ShieldCheck className="h-3.5 w-3.5" />
+                            Engineering Principles
                         </div>
-                    </motion.div>
-                ))}
-            </div>
-        </div>
-      </section>
+                        <h2 className="text-3xl md:text-5xl font-black text-white mb-5 leading-[1.05] tracking-tight">
+                            Cuatro reglas <span className="text-accent">no negociables</span>.
+                        </h2>
+                        <p className="text-white/65 text-base md:text-lg font-medium leading-relaxed max-w-2xl mx-auto">
+                            Cómo construimos cada sistema para que opere 24/7 sin nuestra intervención.
+                        </p>
+                    </div>
 
-      {/* Security: Final block */}
-      <section className="py-24 bg-[#0F1424] border-t border-white/5">
-          <div className="container px-6 mx-auto text-center max-w-4xl">
-              <ShieldCheck className="h-16 w-16 text-accent mx-auto mb-12" />
-              <h2 className="text-5xl md:text-8xl font-black mb-12 tracking-tighter leading-[0.85]">Seguridad grado <br/><span className="text-accent italic">Industrial.</span></h2>
-              <p className="text-xl text-white/40 font-medium mb-16 leading-relaxed">
-                  Operamos bajo estándares ISO27001 para la gestión de infraestructura. Cifrado dinámico, NDAs estrictos y soberanía absoluta de datos para el ecosistema corporativo.
-              </p>
-              
-              <div className="flex flex-wrap justify-center gap-4">
-                  {["Zero Data Retention", "AES-256 bits", "GDPR Enterprise", "SOC2 Architecture"].map((stat, i) => (
-                      <div key={i} className="px-10 py-5 rounded-3xl border border-white/10 bg-white/5 font-black tracking-[0.2em] text-[10px] text-white/60 uppercase">
-                          {stat}
-                      </div>
-                  ))}
-              </div>
-          </div>
-      </section>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {principles.map((p, i) => (
+                            <motion.div
+                                key={p.title}
+                                initial={{ opacity: 0, y: 16 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.06 }}
+                                className="p-6 rounded-2xl bg-[#0F1424] border border-white/10 hover:border-amber-400/30 transition-all"
+                            >
+                                <div className="h-10 w-10 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-300 mb-4">
+                                    {p.icon}
+                                </div>
+                                <h3 className="text-base md:text-lg font-black text-white tracking-tight mb-2">
+                                    {p.title}
+                                </h3>
+                                <p className="text-white/55 text-xs md:text-sm font-medium leading-relaxed">
+                                    {p.desc}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
 
-      <FinalCTA />
-      <Footer />
-    </main>
-  )
+                    {/* Security badges */}
+                    <div className="mt-12 md:mt-16 flex flex-wrap justify-center gap-2 md:gap-3">
+                        {security.map((s) => (
+                            <span
+                                key={s}
+                                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] text-[10px] font-black uppercase tracking-[0.25em] text-white/60"
+                            >
+                                <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                                {s}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <FAQ
+                items={techFaqs}
+                eyebrow="Stack & Architecture · FAQ"
+                title="Dudas técnicas sobre"
+                titleAccent="nuestro stack"
+                description="LLMs, RAG, seguridad, hosting on-premise y monitorización en producción — sin marketing."
+            />
+            <FinalCTA />
+            <Footer />
+        </main>
+    )
 }

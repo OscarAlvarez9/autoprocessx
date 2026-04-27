@@ -15,7 +15,7 @@ type ProductAccent = {
     hoverBtn: string
 }
 
-const products: Array<{
+type Product = {
     id: string
     name: string
     tagline: string
@@ -28,48 +28,73 @@ const products: Array<{
     badge: string
     category: string
     accent: ProductAccent
-}> = [
-    {
-        id: "01",
-        name: "Business Suite IA",
-        tagline: "CRM · Pipeline · Multi-Agent Orchestration",
-        slug: "business-suite-ia-plataforma-corporativa",
-        description: "Arquitectura corporativa full-stack orquestada por agentes autónomos. 7 módulos críticos en producción real.",
-        image: "/assets/platform_dashboard.png",
-        modules: ["Dashboard", "CRM", "Pipeline", "Calendario", "Tareas", "Propuestas", "Agentes"],
-        stack: ["Next.js", "PostgreSQL", "n8n", "Claude 3.5", "AWS"],
-        badge: "REF_BSIA",
-        category: "Core Platform · Orchestration",
-        accent: {
-            text: "text-accent",
-            dot: "bg-accent",
-            border: "border-accent/30",
-            glow: "bg-accent/10",
-            hoverBtn: "hover:bg-accent",
-        },
-    },
-    {
-        id: "02",
-        name: "OpoAI",
-        tagline: "RAG Engine · Zero-Hallucination · Semantic Tutor",
-        slug: "opoai-plataforma-estudio-oposiciones",
-        description: "Tutor IA entrenado sobre miles de páginas de temario oficial que responde sin inventar mediante RAG semántico y documentación vectorizada real.",
-        image: "/assets/opoai_logo.png",
-        modules: ["Dashboard", "Temario", "Tutor IA", "Flashcards", "Simulacros", "Ranking"],
-        stack: ["Next.js", "Claude 3.5", "PostgreSQL", "Vector DB"],
-        badge: "REF_OPOAI",
-        category: "AI · RAG · Semantic Retrieval",
-        accent: {
-            text: "text-cyan-400",
-            dot: "bg-cyan-400",
-            border: "border-cyan-400/30",
-            glow: "bg-cyan-400/10",
-            hoverBtn: "hover:bg-cyan-400",
-        },
-    },
-]
+}
 
-export default function OwnProducts() {
+const businessSuite: Product = {
+    id: "01",
+    name: "Business Suite IA",
+    tagline: "CRM · Pipeline · Multi-Agent Orchestration",
+    slug: "business-suite-ia-plataforma-corporativa",
+    description: "Arquitectura corporativa full-stack orquestada por agentes autónomos. 7 módulos críticos en producción real.",
+    image: "/assets/businessoslogo.jpeg",
+    modules: ["Dashboard", "CRM", "Pipeline", "Calendario", "Tareas", "Propuestas", "Agentes"],
+    stack: ["Next.js", "PostgreSQL", "n8n", "Claude 3.5", "AWS"],
+    badge: "REF_BSIA",
+    category: "Core Platform · Orchestration",
+    accent: {
+        text: "text-accent",
+        dot: "bg-accent",
+        border: "border-accent/30",
+        glow: "bg-accent/10",
+        hoverBtn: "hover:bg-accent",
+    },
+}
+
+const farmaciaGarcia: Product = {
+    id: "01",
+    name: "Farmacia García del Cerro",
+    tagline: "Auto-Blog Engine · Make.com · Calendario SEO Anual",
+    slug: "farmacia-garcia-del-cerro",
+    description: "Motor de contenido autónomo que genera, programa y publica artículos SEO-optimizados directamente en Contentful con un calendario editorial anual ya preparado para posicionar.",
+    image: "/assets/make_workflow_real.png",
+    modules: ["Make.com", "Calendario SEO", "Claude 3.5", "GPT-4o", "Contentful", "Search Console"],
+    stack: ["Make.com", "Claude 3.5", "GPT-4o", "Contentful"],
+    badge: "REF_FGC",
+    category: "Automation · SEO Engine",
+    accent: {
+        text: "text-accent",
+        dot: "bg-accent",
+        border: "border-accent/30",
+        glow: "bg-accent/10",
+        hoverBtn: "hover:bg-accent",
+    },
+}
+
+const opoAI: Product = {
+    id: "02",
+    name: "OpoAI",
+    tagline: "RAG Engine · Zero-Hallucination · Semantic Tutor",
+    slug: "opoai-plataforma-estudio-oposiciones",
+    description: "Tutor IA entrenado sobre miles de páginas de temario oficial que responde sin inventar mediante RAG semántico y documentación vectorizada real.",
+    image: "/assets/opoai_logo.png",
+    modules: ["Dashboard", "Temario", "Tutor IA", "Flashcards", "Simulacros", "Ranking"],
+    stack: ["Next.js", "Claude 3.5", "PostgreSQL", "Vector DB"],
+    badge: "REF_OPOAI",
+    category: "AI · RAG · Semantic Retrieval",
+    accent: {
+        text: "text-cyan-400",
+        dot: "bg-cyan-400",
+        border: "border-cyan-400/30",
+        glow: "bg-cyan-400/10",
+        hoverBtn: "hover:bg-cyan-400",
+    },
+}
+
+const defaultProducts: Product[] = [businessSuite, opoAI]
+const automationProducts: Product[] = [farmaciaGarcia, opoAI]
+
+export default function OwnProducts({ variant = "default" }: { variant?: "default" | "automation" } = {}) {
+    const products = variant === "automation" ? automationProducts : defaultProducts
     return (
         <section
             id="products"
@@ -119,7 +144,7 @@ export default function OwnProducts() {
     )
 }
 
-function ProductCard({ product, index }: { product: typeof products[0]; index: number }) {
+function ProductCard({ product, index }: { product: Product; index: number }) {
     const mouseX = useMotionValue(0)
     const mouseY = useMotionValue(0)
     const springConfig = { damping: 40, stiffness: 200 }

@@ -266,6 +266,136 @@ export const RAGPipelineGraphic = () => {
 
 
 // ============================================================
+// 3.b PLATFORM RESOURCES — Dashboard-style Resource Grid
+//      Sidebar + resource tiles + activity feed
+// ============================================================
+export const AIPlatformGraphic = () => {
+    const resources = [
+        { label: "Knowledge Base", value: "12.4k docs", color: "#0F47AF" },
+        { label: "Vector Index", value: "Active", color: "#8B5CF6" },
+        { label: "Agents", value: "7 online", color: "#059669" },
+        { label: "API Tokens", value: "1.2M / día", color: "#F59E0B" },
+    ]
+
+    const activity = [
+        { user: "Agent-RAG", action: "Indexó 240 documentos", t: "12s" },
+        { user: "Agent-Sales", action: "Generó propuesta cliente", t: "45s" },
+        { user: "Agent-Ops", action: "Sincronizó base de datos", t: "1m" },
+    ]
+
+    return (
+        <div className="relative w-full aspect-square flex items-center justify-center overflow-hidden p-4">
+            <ParticleBackground variant="ambient" />
+
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="relative z-10 w-full max-w-[420px] rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-md overflow-hidden shadow-2xl"
+            >
+                {/* Window chrome */}
+                <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/[0.06] bg-black/30">
+                    <div className="flex items-center gap-1.5">
+                        <div className="h-2 w-2 rounded-full bg-red-500/40" />
+                        <div className="h-2 w-2 rounded-full bg-amber-500/40" />
+                        <div className="h-2 w-2 rounded-full bg-emerald-500/40" />
+                    </div>
+                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/30">
+                        AI · Resource Platform
+                    </span>
+                    <div className="flex items-center gap-1.5">
+                        <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400/70">Live</span>
+                    </div>
+                </div>
+
+                {/* Body: sidebar + content */}
+                <div className="grid grid-cols-[80px_1fr]">
+                    {/* Sidebar */}
+                    <div className="border-r border-white/[0.05] p-3 flex flex-col gap-2 bg-black/20">
+                        {[
+                            { active: true, dot: "#0F47AF" },
+                            { active: false, dot: "#8B5CF6" },
+                            { active: false, dot: "#059669" },
+                            { active: false, dot: "#F59E0B" },
+                            { active: false, dot: "#64748B" },
+                        ].map((it, i) => (
+                            <div
+                                key={i}
+                                className={`h-9 rounded-lg flex items-center gap-2 px-2 ${
+                                    it.active ? "bg-white/[0.05] border border-white/[0.08]" : ""
+                                }`}
+                            >
+                                <div className="h-2 w-2 rounded-full" style={{ backgroundColor: it.dot, boxShadow: `0 0 6px ${it.dot}` }} />
+                                <div className="h-1 flex-1 rounded-full bg-white/[0.06]" />
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-4 space-y-3">
+                        {/* Stat header */}
+                        <div className="flex items-end justify-between">
+                            <div>
+                                <div className="text-[8px] font-black uppercase tracking-[0.25em] text-white/30 mb-1">Recursos activos</div>
+                                <div className="text-2xl font-black text-white tracking-tighter">24 / 32</div>
+                            </div>
+                            <div className="text-[9px] font-black uppercase tracking-widest text-emerald-400/70">+18%</div>
+                        </div>
+
+                        {/* Resource tiles grid */}
+                        <div className="grid grid-cols-2 gap-2">
+                            {resources.map((r, i) => (
+                                <motion.div
+                                    key={r.label}
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: 0.2 + i * 0.1 }}
+                                    className="rounded-xl bg-white/[0.03] border border-white/[0.06] p-2.5"
+                                >
+                                    <div className="flex items-center gap-1.5 mb-1.5">
+                                        <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: r.color }} />
+                                        <span className="text-[8px] font-black uppercase tracking-widest text-white/30 truncate">{r.label}</span>
+                                    </div>
+                                    <div className="text-[10px] font-black text-white tracking-tight">{r.value}</div>
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        {/* Activity feed */}
+                        <div className="rounded-xl bg-black/30 border border-white/[0.05] p-2.5 space-y-2">
+                            <div className="text-[8px] font-black uppercase tracking-[0.25em] text-white/30">Activity</div>
+                            {activity.map((a, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, x: -8 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.6 + i * 0.2 }}
+                                    className="flex items-center gap-2"
+                                >
+                                    <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex items-center gap-1.5">
+                                            <span className="text-[9px] font-black text-white/80 truncate">{a.user}</span>
+                                            <span className="text-[8px] font-medium text-white/30 truncate">{a.action}</span>
+                                        </div>
+                                    </div>
+                                    <span className="text-[8px] font-black text-white/30 shrink-0">{a.t}</span>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+
+            {/* Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+        </div>
+    )
+}
+
+
+// ============================================================
 // 4. SECURITY SHIELD — Compliance Visual
 //    Layered shields + floating compliance tags
 // ============================================================

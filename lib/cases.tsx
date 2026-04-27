@@ -27,7 +27,7 @@ export interface CaseStudy {
     result?: string
     resultLabel?: string
     stack: { name: string; role: string }[]
-    phases: { phase: string; title: string; description: string }[]
+    phases: { phase: string; title: string; description: string; image?: string }[]
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -46,7 +46,7 @@ export const caseStudies: CaseStudy[] = [
         secondaryMetric: "Ahorro 25k€/mes",
         tags: ["Make.com", "Claude 3.5", "ChatGPT-4o", "Auto-SEO"],
         logo: "/assets/farmacia_garcia_del_cerro_logo.png",
-        image: "/assets/make_workflow_real.png",
+        image: "/assets/farmacia_garcia_del_cerro_logo.png",
         metricsArray: [
             { label: "Crecimiento orgánico", value: "+40%", icon: <BarChart3 className="h-4 w-4 text-primary" /> },
             { label: "Reducción tiempo", value: "-73%", icon: <Zap className="h-4 w-4 text-primary" /> }
@@ -115,8 +115,8 @@ export const caseStudies: CaseStudy[] = [
         metric: "7 módulos integrados",
         secondaryMetric: "Producción activa",
         tags: ["Next.js", "n8n", "Claude", "PostgreSQL", "Agentes IA"],
-        logo: "/assets/platform_dashboard.png",
-        image: "/assets/platform_dashboard.png",
+        logo: "/assets/businessoslogo.jpeg",
+        image: "/assets/businessoslogo.jpeg",
         metricsArray: [
             { label: "Módulos en producción", value: "7", icon: <Layers className="h-4 w-4 text-primary" /> },
             { label: "Automatización interna", value: "100%", icon: <ShieldCheck className="h-4 w-4 text-primary" /> }
@@ -152,7 +152,7 @@ export const caseStudies: CaseStudy[] = [
         secondaryMetric: "Producción activa",
         tags: ["Next.js", "Claude", "PostgreSQL", "n8n", "RAG"],
         logo: "/assets/opoai_logo.png",
-        image: "/assets/opoai_dashboard.png",
+        image: "/assets/opoai_logo.png",
         metricsArray: [
             { label: "Módulos en producción", value: "9", icon: <BookOpen className="h-4 w-4 text-primary" /> },
             { label: "Precisión simulacros", value: "100%", icon: <ShieldCheck className="h-4 w-4 text-primary" /> }
@@ -170,6 +170,43 @@ export const caseStudies: CaseStudy[] = [
             { phase: "02", title: "Tutor IA & modo estudio", description: "Desarrollo del tutor conversacional con Claude y el modo Opolingo para memorización activa con flashcards generadas automáticamente." },
             { phase: "03", title: "Motor de simulacros", description: "Generación de exámenes tipo test cronometrados con el mismo formato y nivel de dificultad que las pruebas oficiales reales." },
             { phase: "04", title: "Dashboard de progreso y ranking", description: "Sistema de seguimiento de rendimiento por bloque temático, historial de simulacros y ranking comparativo entre usuarios." },
+        ]
+    },
+    {
+        id: "05",
+        slug: "seoscar-automatizacion-mercado-keywords",
+        title: "SEOscar · Automatización de Mercado & Keywords SEO",
+        client: "SEOscar",
+        sector: "SEO & Marketing Digital",
+        result: "3",
+        resultLabel: "Workflows en producción",
+        desc: "Stack de automatización SEO end-to-end para SEOscar: investigación de keywords, enriquecimiento con datos reales de mercado y reporting ejecutivo mensual orquestado en n8n.",
+        longDesc: "Construimos para SEOscar un sistema autónomo que sustituye horas de investigación manual y elaboración de informes por una capa de orquestación con n8n y agentes Claude. La plataforma idea keywords de nicho, valida volúmenes con DataForSEO, fusiona análisis de competidores con expansión semántica y entrega informes ejecutivos auto-generados desde GSC y GA4 — todo recurrente, auditado y sin intervención humana.",
+        challenge: "El equipo dedicaba decenas de horas mensuales a tres procesos repetitivos: ideación y enriquecimiento de keywords, fusión de inteligencia competitiva con datos de SERP y elaboración de reportings de cliente. La operación no escalaba sin contratar más analistas.",
+        solution: "Tres workflows n8n encadenados sobre el catálogo de automatizaciones AutoProcessX: Generador SEO & Data Enrichment para descubrir keywords rentables, Mega-Estrategia SEO Full-Scale como orquestador paralelo de competidores y SERP, y Reporting SEO Autónomo que genera informes mensuales por dominio con datos reales de Google Search Console y Analytics.",
+        metric: "3 workflows en producción",
+        secondaryMetric: "Operación 100% autónoma",
+        tags: ["n8n", "Claude", "DataForSEO", "Google Sheets", "GA4", "GSC"],
+        logo: "/assets/seoscar_logo.png",
+        image: "/assets/seoscar_logo.png",
+        metricsArray: [
+            { label: "Workflows desplegados", value: "3", icon: <Layers className="h-4 w-4 text-primary" /> },
+            { label: "Reducción tiempo manual", value: "-90%", icon: <Zap className="h-4 w-4 text-primary" /> }
+        ],
+        theme: "light",
+        stack: [
+            { name: "n8n", role: "Motor de orquestación de los tres workflows SEO" },
+            { name: "Anthropic Claude", role: "Ideación de keywords, expansión semántica y redacción de informes" },
+            { name: "DataForSEO", role: "Volúmenes reales, dificultad SEO y datos de SERP" },
+            { name: "Google Sheets", role: "Capa de almacenamiento y exportación de keywords enriquecidas" },
+            { name: "Google Analytics 4", role: "Métricas de tráfico orgánico y comportamiento por dominio" },
+            { name: "Google Search Console", role: "Datos de impresiones, clics y posiciones para reporting" },
+        ],
+        phases: [
+            { phase: "01", title: "Generador SEO & Data Enrichment", description: "Claude idea cientos de keywords de nicho, DataForSEO inyecta volúmenes reales y dificultad, y el sistema filtra el Top 50 más rentable exportándolo automáticamente a Google Sheets.", image: "/assets/n8n_seo_keywords.png" },
+            { phase: "02", title: "Mega-Estrategia SEO Full-Scale", description: "Orquestador en paralelo que ejecuta análisis de competidores, expansión semántica, validación de volúmenes y scraping de SERP — fusionados en un informe maestro listo para producción.", image: "/assets/n8n_seo_strategy.png" },
+            { phase: "03", title: "Reporting SEO Autónomo", description: "A fin de mes recorre la cartera de clientes, extrae analítica de GSC y GA4, y Claude redacta un informe ejecutivo personalizado por dominio en HTML listo para enviar.", image: "/assets/n8n_seo_report.png" },
+            { phase: "04", title: "Monitorización & retry", description: "Cada workflow incluye lógica de reintentos, alertas a Slack ante fallos y trazabilidad completa de ejecuciones para garantizar entregas sin supervisión humana." },
         ]
     },
 ]

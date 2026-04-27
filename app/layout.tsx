@@ -15,30 +15,99 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://www.autoprocessx.com"
+const ORG_ID = `${SITE_URL}/#organization`
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": ORG_ID,
   name: "AutoProcessX",
-  url: "https://www.autoprocessx.com",
-  logo: "https://www.autoprocessx.com/assets/logo.png",
-  description: "Agencia de inteligencia artificial en Barcelona. Automatización de procesos, aplicaciones IA personalizadas y chatbots para empresas.",
-  sameAs: [],
+  alternateName: "AutoProcessX · Agencia IA Barcelona",
+  url: SITE_URL,
+  logo: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/assets/logo_premium_v6.png`,
+    width: 512,
+    height: 512,
+  },
+  description: "Agencia de inteligencia artificial en Barcelona. Automatización de procesos con n8n, plataformas IA con arquitectura RAG y chatbots para empresas — bajo tu propiedad, sin SaaS.",
+  slogan: "Tu propia infraestructura IA. Sin SaaS.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Barcelona",
+    addressRegion: "Cataluña",
+    addressCountry: "ES",
+  },
+  areaServed: [
+    { "@type": "Country", name: "España" },
+    { "@type": "AdministrativeArea", name: "Unión Europea" },
+  ],
+  knowsLanguage: ["es", "en", "ca"],
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "sales",
-    availableLanguage: "Spanish",
+    areaServed: ["ES", "EU"],
+    availableLanguage: ["Spanish", "English"],
   },
-  areaServed: "ES",
-  knowsAbout: ["n8n", "automatización de procesos", "inteligencia artificial para empresas", "agentes autónomos", "RAG", "LLM", "aplicaciones IA", "workflow automation", "multi agent systems", "ia para empresas", "automatización inteligente"],
+  knowsAbout: [
+    "automatización de procesos",
+    "inteligencia artificial para empresas",
+    "n8n workflow automation",
+    "agentes autónomos IA",
+    "arquitectura RAG",
+    "Retrieval-Augmented Generation",
+    "Claude 3.5 Sonnet",
+    "GPT-4o",
+    "chatbots IA web y WhatsApp",
+    "plataformas IA empresariales",
+    "ingeniería de plataformas",
+    "DevOps IA",
+    "vector databases",
+    "LLM orchestration",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servicios AutoProcessX",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Automatizaciones IA con n8n",
+          url: `${SITE_URL}/servicios/automatizaciones`,
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Chatbots IA para web y WhatsApp",
+          url: `${SITE_URL}/servicios/ai-chatbot`,
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Plataforma IA con arquitectura RAG",
+          url: `${SITE_URL}/servicios/aplicaciones-ia`,
+        },
+      },
+    ],
+  },
+  sameAs: [],
 };
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
   name: "AutoProcessX",
-  url: "https://www.autoprocessx.com",
+  url: SITE_URL,
   description: "Agencia de inteligencia artificial y automatización con n8n en Barcelona. Agentes autónomos, arquitecturas RAG y flujos inteligentes para empresas.",
   inLanguage: "es-ES",
+  publisher: { "@id": ORG_ID },
 };
 
 export const metadata: Metadata = {

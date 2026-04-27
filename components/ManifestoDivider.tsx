@@ -21,7 +21,7 @@ export default function ManifestoDivider() {
                     </motion.div>
 
                     <h2 className="text-3xl md:text-5xl font-black text-white leading-[1.05] tracking-tight mb-6">
-                        Tu empresa. <span className="text-primary">Tu código. Tu control.</span>
+                        Tu empresa. <span className="text-primary">Tu código. Tu&nbsp;control.</span>
                     </h2>
 
                     <p className="text-white/65 text-base md:text-lg font-medium max-w-2xl mx-auto leading-relaxed mb-10">

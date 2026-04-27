@@ -76,15 +76,13 @@ export default function ContactDrawer() {
             className="fixed top-0 right-0 h-full w-full sm:w-[500px] bg-background z-[101] shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Background Decoration */}
-            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-[#25D366]/5 rounded-full blur-3xl pointer-events-none" />
 
             {/* Header */}
-            <div className="p-8 flex items-center justify-between border-b bg-background/50 backdrop-blur-md relative z-10">
-              <h2 className="text-2xl font-black tracking-tighter uppercase italic text-foreground">
+            <div className="p-5 sm:p-8 flex items-center justify-between border-b bg-background/50 backdrop-blur-md relative z-10">
+              <h2 className="text-xl sm:text-2xl font-black tracking-tighter uppercase italic text-foreground">
                 {view === "form" ? "Hablemos de escala" : "¡En marcha!"}
               </h2>
-              <button 
+              <button
                 onClick={closeDrawer}
                 className="p-2 hover:bg-muted rounded-full transition-colors"
               >
@@ -94,7 +92,7 @@ export default function ContactDrawer() {
 
             {/* Tab Selector Area */}
             {view === "form" && (
-                <div className="px-8 pt-8 relative z-10">
+                <div className="px-5 sm:px-8 pt-5 sm:pt-8 relative z-10">
                     <div className="flex bg-muted p-1.5 rounded-2xl relative border">
                         <motion.div 
                             className="absolute inset-y-1 left-1 bg-background rounded-xl shadow-md z-0"
@@ -130,48 +128,48 @@ export default function ContactDrawer() {
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -15 }}
-                    className="p-8 space-y-8"
+                    className="p-5 sm:p-8 space-y-6 sm:space-y-8"
                   >
                     {activeTab === "email" ? (
-                        <form onSubmit={handleSubmit} className="space-y-6">
+                        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                             <div className="space-y-2 group">
                                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/40 ml-4 group-focus-within:text-primary transition-colors italic">¿A quién saludamos?</label>
-                                <input 
+                                <input
                                     required
-                                    type="text" 
+                                    type="text"
                                     placeholder="Ej: Óscar Jiménez"
                                     value={formData.name}
                                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                                    className="w-full h-16 px-6 rounded-2xl bg-gray-50 border border-transparent focus:border-primary/20 focus:bg-white focus:ring-4 focus:ring-primary/5 transition-all text-foreground font-medium placeholder:text-gray-300"
+                                    className="w-full h-14 sm:h-16 px-5 sm:px-6 rounded-2xl bg-gray-50 border border-transparent focus:border-primary/20 focus:bg-white focus:ring-4 focus:ring-primary/5 transition-all text-black font-medium placeholder:text-gray-400"
                                 />
                             </div>
                             <div className="space-y-2 group">
                                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/40 ml-4 group-focus-within:text-primary transition-colors italic">Email Corporativo</label>
-                                <input 
+                                <input
                                     required
-                                    type="email" 
+                                    type="email"
                                     placeholder="ejemplo@empresa.com"
                                     value={formData.email}
                                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                                    className="w-full h-16 px-6 rounded-2xl bg-gray-50 border border-transparent focus:border-primary/20 focus:bg-white focus:ring-4 focus:ring-primary/5 transition-all text-foreground font-medium placeholder:text-gray-300"
+                                    className="w-full h-14 sm:h-16 px-5 sm:px-6 rounded-2xl bg-gray-50 border border-transparent focus:border-primary/20 focus:bg-white focus:ring-4 focus:ring-primary/5 transition-all text-black font-medium placeholder:text-gray-400"
                                 />
                             </div>
                             <div className="space-y-2 group">
                                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/40 ml-4 group-focus-within:text-primary transition-colors italic">¿Qué proceso vamos a automatizar?</label>
-                                <textarea 
+                                <textarea
                                     required
                                     rows={4}
                                     placeholder="Describe brevemente el cuello de botella o tu visión..."
                                     value={formData.message}
                                     onChange={(e) => setFormData({...formData, message: e.target.value})}
-                                    className="w-full p-6 rounded-2xl bg-muted border border-transparent focus:border-primary/20 focus:bg-background focus:ring-4 focus:ring-primary/5 transition-all text-foreground font-medium resize-none placeholder:text-gray-300"
+                                    className="w-full p-5 sm:p-6 rounded-2xl bg-gray-50 border border-transparent focus:border-primary/20 focus:bg-white focus:ring-4 focus:ring-primary/5 transition-all text-black font-medium resize-none placeholder:text-gray-400"
                                 />
                             </div>
 
-                            <Button 
+                            <Button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full h-18 bg-primary text-white font-black text-lg rounded-full shadow-2xl shadow-primary/30 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3 group disabled:opacity-70 disabled:hover:scale-100"
+                                className="w-full h-14 sm:h-18 bg-primary text-white font-black text-base sm:text-lg rounded-full shadow-2xl shadow-primary/30 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3 group disabled:opacity-70 disabled:hover:scale-100"
                             >
                                 {isSubmitting ? (
                                     <>Enviando... <Loader2 className="w-5 h-5 animate-spin" /></>
@@ -184,21 +182,21 @@ export default function ContactDrawer() {
                             </Button>
                         </form>
                     ) : (
-                        <div className="flex flex-col items-start space-y-8 py-4">
-                            <p className="text-lg text-foreground/50 font-medium italic leading-relaxed">
+                        <div className="flex flex-col items-start space-y-6 sm:space-y-8 py-4">
+                            <p className="text-base sm:text-lg text-foreground/50 font-medium italic leading-relaxed">
                                 Prefieres algo más directo. Estamos listos para chatear y resolver tus dudas técnicas en tiempo real.
                             </p>
-                            
-                            <div className="p-8 rounded-[40px] bg-[#25D366]/5 border border-[#25D366]/20 space-y-6 w-full">
-                                <div className="h-16 w-16 rounded-2xl bg-[#25D366] flex items-center justify-center shadow-xl shadow-[#25D366]/20">
-                                    <MessageCircle className="w-10 h-10 text-white" />
+
+                            <div className="p-6 sm:p-8 rounded-3xl sm:rounded-[40px] bg-[#25D366]/5 border border-[#25D366]/20 space-y-5 sm:space-y-6 w-full">
+                                <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-[#25D366] flex items-center justify-center shadow-xl shadow-[#25D366]/20">
+                                    <MessageCircle className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                                 </div>
                                 <div>
-                                    <h3 className="text-3xl font-black tracking-tight mb-2 text-foreground">Canal Directo</h3>
+                                    <h3 className="text-2xl sm:text-3xl font-black tracking-tight mb-2 text-foreground">Canal Directo</h3>
                                     <p className="text-sm text-foreground/40 font-bold uppercase tracking-widest italic">Hablarás con un especialista, no con un bot.</p>
                                 </div>
-                                <a 
-                                    href="https://wa.me/34619355972?text=Consulta%20servicios%20IA" 
+                                <a
+                                    href="https://wa.me/34619355972?text=Consulta%20servicios%20IA"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="block"
@@ -210,10 +208,10 @@ export default function ContactDrawer() {
                                       })
                                     }
                                 >
-                                    <Button 
-                                        className="w-full h-18 bg-[#25D366] text-white font-black text-lg rounded-full shadow-xl shadow-[#25D366]/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-3"
+                                    <Button
+                                        className="w-full h-14 sm:h-18 bg-[#25D366] text-white font-black text-base sm:text-lg rounded-full shadow-xl shadow-[#25D366]/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-3"
                                     >
-                                        Ir a WhatsApp <ArrowRight className="w-6 h-6" />
+                                        Ir a WhatsApp <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
                                     </Button>
                                 </a>
                             </div>
@@ -231,12 +229,12 @@ export default function ContactDrawer() {
                     key="success"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="p-8 flex flex-col items-center justify-center h-full text-center space-y-6"
+                    className="p-5 sm:p-8 flex flex-col items-center justify-center h-full text-center space-y-5 sm:space-y-6"
                   >
-                    <div className="h-24 w-24 rounded-full bg-green-500/10 flex items-center justify-center text-green-500 mb-4">
-                        <CheckCircle2 className="w-12 h-12" />
+                    <div className="h-20 w-20 sm:h-24 sm:w-24 rounded-full bg-green-500/10 flex items-center justify-center text-green-500 mb-4">
+                        <CheckCircle2 className="w-10 h-10 sm:w-12 sm:h-12" />
                     </div>
-                    <h3 className="text-3xl font-black tracking-tighter text-foreground">¡Mensaje Recibido!</h3>
+                    <h3 className="text-2xl sm:text-3xl font-black tracking-tighter text-foreground">¡Mensaje Recibido!</h3>
                     <p className="text-foreground/50 font-medium italic">Un arquitecto de soluciones revisará tu caso personalmente. Hablamos pronto.</p>
                   </motion.div>
                 )}
@@ -244,7 +242,7 @@ export default function ContactDrawer() {
             </div>
 
             {/* Security Footer */}
-            <div className="p-8 bg-muted border-t">
+            <div className="p-5 sm:p-8 bg-muted border-t">
               <div className="flex items-center justify-center gap-4 mb-4 grayscale opacity-40">
                 <div className="text-[8px] font-black tracking-widest uppercase py-1 px-2 border border-black rounded">ISO 27001</div>
                 <div className="text-[8px] font-black tracking-widest uppercase py-1 px-2 border border-black rounded">AES-256</div>

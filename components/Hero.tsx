@@ -29,8 +29,6 @@ export default function Hero() {
     const [ready, setReady] = useState(false)
     const [progress, setProgress] = useState(0)
     const [scrollProgress, setScrollProgress] = useState(0)
-    const [collapsed, setCollapsed] = useState(false)
-    const completedRef = useRef(false)
 
     // Preload frames
     useEffect(() => {
@@ -82,7 +80,7 @@ export default function Hero() {
         let sx = 0, sy = 0, sw = iw, sh = ih
         if (imageRatio > canvasRatio) {
             sw = ih * canvasRatio
-            sx = (iw - sw) * 0.65 // bias to right so subject stays in frame on wide canvases
+            sx = (iw - sw) * 0.5
         } else {
             sh = iw / canvasRatio
             sy = (ih - sh) / 2
@@ -100,17 +98,6 @@ export default function Hero() {
             const scrolled = total > 0 ? Math.max(0, Math.min(1, -rect.top / total)) : 1
             targetFrameRef.current = scrolled * (FRAME_COUNT - 1)
             setScrollProgress(scrolled)
-            if (scrolled >= 0.999) completedRef.current = true
-            if (completedRef.current && !collapsed && rect.bottom <= 0) {
-                const heightBefore = section.offsetHeight
-                setCollapsed(true)
-                requestAnimationFrame(() => {
-                    const after = sectionRef.current
-                    if (!after) return
-                    const heightAfter = after.offsetHeight
-                    window.scrollTo(0, window.scrollY + (heightAfter - heightBefore))
-                })
-            }
             if (rafRef.current == null) rafRef.current = requestAnimationFrame(tick)
         }
 
@@ -137,12 +124,12 @@ export default function Hero() {
             window.removeEventListener("resize", onResize)
             if (rafRef.current) cancelAnimationFrame(rafRef.current)
         }
-    }, [collapsed])
+    }, [])
 
     return (
         <section
             ref={sectionRef}
-            className={`relative ${collapsed ? "h-screen" : "h-[300vh]"} bg-[#05070F]`}
+            className="relative h-[300vh] bg-[#05070F]"
         >
             <div className="sticky top-0 h-screen w-full overflow-hidden">
                 {/* Frame sequence canvas */}
@@ -154,10 +141,9 @@ export default function Hero() {
                 />
 
                 {/* Cinematic vignettes for legibility */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#05070F] via-[#05070F]/85 via-30% to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#05070F]/95 via-[#05070F]/55 via-35% to-transparent pointer-events-none" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#05070F] via-transparent to-transparent pointer-events-none" />
-                <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#05070F] via-[#05070F]/60 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 [background:radial-gradient(ellipse_at_70%_50%,transparent_0%,transparent_40%,#05070F_95%)] pointer-events-none" />
+                <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#05070F]/80 via-[#05070F]/40 to-transparent pointer-events-none" />
 
                 {/* Amber ambient glows */}
                 <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-amber-500/15 blur-[180px] rounded-full pointer-events-none" />
@@ -338,23 +324,6 @@ export default function Hero() {
                         {String(Math.round(scrollProgress * (FRAME_COUNT - 1)) + 1).padStart(3, "0")}
                         <span className="text-white/30"> / {FRAME_COUNT}</span>
                     </span>
-                </motion.div>
-
-                {/* Scroll hint */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: ready ? 1 : 0 }}
-                    transition={{ delay: 1.4, duration: 0.8 }}
-                    className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none"
-                >
-                    <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/40">
-                        Scroll para activar
-                    </span>
-                    <motion.div
-                        animate={{ y: [0, 6, 0] }}
-                        transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-                        className="h-8 w-[1px] bg-gradient-to-b from-amber-400/60 to-transparent"
-                    />
                 </motion.div>
 
                 {/* Soft fade-out at bottom for seamless transition */}
