@@ -192,7 +192,7 @@ const principles = [
     {
         icon: <Activity className="h-5 w-5" />,
         title: "Producción real",
-        desc: "Sistemas en operación 24/7 con SLA verificado, retries, alertas y observabilidad completa.",
+        desc: "Sistemas en operación 24/7 con retries, alertas y observabilidad completa documentada por proyecto.",
     },
     {
         icon: <ShieldCheck className="h-5 w-5" />,
@@ -240,7 +240,7 @@ export default function Tecnologia() {
                                 <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
                             </span>
                             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-200">
-                                Stack & Architecture · Production Verified
+                                Stack & Architecture · In Production
                             </span>
                         </motion.div>
 

@@ -63,8 +63,8 @@ export default function CasosDeExito() {
                             <ActivitySquare className="h-5 w-5 text-accent animate-pulse" />
                         </div>
                         <div>
-                            <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mb-1">Status Tracking</p>
-                            <p className="text-lg font-black tracking-tight text-white italic">Nodes Active: 250+</p>
+                            <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mb-1">Status</p>
+                            <p className="text-lg font-black tracking-tight text-white italic">Sistemas en producción</p>
                         </div>
                     </div>
                 </div>
@@ -150,7 +150,7 @@ export default function CasosDeExito() {
                                     <div className="absolute -bottom-6 -right-6 md:-right-10 bg-[#05070F] p-6 rounded-[32px] border border-white/10 shadow-2xl z-20 group-hover:border-accent/50 transition-colors">
                                         <div className="flex items-center gap-3">
                                             <div className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-                                            <span className="text-[10px] font-black uppercase tracking-widest text-white">System Verified</span>
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-white">In Production</span>
                                         </div>
                                     </div>
                                 </div>

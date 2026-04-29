@@ -574,10 +574,10 @@ export default function AutomatizacionesPage() {
             {/* Big stats row */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-12 md:mb-16">
               {[
-                { value: "14d", label: "Time to deploy", icon: <Calendar className="h-4 w-4" /> },
-                { value: "4.8x", label: "ROI promedio", icon: <TrendingUp className="h-4 w-4" /> },
-                { value: "0€", label: "Coste por tarea", icon: <Zap className="h-4 w-4" /> },
-                { value: "250+", label: "Despliegues activos", icon: <Server className="h-4 w-4" /> },
+                { value: "2-4 sem", label: "Time to deploy", icon: <Calendar className="h-4 w-4" /> },
+                { value: "0€", label: "Coste por ejecución", icon: <Zap className="h-4 w-4" /> },
+                { value: "100%", label: "Código y datos del cliente", icon: <Server className="h-4 w-4" /> },
+                { value: "24/7", label: "Operación autónoma", icon: <TrendingUp className="h-4 w-4" /> },
               ].map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -643,7 +643,7 @@ export default function AutomatizacionesPage() {
                 { icon: <ShieldCheck className="h-3.5 w-3.5" />, label: "Sin retainers" },
                 { icon: <Lock className="h-3.5 w-3.5" />, label: "Self-hosted" },
                 { icon: <Sparkles className="h-3.5 w-3.5" />, label: "Código 100% tuyo" },
-                { icon: <Activity className="h-3.5 w-3.5" />, label: "SLA garantizado" },
+                { icon: <Activity className="h-3.5 w-3.5" />, label: "Monitorización 24/7" },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-2 text-white/45">
                   <div className="text-accent">{item.icon}</div>

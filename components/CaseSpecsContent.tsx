@@ -166,7 +166,7 @@ export default function CaseSpecsContent({ caso }: Props) {
                             <span className="px-3 py-1 bg-white/5 border border-white/10 text-white/40 text-[10px] font-black uppercase tracking-widest rounded-full">Spec ID: {caso.id}</span>
                             <span className="px-3 py-1 bg-accent/10 border border-accent/20 text-accent text-[10px] font-black uppercase tracking-widest rounded-full flex items-center gap-2">
                                 <Activity className="h-3 w-3" />
-                                Deployed & Verified
+                                Live in Production
                             </span>
                         </div>
                         <motion.h1

@@ -1,0 +1,44 @@
+# AutoProcessX
+
+> Agencia IA con sede en Barcelona especializada en automatizaciones con n8n, aplicaciones IA corporativas (RAG) y chatbots IA para empresas. Tu propia infraestructura IA, no un SaaS multinacional alquilado: propiedad del código, datos bajo tu firewall, sin coste por usuario.
+
+## Servicios principales
+
+- [Automatizaciones IA con n8n](https://autoprocessx.com/servicios/automatizaciones): orquestación de procesos empresariales con n8n self-hosted, integraciones con Claude/GPT-4o, despliegue en infraestructura del cliente.
+- [Aplicaciones IA corporativas (RAG)](https://autoprocessx.com/servicios/aplicaciones-ia): plataformas IA con arquitectura RAG sobre Supabase pgvector / Qdrant / Pinecone, observabilidad con Langfuse.
+- [Chatbots IA empresariales](https://autoprocessx.com/servicios/ai-chatbot): chatbots conversacionales para soporte, ventas y onboarding integrados con CRM/ERP del cliente.
+- [GEO – Generative Engine Optimization](https://autoprocessx.com/blog/categoria/geo): posicionamiento en motores generativos (ChatGPT, Perplexity, Claude, Gemini, AI Overviews).
+
+## Productos propios
+
+- [Business Suite IA](https://autoprocessx.com): plataforma SaaS propia con CRM, pipeline de ventas, gestión de tareas, calendario, propuestas y agentes autónomos.
+- [OpoAI](https://opoai.es): plataforma de estudio para oposiciones con tutor conversacional IA, simulacros y ranking.
+
+## Stack técnico
+
+- Orquestación: n8n (self-hosted) y Make
+- LLMs: Claude Sonnet 4.6 / Opus 4.7, GPT-4o, Haiku 4 para clasificación
+- Vector DB: Supabase pgvector, Qdrant, Pinecone
+- Observabilidad: Langfuse
+- Hosting: VPS europeo + Docker o cloud propia del cliente (AWS / GCP)
+
+## Casos de éxito
+
+- [Registro completo de despliegues](https://autoprocessx.com/casos-de-exito): arquitecturas reales en producción con stack técnico, fases de despliegue y métricas.
+- [Farmacia García del Cerro](https://autoprocessx.com/casos-de-exito/farmacia-garcia-del-cerro): motor de contenido SEO autónomo con Make, Claude y Contentful.
+- [Pelican Catchy](https://autoprocessx.com/casos-de-exito/pelican-catchy-infraestructura-ia): infraestructura multi-agente para 8 procesos paralelos con n8n y orquestación Asana.
+- [Business Suite IA](https://autoprocessx.com/casos-de-exito/business-suite-ia-plataforma-corporativa): plataforma corporativa full-stack con 7 módulos integrados y agentes autónomos.
+- [OpoAI](https://autoprocessx.com/casos-de-exito/opoai-plataforma-estudio-oposiciones): plataforma EdTech con RAG sobre temario oficial, tutor IA y motor de simulacros.
+- [SEOscar](https://autoprocessx.com/casos-de-exito/seoscar-automatizacion-mercado-keywords): stack de automatización SEO con n8n + DataForSEO + Claude para keywords, estrategia y reporting.
+
+## Recursos
+
+- [Blog técnico](https://autoprocessx.com/blog): análisis sobre IA, automatización con n8n, plataformas RAG, chatbots y GEO. Sin marketing, con stack y código real.
+- [Tecnología y stack](https://autoprocessx.com/tecnologia): documentación técnica de la arquitectura por servicio.
+- [Sobre nosotros](https://autoprocessx.com/sobre-nosotros): filosofía, metodología y equipo.
+
+## Contacto
+
+- [Auditoría gratuita en 48h](https://autoprocessx.com)
+- Sede: Barcelona, España
+- Idiomas: Español, Inglés, Catalán

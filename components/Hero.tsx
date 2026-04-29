@@ -13,8 +13,8 @@ const framePath = (i: number) =>
     `/assets/robot_frames/ezgif-frame-${String(i).padStart(3, "0")}.jpg`
 
 const trustItems = [
-    "250+ despliegues activos",
-    "ROI promedio 4.8x",
+    "Sistemas en producción 24/7",
+    "Código y datos bajo tu propiedad",
     "Setup en 2-4 semanas",
 ]
 

@@ -157,7 +157,7 @@ export const techFaqs: FAQItem[] = [
     },
     {
         q: "¿Cómo monitorizáis los sistemas en producción?",
-        a: "Stack de observabilidad con métricas de ejecución, latencia LLM, tasa de éxito de workflows, alertas a Slack/WhatsApp ante fallos y dashboard de salud accesible 24/7. SLA verificado y documentado.",
+        a: "Stack de observabilidad con métricas de ejecución, latencia LLM, tasa de éxito de workflows, alertas a Slack/WhatsApp ante fallos y dashboard de salud accesible 24/7. Acuerdo de operación documentado por proyecto.",
     },
 ]
 

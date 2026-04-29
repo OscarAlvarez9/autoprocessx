@@ -19,6 +19,7 @@ const navLinks = [
   },
   { label: "Registro", href: "/casos-de-exito" },
   { label: "Stack", href: "/tecnologia" },
+  { label: "Blog", href: "/blog" },
   { label: "Firma", href: "/sobre-nosotros" },
 ]
 
@@ -200,6 +201,7 @@ export default function Navigation() {
                 {[
                   { href: "/casos-de-exito", label: "Registro de Despliegue" },
                   { href: "/tecnologia", label: "Stack Tecnológico" },
+                  { href: "/blog", label: "Blog" },
                   { href: "/sobre-nosotros", label: "Sobre la Firma" },
                 ].map((link) => (
                   <Link

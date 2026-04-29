@@ -87,7 +87,7 @@ export default function FinalCTA() {
                                 <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
                             </span>
                             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-200">
-                                Plazas limitadas · 3 nuevos clientes / mes
+                                Equipo boutique · Proyectos seleccionados
                             </span>
                         </motion.div>
 
