@@ -4,7 +4,8 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { X, Menu, ChevronDown, Terminal, Activity } from "lucide-react"
+import Image from "next/image"
+import { X, Menu, ChevronDown, Activity } from "lucide-react"
 
 import { useContactDrawer } from "@/context/ContactDrawerContext"
 
@@ -64,8 +65,15 @@ export default function Navigation() {
         >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group shrink-0" onClick={closeMobile}>
-            <div className="relative w-10 h-10 flex items-center justify-center bg-[#0F1424] rounded-xl border border-white/5 group-hover:border-accent/50 transition-all">
-              <Terminal className="w-5 h-5 text-accent group-hover:scale-110 transition-transform" />
+            <div className="relative w-10 h-10 overflow-hidden rounded-xl border border-white/10 group-hover:border-accent/50 transition-all bg-[#0F1424]">
+              <Image
+                src="/logo-square.png"
+                alt="AutoProcessX"
+                fill
+                sizes="40px"
+                priority
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
+              />
               <div className="absolute -inset-1 bg-accent/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <div className="flex flex-col">
@@ -148,7 +156,9 @@ export default function Navigation() {
               className="fixed top-0 right-0 bottom-0 w-full md:w-[450px] z-[70] lg:hidden bg-[#05070F] border-l border-white/5 pt-32 pb-12 px-10 flex flex-col"
             >
               <div className="absolute top-10 left-10 flex items-center gap-3">
-                 <Terminal className="h-6 w-6 text-accent" />
+                 <div className="relative w-8 h-8 overflow-hidden rounded-lg border border-white/10 bg-[#0F1424]">
+                    <Image src="/logo-square.png" alt="AutoProcessX" fill sizes="32px" className="object-cover" />
+                 </div>
                  <span className="text-xl font-black italic uppercase text-white">Registry Access</span>
               </div>
 

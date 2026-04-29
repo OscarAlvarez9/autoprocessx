@@ -6,8 +6,10 @@ import FinalCTA from "@/components/FinalCTA"
 import FAQ from "@/components/FAQ"
 import { aboutFaqs } from "@/lib/faqs"
 import { motion } from "framer-motion"
-import { Activity } from "lucide-react"
+import { Activity, MapPin } from "lucide-react"
 import Breadcrumbs from "@/components/Breadcrumbs"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 const pillars = [
     { num: "01", title: "Ingeniería Directa", desc: "El arquitecto que diseña tu plataforma es el mismo que la despliega. Sin capas de gestión ni subcontratas opacas." },
@@ -172,6 +174,88 @@ export default function SobreNosotros() {
                                 <p className="text-white/30 text-xs font-medium leading-relaxed">{p.desc}</p>
                             </motion.div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Location section */}
+            <section className="relative py-16 md:py-24 border-t border-white/5 bg-[#05070F] overflow-hidden">
+                <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[400px] bg-amber-500/[0.05] blur-[140px] rounded-full pointer-events-none" />
+
+                <div className="container px-6 mx-auto max-w-6xl relative z-10">
+                    <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
+                        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-black uppercase tracking-[0.3em] mb-6">
+                            <MapPin className="h-3.5 w-3.5" />
+                            Dónde estamos
+                        </div>
+                        <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-[1.05] tracking-tight">
+                            Premià de Mar, <span className="text-accent">Barcelona</span>.
+                        </h2>
+                        <p className="text-white/65 text-base font-medium leading-relaxed max-w-2xl mx-auto">
+                            A 25 minutos del centro de Barcelona por la C-31. Operamos remoto en toda España y Europa, con desplazamiento on-site para discovery o despliegues críticos.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+                        {/* Map */}
+                        <div className="lg:col-span-2">
+                            <Card className="bg-[#0F1424] border-white/10 rounded-2xl shadow-none overflow-hidden p-0">
+                                <div className="relative aspect-[16/10] md:aspect-[16/9]">
+                                    <iframe
+                                        src="https://www.google.com/maps?q=Premi%C3%A0+de+Mar,+Barcelona&output=embed"
+                                        width="100%"
+                                        height="100%"
+                                        style={{ border: 0, filter: "invert(0.92) hue-rotate(180deg) saturate(0.5) brightness(0.85)" }}
+                                        loading="lazy"
+                                        allowFullScreen
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                        title="Ubicación AutoProcessX — Premià de Mar, Barcelona"
+                                    />
+                                </div>
+                            </Card>
+                        </div>
+
+                        {/* Location details */}
+                        <div className="flex flex-col gap-4">
+                            <Card className="bg-[#0F1424] border-white/10 rounded-2xl shadow-none flex-1">
+                                <CardContent className="p-6">
+                                    <Badge
+                                        variant="outline"
+                                        className="bg-transparent border-white/10 text-white/60 mb-4 px-3 py-1 text-[10px] font-black uppercase tracking-[0.3em]"
+                                    >
+                                        Sede principal
+                                    </Badge>
+                                    <div className="space-y-3 text-sm">
+                                        <div>
+                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-1">Localidad</div>
+                                            <div className="text-white font-bold">Premià de Mar</div>
+                                        </div>
+                                        <div>
+                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-1">Provincia</div>
+                                            <div className="text-white font-bold">Barcelona, Cataluña</div>
+                                        </div>
+                                        <div>
+                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-1">País</div>
+                                            <div className="text-white font-bold">España</div>
+                                        </div>
+                                        <div>
+                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-1">Zona horaria</div>
+                                            <div className="text-white font-bold">CET / CEST · UTC+1</div>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+
+                            <a
+                                href="https://www.google.com/maps?q=Premi%C3%A0+de+Mar,+Barcelona"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-amber-400/10 border border-amber-400/40 hover:bg-amber-400/20 text-amber-200 hover:text-white font-black uppercase tracking-[0.2em] text-[11px] transition-all"
+                            >
+                                Abrir en Google Maps
+                                <MapPin className="h-3.5 w-3.5" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>

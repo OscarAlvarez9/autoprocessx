@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Footer() {
   return (
@@ -8,12 +9,15 @@ export default function Footer() {
       <div className="container px-6 mx-auto">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-12 mb-20">
           <Link href="/" className="flex items-center gap-3 group cursor-pointer">
-            <div className="relative w-10 h-10 flex items-center justify-center">
-              <div className="absolute inset-0 bg-accent/20 rounded-xl blur-md group-hover:bg-accent/40 transition-all duration-500" />
-              <svg className="w-8 h-8 text-accent relative z-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 4L4 12L12 20L20 12L12 4Z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M12 9L9 12L12 15L15 12L12 9Z" fill="currentColor"/>
-              </svg>
+            <div className="relative w-12 h-12 overflow-hidden rounded-xl border border-white/10 group-hover:border-accent/40 transition-all bg-[#0F1424]">
+              <div className="absolute inset-0 bg-accent/20 blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-500 -z-10" />
+              <Image
+                src="/logo-square.png"
+                alt="AutoProcessX"
+                fill
+                sizes="48px"
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
+              />
             </div>
             <div className="flex items-center">
               <span className="text-2xl md:text-3xl font-black tracking-tighter text-white uppercase italic">
@@ -29,7 +33,8 @@ export default function Footer() {
             <Link href="/sobre-nosotros" className="hover:text-accent transition-colors">Engineering</Link>
             <Link href="/tecnologia" className="hover:text-accent transition-colors">Stack</Link>
             <Link href="/casos-de-exito" className="hover:text-accent transition-colors">Registry</Link>
-            <a href="#" className="hover:text-accent transition-colors opacity-30">Legal Protocol</a>
+            <Link href="/blog" className="hover:text-accent transition-colors">Blog</Link>
+            <Link href="/contacto" className="hover:text-accent transition-colors">Contacto</Link>
           </div>
 
           <div className="flex gap-6">

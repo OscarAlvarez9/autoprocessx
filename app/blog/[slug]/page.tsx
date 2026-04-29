@@ -13,6 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { formatDate, getCategory } from "@/lib/blog"
 import {
+    debugFetchRaw,
     getAllPostSlugs,
     getPostWithBody,
     getPostsByCategory,
@@ -82,6 +83,10 @@ export default async function BlogPostPage({ params }: Params) {
     const related = (await getPostsByCategory(post.category))
         .filter((p) => p.slug !== post.slug)
         .slice(0, 3)
+
+    // Debug — only in dev when body is missing, to identify which Contentful field has the content
+    const showDebug = process.env.NODE_ENV !== "production" && !body
+    const debugFields = showDebug ? await debugFetchRaw(slug) : null
 
     const articleSchema = {
         "@context": "https://schema.org",
@@ -178,8 +183,9 @@ export default async function BlogPostPage({ params }: Params) {
 
                     {/* Body — Contentful rich text or long text or seed HTML or placeholder */}
                     <div className="max-w-none">
-                        {body && typeof body !== "string" && "nodeType" in body ? (
-                            <RichText document={body} />
+                        {body && typeof body === "object" && Array.isArray((body as { content?: unknown[] }).content) ? (
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            <RichText document={body as any} />
                         ) : typeof body === "string" && body.trim() ? (
                             <div className="space-y-5">
                                 {body.split(/\n{2,}/).map((para, i) => (
@@ -203,6 +209,25 @@ export default async function BlogPostPage({ params }: Params) {
                                 </p>
                                 <p className="text-white/65 text-base font-medium leading-relaxed">
                                     El contenido completo se publica próximamente. Si quieres ser notificado cuando esté disponible o necesitas el material técnico antes, contáctanos.
+                                </p>
+                            </div>
+                        )}
+
+                        {/* DEV-ONLY debug panel — shows what Contentful actually returned */}
+                        {debugFields && (
+                            <div className="mt-8 rounded-2xl border border-red-500/30 bg-red-500/5 p-5 md:p-6">
+                                <p className="text-red-300 text-[10px] font-black uppercase tracking-[0.3em] mb-3">
+                                    🔧 Debug · Fields recibidos de Contentful (solo en dev)
+                                </p>
+                                <p className="text-white/60 text-xs mb-4">
+                                    El cuerpo del artículo no se encontró en ninguno de los fields esperados. Estos son los fields que devuelve tu entry:
+                                </p>
+                                <pre className="text-[11px] text-white/80 bg-black/40 p-4 rounded-lg overflow-auto font-mono leading-relaxed">
+{JSON.stringify(debugFields, null, 2)}
+                                </pre>
+                                <p className="text-white/60 text-xs mt-4">
+                                    Busca el field que dice <code className="text-amber-300">[Rich Text Document]</code> o el string largo. Si su API ID no es uno de:{" "}
+                                    <code className="text-amber-300">texto, cuerpo, contenido, body, content, descripcion</code> — dime cuál es y lo añado.
                                 </p>
                             </div>
                         )}

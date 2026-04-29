@@ -27,7 +27,7 @@ const organizationSchema = {
   url: SITE_URL,
   logo: {
     "@type": "ImageObject",
-    url: `${SITE_URL}/assets/logo_premium_v6.png`,
+    url: `${SITE_URL}/logo-square.png`,
     width: 512,
     height: 512,
   },
@@ -35,10 +35,11 @@ const organizationSchema = {
   slogan: "Tu propia infraestructura IA. Sin SaaS.",
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Barcelona",
-    addressRegion: "Cataluña",
+    addressLocality: "Premià de Mar",
+    addressRegion: "Barcelona, Cataluña",
     addressCountry: "ES",
   },
+  email: "contacta@autoprocessx.com",
   areaServed: [
     { "@type": "Country", name: "España" },
     { "@type": "AdministrativeArea", name: "Unión Europea" },

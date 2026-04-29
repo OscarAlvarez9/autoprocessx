@@ -65,10 +65,28 @@ interface RawFields {
     imagen?: { fields?: { file?: { url?: string } } }
     /** May be Rich Text (Document) or plain Long Text (string) depending on Contentful field type. */
     texto?: Document | string
+    /** Common alternative field names — tried as fallback if `texto` is empty */
+    cuerpo?: Document | string
+    contenido?: Document | string
+    body?: Document | string
+    content?: Document | string
+    descripcion?: Document | string
     /** Optional extras if you ever add them */
     tags?: string[]
     autor?: string
     minutosLectura?: number
+    [key: string]: unknown
+}
+
+const extractBody = (fields: RawFields): Document | string | undefined => {
+    return (
+        fields.texto ??
+        fields.cuerpo ??
+        fields.contenido ??
+        fields.body ??
+        fields.content ??
+        fields.descripcion
+    )
 }
 
 interface RawEntry {
@@ -120,7 +138,8 @@ const normalizeCategory = (raw?: string): CategorySlug => {
 
 const mapEntry = (entry: RawEntry): BlogPost => {
     const f = entry.fields
-    const words = countWords(f.texto)
+    const body = extractBody(f)
+    const words = countWords(body)
     const minutes = f.minutosLectura ?? Math.max(1, Math.round(words / 220))
     return {
         slug: f.slug ?? "",
@@ -188,9 +207,20 @@ export async function fetchPostBySlug(
         } as never)) as unknown as RawCollection
         const entry = res.items[0]
         if (!entry) return null
+        // DEBUG: log fields received so you can see what Contentful is returning
+        if (process.env.NODE_ENV !== "production") {
+            const keys = Object.keys(entry.fields)
+            const types = Object.fromEntries(
+                keys.map((k) => {
+                    const v = (entry.fields as Record<string, unknown>)[k]
+                    return [k, typeof v === "object" && v !== null ? (Array.isArray(v) ? "array" : (v as { nodeType?: string }).nodeType ?? "object") : typeof v]
+                })
+            )
+            console.log(`[contentful] post "${slug}" fields:`, types)
+        }
         return {
             post: mapEntry(entry),
-            body: entry.fields.texto,
+            body: extractBody(entry.fields),
         }
     } catch (err) {
         console.error("[contentful] fetchPostBySlug failed:", err)
@@ -243,4 +273,41 @@ export async function getPostWithBody(
 export async function getAllPostSlugs(): Promise<string[]> {
     if (!isConfigured) return seedPosts.map((p) => p.slug)
     return fetchAllSlugs()
+}
+
+/** Debug helper: returns raw Contentful fields for a slug (dev only). */
+export async function debugFetchRaw(slug: string): Promise<Record<string, unknown> | null> {
+    const client = getClient(false)
+    if (!client) return null
+    try {
+        const res = (await client.getEntries({
+            content_type: CONTENT_TYPE,
+            "fields.slug": slug,
+            limit: 1,
+        } as never)) as unknown as RawCollection
+        const entry = res.items[0]
+        if (!entry) return null
+        const summary: Record<string, unknown> = {}
+        for (const [k, v] of Object.entries(entry.fields)) {
+            if (v && typeof v === "object") {
+                if (Array.isArray((v as { content?: unknown[] }).content) && (v as { nodeType?: string }).nodeType === "document") {
+                    summary[k] = `[Rich Text Document · ${(v as { content: unknown[] }).content.length} blocks]`
+                } else if ("fields" in (v as object) && "sys" in (v as object)) {
+                    summary[k] = `[Asset/Entry reference]`
+                } else if (Array.isArray(v)) {
+                    summary[k] = `[Array · ${v.length} items]`
+                } else {
+                    summary[k] = `[Object: ${Object.keys(v).join(", ")}]`
+                }
+            } else if (typeof v === "string") {
+                summary[k] = v.length > 80 ? `${v.slice(0, 80)}… (${v.length} chars)` : v
+            } else {
+                summary[k] = v
+            }
+        }
+        return summary
+    } catch (err) {
+        console.error("[contentful] debugFetchRaw failed:", err)
+        return null
+    }
 }
