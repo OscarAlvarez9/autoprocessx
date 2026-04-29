@@ -7,10 +7,11 @@ import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react"
 import Link from "next/link"
 import { useContactDrawer } from "@/context/ContactDrawerContext"
 import { gtagEvent } from "@/lib/gtag"
+import { useFrameBasePath } from "@/lib/use-frame-source"
 
 const FRAME_COUNT = 240
-const framePath = (i: number) =>
-    `/assets/robot_frames/ezgif-frame-${String(i).padStart(3, "0")}.jpg`
+const framePath = (base: string, i: number) =>
+    `${base}/ezgif-frame-${String(i).padStart(3, "0")}.jpg`
 
 const trustItems = [
     "Sistemas en producción 24/7",
@@ -20,6 +21,7 @@ const trustItems = [
 
 export default function Hero() {
     const { openDrawer } = useContactDrawer()
+    const frameBase = useFrameBasePath("robot_frames")
     const sectionRef = useRef<HTMLDivElement>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const imagesRef = useRef<HTMLImageElement[]>([])
@@ -30,15 +32,17 @@ export default function Hero() {
     const [progress, setProgress] = useState(0)
     const [scrollProgress, setScrollProgress] = useState(0)
 
-    // Preload frames
+    // Preload frames — prioridad: primeros 30 (visible inmediato), luego el resto
     useEffect(() => {
         const images: HTMLImageElement[] = new Array(FRAME_COUNT)
         let loaded = 0
         let firstReady = false
 
-        for (let i = 0; i < FRAME_COUNT; i++) {
+        const loadFrame = (i: number, priority: "high" | "low") => {
             const img = new window.Image()
-            img.src = framePath(i + 1)
+            // fetchpriority hint for browser
+            ;(img as HTMLImageElement & { fetchPriority?: string }).fetchPriority = priority
+            img.src = framePath(frameBase, i + 1)
             img.onload = () => {
                 loaded++
                 setProgress(loaded / FRAME_COUNT)
@@ -50,9 +54,17 @@ export default function Hero() {
             }
             images[i] = img
         }
+
+        // Prioridad alta: primeros 30 frames
+        for (let i = 0; i < Math.min(30, FRAME_COUNT); i++) loadFrame(i, "high")
+        // Prioridad baja: resto, después de un microtask
+        Promise.resolve().then(() => {
+            for (let i = 30; i < FRAME_COUNT; i++) loadFrame(i, "low")
+        })
+
         imagesRef.current = images
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [frameBase])
 
     const drawFrame = (frame: number) => {
         const canvas = canvasRef.current
@@ -132,6 +144,19 @@ export default function Hero() {
             className="relative h-[300vh] bg-[#05070F]"
         >
             <div className="sticky top-0 h-screen w-full overflow-hidden">
+                {/* LCP poster — high-priority static image, fades out when canvas ready */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src="/assets/robot_poster.jpg"
+                    alt="AutoProcessX — agencia IA Barcelona"
+                    fetchPriority="high"
+                    loading="eager"
+                    decoding="async"
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                        ready ? "opacity-0" : "opacity-100"
+                    }`}
+                />
+
                 {/* Frame sequence canvas */}
                 <canvas
                     ref={canvasRef}

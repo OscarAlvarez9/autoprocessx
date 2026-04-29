@@ -7,10 +7,11 @@ import { ArrowRight, MessageCircle, Smartphone } from "lucide-react"
 import Link from "next/link"
 import { useContactDrawer } from "@/context/ContactDrawerContext"
 import { gtagEvent } from "@/lib/gtag"
+import { useFrameBasePath } from "@/lib/use-frame-source"
 
 const FRAME_COUNT = 240
-const framePath = (i: number) =>
-    `/assets/chatbot_frames/ezgif-frame-${String(i).padStart(3, "0")}.jpg`
+const framePath = (base: string, i: number) =>
+    `${base}/ezgif-frame-${String(i).padStart(3, "0")}.jpg`
 
 const phaseLabels = [
     { range: [0, 0.33], label: "Fase 01 · Conexión activa" },
@@ -20,6 +21,7 @@ const phaseLabels = [
 
 export default function ChatbotHero() {
     const { openDrawer } = useContactDrawer()
+    const frameBase = useFrameBasePath("chatbot_frames")
     const sectionRef = useRef<HTMLDivElement>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const imagesRef = useRef<HTMLImageElement[]>([])
@@ -34,9 +36,10 @@ export default function ChatbotHero() {
         const images: HTMLImageElement[] = new Array(FRAME_COUNT)
         let loaded = 0
         let firstReady = false
-        for (let i = 0; i < FRAME_COUNT; i++) {
+        const loadFrame = (i: number, priority: "high" | "low") => {
             const img = new window.Image()
-            img.src = framePath(i + 1)
+            ;(img as HTMLImageElement & { fetchPriority?: string }).fetchPriority = priority
+            img.src = framePath(frameBase, i + 1)
             img.onload = () => {
                 loaded++
                 setProgress(loaded / FRAME_COUNT)
@@ -48,9 +51,13 @@ export default function ChatbotHero() {
             }
             images[i] = img
         }
+        for (let i = 0; i < Math.min(30, FRAME_COUNT); i++) loadFrame(i, "high")
+        Promise.resolve().then(() => {
+            for (let i = 30; i < FRAME_COUNT; i++) loadFrame(i, "low")
+        })
         imagesRef.current = images
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [frameBase])
 
     const drawFrame = (frame: number) => {
         const canvas = canvasRef.current
@@ -132,6 +139,17 @@ export default function ChatbotHero() {
             className="relative h-[300vh] bg-[#0a0f1e]"
         >
             <div className="sticky top-0 h-screen w-full overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src="/assets/chatbot_poster.jpg"
+                    alt="Chatbots IA para web y WhatsApp"
+                    fetchPriority="high"
+                    loading="eager"
+                    decoding="async"
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                        ready ? "opacity-0" : "opacity-100"
+                    }`}
+                />
                 <canvas
                     ref={canvasRef}
                     className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
