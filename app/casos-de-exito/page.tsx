@@ -24,7 +24,7 @@ export default function CasosDeExito() {
             <Navigation />
 
             {/* Hero: Engineering Context */}
-            <div className="relative pt-28 pb-16 md:pt-40 md:pb-32 overflow-hidden border-b border-white/5">
+            <div className="relative pt-32 pb-16 md:pt-40 md:pb-32 overflow-hidden border-b border-white/5">
               <motion.div 
                   animate={{ top: ['-20%', '120%'] }}
                   transition={{ duration: 12, repeat: Infinity, ease: "linear" }}

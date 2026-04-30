@@ -72,7 +72,7 @@ export default async function CategoryPage({ params }: Params) {
             <Navigation />
 
             {/* Hero */}
-            <section className="relative pt-28 pb-12 md:pt-36 md:pb-20 overflow-hidden">
+            <section className="relative pt-32 pb-12 md:pt-36 md:pb-20 overflow-hidden">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-500/[0.07] blur-[160px] rounded-full pointer-events-none" />
 
                 <div className="container relative z-10 px-6 mx-auto max-w-6xl">

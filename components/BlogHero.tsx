@@ -26,7 +26,7 @@ export default function BlogHero({ posts }: { posts: BlogPost[] }) {
     const latest = posts[0]
 
     return (
-        <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
+        <section className="relative pt-32 pb-16 md:pt-36 md:pb-24 overflow-hidden">
             {/* Layered ambient background */}
             <div className="absolute inset-0 pointer-events-none">
                 {/* base gradient */}

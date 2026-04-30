@@ -201,7 +201,7 @@ export default function Hero() {
                 )}
 
                 {/* Text overlay */}
-                <div className="relative z-10 h-full flex items-center">
+                <div className="relative z-10 h-full flex items-center pt-20 md:pt-0">
                     <div className="container mx-auto px-6 lg:px-12">
                         <div className="max-w-2xl relative">
                             {/* Vertical accent bar */}

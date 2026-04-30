@@ -113,7 +113,7 @@ export default async function BlogPostPage({ params }: Params) {
             <Navigation />
             <JsonLd data={articleSchema} />
 
-            <article className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
+            <article className="relative pt-32 pb-16 md:pt-36 md:pb-24 overflow-hidden">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-500/[0.05] blur-[160px] rounded-full pointer-events-none" />
 
                 <div className="container relative z-10 px-6 mx-auto max-w-3xl">

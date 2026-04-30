@@ -47,21 +47,30 @@ export default function ChatWidget() {
                         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                         role="dialog"
                         aria-label="Chat con Aria, asistente de AutoProcessX"
-                        className="fixed z-[9998] right-6 bottom-24 max-md:inset-0 max-md:right-0 max-md:bottom-0"
-                        style={{
-                            width: "400px",
-                            height: "600px",
-                            maxWidth: "calc(100vw - 48px)",
-                            maxHeight: "calc(100vh - 120px)",
-                        }}
+                        className="
+                            fixed z-[9998]
+                            inset-x-3 bottom-3 top-3
+                            sm:inset-auto sm:right-6 sm:bottom-24 sm:top-auto sm:left-auto
+                            sm:w-[400px] sm:h-[600px]
+                            sm:max-h-[calc(100vh-120px)]
+                        "
                     >
                         <div
-                            className="w-full h-full overflow-hidden rounded-2xl border border-amber-400/20 bg-[#0F1424] max-md:rounded-none max-md:border-0"
+                            className="relative w-full h-full overflow-hidden rounded-2xl border border-amber-400/20 bg-[#0F1424]"
                             style={{
                                 boxShadow:
                                     "0 24px 60px -12px rgba(0,0,0,0.6), 0 0 40px -8px rgba(251,191,36,0.25)",
                             }}
                         >
+                            {/* Close button — visible solo en mobile, dentro del panel */}
+                            <button
+                                onClick={() => setOpen(false)}
+                                aria-label="Cerrar chat"
+                                className="sm:hidden absolute top-3 right-3 z-10 h-9 w-9 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white flex items-center justify-center active:scale-95 transition-transform"
+                            >
+                                <X className="h-4 w-4" strokeWidth={2.5} />
+                            </button>
+
                             <iframe
                                 src="https://chatbot-autoprocessx.onrender.com/widget"
                                 title="Aria · Asistente AutoProcessX"
@@ -85,7 +94,9 @@ export default function ChatWidget() {
                 transition={{ delay: 0.4, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
-                className="fixed z-[9999] right-6 bottom-6 h-[60px] w-[60px] rounded-full flex items-center justify-center bg-amber-400 hover:bg-amber-300 text-[#05070F] transition-colors"
+                className={`fixed z-[10000] right-4 bottom-4 sm:right-6 sm:bottom-6 h-[56px] w-[56px] sm:h-[60px] sm:w-[60px] rounded-full flex items-center justify-center bg-amber-400 hover:bg-amber-300 text-[#05070F] transition-colors ${
+                    open ? "max-sm:hidden" : ""
+                }`}
                 style={{
                     boxShadow: "0 8px 28px -4px rgba(251,191,36,0.5)",
                 }}

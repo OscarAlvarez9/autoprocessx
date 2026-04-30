@@ -77,7 +77,7 @@ export default function ContactoPage() {
             <JsonLd data={contactPageSchema} />
 
             {/* Hero */}
-            <section className="relative pt-28 pb-12 md:pt-36 md:pb-16 overflow-hidden">
+            <section className="relative pt-32 pb-12 md:pt-36 md:pb-16 overflow-hidden">
                 <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-amber-500/[0.07] blur-[180px] rounded-full pointer-events-none" />
                 <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-300/[0.05] blur-[140px] rounded-full pointer-events-none" />
 
