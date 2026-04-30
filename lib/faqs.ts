@@ -114,7 +114,7 @@ export const platformFaqs: FAQItem[] = [
 export const aboutFaqs: FAQItem[] = [
     {
         q: "¿Quién está detrás de AutoProcessX?",
-        a: "Un equipo boutique de ingenieros con experiencia previa en arquitectura de plataformas, big data e IA aplicada. El arquitecto que diseña tu sistema es el mismo que lo despliega — sin capas de gestión ni subcontratas.",
+        a: "Un equipo técnico de ingenieros con experiencia previa en arquitectura de plataformas, big data e IA aplicada. El arquitecto que diseña tu sistema es el mismo que lo despliega — sin capas de gestión ni subcontratas.",
     },
     {
         q: "¿Dónde estáis ubicados?",

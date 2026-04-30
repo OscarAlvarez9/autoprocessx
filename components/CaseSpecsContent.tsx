@@ -9,7 +9,15 @@ import Navigation from "@/components/Navigation"
 import Footer from "@/components/Footer"
 import FinalCTA from "@/components/FinalCTA"
 import Breadcrumbs from "@/components/Breadcrumbs"
+import JsonLd from "@/components/JsonLd"
 import { CaseStudy } from "@/lib/cases"
+import { ORG_ID, SITE_URL } from "@/lib/seo"
+
+const SERVICE_URL_MAP: Record<string, string> = {
+    "automatizaciones": `${SITE_URL}/servicios/automatizaciones`,
+    "aplicaciones-ia": `${SITE_URL}/servicios/aplicaciones-ia`,
+    "ai-chatbot": `${SITE_URL}/servicios/ai-chatbot`,
+}
 
 const platformModules = [
     {
@@ -134,8 +142,63 @@ interface Props {
 }
 
 export default function CaseSpecsContent({ caso }: Props) {
+    const url = `${SITE_URL}/casos-de-exito/${caso.slug}`
+    const serviceUrl = caso.serviceType ? SERVICE_URL_MAP[caso.serviceType] : undefined
+
+    // Build article body for SEO — concatenated long-form sections
+    const articleBody = [
+        caso.clientContext,
+        caso.previousState,
+        caso.architecture,
+        caso.verifiedMetrics,
+        caso.lessonsLearned,
+    ].filter(Boolean).join("\n\n")
+    const wordCount = articleBody ? articleBody.trim().split(/\s+/).length : 0
+
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "@id": `${url}#article`,
+        headline: caso.title,
+        description: caso.desc,
+        url,
+        image: `${SITE_URL}${caso.image}`,
+        datePublished: caso.publishedAt ?? "2026-01-01",
+        dateModified: caso.publishedAt ?? "2026-01-01",
+        inLanguage: "es-ES",
+        ...(articleBody ? { articleBody } : {}),
+        ...(wordCount ? { wordCount } : {}),
+        author: { "@id": ORG_ID },
+        publisher: { "@id": ORG_ID },
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": url,
+        },
+        ...(serviceUrl
+            ? {
+                  about: {
+                      "@type": "Service",
+                      "@id": `${serviceUrl}#service`,
+                      name: caso.title,
+                      url: serviceUrl,
+                      provider: { "@id": ORG_ID },
+                  },
+              }
+            : {}),
+        mentions: [
+            {
+                "@type": "Organization",
+                name: caso.client,
+                ...(caso.clientUrl ? { url: caso.clientUrl } : {}),
+            },
+        ],
+        keywords: caso.tags.join(", "),
+        articleSection: caso.sector,
+    }
+
     return (
         <div className="flex flex-col min-h-screen bg-[#05070F] text-white selection:bg-primary/20">
+            <JsonLd data={articleSchema} />
             <Navigation />
 
             {/* Hero: Technical Specification Header */}
@@ -437,6 +500,105 @@ export default function CaseSpecsContent({ caso }: Props) {
                 </div>
             </section>
 
+            {/* Long-form narrative sections — SEO depth */}
+            {(caso.clientContext || caso.previousState || caso.architecture || caso.verifiedMetrics || caso.lessonsLearned) && (
+                <section className="py-16 md:py-32 bg-[#05070F] border-t border-white/5">
+                    <div className="container px-6 mx-auto max-w-4xl">
+                        <div className="space-y-16 md:space-y-20">
+                            {caso.clientContext && (
+                                <article>
+                                    <div className="flex items-center gap-3 mb-5">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.35em] text-accent tabular-nums">01</span>
+                                        <div className="h-[1px] flex-1 max-w-[60px] bg-accent/30" />
+                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">Contexto del cliente</span>
+                                    </div>
+                                    <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight leading-[1.1] mb-6">
+                                        Sector, tamaño y <span className="text-accent">problema operativo</span>.
+                                    </h2>
+                                    <p className="text-white/70 text-base md:text-lg font-medium leading-relaxed">
+                                        {caso.clientContext}
+                                    </p>
+                                </article>
+                            )}
+
+                            {caso.previousState && (
+                                <article>
+                                    <div className="flex items-center gap-3 mb-5">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.35em] text-accent tabular-nums">02</span>
+                                        <div className="h-[1px] flex-1 max-w-[60px] bg-accent/30" />
+                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">Estado previo</span>
+                                    </div>
+                                    <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight leading-[1.1] mb-6">
+                                        Procesos manuales y <span className="text-accent">fricciones detectadas</span>.
+                                    </h2>
+                                    <p className="text-white/70 text-base md:text-lg font-medium leading-relaxed">
+                                        {caso.previousState}
+                                    </p>
+                                </article>
+                            )}
+
+                            {caso.architecture && (
+                                <article>
+                                    <div className="flex items-center gap-3 mb-5">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.35em] text-accent tabular-nums">03</span>
+                                        <div className="h-[1px] flex-1 max-w-[60px] bg-accent/30" />
+                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">Arquitectura desplegada</span>
+                                    </div>
+                                    <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight leading-[1.1] mb-6">
+                                        Stack concreto e <span className="text-accent">integraciones</span>.
+                                    </h2>
+                                    <p className="text-white/70 text-base md:text-lg font-medium leading-relaxed">
+                                        {caso.architecture}
+                                    </p>
+                                </article>
+                            )}
+
+                            {caso.verifiedMetrics && (
+                                <article>
+                                    <div className="flex items-center gap-3 mb-5">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.35em] text-accent tabular-nums">04</span>
+                                        <div className="h-[1px] flex-1 max-w-[60px] bg-accent/30" />
+                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">Métricas verificables</span>
+                                    </div>
+                                    <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight leading-[1.1] mb-6">
+                                        Datos reales <span className="text-accent">en producción</span>.
+                                    </h2>
+                                    <p className="text-white/70 text-base md:text-lg font-medium leading-relaxed mb-6">
+                                        {caso.verifiedMetrics}
+                                    </p>
+                                    {caso.testimonial && (
+                                        <blockquote className="mt-8 pl-6 border-l-2 border-accent">
+                                            <p className="text-white/85 text-lg md:text-xl font-medium italic leading-relaxed mb-3">
+                                                &ldquo;{caso.testimonial.quote}&rdquo;
+                                            </p>
+                                            <footer className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">
+                                                {caso.testimonial.author} · {caso.testimonial.role}
+                                            </footer>
+                                        </blockquote>
+                                    )}
+                                </article>
+                            )}
+
+                            {caso.lessonsLearned && (
+                                <article>
+                                    <div className="flex items-center gap-3 mb-5">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.35em] text-accent tabular-nums">05</span>
+                                        <div className="h-[1px] flex-1 max-w-[60px] bg-accent/30" />
+                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">Lecciones aprendidas</span>
+                                    </div>
+                                    <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight leading-[1.1] mb-6">
+                                        Decisiones técnicas y <span className="text-accent">extensiones futuras</span>.
+                                    </h2>
+                                    <p className="text-white/70 text-base md:text-lg font-medium leading-relaxed">
+                                        {caso.lessonsLearned}
+                                    </p>
+                                </article>
+                            )}
+                        </div>
+                    </div>
+                </section>
+            )}
+
             {/* Performance Metrics: Diagnostic Grid */}
             <section className="py-16 md:py-32 bg-[#05070F]">
                 <div className="container px-6 mx-auto">
@@ -462,19 +624,25 @@ export default function CaseSpecsContent({ caso }: Props) {
                             </motion.div>
                         ))}
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="p-8 md:p-12 rounded-3xl md:rounded-[56px] border border-accent/20 bg-accent/5 text-center shadow-2xl shadow-accent/10 relative overflow-hidden group"
-                        >
-                            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:250%_250%] animate-[shimmer_5s_infinite]" />
-                            <div className="relative z-10">
-                                <Zap className="h-8 w-8 md:h-10 md:w-10 text-accent mx-auto mb-4 md:mb-6" />
-                                <p className="text-xl md:text-2xl font-black tracking-tight mb-2 leading-none text-white uppercase italic">Impacto ROI</p>
-                                <p className="text-4xl md:text-6xl font-black tracking-tighter text-accent">{caso.secondaryMetric.split(' ')[1]}</p>
-                            </div>
-                        </motion.div>
+                        {caso.highlightMetric && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="p-6 md:p-10 rounded-3xl md:rounded-[56px] border border-accent/30 bg-accent/[0.06] text-center shadow-[0_0_60px_-15px_rgba(251,191,36,0.4)] relative overflow-hidden group min-w-0"
+                            >
+                                <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)] bg-[length:250%_250%] animate-[shimmer_5s_infinite] pointer-events-none" />
+                                <div className="relative z-10 flex flex-col items-center justify-center h-full">
+                                    <Zap className="h-7 w-7 md:h-9 md:w-9 text-accent mb-3 md:mb-4" />
+                                    <p className="text-[10px] md:text-xs font-black tracking-[0.3em] text-white/85 uppercase mb-3 md:mb-4">
+                                        {caso.highlightMetric.label}
+                                    </p>
+                                    <p className="text-3xl md:text-5xl font-black tracking-tight text-accent leading-none break-words max-w-full">
+                                        {caso.highlightMetric.value}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        )}
                     </div>
                 </div>
             </section>

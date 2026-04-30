@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge"
 
 const pillars = [
     { num: "01", title: "Ingeniería Directa", desc: "El arquitecto que diseña tu plataforma es el mismo que la despliega. Sin capas de gestión ni subcontratas opacas." },
-    { num: "02", title: "Full Stack IA", desc: "Automatización, aplicaciones RAG y agentes autónomos. Infraestructura integral en manos de un equipo boutique." },
+    { num: "02", title: "Full Stack IA", desc: "Automatización, aplicaciones RAG y agentes autónomos. Infraestructura integral en manos de un equipo técnico especializado." },
     { num: "03", title: "Producción Real", desc: "No vendemos prototipos ni prompts aislados. Desplegamos sistemas robustos que operan 24/7 sin intervención humana." },
     { num: "04", title: "Soberanía Técnica", desc: "Toda la propiedad intelectual y los datos permanecen bajo tu exclusivo control. Sin dependencias externas críticas." },
 ]
@@ -47,7 +47,7 @@ export default function SobreNosotros() {
                     className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-accent text-[10px] font-black uppercase tracking-[0.3em] mb-6 md:mb-10"
                   >
                     <Activity className="h-3 w-3 animate-pulse" />
-                    Boutique Infrastructure Engine · BCN
+                    AI Infrastructure Engine · BCN
                   </motion.div>
 
                   <motion.h1
@@ -111,7 +111,7 @@ export default function SobreNosotros() {
                             Cuando una gran consultora propone automatización, suele subcontratar la ejecución. Nosotros somos los que escribimos el código, orquestamos los flujos y mantenemos los servidores.
                         </p>
                         <p className="text-white/50 text-base md:text-xl font-medium leading-snug md:leading-tight">
-                            Operamos con la agilidad de un equipo boutique y la profundidad técnica de arquitectos senior. El resultado no es un informe; es una plataforma operando en tu infraestructura.
+                            Operamos con la agilidad de un equipo reducido y la profundidad técnica de arquitectos senior. El resultado no es un informe; es una plataforma operando en tu infraestructura.
                         </p>
                     </motion.div>
                 </div>
