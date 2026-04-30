@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ContactDrawerProvider } from "@/context/ContactDrawerContext";
 import ContactDrawer from "@/components/ContactDrawer";
+import ChatWidget from "@/components/ChatWidget";
 import Script from "next/script";
 
 const geistSans = Geist({
@@ -220,6 +221,7 @@ export default function RootLayout({
 
           <ContactDrawer />
         </ContactDrawerProvider>
+        <ChatWidget />
       </body>
     </html>
   );

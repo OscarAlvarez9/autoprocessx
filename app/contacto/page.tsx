@@ -172,7 +172,7 @@ export default function ContactoPage() {
                                         </a>
 
                                         <a
-                                            href="https://wa.me/34600000000"
+                                            href="https://wa.me/34619355972?text=Consulta%20servicios%20IA"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="flex items-center gap-4 p-3 -mx-3 rounded-xl hover:bg-white/[0.03] transition-colors group"
