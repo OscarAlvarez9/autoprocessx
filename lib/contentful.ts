@@ -136,13 +136,15 @@ const normalizeCategory = (raw?: string): CategorySlug => {
     return (VALID_CATEGORIES.includes(slug as CategorySlug) ? slug : "ia-news") as CategorySlug
 }
 
+const cleanSlug = (raw?: string) => (raw ?? "").replace(/^\/+|\/+$/g, "")
+
 const mapEntry = (entry: RawEntry): BlogPost => {
     const f = entry.fields
     const body = extractBody(f)
     const words = countWords(body)
     const minutes = f.minutosLectura ?? Math.max(1, Math.round(words / 220))
     return {
-        slug: f.slug ?? "",
+        slug: cleanSlug(f.slug),
         title: f.titulo ?? "",
         excerpt: f.metadescripcion ?? "",
         category: normalizeCategory(f.categoria),

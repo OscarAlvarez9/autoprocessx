@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react"
-import Link from "next/link"
 import { useContactDrawer } from "@/context/ContactDrawerContext"
 import { gtagEvent } from "@/lib/gtag"
 import { useFrameBasePath } from "@/lib/use-frame-source"
@@ -201,7 +200,7 @@ export default function Hero() {
                 )}
 
                 {/* Text overlay */}
-                <div className="relative z-10 h-full flex items-center pt-20 md:pt-0">
+                <div className="relative z-10 h-full flex items-center pt-20 md:pt-24">
                     <div className="container mx-auto px-6 lg:px-12">
                         <div className="max-w-2xl relative">
                             {/* Vertical accent bar */}
@@ -295,7 +294,7 @@ export default function Hero() {
                                     Auditar mi empresa gratis
                                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                 </Button>
-                                <Link href="#servicios" className="w-full sm:w-auto">
+                                <a href="#servicios" className="w-full sm:w-auto">
                                     <Button
                                         size="lg"
                                         variant="outline"
@@ -303,7 +302,7 @@ export default function Hero() {
                                     >
                                         Ver qué hacemos
                                     </Button>
-                                </Link>
+                                </a>
                             </motion.div>
 
                             {/* Trust strip */}
