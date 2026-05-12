@@ -259,7 +259,8 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 
 export async function getPostsByCategory(category: CategorySlug): Promise<BlogPost[]> {
     if (!isConfigured) return getPostsByCategorySeed(category)
-    return fetchPostsByCategory(category)
+    const all = await fetchAllPosts()
+    return all.filter((p) => p.category === category)
 }
 
 export async function getPostWithBody(
