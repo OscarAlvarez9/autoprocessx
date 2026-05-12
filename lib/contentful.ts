@@ -60,7 +60,7 @@ interface RawFields {
     titulo?: string
     slug?: string
     metadescripcion?: string
-    categoria?: string
+    categoria?: unknown
     fecha?: string
     imagen?: { fields?: { file?: { url?: string } } }
     /** May be Rich Text (Document) or plain Long Text (string) depending on Contentful field type. */
@@ -130,10 +130,38 @@ const VALID_CATEGORIES: CategorySlug[] = [
     "geo",
 ]
 
-const normalizeCategory = (raw?: string): CategorySlug => {
-    if (!raw) return "ia-news"
-    const slug = raw.trim().toLowerCase().replace(/\s+/g, "-")
-    return (VALID_CATEGORIES.includes(slug as CategorySlug) ? slug : "ia-news") as CategorySlug
+const CATEGORY_ALIASES: Record<string, CategorySlug> = {
+    "plataforma-ia": "plataformas-ia",
+    "plataforma ia": "plataformas-ia",
+    "ia news": "ia-news",
+    "automatizacion": "automatizaciones",
+    "chatbot": "chatbots",
+}
+
+const extractCategoryString = (raw: unknown): string | undefined => {
+    if (!raw) return undefined
+    if (typeof raw === "string") return raw
+    if (Array.isArray(raw)) return extractCategoryString(raw[0])
+    if (typeof raw === "object") {
+        const o = raw as Record<string, unknown>
+        // Reference entry: { fields: { slug, name } }
+        const fields = o.fields as Record<string, unknown> | undefined
+        if (fields?.slug && typeof fields.slug === "string") return fields.slug
+        if (fields?.name && typeof fields.name === "string") return fields.name
+        // Tag reference: { sys: { id } }
+        const sys = o.sys as Record<string, unknown> | undefined
+        if (sys?.id && typeof sys.id === "string") return sys.id
+    }
+    return undefined
+}
+
+const normalizeCategory = (raw: unknown): CategorySlug => {
+    const value = extractCategoryString(raw)
+    if (!value) return "ia-news"
+    const slug = value.trim().toLowerCase().replace(/\s+/g, "-")
+    if (VALID_CATEGORIES.includes(slug as CategorySlug)) return slug as CategorySlug
+    if (slug in CATEGORY_ALIASES) return CATEGORY_ALIASES[slug]
+    return "ia-news"
 }
 
 const cleanSlug = (raw?: string) => (raw ?? "").replace(/^\/+|\/+$/g, "")
