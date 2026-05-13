@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ShieldAlert, Lock, Infinity as InfinityIcon, Server, TrendingDown, Check, X } from "lucide-react"
+import { ShieldAlert, Lock, Layers, Server, TrendingDown, Check, X } from "lucide-react"
 import DarkBackground from "@/components/DarkBackground"
 
 const advantages = [
@@ -16,7 +16,7 @@ const advantages = [
         desc: "Despliegue on-premise o en tu propia cuenta cloud. Tu información no viaja a servidores compartidos en otro continente.",
     },
     {
-        icon: <InfinityIcon className="h-5 w-5" />,
+        icon: <Layers className="h-5 w-5" />,
         title: "Sin techo de uso",
         desc: "Automatizaciones, plataformas y chatbots que escalan sin coste por tarea, por usuario ni por workflow.",
     },
