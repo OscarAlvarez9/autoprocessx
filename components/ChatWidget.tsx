@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { MessageCircle, X } from "lucide-react"
+import Chatbot from "@/components/ai/chatbot"
 
 const STORAGE_KEY = "apx_chat_open"
 
@@ -71,14 +72,7 @@ export default function ChatWidget() {
                                 <X className="h-4 w-4" strokeWidth={2.5} />
                             </button>
 
-                            <iframe
-                                src="https://chatbot-autoprocessx.onrender.com/widget"
-                                title="Aria · Asistente AutoProcessX"
-                                allow="clipboard-write"
-                                loading="lazy"
-                                className="w-full h-full block bg-transparent"
-                                style={{ border: "none" }}
-                            />
+                            <Chatbot apiEndpoint="/api/chat" />
                         </div>
                     </motion.div>
                 )}

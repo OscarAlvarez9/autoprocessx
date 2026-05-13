@@ -51,6 +51,7 @@ export function Chatbot({ apiEndpoint = "/api/chat" }: ChatbotProps) {
     const [text, setText] = useState("")
     const [status, setStatus] = useState<ChatStatus>("ready")
     const [messages, setMessages] = useState<ChatMsg[]>(initialMessages)
+    const [sessionId] = useState(() => crypto.randomUUID())
 
     const sendMessage = useCallback(
         async (userText: string) => {
@@ -69,32 +70,19 @@ export function Chatbot({ apiEndpoint = "/api/chat" }: ChatbotProps) {
                 const res = await fetch(apiEndpoint, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        messages: [...messages, userMsg].map((m) => ({
-                            role: m.from === "user" ? "user" : "assistant",
-                            content: m.content,
-                        })),
-                    }),
+                    body: JSON.stringify({ mensaje: userText, session_id: sessionId }),
                 })
 
-                if (!res.ok || !res.body) {
+                if (!res.ok) {
                     throw new Error(`Chat API ${res.status}`)
                 }
 
-                setStatus("streaming")
-                const reader = res.body.getReader()
-                const decoder = new TextDecoder()
-                let acc = ""
-
-                while (true) {
-                    const { done, value } = await reader.read()
-                    if (done) break
-                    acc += decoder.decode(value, { stream: true })
-                    setMessages((prev) =>
-                        prev.map((m) => (m.id === assistantId ? { ...m, content: acc } : m))
+                const data = await res.json()
+                setMessages((prev) =>
+                    prev.map((m) =>
+                        m.id === assistantId ? { ...m, content: data.respuesta } : m
                     )
-                }
-
+                )
                 setStatus("ready")
             } catch (err) {
                 console.error("[chatbot] error:", err)
@@ -112,7 +100,7 @@ export function Chatbot({ apiEndpoint = "/api/chat" }: ChatbotProps) {
                 setStatus("error")
             }
         },
-        [apiEndpoint, messages]
+        [apiEndpoint, sessionId]
     )
 
     const handleSubmit = (message: PromptInputMessage) => {
