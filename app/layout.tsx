@@ -204,24 +204,28 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning className="min-h-full flex flex-col relative bg-background">
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-WD6GMRVN"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
-        {/* End Google Tag Manager (noscript) */}
-        <ContactDrawerProvider>
-          <div className="relative z-10 flex flex-col min-h-full">
-              {children}
-          </div>
+        {/* Single root wrapper — protects React reconciliation against third-party DOM mutations
+            (browser extensions, GTM-injected scripts, Calendly widget, etc.) */}
+        <div suppressHydrationWarning className="contents">
+          {/* Google Tag Manager (noscript) */}
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-WD6GMRVN"
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+          {/* End Google Tag Manager (noscript) */}
+          <ContactDrawerProvider>
+            <div className="relative z-10 flex flex-col min-h-full">
+                {children}
+            </div>
 
-          <ContactDrawer />
-        </ContactDrawerProvider>
-        <ChatWidget />
+            <ContactDrawer />
+          </ContactDrawerProvider>
+          <ChatWidget />
+        </div>
       </body>
     </html>
   );

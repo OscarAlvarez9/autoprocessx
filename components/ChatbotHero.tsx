@@ -237,11 +237,13 @@ export default function ChatbotHero() {
                                 </span>
                             </motion.div>
 
-                            <motion.h1
+                            {/* Visual hero slogan — aria-hidden for SEO (decorative, the real H1 is below) */}
+                            <motion.p
+                                aria-hidden="true"
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: ready ? 1 : 0, y: 0 }}
                                 transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                                className="text-4xl md:text-6xl lg:text-[64px] font-medium tracking-[-0.025em] leading-[1.02] text-white mb-6"
+                                className="text-4xl md:text-6xl lg:text-[64px] font-medium tracking-[-0.025em] leading-[1.02] text-white mb-5"
                                 style={{ textShadow: "0 4px 40px rgba(0,0,0,0.6)" }}
                             >
                                 Tu negocio responde.
@@ -261,6 +263,16 @@ export default function ChatbotHero() {
                                     />
                                 </span>
                                 .
+                            </motion.p>
+
+                            {/* Real H1 — SEO target keyword */}
+                            <motion.h1
+                                initial={{ opacity: 0, y: 16 }}
+                                animate={{ opacity: ready ? 1 : 0, y: 0 }}
+                                transition={{ duration: 0.8, delay: 0.35 }}
+                                className="text-sm md:text-base font-black uppercase tracking-[0.2em] text-amber-300/90 leading-snug mb-6 max-w-xl"
+                            >
+                                Chatbot IA a medida para empresas en Barcelona
                             </motion.h1>
 
                             <motion.h2

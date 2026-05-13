@@ -78,12 +78,12 @@ const faqSchema = {
 };
 
 export const metadata: Metadata = {
-  title: "AI Chatbot Barcelona | Chatbot Personalizado para Empresas",
-  description: "AI chatbot personalizado para empresas en Barcelona. AI online chat en web y WhatsApp que cualifica prospectos y cierra ventas 24/7. Automatización email marketing incluida.",
+  title: "Chatbot IA en Barcelona: asistentes a medida",
+  description: "Chatbots IA personalizados para empresas en Barcelona. Asistentes en web y WhatsApp que cualifican leads y venden 24/7. Audita tu caso gratis.",
   keywords: ["ai chatbot", "chatbot personalizado", "ai online chat", "chat ai online", "chatbot empresas Barcelona", "automatización email marketing", "ia en marketing", "inteligencia artificial marketing", "bot ventas whatsapp", "asistente virtual ia"],
   openGraph: {
-    title: "AI Chatbot Barcelona | Chatbot Personalizado para Empresas | AutoProcessX",
-    description: "AI chatbot personalizado para empresas en Barcelona. AI online chat para web y WhatsApp. Cualifica prospectos y cierra ventas 24/7.",
+    title: "Chatbot IA en Barcelona: asistentes a medida",
+    description: "Chatbots IA personalizados para empresas en Barcelona. Asistentes en web y WhatsApp que cualifican leads y venden 24/7. Audita tu caso gratis.",
     type: "website",
     locale: "es_ES",
     url: "https://www.autoprocessx.com/servicios/ai-chatbot",
