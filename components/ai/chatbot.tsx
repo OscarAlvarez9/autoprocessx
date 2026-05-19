@@ -43,6 +43,7 @@ const suggestions = [
 type ChatStatus = "submitted" | "streaming" | "ready" | "error"
 
 interface ChatbotProps {
+    /** Endpoint que devuelve la respuesta del asistente (idealmente streaming). */
     apiEndpoint?: string
 }
 
@@ -72,55 +73,16 @@ export function Chatbot({ apiEndpoint = "/api/chat" }: ChatbotProps) {
                     body: JSON.stringify({ mensaje: userText, session_id: sessionId }),
                 })
 
-                if (!res.ok || !res.body) {
+                if (!res.ok) {
                     throw new Error(`Chat API ${res.status}`)
                 }
 
-                setStatus("streaming")
-
-                const reader = res.body.getReader()
-                const decoder = new TextDecoder()
-                let buffer = ""
-
-                while (true) {
-                    const { done, value } = await reader.read()
-                    if (done) break
-
-                    buffer += decoder.decode(value, { stream: true })
-                    const lines = buffer.split("\n")
-                    buffer = lines.pop() ?? ""
-
-                    for (const line of lines) {
-                        if (!line.startsWith("data: ")) continue
-                        const raw = line.slice(6).trim()
-                        if (!raw) continue
-
-                        try {
-                            const event = JSON.parse(raw)
-
-                            if (event.type === "delta" && event.text) {
-                                setMessages((prev) =>
-                                    prev.map((m) =>
-                                        m.id === assistantId
-                                            ? { ...m, content: m.content + event.text }
-                                            : m
-                                    )
-                                )
-                            }
-
-                            if (event.type === "done") {
-                                setStatus("ready")
-                            }
-
-                            if (event.type === "error") {
-                                throw new Error(event.text)
-                            }
-                        } catch {
-                            // línea malformada, ignorar
-                        }
-                    }
-                }
-
+                const data = await res.json()
+                setMessages((prev) =>
+                    prev.map((m) =>
+                        m.id === assistantId ? { ...m, content: data.respuesta } : m
+                    )
+                )
                 setStatus("ready")
             } catch (err) {
                 console.error("[chatbot] error:", err)

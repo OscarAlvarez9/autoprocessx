@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
 const BACKEND_URL = "https://chatbot-autoprocessx-4vgt.onrender.com/chat"
 
@@ -8,14 +8,14 @@ export async function POST(req: NextRequest) {
     try {
         body = await req.json()
     } catch {
-        return new Response(JSON.stringify({ error: "Invalid JSON body" }), { status: 400 })
+        return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 })
     }
 
     const { mensaje, session_id } = body
 
     if (!mensaje || !session_id) {
-        return new Response(
-            JSON.stringify({ error: "Missing required fields: mensaje, session_id" }),
+        return NextResponse.json(
+            { error: "Missing required fields: mensaje, session_id" },
             { status: 400 }
         )
     }
@@ -30,21 +30,16 @@ export async function POST(req: NextRequest) {
         if (!backendRes.ok) {
             const text = await backendRes.text()
             console.error("[api/chat] backend error:", backendRes.status, text)
-            return new Response(JSON.stringify({ error: "Backend error", detail: text }), {
-                status: backendRes.status,
-            })
+            return NextResponse.json(
+                { error: "Backend error", detail: text },
+                { status: backendRes.status }
+            )
         }
 
-        // Pasar el stream SSE de Render directamente al navegador
-        return new Response(backendRes.body, {
-            headers: {
-                "Content-Type": "text/event-stream",
-                "Cache-Control": "no-cache",
-                "X-Accel-Buffering": "no",
-            },
-        })
+        const data = await backendRes.json()
+        return NextResponse.json(data)
     } catch (err) {
         console.error("[api/chat] fetch failed:", err)
-        return new Response(JSON.stringify({ error: "Could not reach backend" }), { status: 502 })
+        return NextResponse.json({ error: "Could not reach backend" }, { status: 502 })
     }
 }
