@@ -130,13 +130,32 @@ const VALID_CATEGORIES: CategorySlug[] = [
     "geo",
 ]
 
+// Keys must be in slugified form (lowercase, no accents, hyphen-separated)
+// because normalizeCategory() runs slugify() before looking them up.
 const CATEGORY_ALIASES: Record<string, CategorySlug> = {
     "plataforma-ia": "plataformas-ia",
-    "plataforma ia": "plataformas-ia",
-    "ia news": "ia-news",
+    "plataformas": "plataformas-ia",
+    "ia-news": "ia-news",
+    "noticias": "ia-news",
+    "news": "ia-news",
     "automatizacion": "automatizaciones",
+    "automation": "automatizaciones",
     "chatbot": "chatbots",
 }
+
+/**
+ * Normalize any string into a URL-safe slug:
+ * lowercases, strips accents/diacritics (á→a, ñ→n), and collapses
+ * any run of non-alphanumeric chars into a single hyphen.
+ */
+const slugify = (raw?: string): string =>
+    (raw ?? "")
+        .normalize("NFD")
+        .replace(/[̀-ͯ]/g, "")
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
 
 const extractCategoryString = (raw: unknown): string | undefined => {
     if (!raw) return undefined
@@ -158,13 +177,13 @@ const extractCategoryString = (raw: unknown): string | undefined => {
 const normalizeCategory = (raw: unknown): CategorySlug => {
     const value = extractCategoryString(raw)
     if (!value) return "ia-news"
-    const slug = value.trim().toLowerCase().replace(/\s+/g, "-")
+    const slug = slugify(value)
     if (VALID_CATEGORIES.includes(slug as CategorySlug)) return slug as CategorySlug
     if (slug in CATEGORY_ALIASES) return CATEGORY_ALIASES[slug]
     return "ia-news"
 }
 
-const cleanSlug = (raw?: string) => (raw ?? "").replace(/^\/+|\/+$/g, "")
+const cleanSlug = (raw?: string) => slugify(raw)
 
 const mapEntry = (entry: RawEntry): BlogPost => {
     const f = entry.fields
@@ -196,7 +215,21 @@ export async function fetchAllPosts({ preview = false }: { preview?: boolean } =
             order: ["-fields.fecha"],
             limit: 100,
         } as never)) as unknown as RawCollection
-        return res.items.map(mapEntry)
+        const posts = res.items.map(mapEntry)
+        // DEV diagnostic: see how each post's raw `categoria` field maps to a slug.
+        // If an "Automatizaciones" post shows category "ia-news" here, the raw value
+        // didn't match — copy the raw value printed and add it to CATEGORY_ALIASES.
+        if (process.env.NODE_ENV !== "production") {
+            console.log(
+                "[contentful] category mapping:",
+                res.items.map((e, i) => ({
+                    slug: posts[i].slug,
+                    rawCategoria: e.fields.categoria,
+                    normalized: posts[i].category,
+                }))
+            )
+        }
+        return posts
     } catch (err) {
         console.error("[contentful] fetchAllPosts failed:", err)
         return []
@@ -235,7 +268,17 @@ export async function fetchPostBySlug(
             "fields.slug": slug,
             limit: 1,
         } as never)) as unknown as RawCollection
-        const entry = res.items[0]
+        let entry = res.items[0]
+        // Fallback: the stored slug may contain accents/casing that differ from
+        // the normalized URL slug, so an exact field match can miss. Scan all
+        // entries and match on the slugified value.
+        if (!entry) {
+            const all = (await client.getEntries({
+                content_type: CONTENT_TYPE,
+                limit: 100,
+            } as never)) as unknown as RawCollection
+            entry = all.items.find((e) => cleanSlug(e.fields.slug) === slug) as RawEntry
+        }
         if (!entry) return null
         // DEBUG: log fields received so you can see what Contentful is returning
         if (process.env.NODE_ENV !== "production") {
@@ -267,7 +310,7 @@ export async function fetchAllSlugs(): Promise<string[]> {
             select: ["fields.slug"],
             limit: 200,
         } as never)) as unknown as RawCollection
-        return res.items.map((i) => i.fields.slug).filter((s): s is string => Boolean(s))
+        return res.items.map((i) => cleanSlug(i.fields.slug)).filter(Boolean)
     } catch (err) {
         console.error("[contentful] fetchAllSlugs failed:", err)
         return []
