@@ -269,7 +269,7 @@ export default function AplicacionesHero() {
                                 <span className="inline-flex items-center gap-2 text-amber-300/90 font-bold mr-1">
                                     <Sparkles className="h-4 w-4 shrink-0" />
                                 </span>
-                                <span className="text-white/85 font-bold">Plataforma de inteligencia artificial con arquitectura RAG</span> para empresas. Agentes IA que consultan tu base de conocimiento y toman decisiones en tiempo real.
+                                <span className="text-white/85 font-bold">Procesos críticos en código determinista</span> — sin margen de error. El análisis y la síntesis los ejecuta IA anclada a tus documentos, citando siempre la fuente.
                             </motion.h2>
 
                             <motion.div

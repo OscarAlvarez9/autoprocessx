@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 const techPageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Stack Tecnológico — AutoProcessX",
-  url: "https://www.autoprocessx.com/tecnologia",
-  description: "Stack tecnológico enterprise de AutoProcessX: n8n, Claude 3.5 Sonnet, GPT-4o, Gemini 1.5 Pro, PostgreSQL, AWS y bases vectoriales Pinecone. Infraestructura de automatización IA para empresas.",
+  name: "Stack Tecnológico · SEOscar",
+  url: "https://www.seoscar.com/tecnologia",
+  description: "El stack con el que hacemos crecer tiendas online: n8n, Claude 3.5 Sonnet, GPT-4o, Gemini, Next.js, PostgreSQL y bases vectoriales para RAG. Código propio, trazable y tuyo.",
   mainEntity: {
     "@type": "ItemList",
-    name: "Tecnologías de Automatización IA",
+    name: "Stack para ecommerce: n8n, RAG y LLMs",
     itemListElement: [
       {
         "@type": "ListItem",
@@ -57,7 +57,7 @@ const techPageSchema = {
           "@type": "SoftwareApplication",
           name: "AWS",
           applicationCategory: "Cloud Infrastructure",
-          description: "Arquitectura cloud enterprise para despliegue de soluciones de automatización IA.",
+          description: "Arquitectura cloud para desplegar el stack que hace crecer tu tienda online.",
         },
       },
     ],
@@ -68,24 +68,24 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.autoprocessx.com" },
-    { "@type": "ListItem", position: 2, name: "Tecnología", item: "https://www.autoprocessx.com/tecnologia" },
+    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.seoscar.com" },
+    { "@type": "ListItem", position: 2, name: "Tecnología", item: "https://www.seoscar.com/tecnologia" },
   ],
 };
 
 export const metadata: Metadata = {
-  title: "Stack Tecnológico IA Barcelona | n8n, GPT-4o, AWS",
-  description: "El stack tecnológico de AutoProcessX: automatización con n8n, LLMs de última generación y arquitecturas RAG para empresas en Barcelona. Agencia IA en Barcelona.",
-  keywords: ["workflow automation", "vector embedding", "llm monitoring", "infraestructura IA empresa", "automatización de inteligencia artificial", "arquitectura RAG", "tecnología LLM empresarial"],
+  title: { absolute: "Tecnología: n8n, RAG y LLMs para ecommerce | SEOscar" },
+  description: "El stack con el que trabajo: n8n self-hosted, arquitecturas RAG con fuente citada, LLMs de última generación, Next.js y PostgreSQL. Código propio, trazable y tuyo.",
+  keywords: ["stack tecnológico ecommerce", "n8n self-hosted", "arquitectura RAG", "LLMs para tiendas online", "Next.js ecommerce", "PostgreSQL", "automatización para ecommerce"],
   openGraph: {
-    title: "Stack Tecnológico IA Barcelona | n8n, GPT-4o, AWS | AutoProcessX",
-    description: "Stack enterprise en Barcelona: Claude, GPT-4o, AWS y Pinecone. Infraestructura de automatización IA para empresas.",
+    title: "Tecnología: n8n, RAG y LLMs para ecommerce | SEOscar",
+    description: "El stack con el que trabajo: n8n self-hosted, arquitecturas RAG con fuente citada, LLMs de última generación, Next.js y PostgreSQL. Código propio, trazable y tuyo.",
     type: "website",
     locale: "es_ES",
-    url: "https://www.autoprocessx.com/tecnologia",
+    url: "https://www.seoscar.com/tecnologia",
   },
   alternates: {
-    canonical: "https://www.autoprocessx.com/tecnologia",
+    canonical: "https://www.seoscar.com/tecnologia",
   },
 };
 

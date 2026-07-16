@@ -85,7 +85,7 @@ const FrameCanvas: React.FC<FrameCanvasProps> = ({
     <div className={`relative w-full h-full flex items-center justify-center ${className}`}>
       {loading ? (
         <div className="absolute inset-0 flex items-center justify-center bg-transparent">
-          <div className="w-8 h-8 border-2 border-amber-500/20 border-t-amber-500 rounded-full animate-spin"></div>
+          <div className="w-8 h-8 border-2 border-[#B4975A]/20 border-t-[#B4975A] rounded-full animate-spin"></div>
         </div>
       ) : (
         <canvas

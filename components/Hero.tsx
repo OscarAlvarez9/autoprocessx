@@ -147,7 +147,7 @@ export default function Hero() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="/assets/robot_poster.jpg"
-                    alt="AutoProcessX — agencia IA Barcelona"
+                    alt="SEOscar — agencia IA Barcelona"
                     fetchPriority="high"
                     loading="eager"
                     decoding="async"
@@ -193,7 +193,7 @@ export default function Hero() {
                                 />
                             </div>
                             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40">
-                                Booting AutoProcessX
+                                Cargando
                             </span>
                         </div>
                     </div>
@@ -222,7 +222,7 @@ export default function Hero() {
                                     <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
                                 </span>
                                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/85">
-                                    AutoProcessX · Agencia IA Barcelona
+                                    SEOscar · Agencia IA Barcelona
                                 </span>
                             </motion.div>
 

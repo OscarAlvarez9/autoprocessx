@@ -33,7 +33,7 @@ const pains = [
 
 export default function PainPoints() {
     return (
-        <section id="pains" className="py-24 md:py-28 text-white relative overflow-hidden">
+        <section id="pains" className="py-24 md:py-28 text-[#09090B] relative overflow-hidden">
             <DarkBackground accent="accent" secondaryAccent="neutral" intensity="soft" />
 
             <div className="container px-6 mx-auto relative z-10">
@@ -44,7 +44,7 @@ export default function PainPoints() {
                     <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.05] mb-5">
                         El coste de <span className="text-accent">operar manualmente</span>.
                     </h2>
-                    <p className="max-w-2xl text-white/65 text-base md:text-lg font-medium leading-relaxed">
+                    <p className="max-w-2xl text-zinc-600 text-base md:text-lg font-medium leading-relaxed">
                         Ignorar la automatización de infraestructuras no es neutro; es una pérdida de capital y competitividad en tiempo real.
                     </p>
                 </div>
@@ -57,7 +57,7 @@ export default function PainPoints() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.08 }}
-                            className="p-6 md:p-7 rounded-2xl bg-[#0F1424] border border-white/10 hover:border-accent/30 transition-all group relative overflow-hidden"
+                            className="p-6 md:p-7 rounded-2xl bg-[#FFFFFF] border border-[#E4E4E7] hover:border-accent/30 transition-all group relative overflow-hidden"
                         >
                             <div className="mb-6 p-3 rounded-xl bg-accent/10 text-accent w-fit border border-accent/20 group-hover:scale-105 transition-transform">
                                 {pain.icon}
@@ -66,10 +66,10 @@ export default function PainPoints() {
                                 <Activity className="h-3 w-3 animate-pulse" />
                                 {pain.metric}
                             </div>
-                            <h3 className="text-lg md:text-xl font-black mb-3 tracking-tight text-white leading-tight">
+                            <h3 className="text-lg md:text-xl font-black mb-3 tracking-tight text-[#09090B] leading-tight">
                                 {pain.title}
                             </h3>
-                            <p className="text-white/55 text-sm leading-relaxed font-medium">
+                            <p className="text-zinc-600 text-sm leading-relaxed font-medium">
                                 {pain.description}
                             </p>
                         </motion.div>
@@ -82,15 +82,15 @@ export default function PainPoints() {
                             <p className="text-accent text-[9px] font-black uppercase tracking-[0.3em] mb-2">
                                 Operational Impact Analysis
                             </p>
-                            <p className="text-white text-lg md:text-2xl font-black tracking-tight leading-tight">
+                            <p className="text-[#09090B] text-lg md:text-2xl font-black tracking-tight leading-tight">
                                 Pérdida crítica de eficiencia
                             </p>
                         </div>
                         <div className="flex flex-col items-center md:items-end">
-                            <span className="text-3xl md:text-4xl font-black tracking-tight text-white leading-none">
+                            <span className="text-3xl md:text-4xl font-black tracking-tight text-[#09090B] leading-none">
                                 +1.200€
                             </span>
-                            <span className="text-white/40 text-[9px] font-black uppercase tracking-[0.3em] mt-2">
+                            <span className="text-zinc-500 text-[9px] font-black uppercase tracking-[0.3em] mt-2">
                                 / empleado / mes
                             </span>
                         </div>

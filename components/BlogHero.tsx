@@ -1,238 +1,93 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Sparkles, Activity, Terminal } from "lucide-react"
+import { Sparkles, Search as SearchIcon } from "lucide-react"
+import Link from "next/link"
 import Breadcrumbs from "@/components/Breadcrumbs"
 import { blogCategories, formatDate, type BlogPost } from "@/lib/blog"
 
-const categoryAccentDot: Record<string, string> = {
-    pink: "bg-pink-400",
-    emerald: "bg-emerald-400",
-    orange: "bg-orange-400",
-    red: "bg-red-400",
-    blue: "bg-blue-400",
+const accentDot: Record<string, string> = {
+    pink: "bg-pink-500",
+    emerald: "bg-emerald-500",
+    orange: "bg-orange-500",
+    red: "bg-red-500",
+    blue: "bg-blue-500",
+}
+const accentText: Record<string, string> = {
+    pink: "text-pink-600",
+    emerald: "text-emerald-600",
+    orange: "text-orange-600",
+    red: "text-red-600",
+    blue: "text-blue-600",
 }
 
-const categoryAccentText: Record<string, string> = {
-    pink: "text-pink-300",
-    emerald: "text-emerald-300",
-    orange: "text-orange-300",
-    red: "text-red-300",
-    blue: "text-blue-300",
-}
-
-export default function BlogHero({ posts }: { posts: BlogPost[] }) {
+export default function BlogHero({ posts, query = "", activeCat }: { posts: BlogPost[]; query?: string; activeCat?: string }) {
     const total = posts.length
     const latest = posts[0]
 
     return (
-        <section className="relative pt-32 pb-16 md:pt-36 md:pb-24 overflow-hidden">
-            {/* Layered ambient background */}
-            <div className="absolute inset-0 pointer-events-none">
-                {/* base gradient */}
-                <div className="absolute inset-0 bg-gradient-to-b from-[#05070F] via-[#070A18] to-[#05070F]" />
+        <section className="relative pt-32 pb-12 md:pt-40 md:pb-16 border-b border-[#E4E4E7] overflow-hidden">
+            {/* un único glow champagne sutil, sin fuegos artificiales */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[420px] bg-[#B4975A]/[0.06] blur-[160px] rounded-full pointer-events-none" aria-hidden />
 
-                {/* large amber glow top-right */}
-                <motion.div
-                    initial={{ opacity: 0.5, scale: 0.95 }}
-                    animate={{ opacity: [0.5, 0.7, 0.5], scale: [0.95, 1.05, 0.95] }}
-                    transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-0 right-0 w-[800px] h-[700px] bg-amber-500/[0.09] blur-[180px] rounded-full"
-                    style={{ transform: "translate(20%, -30%)" }}
-                />
-                {/* secondary glow bottom-left */}
-                <motion.div
-                    initial={{ opacity: 0.3, scale: 1 }}
-                    animate={{ opacity: [0.3, 0.5, 0.3], scale: [1, 1.1, 1] }}
-                    transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                    className="absolute bottom-0 left-0 w-[600px] h-[500px] bg-amber-300/[0.06] blur-[160px] rounded-full"
-                    style={{ transform: "translate(-25%, 25%)" }}
-                />
+            <div className="container relative z-10 px-6 mx-auto max-w-4xl">
+                <Breadcrumbs items={[{ label: "Blog" }]} className="mb-8 md:mb-10" />
 
-                {/* fine grid with radial mask */}
-                <div
-                    className="absolute inset-0 opacity-[0.07]"
-                    style={{
-                        backgroundImage:
-                            "linear-gradient(to right, #FBBF24 1px, transparent 1px), linear-gradient(to bottom, #FBBF24 1px, transparent 1px)",
-                        backgroundSize: "56px 56px",
-                        maskImage:
-                            "radial-gradient(ellipse 70% 60% at 50% 45%, black 30%, transparent 100%)",
-                        WebkitMaskImage:
-                            "radial-gradient(ellipse 70% 60% at 50% 45%, black 30%, transparent 100%)",
-                    }}
-                />
-
-                {/* horizontal scanning beam */}
-                <motion.div
-                    animate={{ top: ["10%", "90%"] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                    className="absolute left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400/50 to-transparent shadow-[0_0_30px_rgba(251,191,36,0.5)]"
-                />
-
-                {/* floating amber particles */}
-                {Array.from({ length: 10 }).map((_, i) => (
-                    <motion.span
-                        key={i}
-                        className="absolute h-[3px] w-[3px] rounded-full bg-amber-300"
-                        style={{
-                            left: `${8 + i * 9}%`,
-                            top: `${(i * 13) % 90}%`,
-                            boxShadow: "0 0 10px rgba(251,191,36,0.9)",
-                        }}
-                        animate={{ y: [-10, -180], opacity: [0, 1, 0] }}
-                        transition={{
-                            duration: 8 + (i % 4),
-                            repeat: Infinity,
-                            ease: "linear",
-                            delay: i * 0.7,
-                        }}
-                    />
-                ))}
-
-                {/* SVG noise grain */}
-                <div
-                    className="absolute inset-0 opacity-[0.04] mix-blend-overlay"
-                    style={{
-                        backgroundImage:
-                            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-                    }}
-                />
-            </div>
-
-            <div className="container relative z-10 px-6 mx-auto max-w-6xl">
-                <Breadcrumbs items={[{ label: "Blog" }]} className="mb-10 md:mb-14" />
-
-                {/* Status console */}
-                <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mx-auto mb-8 md:mb-10 max-w-xl flex items-center gap-3 px-4 py-2 rounded-full bg-black/60 border border-white/10 backdrop-blur-md"
-                >
-                    <Terminal className="h-3.5 w-3.5 text-amber-300 shrink-0" />
-                    <div className="flex-1 flex items-center gap-2 text-[10px] font-mono text-white/50 truncate">
-                        <span className="text-amber-300">$</span>
-                        <span>blog.feed --status=live</span>
-                        <span className="hidden sm:inline text-white/30">·</span>
-                        <span className="hidden sm:inline">
-                            {total} artículos · última actualización {latest && formatDate(latest.date)}
-                        </span>
-                    </div>
-                    <span className="relative flex h-2 w-2 shrink-0">
-                        <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                        <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                    </span>
-                </motion.div>
-
-                <div className="text-center max-w-4xl mx-auto">
+                <div className="max-w-3xl">
                     {/* Eyebrow */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.05 }}
-                        className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/40 backdrop-blur-md mb-7"
-                    >
-                        <Sparkles className="h-3.5 w-3.5 text-amber-300" />
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-200">
-                            Engineering Notes · IA · GEO · Stack Real
-                        </span>
-                    </motion.div>
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#B4975A]/30 bg-white text-[11px] font-mono font-medium uppercase tracking-wide text-[#09090B] mb-6">
+                        <Sparkles className="h-3 w-3 text-[#B4975A]" aria-hidden />
+                        Apuntes de ingeniería · IA · GEO
+                    </span>
 
-                    {/* Headline */}
-                    <motion.h1
-                        initial={{ opacity: 0, y: 24 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-                        className="text-5xl md:text-7xl lg:text-[88px] font-black text-white tracking-[-0.03em] leading-[0.95] mb-7"
-                        style={{ textShadow: "0 4px 60px rgba(0,0,0,0.6)" }}
-                    >
-                        Apuntes de{" "}
-                        <span className="relative inline-block">
-                            <span
-                                className="relative z-10 bg-gradient-to-br from-amber-200 via-amber-300 to-amber-500 bg-clip-text text-transparent"
-                                style={{ filter: "drop-shadow(0 0 32px rgba(251,191,36,0.45))" }}
-                            >
-                                ingeniería
-                            </span>
-                            <motion.span
-                                initial={{ scaleX: 0 }}
-                                animate={{ scaleX: 1 }}
-                                transition={{ delay: 0.9, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                                className="absolute -bottom-1 left-0 right-0 h-2 md:h-3 bg-amber-400/40 origin-left blur-[5px]"
-                            />
-                        </span>
-                        .
-                    </motion.h1>
+                    {/* Headline — limpio, sin sombras de tema oscuro */}
+                    <h1 className="text-[clamp(2.25rem,6vw,4rem)] font-black tracking-tighter leading-[1.02] text-balance mb-5">
+                        Sistemas de IA reales, <span className="text-[#B4975A]">no noticias genéricas.</span>
+                    </h1>
 
-                    {/* Sub */}
-                    <motion.p
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.25 }}
-                        className="text-base md:text-lg text-white/65 font-medium leading-relaxed max-w-2xl mx-auto mb-10"
-                    >
-                        Análisis técnico sobre IA, automatización con n8n, plataformas RAG, chatbots y GEO. Sin marketing, con stack, código y métricas reales.
-                    </motion.p>
+                    <p className="text-zinc-600 text-base md:text-lg font-normal leading-relaxed max-w-2xl mb-8">
+                        Arquitecturas, código y métricas de lo que desplegamos en producción: automatización con n8n, plataformas RAG, chatbots y GEO. Para equipos técnicos que quieren el cómo, no el hype.
+                    </p>
 
-                    {/* Stats strip */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4 }}
-                        className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-12"
-                    >
-                        <div className="flex items-center gap-2.5">
-                            <span className="text-3xl md:text-4xl font-black text-white tabular-nums tracking-tight">
-                                {String(total).padStart(2, "0")}
-                            </span>
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 leading-tight">
-                                Artículos
-                                <br />
-                                publicados
-                            </span>
-                        </div>
+                    {/* Buscador (server-side: GET → /blog?q=) */}
+                    <form action="/blog" method="get" role="search" className="max-w-xl flex items-center gap-2 rounded-2xl border border-[#E4E4E7] bg-white p-1.5 shadow-sm focus-within:border-[#B4975A]/40 focus-within:ring-2 focus-within:ring-[#B4975A]/20 transition-all">
+                        <label htmlFor="blog-q" className="sr-only">Buscar en el blog</label>
+                        <span className="pl-3 text-zinc-400" aria-hidden><SearchIcon className="h-4 w-4" /></span>
+                        <input
+                            id="blog-q"
+                            type="search"
+                            name="q"
+                            defaultValue={query}
+                            enterKeyHint="search"
+                            placeholder="Busca: RAG, n8n, GEO, chatbots…"
+                            className="flex-1 h-10 bg-transparent text-base text-[#09090B] placeholder:text-zinc-400 focus:outline-none"
+                        />
+                        <button type="submit" className="h-10 px-5 rounded-xl bg-[#B4975A] text-[#09090B] text-xs font-bold uppercase tracking-wide hover:bg-[#a3854a] transition-colors shrink-0">
+                            Buscar
+                        </button>
+                    </form>
 
-                        <div className="hidden sm:block h-10 w-[1px] bg-gradient-to-b from-transparent via-white/15 to-transparent" />
+                    {/* Caminos por vertical + meta */}
+                    <div className="mt-8 flex flex-wrap items-center gap-x-2 gap-y-2">
+                        <span className="text-[11px] font-mono uppercase tracking-wide text-zinc-400 mr-1">Explora:</span>
+                        {blogCategories.map((cat) => {
+                            const active = activeCat === cat.slug
+                            return (
+                                <Link
+                                    key={cat.slug}
+                                    href={`/blog/categoria/${cat.slug}`}
+                                    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 border text-[10px] font-black uppercase tracking-[0.2em] transition-colors ${active ? "border-[#B4975A]/40 bg-[#B4975A]/10" : "border-[#E4E4E7] bg-white hover:border-[#B4975A]/40"}`}
+                                >
+                                    <span className={`h-1.5 w-1.5 rounded-full ${accentDot[cat.accent]}`} aria-hidden />
+                                    <span className={accentText[cat.accent]}>{cat.shortName}</span>
+                                </Link>
+                            )
+                        })}
+                    </div>
 
-                        <div className="flex items-center gap-2.5">
-                            <span className="text-3xl md:text-4xl font-black text-amber-300 tabular-nums tracking-tight">
-                                {String(blogCategories.length).padStart(2, "0")}
-                            </span>
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 leading-tight">
-                                Verticales
-                                <br />
-                                de contenido
-                            </span>
-                        </div>
-
-                        <div className="hidden sm:block h-10 w-[1px] bg-gradient-to-b from-transparent via-white/15 to-transparent" />
-
-                        <div className="flex items-center gap-2.5">
-                            <Activity className="h-4 w-4 text-emerald-400 animate-pulse" />
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 leading-tight">
-                                Updated
-                                <br />
-                                weekly
-                            </span>
-                        </div>
-                    </motion.div>
-
-                    {/* Category dots quick legend */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.55 }}
-                        className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
-                    >
-                        {blogCategories.map((cat) => (
-                            <div key={cat.slug} className="flex items-center gap-2">
-                                <span className={`h-1.5 w-1.5 rounded-full ${categoryAccentDot[cat.accent]} animate-pulse`} />
-                                <span className={`text-[10px] font-black uppercase tracking-[0.25em] ${categoryAccentText[cat.accent]}`}>
-                                    {cat.shortName}
-                                </span>
-                            </div>
-                        ))}
-                    </motion.div>
+                    {/* Meta line */}
+                    <p className="mt-6 font-mono text-xs text-zinc-400">
+                        {String(total).padStart(2, "0")} artículos · {blogCategories.length} verticales{latest && <> · última actualización {formatDate(latest.date)}</>}
+                    </p>
                 </div>
             </div>
         </section>

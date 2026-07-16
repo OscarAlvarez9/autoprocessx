@@ -13,7 +13,7 @@ interface BreadcrumbsProps {
     className?: string
 }
 
-const SITE_URL = "https://www.autoprocessx.com"
+const SITE_URL = "https://www.seoscar.com"
 
 export default function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
     const trail: BreadcrumbItem[] = [{ label: "Inicio", href: "/" }, ...items]
@@ -41,11 +41,11 @@ export default function Breadcrumbs({ items, className = "" }: BreadcrumbsProps)
                         const isLast = i === trail.length - 1
                         return (
                             <li key={`${item.label}-${i}`} className="flex items-center gap-1.5">
-                                {i > 0 && <ChevronRight className="h-3 w-3 text-white/30" />}
+                                {i > 0 && <ChevronRight className="h-3 w-3 text-zinc-400" />}
                                 {isLast || !item.href ? (
                                     <span
                                         aria-current={isLast ? "page" : undefined}
-                                        className="text-white truncate max-w-[200px] md:max-w-none"
+                                        className="text-[#09090B] truncate max-w-[200px] md:max-w-none"
                                     >
                                         {i === 0 && <Home className="h-3 w-3 inline-block mr-1.5 -mt-0.5" />}
                                         {item.label}
@@ -53,7 +53,7 @@ export default function Breadcrumbs({ items, className = "" }: BreadcrumbsProps)
                                 ) : (
                                     <Link
                                         href={item.href}
-                                        className="text-white/45 hover:text-accent transition-colors flex items-center gap-1.5"
+                                        className="text-zinc-500 hover:text-accent transition-colors flex items-center gap-1.5"
                                     >
                                         {i === 0 && <Home className="h-3 w-3" />}
                                         {item.label}

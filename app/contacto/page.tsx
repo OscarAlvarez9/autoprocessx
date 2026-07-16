@@ -17,16 +17,16 @@ import { Badge } from "@/components/ui/badge"
 import { ORG_ID, SITE_URL } from "@/lib/seo"
 
 export const metadata: Metadata = {
-    title: "Contacto · Auditoría gratuita en 48h",
+    title: { absolute: "Contacto | Agencia de ecommerce en Barcelona | SEOscar" },
     description:
-        "Contacta con AutoProcessX. Auditoría gratuita en 48h y plan de despliegue con automatizaciones IA, plataformas RAG y chatbots para tu empresa.",
+        "Cuéntame qué frena tu tienda online y te devuelvo un diagnóstico con plan priorizado por impacto en ventas. Respuesta en 24 a 48h, sin compromiso y sin humo.",
     alternates: {
         canonical: `${SITE_URL}/contacto`,
     },
     openGraph: {
-        title: "Contacto · AutoProcessX",
+        title: "Contacto | Agencia de ecommerce en Barcelona | SEOscar",
         description:
-            "Auditoría gratuita en 48h. Plan de despliegue con automatizaciones IA, plataformas RAG y chatbots para tu empresa.",
+            "Cuéntame qué frena tu tienda online y te devuelvo un diagnóstico con plan priorizado por impacto en ventas. Respuesta en 24 a 48h, sin compromiso y sin humo.",
         type: "website",
         url: `${SITE_URL}/contacto`,
     },
@@ -36,10 +36,10 @@ const contactPageSchema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     "@id": `${SITE_URL}/contacto#page`,
-    name: "Contacto AutoProcessX",
+    name: "Contacto SEOscar",
     url: `${SITE_URL}/contacto`,
     description:
-        "Página de contacto de AutoProcessX. Auditoría gratuita de operativa en 48h.",
+        "Página de contacto de SEOscar. Auditoría gratuita de operativa en 48h.",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": ORG_ID },
     mainEntity: {
@@ -65,49 +65,49 @@ const guarantees = [
     },
     {
         icon: <Workflow className="h-4 w-4" />,
-        title: "Sistema unificado",
-        desc: "Automatizaciones, plataformas IA y chatbots desplegados como un solo sistema.",
+        title: "Crecimiento integral",
+        desc: "SEO y GEO, CRO, agente de ventas IA y automatización, sobre tu tienda actual y como un solo sistema.",
     },
 ]
 
 export default function ContactoPage() {
     return (
-        <main className="min-h-screen bg-[#05070F] text-white selection:bg-amber-400/30">
+        <main className="min-h-screen bg-[#FAFAFA] text-[#09090B] selection:bg-[#B4975A]/30">
             <Navigation />
             <JsonLd data={contactPageSchema} />
 
             {/* Hero */}
             <section className="relative pt-32 pb-12 md:pt-36 md:pb-16 overflow-hidden">
-                <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-amber-500/[0.07] blur-[180px] rounded-full pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-300/[0.05] blur-[140px] rounded-full pointer-events-none" />
+                <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-[#B4975A]/[0.07] blur-[180px] rounded-full pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#B4975A]/[0.05] blur-[140px] rounded-full pointer-events-none" />
 
                 <div className="container relative z-10 px-6 mx-auto max-w-6xl">
                     <Breadcrumbs items={[{ label: "Contacto" }]} className="mb-10 md:mb-14" />
 
                     <div className="text-center max-w-3xl mx-auto">
-                        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/40 backdrop-blur-md mb-7">
+                        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-[#B4975A]/10 border border-[#B4975A]/40 backdrop-blur-md mb-7">
                             <span className="relative flex h-2 w-2">
-                                <span className="absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75 animate-ping" />
-                                <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
+                                <span className="absolute inline-flex h-full w-full rounded-full bg-[#B4975A] opacity-75 animate-ping" />
+                                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#B4975A]" />
                             </span>
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-200">
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#B4975A]">
                                 Auditoría · 48h · Sin compromiso
                             </span>
                         </div>
 
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-[-0.025em] leading-[1] mb-6">
-                            Hablemos de tu{" "}
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#09090B] tracking-[-0.025em] leading-[1] mb-6">
+                            Hagamos crecer tu{" "}
                             <span
-                                className="relative inline-block bg-gradient-to-br from-amber-200 via-amber-300 to-amber-500 bg-clip-text text-transparent"
-                                style={{ filter: "drop-shadow(0 0 24px rgba(251,191,36,0.35))" }}
+                                className="relative inline-block bg-gradient-to-br from-[#B4975A] via-[#B4975A] to-[#B4975A] bg-clip-text text-transparent"
+                                style={{ filter: "drop-shadow(0 0 24px rgba(180,151,90,0.35))" }}
                             >
-                                infraestructura IA
+                                tienda online
                             </span>
                             .
                         </h1>
 
-                        <p className="text-base md:text-lg text-white/65 font-medium leading-relaxed max-w-2xl mx-auto">
-                            Cuéntanos qué procesos quieres automatizar. En 48h te enviamos un diagnóstico con cuellos de botella detectados y un plan de despliegue priorizado por ROI.
+                        <p className="text-base md:text-lg text-zinc-600 font-medium leading-relaxed max-w-2xl mx-auto">
+                            Cuéntanos qué frena tu tienda. En 48h te enviamos un diagnóstico con los cuellos de botella detectados y un plan priorizado por impacto en ventas: SEO y GEO, CRO, agente de ventas IA y automatización.
                         </p>
                     </div>
                 </div>
@@ -119,19 +119,19 @@ export default function ContactoPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-8">
                         {/* Form */}
                         <div className="lg:col-span-3">
-                            <Card className="bg-[#0F1424] border-white/10 rounded-2xl shadow-[0_0_40px_-15px_rgba(251,191,36,0.15)]">
+                            <Card className="bg-[#FFFFFF] border-[#E4E4E7] rounded-2xl shadow-[0_0_40px_-15px_rgba(180,151,90,0.15)]">
                                 <CardContent className="p-6 md:p-10">
                                     <div className="mb-8">
                                         <Badge
                                             variant="outline"
-                                            className="bg-amber-400/10 border-amber-400/30 text-amber-200 mb-4 px-3 py-1 text-[10px] font-black uppercase tracking-[0.3em]"
+                                            className="bg-[#B4975A]/10 border-[#B4975A]/30 text-[#B4975A] mb-4 px-3 py-1 text-[10px] font-black uppercase tracking-[0.3em]"
                                         >
                                             Formulario
                                         </Badge>
-                                        <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight leading-tight">
+                                        <h2 className="text-2xl md:text-3xl font-black text-[#09090B] tracking-tight leading-tight">
                                             Solicita tu auditoría.
                                         </h2>
-                                        <p className="text-white/55 text-sm font-medium mt-2 leading-relaxed">
+                                        <p className="text-zinc-600 text-sm font-medium mt-2 leading-relaxed">
                                             Cuanto más concreto seas con los procesos, más útil será el diagnóstico.
                                         </p>
                                     </div>
@@ -144,29 +144,29 @@ export default function ContactoPage() {
                         {/* Contact info */}
                         <div className="lg:col-span-2 flex flex-col gap-4">
                             {/* Direct contacts */}
-                            <Card className="bg-[#0F1424] border-white/10 rounded-2xl shadow-none">
+                            <Card className="bg-[#FFFFFF] border-[#E4E4E7] rounded-2xl shadow-none">
                                 <CardContent className="p-6">
                                     <Badge
                                         variant="outline"
-                                        className="bg-transparent border-white/10 text-white/60 mb-4 px-3 py-1 text-[10px] font-black uppercase tracking-[0.3em]"
+                                        className="bg-transparent border-[#E4E4E7] text-zinc-600 mb-4 px-3 py-1 text-[10px] font-black uppercase tracking-[0.3em]"
                                     >
                                         Otros canales
                                     </Badge>
 
                                     <div className="space-y-1">
                                         <a
-                                            href="mailto:contacta@autoprocessx.com"
-                                            className="flex items-center gap-4 p-3 -mx-3 rounded-xl hover:bg-white/[0.03] transition-colors group"
+                                            href="mailto:contacta@seoscar.com"
+                                            className="flex items-center gap-4 p-3 -mx-3 rounded-xl hover:bg-zinc-50 transition-colors group"
                                         >
-                                            <span className="h-10 w-10 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-300 shrink-0">
+                                            <span className="h-10 w-10 rounded-xl bg-[#B4975A]/10 border border-[#B4975A]/30 flex items-center justify-center text-[#B4975A] shrink-0">
                                                 <Mail className="h-4 w-4" />
                                             </span>
                                             <div className="flex-1 min-w-0">
-                                                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-0.5">
+                                                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-0.5">
                                                     Email directo
                                                 </div>
-                                                <div className="text-sm font-bold text-white group-hover:text-amber-300 transition-colors truncate">
-                                                    contacta@autoprocessx.com
+                                                <div className="text-sm font-bold text-[#09090B] group-hover:text-[#B4975A] transition-colors truncate">
+                                                    contacta@seoscar.com
                                                 </div>
                                             </div>
                                         </a>
@@ -175,16 +175,16 @@ export default function ContactoPage() {
                                             href="https://wa.me/34619355972?text=Consulta%20servicios%20IA"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center gap-4 p-3 -mx-3 rounded-xl hover:bg-white/[0.03] transition-colors group"
+                                            className="flex items-center gap-4 p-3 -mx-3 rounded-xl hover:bg-zinc-50 transition-colors group"
                                         >
                                             <span className="h-10 w-10 rounded-xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-300 shrink-0">
                                                 <MessageCircle className="h-4 w-4" />
                                             </span>
                                             <div className="flex-1 min-w-0">
-                                                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-0.5">
+                                                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-0.5">
                                                     WhatsApp
                                                 </div>
-                                                <div className="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">
+                                                <div className="text-sm font-bold text-[#09090B] group-hover:text-emerald-300 transition-colors">
                                                     Chat directo con ingeniería
                                                 </div>
                                             </div>
@@ -194,16 +194,16 @@ export default function ContactoPage() {
                                             href="https://www.linkedin.com/in/oscar-alvarez-romani-7882302b3"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center gap-4 p-3 -mx-3 rounded-xl hover:bg-white/[0.03] transition-colors group"
+                                            className="flex items-center gap-4 p-3 -mx-3 rounded-xl hover:bg-zinc-50 transition-colors group"
                                         >
                                             <span className="h-10 w-10 rounded-xl bg-blue-400/10 border border-blue-400/30 flex items-center justify-center text-blue-300 shrink-0">
                                                 <LinkedinIcon className="h-4 w-4" />
                                             </span>
                                             <div className="flex-1 min-w-0">
-                                                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-0.5">
+                                                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-0.5">
                                                     LinkedIn
                                                 </div>
-                                                <div className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors">
+                                                <div className="text-sm font-bold text-[#09090B] group-hover:text-blue-300 transition-colors">
                                                     Conecta con el fundador
                                                 </div>
                                             </div>
@@ -213,18 +213,18 @@ export default function ContactoPage() {
                             </Card>
 
                             {/* Location quick card */}
-                            <Card className="bg-[#0F1424] border-white/10 rounded-2xl shadow-none">
+                            <Card className="bg-[#FFFFFF] border-[#E4E4E7] rounded-2xl shadow-none">
                                 <CardContent className="p-6">
                                     <div className="flex items-start gap-4">
-                                        <span className="h-10 w-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-amber-300 shrink-0">
+                                        <span className="h-10 w-10 rounded-xl bg-zinc-100 border border-[#E4E4E7] flex items-center justify-center text-[#B4975A] shrink-0">
                                             <MapPin className="h-4 w-4" />
                                         </span>
                                         <div className="flex-1 min-w-0">
-                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-1">
+                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-1">
                                                 Sede
                                             </div>
-                                            <div className="text-sm font-bold text-white mb-1">Premià de Mar · Barcelona</div>
-                                            <div className="text-xs text-white/50 font-medium leading-relaxed">
+                                            <div className="text-sm font-bold text-[#09090B] mb-1">Barcelona</div>
+                                            <div className="text-xs text-zinc-500 font-medium leading-relaxed">
                                                 Operamos remoto en toda España y Europa. Desplazamiento on-site para discovery o despliegues críticos.
                                             </div>
                                         </div>
@@ -233,17 +233,17 @@ export default function ContactoPage() {
                             </Card>
 
                             {/* Quick CTA */}
-                            <Card className="bg-gradient-to-br from-amber-400/[0.08] via-[#0F1424] to-[#0F1424] border-amber-400/25 rounded-2xl shadow-[0_0_40px_-15px_rgba(251,191,36,0.3)]">
+                            <Card className="bg-gradient-to-br from-[#B4975A]/[0.08] via-[#FFFFFF] to-[#FFFFFF] border-[#B4975A]/25 rounded-2xl shadow-[0_0_40px_-15px_rgba(180,151,90,0.3)]">
                                 <CardContent className="p-6">
-                                    <h3 className="text-base font-black text-white tracking-tight mb-2">
+                                    <h3 className="text-base font-black text-[#09090B] tracking-tight mb-2">
                                         ¿Prefieres ver lo que ya hemos desplegado?
                                     </h3>
-                                    <p className="text-white/55 text-xs font-medium mb-4 leading-relaxed">
+                                    <p className="text-zinc-600 text-xs font-medium mb-4 leading-relaxed">
                                         Cada caso del registro incluye stack técnico completo, fases de despliegue y métricas reales.
                                     </p>
                                     <Link
                                         href="/casos-de-exito"
-                                        className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em] text-amber-300 hover:text-amber-200 transition-colors"
+                                        className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em] text-[#B4975A] hover:text-[#B4975A] transition-colors"
                                     >
                                         Ver registro completo →
                                     </Link>
@@ -255,16 +255,16 @@ export default function ContactoPage() {
             </section>
 
             {/* Guarantees strip */}
-            <section className="relative py-16 md:py-20 border-t border-white/5">
+            <section className="relative py-16 md:py-20 border-t border-[#E4E4E7]">
                 <div className="container px-6 mx-auto max-w-6xl">
                     <div className="text-center max-w-3xl mx-auto mb-10 md:mb-12">
                         <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-black uppercase tracking-[0.3em] mb-6">
                             Cómo trabajamos
                         </div>
-                        <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-[1.05] tracking-tight">
+                        <h2 className="text-3xl md:text-5xl font-black text-[#09090B] mb-4 leading-[1.05] tracking-tight">
                             Sin sorpresas. <span className="text-accent">Sin retainers.</span>
                         </h2>
-                        <p className="text-white/65 text-base font-medium leading-relaxed max-w-2xl mx-auto">
+                        <p className="text-zinc-600 text-base font-medium leading-relaxed max-w-2xl mx-auto">
                             Cuatro garantías que aplican a cualquier proyecto que arrancamos juntos.
                         </p>
                     </div>
@@ -273,16 +273,16 @@ export default function ContactoPage() {
                         {guarantees.map((g) => (
                             <Card
                                 key={g.title}
-                                className="bg-[#0F1424] border-white/10 hover:border-amber-400/30 rounded-2xl shadow-none transition-all"
+                                className="bg-[#FFFFFF] border-[#E4E4E7] hover:border-[#B4975A]/30 rounded-2xl shadow-none transition-all"
                             >
                                 <CardContent className="p-6">
-                                    <div className="h-10 w-10 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-300 mb-4">
+                                    <div className="h-10 w-10 rounded-xl bg-[#B4975A]/10 border border-[#B4975A]/30 flex items-center justify-center text-[#B4975A] mb-4">
                                         {g.icon}
                                     </div>
-                                    <h3 className="text-base font-black text-white tracking-tight mb-2">
+                                    <h3 className="text-base font-black text-[#09090B] tracking-tight mb-2">
                                         {g.title}
                                     </h3>
-                                    <p className="text-white/55 text-xs md:text-sm font-medium leading-relaxed">
+                                    <p className="text-zinc-600 text-xs md:text-sm font-medium leading-relaxed">
                                         {g.desc}
                                     </p>
                                 </CardContent>
@@ -293,8 +293,8 @@ export default function ContactoPage() {
             </section>
 
             {/* Location section with map */}
-            <section className="relative py-16 md:py-24 border-t border-white/5 bg-[#05070F]">
-                <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[400px] bg-amber-500/[0.05] blur-[140px] rounded-full pointer-events-none" />
+            <section className="relative py-16 md:py-24 border-t border-[#E4E4E7] bg-[#FAFAFA]">
+                <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[400px] bg-[#B4975A]/[0.05] blur-[140px] rounded-full pointer-events-none" />
 
                 <div className="container px-6 mx-auto max-w-6xl relative z-10">
                     <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
@@ -302,28 +302,28 @@ export default function ContactoPage() {
                             <MapPin className="h-3.5 w-3.5" />
                             Dónde estamos
                         </div>
-                        <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-[1.05] tracking-tight">
-                            Premià de Mar, <span className="text-accent">Barcelona</span>.
+                        <h2 className="text-3xl md:text-5xl font-black text-[#09090B] mb-4 leading-[1.05] tracking-tight">
+                            <span className="text-accent">Barcelona</span>.
                         </h2>
-                        <p className="text-white/65 text-base font-medium leading-relaxed max-w-2xl mx-auto">
-                            A 25 minutos del centro de Barcelona por la C-31. Operamos remoto en toda España y Europa, con desplazamiento on-site para discovery o despliegues críticos.
+                        <p className="text-zinc-600 text-base font-medium leading-relaxed max-w-2xl mx-auto">
+                            Con base en Barcelona. Operamos en remoto por toda España y Europa, con desplazamiento on-site para discovery o despliegues críticos.
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
                         {/* Map */}
                         <div className="lg:col-span-2">
-                            <Card className="bg-[#0F1424] border-white/10 rounded-2xl shadow-none overflow-hidden p-0">
+                            <Card className="bg-[#FFFFFF] border-[#E4E4E7] rounded-2xl shadow-none overflow-hidden p-0">
                                 <div className="relative aspect-[16/10] md:aspect-[16/9]">
                                     <iframe
-                                        src="https://www.google.com/maps?q=Premi%C3%A0+de+Mar,+Barcelona&output=embed"
+                                        src="https://www.google.com/maps?q=Barcelona,+Espa%C3%B1a&output=embed"
                                         width="100%"
                                         height="100%"
                                         style={{ border: 0, filter: "invert(0.92) hue-rotate(180deg) saturate(0.5) brightness(0.85)" }}
                                         loading="lazy"
                                         allowFullScreen
                                         referrerPolicy="no-referrer-when-downgrade"
-                                        title="Ubicación AutoProcessX — Premià de Mar, Barcelona"
+                                        title="Ubicación SEOscar · Barcelona"
                                     />
                                 </div>
                             </Card>
@@ -331,38 +331,38 @@ export default function ContactoPage() {
 
                         {/* Location details */}
                         <div className="flex flex-col gap-4">
-                            <Card className="bg-[#0F1424] border-white/10 rounded-2xl shadow-none flex-1">
+                            <Card className="bg-[#FFFFFF] border-[#E4E4E7] rounded-2xl shadow-none flex-1">
                                 <CardContent className="p-6">
                                     <Badge
                                         variant="outline"
-                                        className="bg-transparent border-white/10 text-white/60 mb-4 px-3 py-1 text-[10px] font-black uppercase tracking-[0.3em]"
+                                        className="bg-transparent border-[#E4E4E7] text-zinc-600 mb-4 px-3 py-1 text-[10px] font-black uppercase tracking-[0.3em]"
                                     >
                                         Sede principal
                                     </Badge>
                                     <div className="space-y-3 text-sm">
                                         <div>
-                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-1">
+                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-1">
                                                 Localidad
                                             </div>
-                                            <div className="text-white font-bold">Premià de Mar</div>
+                                            <div className="text-[#09090B] font-bold">Barcelona</div>
                                         </div>
                                         <div>
-                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-1">
+                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-1">
                                                 Provincia
                                             </div>
-                                            <div className="text-white font-bold">Barcelona, Cataluña</div>
+                                            <div className="text-[#09090B] font-bold">Barcelona, Cataluña</div>
                                         </div>
                                         <div>
-                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-1">
+                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-1">
                                                 País
                                             </div>
-                                            <div className="text-white font-bold">España</div>
+                                            <div className="text-[#09090B] font-bold">España</div>
                                         </div>
                                         <div>
-                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-1">
+                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-1">
                                                 Zona horaria
                                             </div>
-                                            <div className="text-white font-bold">CET / CEST · UTC+1</div>
+                                            <div className="text-[#09090B] font-bold">CET / CEST · UTC+1</div>
                                         </div>
                                     </div>
                                 </CardContent>
@@ -372,7 +372,7 @@ export default function ContactoPage() {
                                 href="https://www.google.com/maps?q=Premi%C3%A0+de+Mar,+Barcelona"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-amber-400/10 border border-amber-400/40 hover:bg-amber-400/20 text-amber-200 hover:text-white font-black uppercase tracking-[0.2em] text-[11px] transition-all"
+                                className="inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#B4975A]/10 border border-[#B4975A]/40 hover:bg-[#B4975A]/20 text-[#B4975A] hover:text-[#09090B] font-black uppercase tracking-[0.2em] text-[11px] transition-all"
                             >
                                 Abrir en Google Maps
                                 <MapPin className="h-3.5 w-3.5" />

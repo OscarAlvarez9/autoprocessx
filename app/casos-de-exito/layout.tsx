@@ -3,18 +3,18 @@ import type { Metadata } from "next";
 const caseStudiesSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Casos de Éxito en Automatización IA y n8n",
-  description: "Resultados reales de empresas que han automatizado sus procesos con IA y n8n usando AutoProcessX.",
-  url: "https://www.autoprocessx.com/casos-de-exito",
+  name: "Casos de éxito en crecimiento de ecommerce con IA",
+  description: "Tiendas online creciendo sobre su propia plataforma con SEO, conversión y agente de ventas IA de SEOscar.",
+  url: "https://www.seoscar.com/casos-de-exito",
   itemListElement: [
     {
       "@type": "ListItem",
       position: 1,
       item: {
         "@type": "Article",
-        name: "Farmacia Garcia del Cerro — Automatización de Blog con n8n",
-        description: "Implementación de automatización de blog con calendario editorial personalizado para todo el año en Shopify mediante n8n y LLMs.",
-        author: { "@type": "Organization", name: "AutoProcessX" },
+        name: "marea.es — agente de ventas IA y conversión sobre WooCommerce",
+        description: "Tienda de relojes con un agente de ventas IA anclado al catálogo y optimización de conversión, sin migrar de plataforma.",
+        author: { "@type": "Organization", name: "SEOscar" },
       },
     },
     {
@@ -22,36 +22,38 @@ const caseStudiesSchema = {
       position: 2,
       item: {
         "@type": "Article",
-        name: "Pelican Catchy — Infraestructura de Automatizaciones IA",
-        description: "Arquitectura de 8 procesos paralelos: estrategia anual de marketing, descripciones SEO, automatización en Asana y notificaciones WhatsApp.",
-        author: { "@type": "Organization", name: "AutoProcessX" },
+        name: "Farmacia García del Cerro — contenido SEO automatizado sobre Shopify",
+        description: "Motor de contenido SEO autónomo para captar tráfico orgánico que llega a comprar, sobre Shopify.",
+        author: { "@type": "Organization", name: "SEOscar" },
+      },
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      item: {
+        "@type": "Article",
+        name: "Totfinestra — web de ventanas a medida orientada a presupuesto",
+        description: "Web enfocada a captar y cualificar solicitudes de presupuesto de ventanas de aluminio a medida, con SEO local.",
+        author: { "@type": "Organization", name: "SEOscar" },
       },
     },
   ],
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.autoprocessx.com" },
-    { "@type": "ListItem", position: 2, name: "Casos de Éxito", item: "https://www.autoprocessx.com/casos-de-exito" },
-  ],
-};
 
 export const metadata: Metadata = {
-  title: "AutoProcessX | Casos de Éxito · Agencia IA Barcelona",
-  description: "Ejemplos reales de inteligencia artificial en empresas de Barcelona. Automatización de procesos, aplicaciones IA y chatbots personalizados con resultados demostrables.",
-  keywords: ["ejemplos de inteligencia artificial en empresas", "uso de inteligencia artificial en las empresas", "ia en empresas Barcelona", "casos de éxito automatización IA", "inteligencia artificial en negocios", "automatización empresarial resultados"],
+  title: { absolute: "Casos de éxito: ecommerce creciendo con IA | SEOscar" },
+  description: "Casos reales de tiendas sobre Shopify, WooCommerce y web nativa: agente de ventas IA, SEO que trae tráfico que compra y CRO. Sin migrar y con el código contigo.",
+  keywords: ["casos de éxito ecommerce", "crecimiento tienda online", "agente de ventas IA caso", "SEO ecommerce resultados", "CRO tienda online", "casos IA ecommerce Barcelona"],
   openGraph: {
-    title: "AutoProcessX | Casos de Éxito · Agencia IA Barcelona",
-    description: "Ejemplos reales de IA en empresas de Barcelona. Automatización de procesos, aplicaciones IA y chatbots personalizados con resultados demostrables.",
+    title: "Casos de éxito: ecommerce creciendo con IA | SEOscar",
+    description: "Casos reales de tiendas sobre Shopify, WooCommerce y web nativa: agente de ventas IA, SEO que trae tráfico que compra y CRO. Sin migrar y con el código contigo.",
     type: "website",
     locale: "es_ES",
-    url: "https://www.autoprocessx.com/casos-de-exito",
+    url: "https://www.seoscar.com/casos-de-exito",
   },
   alternates: {
-    canonical: "https://www.autoprocessx.com/casos-de-exito",
+    canonical: "https://www.seoscar.com/casos-de-exito",
   },
 };
 
@@ -61,10 +63,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudiesSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {children}
     </>

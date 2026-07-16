@@ -1,449 +1,295 @@
-"use client"
-
-import { motion } from "framer-motion"
-import {
-    Workflow,
-    MessageCircle,
-    Layers,
-    ShieldCheck,
-    Cpu,
-    Database,
-    GitBranch,
-    Server,
-    Lock,
-    Activity,
-    Sparkles,
-    Code2,
-    ArrowRight,
-} from "lucide-react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { ShieldCheck, Lock, GitBranch, ArrowRight, Server, MessageSquare, Workflow, Search, ShoppingCart, ShoppingBag, Store, Layers, Code2 } from "lucide-react"
 import Navigation from "@/components/Navigation"
 import Footer from "@/components/Footer"
-import FinalCTA from "@/components/FinalCTA"
-import Breadcrumbs from "@/components/Breadcrumbs"
 import FAQ from "@/components/FAQ"
 import { techFaqs } from "@/lib/faqs"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 
-type StackItem = { name: string; role: string }
-
-interface ServiceStack {
-    id: string
-    title: string
-    href: string
-    icon: React.ReactNode
-    eyebrow: string
-    summary: string
-    layers: { label: string; icon: React.ReactNode; items: StackItem[] }[]
-}
-
-const serviceStacks: ServiceStack[] = [
-    {
-        id: "automatizaciones",
-        title: "Automatizaciones",
-        href: "/servicios/automatizaciones",
-        icon: <Workflow className="h-5 w-5" />,
-        eyebrow: "Workflow Engineering",
-        summary: "Pipelines resilientes orquestados con n8n, agentes IA y conectores nativos. Coste 0€ por tarea, escalable bajo tu firewall.",
-        layers: [
-            {
-                label: "Orquestación",
-                icon: <Workflow className="h-3.5 w-3.5" />,
-                items: [
-                    { name: "n8n self-hosted", role: "Motor de workflows con código custom y conectores nativos" },
-                    { name: "Node.js + TypeScript", role: "Lógica de negocio en nodos personalizados" },
-                    { name: "Webhooks + Cron", role: "Triggers basados en eventos y ejecuciones programadas" },
-                ],
-            },
-            {
-                label: "Inteligencia",
-                icon: <Sparkles className="h-3.5 w-3.5" />,
-                items: [
-                    { name: "Claude 3.5 Sonnet", role: "Razonamiento, redacción y clasificación de tareas" },
-                    { name: "GPT-4o", role: "Tareas multimodales y procesamiento de imagen/voz" },
-                    { name: "DataForSEO API", role: "Datos reales de SERP y keywords para SEO" },
-                ],
-            },
-            {
-                label: "Datos & Storage",
-                icon: <Database className="h-3.5 w-3.5" />,
-                items: [
-                    { name: "Google Sheets / Excel", role: "Capa de exportación y reporting ejecutivo" },
-                    { name: "PostgreSQL", role: "Persistencia de estados y trazabilidad de ejecuciones" },
-                    { name: "S3 / Storage Bucket", role: "Almacenamiento de assets y resultados" },
-                ],
-            },
-            {
-                label: "Integraciones",
-                icon: <GitBranch className="h-3.5 w-3.5" />,
-                items: [
-                    { name: "WhatsApp Business / Slack", role: "Notificaciones de estado y alertas en producción" },
-                    { name: "Google Workspace", role: "Gmail, Calendar, Drive, Sheets, Docs" },
-                    { name: "GSC + GA4", role: "Reporting SEO autónomo por dominio" },
-                ],
-            },
-        ],
-    },
-    {
-        id: "chatbots",
-        title: "Chatbots IA",
-        href: "/servicios/ai-chatbot",
-        icon: <MessageCircle className="h-5 w-5" />,
-        eyebrow: "Conversational AI",
-        summary: "Agentes conversacionales con RAG sobre tu base de conocimiento. Web, WhatsApp, Instagram, Telegram — un agente unificado por canal.",
-        layers: [
-            {
-                label: "Modelos",
-                icon: <Cpu className="h-3.5 w-3.5" />,
-                items: [
-                    { name: "Claude 3.5 Sonnet", role: "Tono, razonamiento y baja tasa de alucinación" },
-                    { name: "GPT-4o mini", role: "Latencia mínima para respuestas rápidas" },
-                    { name: "Llama 3 / Mistral", role: "Modelos open-source en servidor propio sin APIs externas" },
-                ],
-            },
-            {
-                label: "RAG & Recuperación",
-                icon: <Layers className="h-3.5 w-3.5" />,
-                items: [
-                    { name: "pgvector / Pinecone", role: "Vector DB para búsqueda semántica de documentos" },
-                    { name: "OpenAI text-embedding-3", role: "Embeddings de tu documentación oficial" },
-                    { name: "Cross-encoder re-ranking", role: "Re-ordenado de resultados para máxima relevancia" },
-                ],
-            },
-            {
-                label: "Canales",
-                icon: <MessageCircle className="h-3.5 w-3.5" />,
-                items: [
-                    { name: "Widget Web (React)", role: "Componente embebible en cualquier site" },
-                    { name: "WhatsApp Business API", role: "Conversaciones nativas con plantillas aprobadas" },
-                    { name: "Instagram / Telegram", role: "DMs gestionados desde la misma capa de orquestación" },
-                ],
-            },
-            {
-                label: "Backend",
-                icon: <Server className="h-3.5 w-3.5" />,
-                items: [
-                    { name: "Next.js API Routes", role: "Endpoints serverless para sesiones y memoria" },
-                    { name: "PostgreSQL + Prisma", role: "Histórico conversacional y CRM integrado" },
-                    { name: "Redis", role: "Caché de embeddings y rate-limiting" },
-                ],
-            },
-        ],
-    },
-    {
-        id: "plataformas",
-        title: "Plataformas IA",
-        href: "/servicios/aplicaciones-ia",
-        icon: <Layers className="h-5 w-5" />,
-        eyebrow: "Platform Engineering",
-        summary: "Entorno corporativo unificado: CRM, pipeline, tareas, propuestas, agentes autónomos y RAG sobre tus datos. Bajo tu firewall.",
-        layers: [
-            {
-                label: "Frontend",
-                icon: <Code2 className="h-3.5 w-3.5" />,
-                items: [
-                    { name: "Next.js 16 App Router", role: "Server Components, streaming y rendering híbrido" },
-                    { name: "TypeScript estricto", role: "Tipado end-to-end con Zod en boundaries" },
-                    { name: "Tailwind v4 + shadcn/ui", role: "Sistema de diseño consistente y accesible" },
-                ],
-            },
-            {
-                label: "Backend",
-                icon: <Server className="h-3.5 w-3.5" />,
-                items: [
-                    { name: "Next.js Route Handlers", role: "API REST + Server Actions para mutaciones" },
-                    { name: "Prisma + PostgreSQL", role: "ORM con migraciones versionadas y schema relacional" },
-                    { name: "n8n", role: "Motor de orquestación para flujos asíncronos" },
-                ],
-            },
-            {
-                label: "IA & Agentes",
-                icon: <Sparkles className="h-3.5 w-3.5" />,
-                items: [
-                    { name: "Claude 3.5 Sonnet", role: "Agentes con acceso a módulos vía tool calling" },
-                    { name: "Vector DB (pgvector)", role: "RAG sobre documentación corporativa" },
-                    { name: "OpenAI Embeddings", role: "Indexación semántica de bases de conocimiento" },
-                ],
-            },
-            {
-                label: "Infra & DevOps",
-                icon: <GitBranch className="h-3.5 w-3.5" />,
-                items: [
-                    { name: "AWS / GCP / On-Premise", role: "Despliegue en tu cuenta cloud o servidor propio" },
-                    { name: "Docker + GitHub Actions", role: "CI/CD con builds reproducibles" },
-                    { name: "Sentry + Logtail", role: "Observabilidad y alertas ante fallos críticos" },
-                ],
-            },
-        ],
-    },
+const pillars = [
+  {
+    decision: "TypeScript estricto",
+    impact: "Menos errores en producción. En una tienda, un fallo en el checkout es una venta perdida; los tipos se validan antes de desplegar, no en mitad de una compra.",
+  },
+  {
+    decision: "Despliegue serverless o servidor propio",
+    impact: "Aguanta los picos sin sorpresas. Black Friday o una campaña que escala: nube gestionada o tu servidor bajo tu firewall, tú eliges, y el coste no se dispara.",
+  },
+  {
+    decision: "Bases de datos vectoriales propias",
+    impact: "Privacidad absoluta. Tu catálogo, tus precios y los datos de tus clientes nunca entrenan modelos públicos de terceros.",
+  },
+  {
+    decision: "Arquitectura desacoplada",
+    impact: 'Cero licencias "por usuario". El sistema es un activo de tu tienda, no un alquiler perpetuo que crece con tu equipo.',
+  },
 ]
 
-const principles = [
-    {
-        icon: <Lock className="h-5 w-5" />,
-        title: "Soberanía técnica",
-        desc: "Código fuente, datos y agentes en tu repositorio. Sin licencias por usuario ni dependencia de proveedores externos críticos.",
-    },
-    {
-        icon: <Server className="h-5 w-5" />,
-        title: "On-Premise opcional",
-        desc: "Desplegamos toda la stack en tu servidor sin conexión a APIs externas si lo requiere tu cumplimiento.",
-    },
-    {
-        icon: <Activity className="h-5 w-5" />,
-        title: "Producción real",
-        desc: "Sistemas en operación 24/7 con retries, alertas y observabilidad completa documentada por proyecto.",
-    },
-    {
-        icon: <ShieldCheck className="h-5 w-5" />,
-        title: "Zero Retention",
-        desc: "Acuerdos con proveedores LLM para que tus datos no se usen en entrenamiento. Cifrado AES-256 en reposo.",
-    },
+// Capa 1 — la plataforma que el dueño reconoce.
+const platforms = [
+  { icon: <ShoppingCart className="h-4 w-4" />, name: "Magento / Adobe Commerce", note: "Catálogos grandes y multipaís" },
+  { icon: <ShoppingBag className="h-4 w-4" />, name: "Shopify", note: "Tiendas completas, de cero a producción" },
+  { icon: <Store className="h-4 w-4" />, name: "WooCommerce", note: "WordPress ecommerce a medida" },
+  { icon: <ShoppingBag className="h-4 w-4" />, name: "PrestaShop", note: "Ecommerce open-source" },
+  { icon: <Store className="h-4 w-4" />, name: "BigCommerce", note: "Plataforma SaaS escalable" },
+  { icon: <Layers className="h-4 w-4" />, name: "Headless (Contentful, Strapi, Sanity)", note: "Arquitecturas desacopladas" },
+  { icon: <Code2 className="h-4 w-4" />, name: "A medida", note: "Cuando el stack estándar no llega" },
 ]
 
-const security = [
-    "Zero Data Retention",
-    "AES-256 cifrado",
-    "TLS 1.3 en tránsito",
-    "RGPD compliant",
-    "ISO 27001 ready",
-    "On-Premise capable",
+// Capa 2 — la ingeniería que el técnico valida.
+const serviceStacks = [
+  {
+    value: "seo",
+    icon: <Search className="h-4 w-4" />,
+    label: "SEO técnico & conversión",
+    stack: ["Schema de producto", "Core Web Vitals", "Crawl budget & facetado", "Scripts Node.js", "Optimización de fichas y checkout"],
+    why: "Catálogos de miles de productos que rankean y cargan rápido — la velocidad reduce el abandono, y el abandono es venta perdida. Auditamos a escala con scripts propios en Node.js, no solo con herramientas estándar, y optimizamos la ficha y el checkout para que el tráfico no solo llegue: compre.",
+  },
+  {
+    value: "agente",
+    icon: <MessageSquare className="h-4 w-4" />,
+    label: "Agente de ventas IA",
+    stack: ["RAG anclado al catálogo", "Vector DB (pgvector / Pinecone)", "Embeddings", "Server Components", "Vercel AI SDK"],
+    why: "El agente responde solo con tu catálogo y tu stock reales. Recomienda producto y empuja al checkout sin inventarse precios ni disponibilidad — y si no lo sabe, lo dice. Ese anclaje es lo que lo separa de un chatbot genérico.",
+  },
+  {
+    value: "automatizacion",
+    icon: <Workflow className="h-4 w-4" />,
+    label: "Automatización con n8n + programación",
+    stack: ["n8n self-hosted", "Node.js / Python", "Route Handlers", "PostgreSQL / Prisma", "Feeds & APIs"],
+    why: "n8n orquestando código propio, no arrastrando cajitas. La mayoría de «agencias de automatización IA» solo conectan nodos y no escriben una línea de código; aquí n8n es el orquestador y la lógica de verdad va en Node.js/Python propio. Recuperación de carrito, sincronización de stock y pedidos, feeds de producto, reporting — workflows que corren solos sobre tu infraestructura.",
+  },
 ]
 
 export default function Tecnologia() {
-    return (
-        <main className="min-h-screen bg-[#05070F] text-white selection:bg-amber-400/30">
-            <Navigation />
+  return (
+    <main className="min-h-screen bg-base text-ink-900 selection:bg-oro-500/20">
+      <Navigation />
 
-            {/* Hero */}
-            <section className="relative pt-32 pb-16 md:pt-36 md:pb-24 overflow-hidden">
-                <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-amber-500/[0.07] blur-[180px] rounded-full pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-300/[0.05] blur-[140px] rounded-full pointer-events-none" />
+      {/* 1 · HERO — asimétrico, textura blueprint, artefacto de código (sin glow) */}
+      <section className="relative pt-32 pb-16 md:pt-44 md:pb-20 border-b border-[#E4E4E7] overflow-hidden">
+        {/* Grid de blueprint finísimo (líneas ink ~5%), no gradiente */}
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(10,24,38,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(10,24,38,0.05) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+            maskImage: "radial-gradient(ellipse 75% 60% at 28% 42%, black 18%, transparent 88%)",
+            WebkitMaskImage: "radial-gradient(ellipse 75% 60% at 28% 42%, black 18%, transparent 88%)",
+          }}
+        />
 
-                <motion.div
-                    animate={{ top: ["-20%", "120%"] }}
-                    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                    className="absolute left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400/30 to-transparent z-10"
-                />
+        <div className="container relative z-10 px-6 mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Copy */}
+            <div>
+              <Badge variant="outline" className="border-[#E4E4E7] bg-white text-zinc-600 font-mono px-3 py-1 text-[11px] normal-case tracking-normal">
+                // stack · v2026
+              </Badge>
 
-                <div className="container relative z-10 px-6 mx-auto max-w-6xl">
-                    <Breadcrumbs items={[{ label: "Tecnología" }]} className="mb-10 md:mb-14" />
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.05] text-ink-900 mt-6">
+                Todas las{" "}
+                <span className="relative whitespace-nowrap">
+                  tecnologías
+                  <span className="absolute left-0 right-0 -bottom-1 h-[3px] bg-oro-400" aria-hidden />
+                </span>{" "}
+                con las que trabajamos.
+              </h1>
 
-                    <div className="text-center max-w-4xl mx-auto">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.92 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 backdrop-blur-md mb-7"
-                        >
-                            <span className="relative flex h-2 w-2">
-                                <span className="absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75 animate-ping" />
-                                <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
-                            </span>
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-200">
-                                Stack & Architecture · In Production
-                            </span>
-                        </motion.div>
+              <p className="text-zinc-600 text-base md:text-lg font-normal leading-relaxed max-w-lg mt-6">
+                Sistemas de IA para mejorar tu conversión y SEO para ecommerce — construidos como infraestructura propia, no alquilados como SaaS.
+              </p>
 
-                        <motion.h1
-                            initial={{ opacity: 0, y: 24 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                            className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-[-0.025em] leading-[1] mb-6"
-                        >
-                            Un stack.{" "}
-                            <span className="relative inline-block">
-                                <span
-                                    className="relative z-10 bg-gradient-to-br from-amber-200 via-amber-300 to-amber-500 bg-clip-text text-transparent"
-                                    style={{ filter: "drop-shadow(0 0 24px rgba(251,191,36,0.35))" }}
-                                >
-                                    Tres servicios
-                                </span>
-                            </span>
-                            .
-                        </motion.h1>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mt-9">
+                <Link href="/contacto">
+                  <Button className="group h-12 px-7 text-sm font-bold tracking-wide bg-ink-600 text-white hover:bg-ink-700 rounded-xl">
+                    Hablar con el fundador
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Link href="/casos-de-exito" className="inline-flex items-center gap-1.5 font-mono text-sm text-zinc-500 hover:text-ink-900 transition-colors px-2">
+                  Ver casos en producción <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                </Link>
+              </div>
 
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="text-base md:text-lg text-white/65 font-medium leading-relaxed max-w-2xl mx-auto mb-10"
-                        >
-                            Misma filosofía técnica desplegada en automatizaciones, chatbots y plataformas. Sin SaaS de terceros — todo bajo tu control.
-                        </motion.p>
+              <p className="mt-7 font-mono text-[11px] text-zinc-400">// hecho a mano · no generado</p>
+            </div>
 
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.3 }}
-                            className="flex flex-wrap justify-center gap-2"
-                        >
-                            {serviceStacks.map((s) => (
-                                <a
-                                    key={s.id}
-                                    href={`#${s.id}`}
-                                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/[0.04] border border-white/10 hover:border-amber-400/40 hover:bg-amber-400/[0.06] transition-all group"
-                                >
-                                    <span className="text-amber-300">{s.icon}</span>
-                                    <span className="text-[11px] font-black uppercase tracking-[0.2em] text-white/85 group-hover:text-white">
-                                        {s.title}
-                                    </span>
-                                </a>
-                            ))}
-                        </motion.div>
-                    </div>
+            {/* Artefacto de código real (prueba, no decoración) */}
+            <Card className="rounded-2xl border-[#E4E4E7] bg-white shadow-sm overflow-hidden p-0 font-mono">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-[#E4E4E7] bg-zinc-50">
+                <span className="flex gap-1.5" aria-hidden>
+                  <span className="h-2.5 w-2.5 rounded-full bg-zinc-300" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-zinc-300" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-zinc-300" />
+                </span>
+                <span className="text-[11px] text-zinc-500">app/servicios/[pack]/page.tsx</span>
+              </div>
+              <div className="p-4 md:p-5 text-[12px] md:text-[13px] leading-relaxed space-y-1 text-ink-900">
+                <p><span className="text-zinc-300 select-none mr-3">1</span><span className="text-oro-600">export const</span> revalidate = <span className="text-emerald-600">300</span> <span className="text-zinc-400">// ISR</span></p>
+                <p><span className="text-zinc-300 select-none mr-3">2</span><span className="text-oro-600">const</span> ctx = <span className="text-emerald-600">await</span> retrieve(query) <span className="text-zinc-400">// RAG anclado</span></p>
+                <p><span className="text-zinc-300 select-none mr-3">3</span><span className="text-oro-600">return</span> answer(ctx).<span className="text-emerald-600">withSource</span>() <span className="text-zinc-400">// cita fuente</span></p>
+              </div>
+              <Separator className="bg-[#E4E4E7]" />
+              <div className="px-4 md:px-5 py-3 text-[11px] leading-relaxed space-y-1 bg-zinc-50/60">
+                <p className="text-emerald-600">✓ build · ISR 42ms</p>
+                <p className="text-emerald-600">✓ RAG anclado · cita la fuente · 0 alucinación</p>
+                <p className="text-emerald-600">✓ tsc · strict · 0 errors</p>
+                <p className="text-ink-900 flex items-center">▸&nbsp;<span className="inline-block w-1.5 h-3.5 bg-ink-900 animate-pulse motion-reduce:animate-none" aria-hidden /></p>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* 2 · Cuatro pilares técnicos */}
+      <section className="py-16 md:py-24 bg-base border-b border-[#E4E4E7]">
+        <div className="container px-6 mx-auto max-w-4xl">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight leading-tight mb-3">Cuatro líneas rojas de ingeniería.</h2>
+          <p className="text-zinc-600 text-base font-normal leading-relaxed mb-8">Las decisiones que no negociamos — y lo que significan para tu tienda.</p>
+          <div className="rounded-2xl border border-[#E4E4E7] bg-white overflow-hidden">
+            <Table>
+              <TableHeader>
+                <TableRow className="border-[#E4E4E7] hover:bg-transparent">
+                  <TableHead className="text-oro-600 text-[10px] font-mono font-medium uppercase tracking-wide py-4 px-5">Decisión arquitectónica</TableHead>
+                  <TableHead className="text-zinc-500 text-[10px] font-mono font-medium uppercase tracking-wide py-4 px-5">El impacto real en tu negocio</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {pillars.map((p) => (
+                  <TableRow key={p.decision} className="border-[#E4E4E7]">
+                    <TableCell className="py-4 px-5 align-top text-sm font-semibold text-ink-900 w-[40%]">{p.decision}</TableCell>
+                    <TableCell className="py-4 px-5 align-top text-sm font-normal text-zinc-600 leading-relaxed">{p.impact}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      </section>
+
+      {/* 3 · El stack, en dos capas */}
+      <section className="py-16 md:py-24 bg-base border-b border-[#E4E4E7]">
+        <div className="container px-6 mx-auto max-w-4xl">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight leading-tight mb-3">El stack, en dos capas.</h2>
+          <p className="text-zinc-600 text-base font-normal leading-relaxed mb-10">Dos pruebas para dos lectores: la plataforma que ya usas, y la ingeniería que hay debajo.</p>
+
+          {/* Capa 1 — sobre tu plataforma */}
+          <div className="mb-14 md:mb-16">
+            <div className="flex items-center gap-3 mb-5">
+              <span className="font-mono text-sm font-bold text-oro-600">01</span>
+              <h3 className="text-lg md:text-xl font-semibold tracking-tight text-ink-900">Trabajo sobre tu plataforma. No te hago migrar.</h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {platforms.map((p) => (
+                <div key={p.name} className="flex items-start gap-3 rounded-2xl border border-[#E4E4E7] bg-white p-4">
+                  <span className="h-9 w-9 rounded-lg bg-zinc-50 border border-[#E4E4E7] flex items-center justify-center text-ink-900 shrink-0">{p.icon}</span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-ink-900 leading-tight">{p.name}</p>
+                    <p className="text-xs text-zinc-500 mt-0.5 leading-snug">{p.note}</p>
+                  </div>
                 </div>
-            </section>
+              ))}
+            </div>
+            <p className="text-zinc-600 text-sm leading-relaxed mt-5 max-w-2xl">
+              Sea cual sea tu plataforma, me adapto a lo que ya tienes. Conecto el SEO, la conversión, el agente y la automatización sobre tu tienda actual, sin rehacerla.
+            </p>
+          </div>
 
-            {/* Service stacks */}
-            <section className="py-16 md:py-20 bg-[#05070F]">
-                <div className="container px-6 mx-auto max-w-6xl space-y-16 md:space-y-24">
-                    {serviceStacks.map((service, i) => (
-                        <motion.div
-                            key={service.id}
-                            id={service.id}
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-80px" }}
-                            transition={{ duration: 0.6 }}
-                            className="scroll-mt-24"
-                        >
-                            {/* Service header */}
-                            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8 md:mb-10">
-                                <div className="max-w-2xl">
-                                    <div className="flex items-center gap-3 mb-3">
-                                        <span className="text-[10px] font-black uppercase tracking-[0.35em] text-amber-400 tabular-nums">
-                                            0{i + 1}
-                                        </span>
-                                        <div className="h-[1px] flex-1 max-w-[60px] bg-amber-400/30" />
-                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">
-                                            {service.eyebrow}
-                                        </span>
-                                    </div>
-                                    <h2 className="text-3xl md:text-5xl font-black text-white leading-[1.05] tracking-tight mb-3">
-                                        Stack para <span className="text-accent">{service.title}</span>
-                                    </h2>
-                                    <p className="text-white/60 text-sm md:text-base font-medium leading-relaxed">
-                                        {service.summary}
-                                    </p>
-                                </div>
-
-                                <Link href={service.href}>
-                                    <Button className="h-11 px-5 rounded-xl bg-white/[0.04] border border-white/15 hover:border-amber-400/50 hover:bg-amber-400/10 text-white text-xs font-black uppercase tracking-[0.2em] transition-all flex items-center gap-2">
-                                        Ver servicio
-                                        <ArrowRight className="h-3.5 w-3.5" />
-                                    </Button>
-                                </Link>
-                            </div>
-
-                            {/* Layers grid */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                                {service.layers.map((layer) => (
-                                    <div
-                                        key={layer.label}
-                                        className="rounded-2xl border border-white/10 bg-[#0F1424] hover:border-amber-400/25 transition-colors overflow-hidden"
-                                    >
-                                        {/* Layer header */}
-                                        <div className="flex items-center gap-2.5 px-5 md:px-6 py-3.5 border-b border-white/10 bg-white/[0.02]">
-                                            <span className="h-7 w-7 rounded-lg bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-300">
-                                                {layer.icon}
-                                            </span>
-                                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/85">
-                                                {layer.label}
-                                            </span>
-                                            <div className="ml-auto h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
-                                        </div>
-
-                                        {/* Items */}
-                                        <ul className="divide-y divide-white/5">
-                                            {layer.items.map((item) => (
-                                                <li
-                                                    key={item.name}
-                                                    className="px-5 md:px-6 py-3.5 hover:bg-white/[0.02] transition-colors"
-                                                >
-                                                    <div className="flex items-baseline gap-3">
-                                                        <span className="text-sm font-black text-white tracking-tight shrink-0">
-                                                            {item.name}
-                                                        </span>
-                                                        <span className="h-[1px] flex-1 bg-white/5 translate-y-[-2px]" />
-                                                    </div>
-                                                    <p className="text-xs text-white/50 font-medium leading-snug mt-1">
-                                                        {item.role}
-                                                    </p>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                ))}
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Principles */}
-            <section className="py-16 md:py-24 bg-[#05070F] border-t border-white/5 relative overflow-hidden">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-amber-500/[0.05] blur-[160px] rounded-full pointer-events-none" />
-                <div className="container px-6 mx-auto max-w-6xl relative z-10">
-                    <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-                        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-black uppercase tracking-[0.3em] mb-6">
-                            <ShieldCheck className="h-3.5 w-3.5" />
-                            Engineering Principles
-                        </div>
-                        <h2 className="text-3xl md:text-5xl font-black text-white mb-5 leading-[1.05] tracking-tight">
-                            Cuatro reglas <span className="text-accent">no negociables</span>.
-                        </h2>
-                        <p className="text-white/65 text-base md:text-lg font-medium leading-relaxed max-w-2xl mx-auto">
-                            Cómo construimos cada sistema para que opere 24/7 sin nuestra intervención.
-                        </p>
+          {/* Capa 2 — la ingeniería detrás (Tabs) */}
+          <div>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="font-mono text-sm font-bold text-oro-600">02</span>
+              <h3 className="text-lg md:text-xl font-semibold tracking-tight text-ink-900">Y por debajo, ingeniería de verdad.</h3>
+            </div>
+            <Tabs defaultValue="seo" className="w-full">
+              <TabsList className="bg-white border border-[#E4E4E7] h-auto p-1.5 rounded-xl mb-8 flex flex-wrap">
+                {serviceStacks.map((s) => (
+                  <TabsTrigger key={s.value} value={s.value} className="rounded-lg px-3.5 py-2 text-[11px] font-bold uppercase tracking-wide text-zinc-500 data-[state=active]:bg-oro-400/15 data-[state=active]:text-oro-700 flex items-center gap-1.5">
+                    {s.icon}{s.label}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+              {serviceStacks.map((s) => (
+                <TabsContent key={s.value} value={s.value}>
+                  <div className="rounded-2xl border border-[#E4E4E7] bg-white p-6 md:p-8">
+                    <p className="text-[10px] font-mono font-medium uppercase tracking-wide text-zinc-500 mb-3">El stack</p>
+                    <div className="flex flex-wrap gap-2 mb-7">
+                      {s.stack.map((t) => (
+                        <Badge key={t} variant="outline" className="border-[#E4E4E7] text-ink-900 font-mono px-2.5 py-1 text-[11px] normal-case tracking-normal">
+                          {t}
+                        </Badge>
+                      ))}
                     </div>
+                    <p className="text-[10px] font-mono font-medium uppercase tracking-wide text-oro-600 mb-2">El porqué</p>
+                    <p className="text-zinc-600 text-base font-normal leading-relaxed">{s.why}</p>
+                  </div>
+                </TabsContent>
+              ))}
+            </Tabs>
+            <p className="text-zinc-500 text-sm leading-relaxed mt-6 font-mono">
+              // ¿plataformas internas a medida? React Server Actions, Auth.js y Prisma, bajo demanda.
+            </p>
+          </div>
+        </div>
+      </section>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {principles.map((p, i) => (
-                            <motion.div
-                                key={p.title}
-                                initial={{ opacity: 0, y: 16 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.06 }}
-                                className="p-6 rounded-2xl bg-[#0F1424] border border-white/10 hover:border-amber-400/30 transition-all"
-                            >
-                                <div className="h-10 w-10 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-300 mb-4">
-                                    {p.icon}
-                                </div>
-                                <h3 className="text-base md:text-lg font-black text-white tracking-tight mb-2">
-                                    {p.title}
-                                </h3>
-                                <p className="text-white/55 text-xs md:text-sm font-medium leading-relaxed">
-                                    {p.desc}
-                                </p>
-                            </motion.div>
-                        ))}
-                    </div>
+      {/* 4 · Soberanía y privacidad */}
+      <section className="py-16 md:py-24 bg-base border-b border-[#E4E4E7]">
+        <div className="container px-6 mx-auto max-w-3xl">
+          <div className="rounded-3xl border border-[#E4E4E7] bg-white p-8 md:p-10">
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight leading-tight mb-6">Soberanía y privacidad.</h2>
+            <ul className="space-y-4">
+              {[
+                { icon: <Lock className="h-5 w-5" />, t: "Cifrado AES-256 en reposo", d: "Tus datos se almacenan cifrados de extremo a extremo." },
+                { icon: <ShieldCheck className="h-5 w-5" />, t: "Cumplimiento RGPD en la UE", d: "Despliegue en servidores de la Unión Europea, con aislamiento de datos por cliente." },
+                { icon: <GitBranch className="h-5 w-5" />, t: "Entrega completa del repositorio", d: "Al finalizar el desarrollo recibes todo el código en tu Git. La propiedad es tuya." },
+              ].map((item) => (
+                <li key={item.t} className="flex items-start gap-4">
+                  <span className="h-10 w-10 rounded-xl bg-oro-400/10 border border-oro-400/30 flex items-center justify-center text-oro-600 shrink-0">{item.icon}</span>
+                  <div>
+                    <p className="text-ink-900 font-semibold mb-0.5">{item.t}</p>
+                    <p className="text-zinc-600 text-sm font-normal leading-relaxed">{item.d}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
 
-                    {/* Security badges */}
-                    <div className="mt-12 md:mt-16 flex flex-wrap justify-center gap-2 md:gap-3">
-                        {security.map((s) => (
-                            <span
-                                key={s}
-                                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] text-[10px] font-black uppercase tracking-[0.25em] text-white/60"
-                            >
-                                <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-                                {s}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            </section>
+      {/* 5 · CTA técnico — al mismo embudo de diagnóstico */}
+      <section className="py-16 md:py-24 bg-base border-b border-[#E4E4E7]">
+        <div className="container px-6 mx-auto max-w-3xl text-center">
+          <Server className="h-6 w-6 text-oro-600 mx-auto mb-5" />
+          <h2 className="text-2xl md:text-4xl font-semibold tracking-tight leading-tight mb-6">
+            ¿Tu equipo técnico exige requisitos específicos?
+          </h2>
+          <Link href="/contacto">
+            <Button size="lg" className="h-13 px-8 py-3 text-sm font-bold tracking-wide bg-ink-600 text-white hover:bg-ink-700 rounded-xl">
+              Revisar requerimientos con el fundador
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+      </section>
 
-            <FAQ
-                items={techFaqs}
-                eyebrow="Stack & Architecture · FAQ"
-                title="Dudas técnicas sobre"
-                titleAccent="nuestro stack"
-                description="LLMs, RAG, seguridad, hosting on-premise y monitorización en producción — sin marketing."
-            />
-            <FinalCTA />
-            <Footer />
-        </main>
-    )
+      <FAQ
+        items={techFaqs}
+        eyebrow="Tecnología · FAQ"
+        title="Dudas sobre el"
+        titleAccent="stack y la arquitectura"
+        description="Dónde se ejecuta el código, qué modelos usamos y cómo protegemos tus datos."
+      />
+
+      <Footer />
+    </main>
+  )
 }

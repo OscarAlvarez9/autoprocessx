@@ -3,52 +3,44 @@ import type { Metadata } from "next";
 const aboutSchema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  name: "Sobre AutoProcessX",
-  url: "https://www.autoprocessx.com/sobre-nosotros",
-  description: "AutoProcessX es una agencia especializada en automatización empresarial con IA y n8n. Combinamos Big Data, Machine Learning, LLMs y orquestación cloud para transformar la operativa de tu empresa.",
+  name: "Sobre SEOscar",
+  url: "https://www.seoscar.com/sobre-nosotros",
+  description: "SEOscar es un estudio boutique de sistemas de IA para ecommerce en Barcelona. Hacemos crecer tiendas online con SEO, conversión, agentes de ventas IA y automatización, sobre su propia plataforma y con el código en su propiedad.",
   mainEntity: {
     "@type": "Organization",
-    name: "AutoProcessX",
-    url: "https://www.autoprocessx.com",
-    description: "Arquitectos de soluciones integrales de IA y automatización. Especializados en n8n, Claude, GPT-4o, arquitecturas RAG y despliegue enterprise.",
-    foundingDate: "2023",
+    name: "SEOscar",
+    url: "https://www.seoscar.com",
+    description: "Estudio de sistemas de IA para ecommerce. Especializados en SEO y GEO, optimización de conversión, agentes de ventas IA anclados al catálogo y automatización con n8n.",
+    founder: { "@type": "Person", name: "Oscar Álvarez" },
+    address: { "@type": "PostalAddress", addressLocality: "Premià de Mar", addressRegion: "Barcelona", addressCountry: "ES" },
     areaServed: "ES",
     knowsAbout: [
-      "n8n",
-      "automatización de procesos",
-      "inteligencia artificial",
-      "Machine Learning",
-      "Big Data",
+      "crecimiento de ecommerce",
+      "SEO y GEO",
+      "optimización de conversión (CRO)",
+      "agente de ventas IA",
       "arquitecturas RAG",
-      "agentes autónomos",
-      "LLMs",
-      "infraestructura cloud AWS",
+      "automatización con n8n",
+      "Shopify",
+      "WooCommerce",
     ],
   },
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.autoprocessx.com" },
-    { "@type": "ListItem", position: 2, name: "Sobre Nosotros", item: "https://www.autoprocessx.com/sobre-nosotros" },
-  ],
-};
 
 export const metadata: Metadata = {
-  title: "Expertos IA y Automatización Barcelona",
-  description: "Somos arquitectos de soluciones IA y automatización en Barcelona. n8n, LLMs, Big Data y cloud para transformar la operativa de tu empresa.",
-  keywords: ["consultoría de inteligencia artificial Barcelona", "empresas de inteligencia artificial", "empresa de ia", "expertos automatización IA", "ia empresarial Barcelona", "agencia automatización empresarial", "especialistas n8n", "ia en empresas"],
+  title: { absolute: "Conócenos: Óscar, Roger y Sam, ecommerce Barcelona | SEOscar" },
+  description: "Detrás de SEOscar: Óscar, Roger y Sam, en Barcelona. Hago que las tiendas online vendan más con SEO, agente de ventas IA y automatización. El código es tuyo.",
+  keywords: ["estudio IA ecommerce Barcelona", "agencia crecimiento ecommerce", "especialistas n8n", "sobre SEOscar", "sistemas de IA tiendas online", "agencia ecommerce Barcelona"],
   openGraph: {
-    title: "Expertos IA y Automatización Barcelona",
-    description: "Arquitectos de soluciones IA y automatización en Barcelona. n8n, LLMs, Big Data y AWS.",
+    title: "Conócenos: Óscar, Roger y Sam, ecommerce Barcelona | SEOscar",
+    description: "Detrás de SEOscar: Óscar, Roger y Sam, en Barcelona. Hago que las tiendas online vendan más con SEO, agente de ventas IA y automatización. El código es tuyo.",
     type: "website",
     locale: "es_ES",
-    url: "https://www.autoprocessx.com/sobre-nosotros",
+    url: "https://www.seoscar.com/sobre-nosotros",
   },
   alternates: {
-    canonical: "https://www.autoprocessx.com/sobre-nosotros",
+    canonical: "https://www.seoscar.com/sobre-nosotros",
   },
 };
 
@@ -58,10 +50,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {children}
     </>

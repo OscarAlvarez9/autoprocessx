@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Fraunces, IBM_Plex_Mono, Inter } from "next/font/google";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import "./globals.css";
 import { ContactDrawerProvider } from "@/context/ContactDrawerContext";
 import ContactDrawer from "@/components/ContactDrawer";
 import ChatWidget from "@/components/ChatWidget";
-import Script from "next/script";
+import CookieConsent from "@/components/CookieConsent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,15 +17,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://www.autoprocessx.com"
+// Sistema tipográfico (paleta v3): serif editorial (Fraunces) + mono (IBM Plex) + Inter.
+const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"], display: "swap" });
+const plexMono = IBM_Plex_Mono({ variable: "--font-mono-plex", weight: ["400", "500", "600"], subsets: ["latin"], display: "swap" });
+const inter = Inter({ variable: "--font-sans-body", subsets: ["latin"], display: "swap" });
+
+const SITE_URL = "https://www.seoscar.com"
 const ORG_ID = `${SITE_URL}/#organization`
 
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "ProfessionalService"],
   "@id": ORG_ID,
-  name: "AutoProcessX",
-  alternateName: "AutoProcessX · Agencia IA Barcelona",
+  name: "SEOscar",
+  alternateName: "SEOscar · Agencia de Ecommerce Barcelona",
   url: SITE_URL,
   logo: {
     "@type": "ImageObject",
@@ -32,15 +38,17 @@ const organizationSchema = {
     width: 512,
     height: 512,
   },
-  description: "Agencia de inteligencia artificial en Barcelona. Automatización de procesos con n8n, plataformas IA con arquitectura RAG y chatbots para empresas — bajo tu propiedad, sin SaaS.",
-  slogan: "Tu propia infraestructura IA. Sin SaaS.",
+  description: "Agencia de ecommerce en Barcelona. Hacemos que las tiendas online vendan más con SEO y GEO que traen tráfico que compra, CRO, agente de ventas IA y automatización de procesos. Sobre tu plataforma actual, sin migrar.",
+  slogan: "Más tráfico que compra. Más visitas que convierten.",
+  // TODO Oscar: rellenar con los perfiles reales (LinkedIn de empresa, Instagram, X) para reforzar la entidad.
+  sameAs: [],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Premià de Mar",
     addressRegion: "Barcelona, Cataluña",
     addressCountry: "ES",
   },
-  email: "contacta@autoprocessx.com",
+  email: "contacta@seoscar.com",
   areaServed: [
     { "@type": "Country", name: "España" },
     { "@type": "AdministrativeArea", name: "Unión Europea" },
@@ -53,30 +61,42 @@ const organizationSchema = {
     availableLanguage: ["Spanish", "English"],
   },
   knowsAbout: [
-    "automatización de procesos",
-    "inteligencia artificial para empresas",
-    "n8n workflow automation",
-    "agentes autónomos IA",
+    "SEO para ecommerce",
+    "GEO / AI Search",
+    "CRO / optimización de conversión",
+    "agente de ventas IA",
+    "Shopify",
+    "WooCommerce",
+    "automatización de procesos con n8n",
     "arquitectura RAG",
-    "Retrieval-Augmented Generation",
-    "Claude 3.5 Sonnet",
-    "GPT-4o",
-    "chatbots IA web y WhatsApp",
-    "plataformas IA empresariales",
-    "ingeniería de plataformas",
-    "DevOps IA",
-    "vector databases",
-    "LLM orchestration",
+    "crecimiento de tiendas online",
+    "tráfico orgánico que compra",
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Servicios AutoProcessX",
+    name: "Servicios de SEOscar",
     itemListElement: [
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Automatizaciones IA con n8n",
+          name: "Crecimiento ecommerce (SEO, GEO y CRO)",
+          url: `${SITE_URL}/servicios/crecimiento-ecommerce`,
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Agente de ventas IA",
+          url: `${SITE_URL}/servicios/agente-ventas-ia`,
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Automatización de procesos con n8n",
           url: `${SITE_URL}/servicios/automatizaciones`,
         },
       },
@@ -84,28 +104,27 @@ const organizationSchema = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Chatbots IA para web y WhatsApp",
-          url: `${SITE_URL}/servicios/ai-chatbot`,
+          name: "Auditoría SEO, GEO y CRO",
+          url: `${SITE_URL}/servicios/auditoria-seo-geo`,
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Plataforma IA con arquitectura RAG",
-          url: `${SITE_URL}/servicios/aplicaciones-ia`,
+          name: "Plataformas internas a medida con IA",
+          url: `${SITE_URL}/servicios/a-medida`,
         },
       },
     ],
   },
-  sameAs: [],
 };
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": `${SITE_URL}/#website`,
-  name: "AutoProcessX",
+  name: "SEOscar",
   url: SITE_URL,
   description: "Agencia de inteligencia artificial y automatización con n8n en Barcelona. Agentes autónomos, arquitecturas RAG y flujos inteligentes para empresas.",
   inLanguage: "es-ES",
@@ -113,27 +132,28 @@ const websiteSchema = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.seoscar.com"),
   title: {
-    default: "Agencia IA Barcelona | Automatización, Chatbot y Apps IA",
-    template: "%s | AutoProcessX",
+    default: "Agencia de ecommerce en Barcelona, vende más | SEOscar",
+    template: "%s | SEOscar",
   },
-  description: "Agencia de inteligencia artificial en Barcelona. Automatización de procesos, chatbots personalizados y aplicaciones IA para empresas.",
-  keywords: ["agencia IA Barcelona", "agencia inteligencia artificial Barcelona", "ia para empresas", "inteligencia artificial para empresas", "automatización de procesos", "chatbot personalizado", "aplicaciones IA empresas", "n8n automatización"],
+  description: "Agencia de ecommerce en Barcelona. SEO y GEO que traen tráfico que compra, agente de ventas IA que convierte y automatización de procesos. Sobre tu propia tienda.",
+  keywords: ["sistemas de IA ecommerce", "agencia ecommerce Barcelona", "SEO ecommerce", "GEO AI Search", "agente de ventas IA", "automatización n8n", "CRO tienda online", "crecimiento ecommerce"],
   openGraph: {
-    title: "Agencia IA Barcelona | Automatización, Chatbot y Apps IA",
-    description: "Agencia de inteligencia artificial en Barcelona. Automatización de procesos, chatbots personalizados y aplicaciones IA para empresas.",
+    title: "Agencia de ecommerce en Barcelona, vende más | SEOscar",
+    description: "Agencia de ecommerce en Barcelona. SEO y GEO que traen tráfico que compra, agente de ventas IA que convierte y automatización de procesos. Sobre tu propia tienda.",
     type: "website",
     locale: "es_ES",
-    siteName: "AutoProcessX",
-    url: "https://www.autoprocessx.com",
+    siteName: "SEOscar",
+    url: "https://www.seoscar.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Agencia IA Barcelona | Automatización, Chatbot y Apps IA",
-    description: "Agencia de inteligencia artificial en Barcelona. Automatización de procesos, chatbots personalizados y aplicaciones IA para empresas.",
+    title: "Agencia de ecommerce en Barcelona, vende más | SEOscar",
+    description: "Agencia de ecommerce en Barcelona. SEO y GEO que traen tráfico que compra, agente de ventas IA que convierte y automatización de procesos. Sobre tu propia tienda.",
   },
   alternates: {
-    canonical: "https://www.autoprocessx.com",
+    canonical: "https://www.seoscar.com",
   },
   icons: {
     icon: "/icon.png",
@@ -162,36 +182,11 @@ export default function RootLayout({
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${plexMono.variable} ${inter.variable} h-full antialiased`}
     >
       <head suppressHydrationWarning>
-        {/* Google Tag Manager */}
-        <Script id="gtm-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-          `}
-        </Script>
-        <Script 
-          id="gtm-script" 
-          src="https://www.googletagmanager.com/gtm.js?id=GTM-WD6GMRVN"
-          strategy="afterInteractive" 
-        />
-        {/* End Google Tag Manager */}
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-Z275B8GKHX"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-Z275B8GKHX');
-          `}
-        </Script>
-        {/* End Google Analytics */}
+        {/* Analytics (GTM + GA) are loaded by <CookieConsent /> only after the
+            user grants consent, see components/CookieConsent.tsx (RGPD). */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -204,27 +199,20 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning className="min-h-full flex flex-col relative bg-background">
-        {/* Single root wrapper — protects React reconciliation against third-party DOM mutations
+        {/* Single root wrapper, protects React reconciliation against third-party DOM mutations
             (browser extensions, GTM-injected scripts, Calendly widget, etc.) */}
         <div suppressHydrationWarning className="contents">
-          {/* Google Tag Manager (noscript) */}
-          <noscript>
-            <iframe
-              src="https://www.googletagmanager.com/ns.html?id=GTM-WD6GMRVN"
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
-          </noscript>
-          {/* End Google Tag Manager (noscript) */}
-          <ContactDrawerProvider>
-            <div className="relative z-10 flex flex-col min-h-full">
-                {children}
-            </div>
+          <AppRouterCacheProvider options={{ key: "mui" }}>
+            <ContactDrawerProvider>
+              <div className="relative z-10 flex flex-col min-h-full">
+                  {children}
+              </div>
 
-            <ContactDrawer />
-          </ContactDrawerProvider>
-          <ChatWidget />
+              <ContactDrawer />
+            </ContactDrawerProvider>
+            <ChatWidget />
+            <CookieConsent />
+          </AppRouterCacheProvider>
         </div>
       </body>
     </html>

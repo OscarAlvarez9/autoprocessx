@@ -29,7 +29,7 @@ const initialMessages: ChatMsg[] = [
         id: "welcome",
         from: "assistant",
         content:
-            "Hola, soy **Aria**, el asistente de AutoProcessX. ¿En qué te ayudo — automatizar procesos, montar un asistente IA con vuestros datos, o un chatbot para web/WhatsApp?",
+            "Hola, soy **Aria**, el asistente de SEOscar. ¿En qué te ayudo — automatizar procesos, montar un asistente IA con vuestros datos, o un chatbot para web/WhatsApp?",
     },
 ]
 
@@ -115,7 +115,7 @@ export function Chatbot({ apiEndpoint = "/api/chat" }: ChatbotProps) {
     }
 
     return (
-        <div className="flex h-full flex-col overflow-hidden bg-[#0F1424] text-white">
+        <div className="flex h-full flex-col overflow-hidden bg-[#FFFFFF] text-[#09090B]">
             <Conversation className="min-h-0 flex-1">
                 <ConversationContent>
                     {messages.map((msg) => (
@@ -129,7 +129,7 @@ export function Chatbot({ apiEndpoint = "/api/chat" }: ChatbotProps) {
                 <ConversationScrollButton />
             </Conversation>
 
-            <div className="shrink-0 space-y-3 border-t border-white/10 bg-[#0F1424] px-4 py-3">
+            <div className="shrink-0 space-y-3 border-t border-[#E4E4E7] bg-[#FFFFFF] px-4 py-3">
                 {messages.length <= 1 && (
                     <Suggestions>
                         {suggestions.map((s) => (

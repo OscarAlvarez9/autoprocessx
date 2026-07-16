@@ -73,7 +73,7 @@ const farmaciaGarcia: Product = {
 const opoAI: Product = {
     id: "02",
     name: "OpoAI",
-    tagline: "RAG Engine · Zero-Hallucination · Semantic Tutor",
+    tagline: "RAG Engine · Citación de fuentes · Semantic Tutor",
     slug: "opoai-plataforma-estudio-oposiciones",
     description: "Tutor IA entrenado sobre miles de páginas de temario oficial que responde sin inventar mediante RAG semántico y documentación vectorizada real.",
     image: "/assets/opoai_logo.png",
@@ -98,7 +98,7 @@ export default function OwnProducts({ variant = "default" }: { variant?: "defaul
     return (
         <section
             id="products"
-            className="relative py-16 md:py-20 text-white overflow-hidden"
+            className="relative py-16 md:py-20 text-[#09090B] overflow-hidden"
         >
             <DarkBackground accent="accent" secondaryAccent="cyan" intensity="medium" />
 
@@ -112,7 +112,7 @@ export default function OwnProducts({ variant = "default" }: { variant?: "defaul
                     <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-[1.05] mb-3">
                         No conectamos apps. <span className="text-accent">Construimos plataformas.</span>
                     </h2>
-                    <p className="text-sm md:text-base text-white/60 font-medium leading-relaxed max-w-2xl">
+                    <p className="text-sm md:text-base text-zinc-600 font-medium leading-relaxed max-w-2xl">
                         Zapier y Make son intermediarios superficiales. Desplegamos infraestructuras corporativas completas — agentes IA nativos, datos propios, control total.
                     </p>
                 </div>
@@ -126,15 +126,15 @@ export default function OwnProducts({ variant = "default" }: { variant?: "defaul
 
                 {/* Pledge */}
                 <div className="mt-16 text-center">
-                    <div className="inline-flex flex-col sm:flex-row items-center gap-4 px-5 py-3 rounded-2xl border border-white/10 bg-[#0F1424]">
+                    <div className="inline-flex flex-col sm:flex-row items-center gap-4 px-5 py-3 rounded-2xl border border-[#E4E4E7] bg-[#FFFFFF]">
                         <div className="flex items-center gap-2.5">
                             <ShieldCheck className="h-4 w-4 text-accent" />
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/60">
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600">
                                 Demostrado en producción
                             </span>
                         </div>
-                        <div className="hidden sm:block h-4 w-[1px] bg-white/15" />
-                        <p className="text-sm font-medium text-white/80">
+                        <div className="hidden sm:block h-4 w-[1px] bg-zinc-200" />
+                        <p className="text-sm font-medium text-zinc-600">
                             Si lo construimos para nosotros, podemos construirlo para ti.
                         </p>
                     </div>
@@ -185,14 +185,14 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 >
                     <div className={`absolute -inset-6 ${a.glow} rounded-[40px] blur-2xl opacity-30 group-hover:opacity-60 transition-opacity duration-700`} />
 
-                    <div className="relative rounded-2xl md:rounded-[24px] overflow-hidden border border-white/10 bg-[#0F1424] shadow-xl">
-                        <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/5 bg-black/40">
+                    <div className="relative rounded-2xl md:rounded-[24px] overflow-hidden border border-[#E4E4E7] bg-[#FFFFFF] shadow-xl">
+                        <div className="flex items-center justify-between px-4 py-2.5 border-b border-[#E4E4E7] bg-black/40">
                             <div className="flex items-center gap-1.5">
                                 <div className="h-2 w-2 rounded-full bg-red-500/40" />
-                                <div className="h-2 w-2 rounded-full bg-amber-500/40" />
+                                <div className="h-2 w-2 rounded-full bg-[#B4975A]/40" />
                                 <div className="h-2 w-2 rounded-full bg-emerald-500/40" />
                             </div>
-                            <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/30">
+                            <span className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-400">
                                 {product.badge}
                             </span>
                             <div className="flex items-center gap-1.5">
@@ -218,8 +218,8 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             <div className="w-full lg:w-[42%] flex flex-col">
                 <div className="flex items-center gap-3 mb-4">
                     <span className={`${a.text} text-2xl font-black leading-none opacity-40`}>{product.id}</span>
-                    <div className="h-[1px] flex-grow bg-white/10" />
-                    <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0F1424] border ${a.border}`}>
+                    <div className="h-[1px] flex-grow bg-zinc-200" />
+                    <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FFFFFF] border ${a.border}`}>
                         <div className={`h-1 w-1 rounded-full ${a.dot} animate-pulse`} />
                         <span className={`text-[9px] font-black uppercase tracking-[0.25em] ${a.text}`}>Deployed</span>
                     </div>
@@ -233,11 +233,11 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                     {product.name}
                 </h3>
 
-                <p className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40 mb-4">
+                <p className="text-[10px] font-black uppercase tracking-[0.25em] text-zinc-500 mb-4">
                     {product.tagline}
                 </p>
 
-                <p className="text-white/60 text-sm font-medium leading-relaxed mb-5">
+                <p className="text-zinc-600 text-sm font-medium leading-relaxed mb-5">
                     {product.description}
                 </p>
 
@@ -245,13 +245,13 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 <div className="mb-4">
                     <div className="flex items-center gap-2 mb-2">
                         <Layers className={`h-3 w-3 ${a.text}`} />
-                        <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40">Modular Units</span>
+                        <span className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-500">Modular Units</span>
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                         {product.modules.map((m) => (
                             <span
                                 key={m}
-                                className="px-2 py-1 rounded-md bg-[#0F1424] border border-white/10 text-[10px] font-bold text-white/70"
+                                className="px-2 py-1 rounded-md bg-[#FFFFFF] border border-[#E4E4E7] text-[10px] font-bold text-zinc-600"
                             >
                                 {m}
                             </span>
@@ -263,11 +263,11 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 <div className="mb-6">
                     <div className="flex items-center gap-2 mb-2">
                         <Terminal className={`h-3 w-3 ${a.text}`} />
-                        <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40">Stack</span>
+                        <span className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-500">Stack</span>
                     </div>
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                         {product.stack.map((s, idx) => (
-                            <span key={s} className="inline-flex items-center gap-2 text-xs font-black text-white/85">
+                            <span key={s} className="inline-flex items-center gap-2 text-xs font-black text-zinc-600">
                                 {s}
                                 {idx < product.stack.length - 1 && <span className={`${a.text} opacity-40`}>·</span>}
                             </span>
@@ -276,7 +276,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 </div>
 
                 <Link href={`/casos-de-exito/${product.slug}`} className="self-start">
-                    <Button className={`group h-11 px-5 rounded-xl bg-white text-[#0a0a0a] ${a.hoverBtn} hover:text-black transition-all font-black uppercase tracking-[0.2em] text-[10px] active:scale-95`}>
+                    <Button className={`group h-11 px-5 rounded-xl bg-white text-[#FAFAFA] ${a.hoverBtn} hover:text-black transition-all font-black uppercase tracking-[0.2em] text-[10px] active:scale-95`}>
                         Auditar Arquitectura
                         <ArrowUpRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </Button>

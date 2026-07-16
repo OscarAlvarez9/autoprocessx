@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { Plus, MessageCircleQuestion } from "lucide-react"
 import { homeFaqs, type FAQItem } from "@/lib/faqs"
 
@@ -36,14 +36,14 @@ export default function FAQ({
     }
 
     return (
-        <section id="faq" className="relative py-20 md:py-28 bg-[#05070F] overflow-hidden">
+        <section id="faq" className="relative py-20 md:py-28 bg-[#FAFAFA] overflow-hidden">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
 
             {/* Ambient amber glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-amber-500/[0.06] blur-[140px] rounded-full pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#B4975A]/[0.06] blur-[140px] rounded-full pointer-events-none" />
 
             <div className="container relative z-10 px-6 mx-auto max-w-4xl">
                 {/* Header — centered like Comparison */}
@@ -52,10 +52,10 @@ export default function FAQ({
                         <MessageCircleQuestion className="h-3.5 w-3.5" />
                         {eyebrow}
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-black text-white mb-5 leading-[1.05] tracking-tight">
+                    <h2 className="text-3xl md:text-5xl font-black text-[#09090B] mb-5 leading-[1.05] tracking-tight">
                         {title} <span className="text-accent">{titleAccent}</span>.
                     </h2>
-                    <p className="text-white/65 text-base md:text-lg font-medium leading-relaxed max-w-2xl mx-auto">
+                    <p className="text-zinc-600 text-base md:text-lg font-medium leading-relaxed max-w-2xl mx-auto">
                         {description}
                     </p>
                 </div>
@@ -73,68 +73,64 @@ export default function FAQ({
                                 transition={{ delay: i * 0.04 }}
                                 className={`rounded-2xl border transition-all overflow-hidden ${
                                     isOpen
-                                        ? "border-accent/40 bg-gradient-to-br from-accent/[0.04] to-transparent shadow-[0_0_40px_-12px_rgba(251,191,36,0.25)]"
-                                        : "border-white/10 bg-[#0F1424] hover:border-white/20"
+                                        ? "border-accent/40 bg-gradient-to-br from-accent/[0.04] to-transparent shadow-[0_0_40px_-12px_rgba(180,151,90,0.25)]"
+                                        : "border-[#E4E4E7] bg-[#FFFFFF] hover:border-[#E4E4E7]"
                                 }`}
                             >
-                                <h2 className="m-0">
+                                <h3 className="m-0">
                                     <button
                                         onClick={() => setOpenIndex(isOpen ? null : i)}
-                                        className="w-full flex items-center gap-4 md:gap-6 px-5 md:px-7 py-5 md:py-6 text-left group"
+                                        className="w-full flex items-center gap-4 md:gap-6 px-5 md:px-7 py-5 md:py-6 text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAFAFA] rounded-2xl"
                                         aria-expanded={isOpen}
                                         aria-controls={`faq-answer-${i}`}
                                         id={`faq-question-${i}`}
                                     >
                                         <span
                                             className={`text-xs font-black tabular-nums shrink-0 transition-colors ${
-                                                isOpen ? "text-accent" : "text-white/30 group-hover:text-accent/60"
+                                                isOpen ? "text-accent" : "text-zinc-500 group-hover:text-accent"
                                             }`}
                                         >
                                             {String(i + 1).padStart(2, "0")}
                                         </span>
                                         <span
                                             className={`flex-1 text-sm md:text-base font-black tracking-tight transition-colors ${
-                                                isOpen ? "text-white" : "text-white/85 group-hover:text-white"
+                                                isOpen ? "text-[#09090B]" : "text-zinc-700 group-hover:text-[#09090B]"
                                             }`}
                                         >
                                             {item.q}
                                         </span>
-                                        <motion.span
-                                            animate={{ rotate: isOpen ? 45 : 0 }}
-                                            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                                            className={`h-8 w-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                                        <span
+                                            aria-hidden
+                                            className={`h-8 w-8 rounded-lg flex items-center justify-center shrink-0 transition-all motion-reduce:transition-none ${
                                                 isOpen
-                                                    ? "bg-accent text-black"
-                                                    : "bg-white/[0.04] text-white/60 group-hover:bg-accent/20 group-hover:text-accent"
+                                                    ? "bg-accent text-black rotate-45"
+                                                    : "bg-zinc-100 text-zinc-600 group-hover:bg-accent/20 group-hover:text-accent"
                                             }`}
                                         >
                                             <Plus className="h-4 w-4" />
-                                        </motion.span>
+                                        </span>
                                     </button>
-                                </h2>
+                                </h3>
 
-                                <AnimatePresence initial={false}>
-                                    {isOpen && (
-                                        <motion.div
-                                            initial={{ height: 0, opacity: 0 }}
-                                            animate={{ height: "auto", opacity: 1 }}
-                                            exit={{ height: 0, opacity: 0 }}
-                                            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                                            className="overflow-hidden"
-                                            id={`faq-answer-${i}`}
-                                            role="region"
-                                            aria-labelledby={`faq-question-${i}`}
-                                        >
-                                            <div className="px-5 md:px-7 pb-6 md:pb-7">
-                                                <div className="ml-7 md:ml-10 pt-4 border-t border-white/10">
-                                                    <h3 className="text-white/65 text-sm md:text-base font-medium leading-relaxed m-0">
-                                                        {item.a}
-                                                    </h3>
-                                                </div>
+                                {/* Panel siempre en el DOM (colapsa por CSS grid-rows; respeta prefers-reduced-motion) */}
+                                <div
+                                    id={`faq-answer-${i}`}
+                                    role="region"
+                                    aria-labelledby={`faq-question-${i}`}
+                                    className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
+                                        isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                                    }`}
+                                >
+                                    <div className="overflow-hidden">
+                                        <div className="px-5 md:px-7 pb-6 md:pb-7">
+                                            <div className="ml-7 md:ml-10 pt-4 border-t border-[#E4E4E7]">
+                                                <p className="text-zinc-600 text-sm md:text-base font-medium leading-relaxed m-0">
+                                                    {item.a}
+                                                </p>
                                             </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
+                                        </div>
+                                    </div>
+                                </div>
                             </motion.div>
                         )
                     })}
@@ -142,11 +138,11 @@ export default function FAQ({
 
                 {/* Footer cta */}
                 <div className="mt-10 md:mt-12 text-center">
-                    <p className="text-xs md:text-sm text-white/45 font-medium">
+                    <p className="text-xs md:text-sm text-zinc-500 font-medium">
                         ¿No encuentras lo que buscas?{" "}
                         <a
                             href="#contacto"
-                            className="text-accent font-black hover:text-amber-300 transition-colors"
+                            className="text-accent font-black hover:text-[#B4975A] transition-colors"
                         >
                             Habla directamente con ingeniería →
                         </a>

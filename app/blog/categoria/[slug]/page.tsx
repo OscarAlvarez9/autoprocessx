@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         description: cat.description,
         alternates: { canonical: `${SITE_URL}/blog/categoria/${cat.slug}` },
         openGraph: {
-            title: `${cat.name} · Blog AutoProcessX`,
+            title: `${cat.name} · Blog SEOscar`,
             description: cat.description,
             type: "website",
             url: `${SITE_URL}/blog/categoria/${cat.slug}`,
@@ -66,14 +66,16 @@ export default async function CategoryPage({ params }: Params) {
     const cat = getCategory(slug as CategorySlug)
     if (!cat) notFound()
     const posts = await getPostsByCategory(cat.slug)
+    // Subtemas reales = tags distintos de los posts de la vertical (gateway mini-landing)
+    const subtopics = Array.from(new Set(posts.flatMap((p) => p.tags ?? []))).slice(0, 10)
 
     return (
-        <main className="min-h-screen bg-[#05070F] text-white selection:bg-amber-400/30">
+        <main className="min-h-screen bg-[#FAFAFA] text-[#09090B] selection:bg-[#B4975A]/30">
             <Navigation />
 
             {/* Hero */}
             <section className="relative pt-32 pb-12 md:pt-36 md:pb-20 overflow-hidden">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-500/[0.07] blur-[160px] rounded-full pointer-events-none" />
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#B4975A]/[0.07] blur-[160px] rounded-full pointer-events-none" />
 
                 <div className="container relative z-10 px-6 mx-auto max-w-6xl">
                     <Breadcrumbs
@@ -92,16 +94,16 @@ export default async function CategoryPage({ params }: Params) {
                             </span>
                         </div>
 
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-[-0.025em] leading-[1] mb-6">
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#09090B] tracking-[-0.025em] leading-[1] mb-6">
                             <span
-                                className="relative inline-block bg-gradient-to-br from-amber-200 via-amber-300 to-amber-500 bg-clip-text text-transparent"
-                                style={{ filter: "drop-shadow(0 0 24px rgba(251,191,36,0.35))" }}
+                                className="relative inline-block bg-gradient-to-br from-[#B4975A] via-[#B4975A] to-[#B4975A] bg-clip-text text-transparent"
+                                style={{ filter: "drop-shadow(0 0 24px rgba(180,151,90,0.35))" }}
                             >
                                 {cat.name}
                             </span>
                         </h1>
 
-                        <p className="text-base md:text-lg text-white/65 font-medium leading-relaxed max-w-2xl mx-auto">
+                        <p className="text-base md:text-lg text-zinc-600 font-medium leading-relaxed max-w-2xl mx-auto">
                             {cat.description}
                         </p>
                     </div>
@@ -114,7 +116,7 @@ export default async function CategoryPage({ params }: Params) {
                     <div className="flex flex-wrap justify-center gap-2 md:gap-3">
                         <Link
                             href="/blog"
-                            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/[0.04] border border-white/10 hover:bg-white/[0.06] text-white/70 hover:text-white text-[10px] font-black uppercase tracking-[0.25em] transition-all"
+                            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-zinc-100 border border-[#E4E4E7] hover:bg-zinc-100 text-zinc-600 hover:text-[#09090B] text-[10px] font-black uppercase tracking-[0.25em] transition-all"
                         >
                             ← Todos
                         </Link>
@@ -127,7 +129,7 @@ export default async function CategoryPage({ params }: Params) {
                                     className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.25em] transition-all ${
                                         active
                                             ? `${accentBg[c.accent]} ${accentText[c.accent]}`
-                                            : "bg-white/[0.04] border border-white/10 text-white/70 hover:bg-white/[0.06]"
+                                            : "bg-zinc-100 border border-[#E4E4E7] text-zinc-600 hover:bg-zinc-100"
                                     }`}
                                 >
                                     <span className={`h-1.5 w-1.5 rounded-full ${accentDot[c.accent]} ${active ? "animate-pulse" : ""}`} />
@@ -139,12 +141,33 @@ export default async function CategoryPage({ params }: Params) {
                 </div>
             </section>
 
+            {/* Subtemas (gateway) */}
+            {subtopics.length > 0 && (
+                <section className="relative pb-10 md:pb-12">
+                    <div className="container px-6 mx-auto max-w-6xl">
+                        <div className="rounded-2xl border border-[#E4E4E7] bg-[#FFFFFF] p-5 md:p-6">
+                            <div className="flex items-center gap-2 mb-4">
+                                <span className={`h-1.5 w-1.5 rounded-full ${accentDot[cat.accent]}`} aria-hidden />
+                                <span className={`text-[11px] font-mono font-medium uppercase tracking-wide ${accentText[cat.accent]}`}>Qué cubre esta vertical</span>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                {subtopics.map((t) => (
+                                    <span key={t} className="inline-flex items-center rounded-lg bg-zinc-50 border border-[#E4E4E7] px-3 py-1.5 text-xs font-mono text-zinc-600">
+                                        {t}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
+
             {/* Posts */}
             <section className="relative pb-20 md:pb-28">
                 <div className="container px-6 mx-auto max-w-6xl">
                     {posts.length === 0 ? (
                         <div className="text-center py-20">
-                            <p className="text-white/50 text-sm font-medium">
+                            <p className="text-zinc-500 text-sm font-medium">
                                 Aún no hay artículos publicados en esta categoría.
                             </p>
                         </div>

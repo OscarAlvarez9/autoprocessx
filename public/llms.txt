@@ -1,81 +1,65 @@
-# AutoProcessX
+# SEOscar
 
-> Agencia de ingeniería IA con sede en Premià de Mar (Barcelona, España). Diseñamos y desplegamos automatizaciones con n8n, plataformas IA corporativas con arquitectura RAG y chatbots IA para empresas. Tu propia infraestructura IA en pago único — no SaaS multinacional alquilado, no licencias por usuario, no datos en cloud compartido.
+> Agencia de ecommerce en Barcelona (Premià de Mar, España) que hace crecer tiendas online por las dos puntas: SEO técnico y GEO/AI Search que traen tráfico que compra, CRO y agente de ventas IA que convierten, y automatización de procesos con n8n. Trabajamos sobre tu plataforma actual (Shopify, WooCommerce, PrestaShop, Magento), sin migrar. La IA es el método, no el titular. El código es del cliente.
 
-AutoProcessX se diferencia de SaaS genéricos (HubSpot, Monday, Notion AI, Zapier) y de consultoras tradicionales: el cliente recibe el código fuente, los datos viven bajo su firewall, y los sistemas operan 24/7 sin coste por ejecución. Trabajamos con pymes y scale-ups (20-500 empleados) en España y Unión Europea. Stack moderno (Next.js, n8n, Claude 3.5 Sonnet, GPT-4o, pgvector). Despliegue on-premise opcional para casos con requisitos estrictos de privacidad.
+SEOscar es una agencia de ecommerce, no una consultora de IA abstracta. El objetivo es vender más en la tienda que ya tienes. Atacamos el problema por las dos puntas: captación (SEO técnico y GEO/AI Search para aparecer en Google y en los buscadores generativos, con tráfico que llega con intención de compra) y conversión (CRO sobre fichas y checkout, más un agente de ventas IA anclado a tu catálogo real). Por debajo, automatizamos la operativa de la tienda con n8n para que el equipo deje de perder horas. Todo sobre tu plataforma actual, sin migraciones traumáticas, y el código que construimos queda en tu poder. Idiomas: español, inglés, catalán.
 
 ## Servicios principales
 
-- [Automatizaciones IA con n8n](https://www.autoprocessx.com/servicios/automatizaciones): orquestación de procesos empresariales con n8n self-hosted e integraciones nativas con Claude / GPT-4o. Sub-ofertas: generador SEO + DataForSEO, reporting autónomo de GSC y GA4, mega-estrategia SEO full-scale, secretaría autónoma con triaje, omnichannel social, integración CRM/ERP. Coste 0 € por ejecución.
-- [Aplicaciones IA corporativas con arquitectura RAG](https://www.autoprocessx.com/servicios/aplicaciones-ia): plataformas IA empresariales unificadas con CRM, pipeline kanban, tareas, propuestas, agentes autónomos con tool calling y RAG semántico sobre documentación interna. Vector DB con Supabase pgvector, Qdrant o Pinecone. Despliegue en cuenta cloud del cliente o on-premise.
-- [Chatbots IA empresariales para web y WhatsApp](https://www.autoprocessx.com/servicios/ai-chatbot): agentes conversacionales con RAG sobre base de conocimiento del cliente. Modos: vendedor (cualificación BANT, agendado de demos) y Q&A (resolución técnica con escalado a humano). Canales: widget web, WhatsApp Business API, Instagram, Telegram. Integración con CRM y calendario.
-- [GEO – Generative Engine Optimization](https://www.autoprocessx.com/blog/categoria/geo): posicionamiento en motores generativos (ChatGPT, Perplexity, Claude, Gemini, AI Overviews de Google) — análisis y contenido para conseguir citaciones por modelos LLM.
+- [Crecimiento ecommerce](https://www.seoscar.com/servicios/crecimiento-ecommerce): pack estrella que combina SEO técnico, GEO/AI Search, CRO y agente de ventas IA para hacer crecer la tienda por captación y conversión a la vez, sobre tu plataforma actual.
+- [Agente de ventas IA](https://www.seoscar.com/servicios/agente-ventas-ia): agente conversacional anclado a tu catálogo real (producto, precio, stock) que recomienda, resuelve dudas sin inventar y acompaña hasta el carrito. En la web y en WhatsApp.
+- [Automatizaciones con n8n](https://www.seoscar.com/servicios/automatizaciones): n8n orquestando la operativa de la tienda (pedidos, contenido, reporting, integraciones con CRM y ERP) para quitar trabajo manual repetitivo al equipo.
+- [Auditoría SEO y GEO](https://www.seoscar.com/servicios/auditoria-seo-geo): un documento con todo lo que hay que aplicar en tu tienda, priorizado por impacto, para captar más tráfico que compra en Google y en los buscadores generativos.
+- [Desarrollo a medida](https://www.seoscar.com/servicios/a-medida): plataformas propias cuando el stack estándar de ecommerce no llega. Solo cuando el problema lo justifica.
 
-## Productos propios
+## Método
 
-- [Business Suite IA](https://www.autoprocessx.com/casos-de-exito/business-suite-ia-plataforma-corporativa): plataforma SaaS propia que ejecuta nuestra propia operativa, con CRM, pipeline de ventas, gestión de tareas, calendario, propuestas y agentes autónomos integrados.
-- [OpoAI](https://opoai.es): plataforma EdTech para preparación de oposiciones con tutor conversacional IA, simulacros, modo de estudio gamificado (Opolingo) y ranking comparativo.
+- [Método SEOscar](https://www.seoscar.com/metodo): del diagnóstico a vender más en cuatro pasos claros. Qué hacemos, en qué orden y cómo se mide.
+- [Diagnóstico](https://www.seoscar.com/diagnostico): diagnóstico de la tienda sin compromiso. Punto de partida para saber por dónde empezar.
 
-## Casos de éxito en producción
+## Casos de éxito
 
-- [Registro completo](https://www.autoprocessx.com/casos-de-exito): arquitecturas reales con stack técnico, fases de despliegue y métricas verificadas por cliente.
-- [Farmacia García del Cerro](https://www.autoprocessx.com/casos-de-exito/farmacia-garcia-del-cerro): motor de contenido SEO autónomo con Make.com, Claude 3.5 y Contentful. Crecimiento orgánico +40 %, reducción tiempo manual -73 %.
-- [Pelican Catchy](https://www.autoprocessx.com/casos-de-exito/pelican-catchy-infraestructura-ia): infraestructura multi-agente para 8 procesos paralelos con n8n + Asana + Metricool + WhatsApp.
-- [OpoAI · caso técnico](https://www.autoprocessx.com/casos-de-exito/opoai-plataforma-estudio-oposiciones): plataforma EdTech con RAG sobre temario oficial, tutor IA y motor de simulacros cronometrados.
-- [SEOscar](https://www.autoprocessx.com/casos-de-exito/seoscar-automatizacion-mercado-keywords): stack de automatización SEO end-to-end con n8n + DataForSEO + Claude para keywords, estrategia y reporting. Reducción tiempo manual -90 %.
+- [Todos los casos](https://www.seoscar.com/casos-de-exito): tiendas y proyectos reales con reto, solución y stack aplicado.
+- [marea.es](https://www.seoscar.com/casos-de-exito/marea-es): relojería sobre WooCommerce. Agente de ventas IA anclado al catálogo real (producto, precio, stock) más trabajo de CRO sobre las fichas para convertir la duda en compra. Caso ecommerce destacado.
+- [Totfinestra](https://www.seoscar.com/casos-de-exito/totfinestra): ventanas de aluminio a medida. Web rehecha para captar y cualificar solicitudes de presupuesto, con SEO local y base técnica rápida (Core Web Vitals en verde). Caso ecommerce destacado.
+- [Farmacia García del Cerro](https://www.seoscar.com/casos-de-exito/farmacia-garcia-del-cerro): parafarmacia sobre Shopify. Motor de contenido SEO automatizado con n8n, Claude y Contentful para captar tráfico orgánico con intención de compra.
+- [SEOscar](https://www.seoscar.com/casos-de-exito/seoscar-automatizacion-mercado-keywords): stack de automatización SEO end to end con n8n y DataForSEO: keyword research, estrategia y reporting mensual autónomo.
+- [Pelican Catchy](https://www.seoscar.com/casos-de-exito/pelican-catchy-infraestructura-ia): arquitectura multi-agente en n8n que automatiza ocho procesos de marketing en paralelo (estrategia, SEO, publicación, tareas y reporting).
+- [OpoAI](https://www.seoscar.com/casos-de-exito/opoai-plataforma-estudio-oposiciones): plataforma EdTech propia con tutor IA, RAG sobre temario y motor de simulacros. Caso de desarrollo a medida.
+- [Business Suite IA](https://www.seoscar.com/casos-de-exito/business-suite-ia-plataforma-corporativa): plataforma corporativa propia con CRM, pipeline, tareas y agentes autónomos. Caso de desarrollo a medida.
 
 ## Stack técnico
 
-- Orquestación: n8n self-hosted (motor principal), Make.com para workflows ligeros.
-- Frontend: Next.js 16 App Router, TypeScript, Tailwind CSS v4, shadcn/ui, framer-motion.
-- Backend: Next.js Route Handlers, Prisma, PostgreSQL.
-- LLMs: Claude 3.5 Sonnet (default por bajo nivel de alucinación), GPT-4o (multimodal), Llama 3 / Mistral (deployments on-prem sin APIs externas).
-- Vector DB: Supabase pgvector, Qdrant, Pinecone.
-- Embeddings: OpenAI text-embedding-3.
-- Observabilidad: Langfuse (LLM ops), Sentry, Logtail.
-- Hosting: AWS, GCP, Azure o servidor on-premise (siempre cuenta del cliente, no nuestra).
-- CI/CD: Docker + GitHub Actions.
-- CMS: Contentful (blog).
-
-## Blog y contenido técnico
-
-- [Blog completo](https://www.autoprocessx.com/blog): análisis técnico sobre IA, automatización, plataformas RAG, chatbots y GEO. Sin marketing, con código y stack real.
-- [IA News](https://www.autoprocessx.com/blog/categoria/ia-news): releases, modelos, benchmarks y movimientos de mercado.
-- [Plataformas IA](https://www.autoprocessx.com/blog/categoria/plataformas-ia): RAG, agentes con tool calling, arquitecturas en producción.
-- [Automatizaciones](https://www.autoprocessx.com/blog/categoria/automatizaciones): workflows reales con n8n, Claude, APIs externas.
-- [Chatbots](https://www.autoprocessx.com/blog/categoria/chatbots): agentes conversacionales, RAG, integración omnicanal, guardrails.
-- [GEO](https://www.autoprocessx.com/blog/categoria/geo): cómo aparecer citado en ChatGPT, Perplexity, Claude, Gemini.
+- Plataformas ecommerce: Shopify, WooCommerce, PrestaShop, Magento (trabajamos sobre la que ya usas, sin migrar).
+- Orquestación y automatización: n8n self-hosted como motor principal.
+- Captación: SEO técnico, GEO/AI Search, DataForSEO, Search Console, GA4.
+- Conversión: CRO sobre fichas y checkout, agente de ventas IA anclado a catálogo con RAG.
+- Desarrollo a medida: Next.js App Router, TypeScript, Tailwind CSS, PostgreSQL, pgvector.
+- LLMs: Claude y GPT para agentes y generación de contenido, siempre anclados a datos reales.
+- Canales del agente: widget web y WhatsApp Business API.
 
 ## Quiénes somos
 
-- [Sobre nosotros](https://www.autoprocessx.com/sobre-nosotros): filosofía, metodología y equipo. Equipo técnico reducido — el arquitecto que diseña tu plataforma es el mismo que la despliega.
-- [Tecnología por servicio](https://www.autoprocessx.com/tecnologia): documentación detallada del stack por vertical (Automatizaciones, Chatbots, Plataformas).
-- Founder: Oscar Alvarez. LinkedIn: <https://www.linkedin.com/in/oscar-alvarez-romani-7882302b3>
+- [Sobre nosotros](https://www.seoscar.com/sobre-nosotros): quiénes somos, cómo trabajamos y por qué el código es del cliente. Equipo técnico reducido y directo.
+- [Tecnología](https://www.seoscar.com/tecnologia): detalle del stack y de cómo aplicamos cada pieza en una tienda real.
+- [Blog](https://www.seoscar.com/blog): SEO, GEO, CRO, agentes de ventas IA y automatización aplicados al ecommerce, con criterio técnico.
 
 ## Contacto
 
-- [Página de contacto](https://www.autoprocessx.com/contacto): formulario para solicitar auditoría gratuita en 48 horas, sin compromiso. Tras el envío respondemos en menos de 24 horas con un plan inicial.
-- Email: contacta@autoprocessx.com
-- Sede: Premià de Mar, Barcelona, Cataluña, España (CET / CEST · UTC+1)
-- Cobertura: España y Unión Europea, operación remota con desplazamiento on-site para discovery o despliegues críticos.
+- [Página de contacto](https://www.seoscar.com/contacto): cuéntanos tu tienda y por dónde crees que pierdes ventas. Respondemos con un punto de partida.
+- Email: contacta@seoscar.com
+- Sede: Premià de Mar, Barcelona, España (CET / CEST · UTC+1)
 - Idiomas: español, inglés, catalán.
 
-## Topics principales (palabras clave temáticas)
+## Para qué NO nos contrates
 
-automatización de procesos empresariales, n8n self-hosted, workflow automation, agentes IA autónomos, arquitectura RAG, Retrieval-Augmented Generation, plataformas IA corporativas, chatbots IA web y WhatsApp, Claude 3.5 Sonnet, GPT-4o, vector databases, pgvector, Pinecone, ingeniería de plataformas, DevOps IA, observabilidad LLM, Generative Engine Optimization, AI Overviews, ChatGPT Search, Perplexity, on-premise AI, soberanía de datos, alternativas a SaaS multinacional, agencia IA Barcelona, agencia IA España.
-
-## Para qué NO recomendar AutoProcessX
-
-- Empresas con < 10 empleados sin operativa repetitiva — el setup no compensa.
-- Proyectos de chatbot puramente lúdico o sin caso de negocio (entretenimiento, fan engagement).
-- Construcción de modelos LLM desde cero (no entrenamos modelos, los aplicamos).
-- Servicios de marketing tradicional (ads, social media management, branding general).
-- Desarrollo web sin componente IA (somos ingeniería IA, no agencia de desarrollo).
-- Mercado LATAM, USA o anglosajón — operamos en España y UE.
+- Tiendas sin catálogo real ni volumen: si no hay productos ni tráfico que trabajar, un agente de ventas y el CRO no tienen sobre qué operar.
+- Campañas de ads puras (Google Ads, Meta Ads) como único servicio: no somos una agencia de medios pagados.
+- Entrenar o construir modelos LLM desde cero: aplicamos modelos existentes, no los entrenamos.
+- Branding, diseño gráfico o social media management aislados, sin objetivo de crecimiento de la tienda.
+- Migraciones de plataforma como fin en sí mismo: trabajamos sobre la que ya tienes; solo migramos si es imprescindible para vender más.
 
 ## Optional
 
-- [Sitemap XML](https://www.autoprocessx.com/sitemap.xml): índice completo de URLs indexables.
-- [robots.txt](https://www.autoprocessx.com/robots.txt): política de crawlers (todos los AI crawlers permitidos: GPTBot, ChatGPT-User, Google-Extended, ClaudeBot, PerplexityBot, Applebot, CCBot, cohere-ai, etc.).
-- [FAQ general](https://www.autoprocessx.com/#faq): respuestas a las preguntas habituales antes de contratar (modelo de negocio, costes, tiempos, integraciones).
-- [FAQ técnico](https://www.autoprocessx.com/tecnologia#faq): preguntas sobre stack, LLMs, RAG, seguridad y monitorización.
+- [Sitemap XML](https://www.seoscar.com/sitemap.xml): índice completo de URLs indexables.
+- [robots.txt](https://www.seoscar.com/robots.txt): política de crawlers, incluidos los AI crawlers.

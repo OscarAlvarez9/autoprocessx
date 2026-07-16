@@ -27,7 +27,7 @@ export const ChatbotHeroGraphic = () => {
                     
                     {/* Core orb */}
                     <div className="w-28 h-28 rounded-full bg-gradient-to-br from-primary via-primary/80 to-[#1a5fd4] shadow-[0_0_60px_rgba(15,71,175,0.4)] flex items-center justify-center">
-                        <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <svg className="w-12 h-12 text-[#09090B]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M12 2a7 7 0 0 1 7 7c0 3-2 5.5-4 7l-3 3-3-3c-2-1.5-4-4-4-7a7 7 0 0 1 7-7z" />
                             <circle cx="12" cy="9" r="2" />
                         </svg>
@@ -68,19 +68,19 @@ export const ChatbotHeroGraphic = () => {
                     className="absolute z-20"
                     style={{ left: `calc(50% + ${bubble.x}px)`, top: `calc(50% + ${bubble.y}px)` }}
                 >
-                    <div className={`rounded-2xl ${bubble.align === "left" ? "rounded-bl-sm bg-white/[0.06]" : "rounded-br-sm bg-primary/10"} backdrop-blur-sm border border-white/[0.08] px-4 py-2.5`} style={{ width: bubble.w }}>
+                    <div className={`rounded-2xl ${bubble.align === "left" ? "rounded-bl-sm bg-zinc-100" : "rounded-br-sm bg-primary/10"} backdrop-blur-sm border border-[#E4E4E7] px-4 py-2.5`} style={{ width: bubble.w }}>
                         <div className="flex flex-col gap-1.5">
-                            <div className="h-1 rounded-full bg-white/10 w-full" />
-                            <div className="h-1 rounded-full bg-white/10 w-3/4" />
+                            <div className="h-1 rounded-full bg-zinc-200 w-full" />
+                            <div className="h-1 rounded-full bg-zinc-200 w-3/4" />
                         </div>
                     </div>
                 </motion.div>
             ))}
 
             {/* Status indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm">
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-50 border border-[#E4E4E7] backdrop-blur-sm">
                 <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-                <span className="text-[10px] font-semibold text-white/30 uppercase tracking-[0.15em]">AI Active</span>
+                <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-[0.15em]">AI Active</span>
             </div>
         </div>
     )
@@ -160,8 +160,8 @@ export const SalesConversionGraphic = () => {
                 transition={{ delay: 2 }}
                 className="absolute top-12 left-10 z-10"
             >
-                <div className="flex flex-col gap-1 px-4 py-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm">
-                    <span className="text-[9px] font-semibold text-white/25 uppercase tracking-[0.15em]">Automatización</span>
+                <div className="flex flex-col gap-1 px-4 py-3 rounded-2xl bg-zinc-50 border border-[#E4E4E7] backdrop-blur-sm">
+                    <span className="text-[9px] font-semibold text-zinc-400 uppercase tracking-[0.15em]">Automatización</span>
                     <span className="text-2xl font-black text-primary tracking-tighter">Activa</span>
                 </div>
             </motion.div>
@@ -172,8 +172,8 @@ export const SalesConversionGraphic = () => {
                 transition={{ delay: 2.5 }}
                 className="absolute top-12 right-10 z-10"
             >
-                <div className="flex flex-col gap-1 px-4 py-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm">
-                    <span className="text-[9px] font-semibold text-white/25 uppercase tracking-[0.15em]">Revenue</span>
+                <div className="flex flex-col gap-1 px-4 py-3 rounded-2xl bg-zinc-50 border border-[#E4E4E7] backdrop-blur-sm">
+                    <span className="text-[9px] font-semibold text-zinc-400 uppercase tracking-[0.15em]">Revenue</span>
                     <div className="flex items-center gap-1.5">
                         <span className="text-2xl font-black text-emerald-400 tracking-tighter">↑</span>
                         <span className="text-lg font-black text-emerald-400 tracking-tighter">3.2x</span>
@@ -232,12 +232,12 @@ export const RAGPipelineGraphic = () => {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: i * 0.4, duration: 0.6 }}
-                            className={`w-full max-w-[200px] p-5 rounded-3xl bg-gradient-to-br ${stage.gradient} border border-white/[0.06] backdrop-blur-sm flex items-center gap-4`}
+                            className={`w-full max-w-[200px] p-5 rounded-3xl bg-gradient-to-br ${stage.gradient} border border-[#E4E4E7] backdrop-blur-sm flex items-center gap-4`}
                         >
-                            <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center flex-shrink-0">
+                            <div className="w-12 h-12 rounded-2xl bg-zinc-100 border border-[#E4E4E7] flex items-center justify-center flex-shrink-0">
                                 {stage.icon}
                             </div>
-                            <span className="text-xs font-bold text-white/40 uppercase tracking-[0.15em]">{stage.label}</span>
+                            <span className="text-xs font-bold text-zinc-500 uppercase tracking-[0.15em]">{stage.label}</span>
                         </motion.div>
 
                         {/* Connector */}
@@ -256,9 +256,9 @@ export const RAGPipelineGraphic = () => {
             </div>
 
             {/* Tech label */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.06]">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-50 border border-[#E4E4E7]">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary/60" />
-                <span className="text-[9px] font-semibold text-white/20 uppercase tracking-[0.15em]">RAG Pipeline</span>
+                <span className="text-[9px] font-semibold text-zinc-400 uppercase tracking-[0.15em]">RAG Pipeline</span>
             </div>
         </div>
     )
@@ -274,7 +274,7 @@ export const AIPlatformGraphic = () => {
         { label: "Knowledge Base", value: "12.4k docs", color: "#0F47AF" },
         { label: "Vector Index", value: "Active", color: "#8B5CF6" },
         { label: "Agents", value: "7 online", color: "#059669" },
-        { label: "API Tokens", value: "1.2M / día", color: "#F59E0B" },
+        { label: "API Tokens", value: "1.2M / día", color: "#8A7038" },
     ]
 
     const activity = [
@@ -291,16 +291,16 @@ export const AIPlatformGraphic = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="relative z-10 w-full max-w-[420px] rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-md overflow-hidden shadow-2xl"
+                className="relative z-10 w-full max-w-[420px] rounded-2xl bg-zinc-50 border border-[#E4E4E7] backdrop-blur-md overflow-hidden shadow-2xl"
             >
                 {/* Window chrome */}
-                <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/[0.06] bg-black/30">
+                <div className="flex items-center justify-between px-4 py-2.5 border-b border-[#E4E4E7] bg-black/30">
                     <div className="flex items-center gap-1.5">
                         <div className="h-2 w-2 rounded-full bg-red-500/40" />
-                        <div className="h-2 w-2 rounded-full bg-amber-500/40" />
+                        <div className="h-2 w-2 rounded-full bg-[#B4975A]/40" />
                         <div className="h-2 w-2 rounded-full bg-emerald-500/40" />
                     </div>
-                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/30">
+                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-400">
                         AI · Resource Platform
                     </span>
                     <div className="flex items-center gap-1.5">
@@ -312,22 +312,22 @@ export const AIPlatformGraphic = () => {
                 {/* Body: sidebar + content */}
                 <div className="grid grid-cols-[80px_1fr]">
                     {/* Sidebar */}
-                    <div className="border-r border-white/[0.05] p-3 flex flex-col gap-2 bg-black/20">
+                    <div className="border-r border-[#E4E4E7] p-3 flex flex-col gap-2 bg-black/20">
                         {[
                             { active: true, dot: "#0F47AF" },
                             { active: false, dot: "#8B5CF6" },
                             { active: false, dot: "#059669" },
-                            { active: false, dot: "#F59E0B" },
+                            { active: false, dot: "#8A7038" },
                             { active: false, dot: "#64748B" },
                         ].map((it, i) => (
                             <div
                                 key={i}
                                 className={`h-9 rounded-lg flex items-center gap-2 px-2 ${
-                                    it.active ? "bg-white/[0.05] border border-white/[0.08]" : ""
+                                    it.active ? "bg-zinc-100 border border-[#E4E4E7]" : ""
                                 }`}
                             >
                                 <div className="h-2 w-2 rounded-full" style={{ backgroundColor: it.dot, boxShadow: `0 0 6px ${it.dot}` }} />
-                                <div className="h-1 flex-1 rounded-full bg-white/[0.06]" />
+                                <div className="h-1 flex-1 rounded-full bg-zinc-100" />
                             </div>
                         ))}
                     </div>
@@ -337,8 +337,8 @@ export const AIPlatformGraphic = () => {
                         {/* Stat header */}
                         <div className="flex items-end justify-between">
                             <div>
-                                <div className="text-[8px] font-black uppercase tracking-[0.25em] text-white/30 mb-1">Recursos activos</div>
-                                <div className="text-2xl font-black text-white tracking-tighter">24 / 32</div>
+                                <div className="text-[8px] font-black uppercase tracking-[0.25em] text-zinc-400 mb-1">Recursos activos</div>
+                                <div className="text-2xl font-black text-[#09090B] tracking-tighter">24 / 32</div>
                             </div>
                             <div className="text-[9px] font-black uppercase tracking-widest text-emerald-400/70">+18%</div>
                         </div>
@@ -351,20 +351,20 @@ export const AIPlatformGraphic = () => {
                                     initial={{ opacity: 0, scale: 0.95 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ delay: 0.2 + i * 0.1 }}
-                                    className="rounded-xl bg-white/[0.03] border border-white/[0.06] p-2.5"
+                                    className="rounded-xl bg-zinc-50 border border-[#E4E4E7] p-2.5"
                                 >
                                     <div className="flex items-center gap-1.5 mb-1.5">
                                         <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: r.color }} />
-                                        <span className="text-[8px] font-black uppercase tracking-widest text-white/30 truncate">{r.label}</span>
+                                        <span className="text-[8px] font-black uppercase tracking-widest text-zinc-400 truncate">{r.label}</span>
                                     </div>
-                                    <div className="text-[10px] font-black text-white tracking-tight">{r.value}</div>
+                                    <div className="text-[10px] font-black text-[#09090B] tracking-tight">{r.value}</div>
                                 </motion.div>
                             ))}
                         </div>
 
                         {/* Activity feed */}
-                        <div className="rounded-xl bg-black/30 border border-white/[0.05] p-2.5 space-y-2">
-                            <div className="text-[8px] font-black uppercase tracking-[0.25em] text-white/30">Activity</div>
+                        <div className="rounded-xl bg-black/30 border border-[#E4E4E7] p-2.5 space-y-2">
+                            <div className="text-[8px] font-black uppercase tracking-[0.25em] text-zinc-400">Activity</div>
                             {activity.map((a, i) => (
                                 <motion.div
                                     key={i}
@@ -376,11 +376,11 @@ export const AIPlatformGraphic = () => {
                                     <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
                                     <div className="flex-1 min-w-0">
                                         <div className="flex items-center gap-1.5">
-                                            <span className="text-[9px] font-black text-white/80 truncate">{a.user}</span>
-                                            <span className="text-[8px] font-medium text-white/30 truncate">{a.action}</span>
+                                            <span className="text-[9px] font-black text-zinc-600 truncate">{a.user}</span>
+                                            <span className="text-[8px] font-medium text-zinc-400 truncate">{a.action}</span>
                                         </div>
                                     </div>
-                                    <span className="text-[8px] font-black text-white/30 shrink-0">{a.t}</span>
+                                    <span className="text-[8px] font-black text-zinc-400 shrink-0">{a.t}</span>
                                 </motion.div>
                             ))}
                         </div>
@@ -470,8 +470,8 @@ export const SecurityShieldGraphic = () => {
                     className="absolute z-20"
                     style={{ left: tag.x, top: tag.y }}
                 >
-                    <div className="px-3 py-1.5 rounded-xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm">
-                        <span className="text-[9px] font-bold text-white/25 uppercase tracking-[0.15em]">{tag.label}</span>
+                    <div className="px-3 py-1.5 rounded-xl bg-zinc-50 border border-[#E4E4E7] backdrop-blur-sm">
+                        <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-[0.15em]">{tag.label}</span>
                     </div>
                 </motion.div>
             ))}
@@ -559,10 +559,10 @@ export const AutomationHeroGraphic = () => {
             </svg>
 
             {/* Status bar */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3 px-5 py-2.5 rounded-full bg-zinc-50 border border-[#E4E4E7] backdrop-blur-sm">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.5)]" />
-                <span className="text-[9px] font-semibold text-white/25 uppercase tracking-[0.15em]">5 Nodes Active</span>
-                <div className="w-px h-3 bg-white/10" />
+                <span className="text-[9px] font-semibold text-zinc-400 uppercase tracking-[0.15em]">5 Nodes Active</span>
+                <div className="w-px h-3 bg-zinc-200" />
                 <span className="text-[9px] font-semibold text-emerald-400/50 uppercase tracking-[0.15em]">Running</span>
             </div>
         </div>
@@ -593,10 +593,10 @@ export const InfrastructureGraphic = () => {
                         className="relative flex items-center justify-center"
                         style={{ width: layer.width }}
                     >
-                        <div className="w-full py-5 px-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm flex items-center justify-between">
+                        <div className="w-full py-5 px-6 rounded-2xl bg-zinc-50 border border-[#E4E4E7] backdrop-blur-sm flex items-center justify-between">
                             <div className="flex items-center gap-3">
                                 <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: layer.color, boxShadow: `0 0 10px ${layer.color}40` }} />
-                                <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.12em]">{layer.label}</span>
+                                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.12em]">{layer.label}</span>
                             </div>
                             {/* Activity bar */}
                             <div className="flex gap-0.5">

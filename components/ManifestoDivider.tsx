@@ -5,7 +5,7 @@ import DarkBackground from "@/components/DarkBackground"
 
 export default function ManifestoDivider() {
     return (
-        <section className="relative py-24 md:py-28 text-white overflow-hidden">
+        <section className="relative py-24 md:py-28 text-[#09090B] overflow-hidden">
             <DarkBackground accent="primary" secondaryAccent="accent" intensity="medium" grid={false} />
 
             <div className="container px-6 mx-auto relative z-20">
@@ -20,11 +20,11 @@ export default function ManifestoDivider() {
                         Infrastructure Manifesto · v2
                     </motion.div>
 
-                    <h2 className="text-3xl md:text-5xl font-black text-white leading-[1.05] tracking-tight mb-6">
+                    <h2 className="text-3xl md:text-5xl font-black text-[#09090B] leading-[1.05] tracking-tight mb-6">
                         Tu empresa. <span className="text-primary">Tu código. Tu&nbsp;control.</span>
                     </h2>
 
-                    <p className="text-white/65 text-base md:text-lg font-medium max-w-2xl mx-auto leading-relaxed mb-10">
+                    <p className="text-zinc-600 text-base md:text-lg font-medium max-w-2xl mx-auto leading-relaxed mb-10">
                         Dejamos las soluciones superficiales para los demás. Desplegamos ingeniería real — auditable, escalable y sin dependencias ocultas — sobre tu propia infraestructura.
                     </p>
 
@@ -35,9 +35,9 @@ export default function ManifestoDivider() {
                             { label: "Coste por Tarea", value: "0€" },
                             { label: "SLA Producción", value: "24/7" },
                         ].map((item) => (
-                            <div key={item.label} className="p-5 rounded-2xl bg-[#0F1424] border border-white/10 backdrop-blur-xl">
-                                <div className="text-2xl md:text-3xl font-black tracking-tighter text-white mb-1">{item.value}</div>
-                                <div className="text-[9px] font-black uppercase tracking-[0.25em] text-white/40">{item.label}</div>
+                            <div key={item.label} className="p-5 rounded-2xl bg-[#FFFFFF] border border-[#E4E4E7] backdrop-blur-xl">
+                                <div className="text-2xl md:text-3xl font-black tracking-tighter text-[#09090B] mb-1">{item.value}</div>
+                                <div className="text-[9px] font-black uppercase tracking-[0.25em] text-zinc-500">{item.label}</div>
                             </div>
                         ))}
                     </div>

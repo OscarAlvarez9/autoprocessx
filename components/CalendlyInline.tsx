@@ -16,9 +16,9 @@ interface CalendlyInlineProps {
 export default function CalendlyInline({
     url = "https://calendly.com/contacta-autoprocessx/30min",
     height = 700,
-    primaryColor = "fbbf24",
-    backgroundColor = "0F1424",
-    textColor = "ffffff",
+    primaryColor = "B4975A",
+    backgroundColor = "FFFFFF",
+    textColor = "09090B",
 }: CalendlyInlineProps) {
     const params = new URLSearchParams({
         primary_color: primaryColor,

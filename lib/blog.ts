@@ -82,7 +82,7 @@ export const blogPosts: BlogPost[] = [
         date: "2026-04-22",
         readingMinutes: 6,
         tags: ["Claude", "Anthropic", "LLM", "Producción"],
-        author: "AutoProcessX",
+        author: "SEOscar",
     },
     {
         slug: "ai-overviews-2026-cambios-criticos",
@@ -92,7 +92,7 @@ export const blogPosts: BlogPost[] = [
         date: "2026-04-10",
         readingMinutes: 8,
         tags: ["Google", "AI Overviews", "SGE", "SEO"],
-        author: "AutoProcessX",
+        author: "SEOscar",
     },
     {
         slug: "rag-en-produccion-arquitectura-real",
@@ -102,7 +102,7 @@ export const blogPosts: BlogPost[] = [
         date: "2026-04-18",
         readingMinutes: 12,
         tags: ["RAG", "pgvector", "Vector DB", "Arquitectura"],
-        author: "AutoProcessX",
+        author: "SEOscar",
     },
     {
         slug: "agentes-autonomos-con-tool-calling",
@@ -112,7 +112,7 @@ export const blogPosts: BlogPost[] = [
         date: "2026-04-05",
         readingMinutes: 10,
         tags: ["Agentes", "Tool Calling", "Claude", "n8n"],
-        author: "AutoProcessX",
+        author: "SEOscar",
     },
     {
         slug: "n8n-vs-zapier-make-comparativa-real",
@@ -122,7 +122,7 @@ export const blogPosts: BlogPost[] = [
         date: "2026-04-20",
         readingMinutes: 9,
         tags: ["n8n", "Zapier", "Make", "Comparativa"],
-        author: "AutoProcessX",
+        author: "SEOscar",
     },
     {
         slug: "reporting-seo-autonomo-gsc-claude",
@@ -132,7 +132,7 @@ export const blogPosts: BlogPost[] = [
         date: "2026-04-08",
         readingMinutes: 11,
         tags: ["SEO", "GSC", "GA4", "n8n"],
-        author: "AutoProcessX",
+        author: "SEOscar",
     },
     {
         slug: "chatbot-whatsapp-business-rag",
@@ -142,7 +142,7 @@ export const blogPosts: BlogPost[] = [
         date: "2026-04-15",
         readingMinutes: 9,
         tags: ["WhatsApp", "RAG", "Chatbot", "Claude"],
-        author: "AutoProcessX",
+        author: "SEOscar",
     },
     {
         slug: "como-evitar-alucinaciones-en-chatbots",
@@ -152,7 +152,7 @@ export const blogPosts: BlogPost[] = [
         date: "2026-04-02",
         readingMinutes: 7,
         tags: ["Guardrails", "RAG", "Hallucinations"],
-        author: "AutoProcessX",
+        author: "SEOscar",
     },
     {
         slug: "aparecer-citado-en-chatgpt-y-perplexity",
@@ -162,7 +162,7 @@ export const blogPosts: BlogPost[] = [
         date: "2026-04-25",
         readingMinutes: 10,
         tags: ["GEO", "Perplexity", "ChatGPT", "AI Search"],
-        author: "AutoProcessX",
+        author: "SEOscar",
     },
     {
         slug: "llms-txt-guia-implementacion",
@@ -172,7 +172,7 @@ export const blogPosts: BlogPost[] = [
         date: "2026-04-12",
         readingMinutes: 6,
         tags: ["llms.txt", "AI Crawlers", "GEO"],
-        author: "AutoProcessX",
+        author: "SEOscar",
     },
 ]
 

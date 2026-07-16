@@ -5,11 +5,11 @@ import { motion } from "framer-motion"
 type AccentKey = "accent" | "cyan" | "secondary" | "primary" | "neutral"
 
 const accentRgb: Record<AccentKey, string> = {
-    accent: "251, 191, 36",
-    cyan: "34, 211, 238",
-    secondary: "245, 158, 11",
-    primary: "251, 191, 36",
-    neutral: "120, 120, 140",
+    accent: "180, 151, 90",
+    cyan: "8, 145, 178",
+    secondary: "180, 151, 90",
+    primary: "180, 151, 90",
+    neutral: "160, 160, 170",
 }
 
 type Props = {
@@ -40,7 +40,7 @@ export default function DarkBackground({
             {/* Base — deep navy, never black */}
             <div
                 className="absolute inset-0"
-                style={{ background: "#05070F" }}
+                style={{ background: "#FAFAFA" }}
             />
 
             {/* Animated primary orb — slow drift + breath */}

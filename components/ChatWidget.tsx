@@ -47,7 +47,7 @@ export default function ChatWidget() {
                         exit={{ opacity: 0, y: 20, scale: 0.96 }}
                         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                         role="dialog"
-                        aria-label="Chat con Aria, asistente de AutoProcessX"
+                        aria-label="Chat con Aria, asistente de SEOscar"
                         className="
                             fixed z-[9998]
                             inset-x-3 bottom-3 top-3
@@ -57,17 +57,17 @@ export default function ChatWidget() {
                         "
                     >
                         <div
-                            className="relative w-full h-full overflow-hidden rounded-2xl border border-amber-400/20 bg-[#0F1424]"
+                            className="relative w-full h-full overflow-hidden rounded-2xl border border-[#B4975A]/20 bg-[#FFFFFF]"
                             style={{
                                 boxShadow:
-                                    "0 24px 60px -12px rgba(0,0,0,0.6), 0 0 40px -8px rgba(251,191,36,0.25)",
+                                    "0 24px 60px -12px rgba(0,0,0,0.6), 0 0 40px -8px rgba(180,151,90,0.25)",
                             }}
                         >
                             {/* Close button — visible solo en mobile, dentro del panel */}
                             <button
                                 onClick={() => setOpen(false)}
                                 aria-label="Cerrar chat"
-                                className="sm:hidden absolute top-3 right-3 z-10 h-9 w-9 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white flex items-center justify-center active:scale-95 transition-transform"
+                                className="sm:hidden absolute top-3 right-3 z-10 h-9 w-9 rounded-full bg-black/60 backdrop-blur-md border border-[#E4E4E7] text-[#09090B] flex items-center justify-center active:scale-95 transition-transform"
                             >
                                 <X className="h-4 w-4" strokeWidth={2.5} />
                             </button>
@@ -88,17 +88,17 @@ export default function ChatWidget() {
                 transition={{ delay: 0.4, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
-                className={`fixed z-[10000] right-4 bottom-4 sm:right-6 sm:bottom-6 h-[56px] w-[56px] sm:h-[60px] sm:w-[60px] rounded-full flex items-center justify-center bg-amber-400 hover:bg-amber-300 text-[#05070F] transition-colors ${
+                className={`fixed z-[10000] right-4 bottom-4 sm:right-6 sm:bottom-6 h-[56px] w-[56px] sm:h-[60px] sm:w-[60px] rounded-full flex items-center justify-center bg-[#B4975A] hover:bg-[#B4975A] text-[#FAFAFA] transition-colors ${
                     open ? "max-sm:hidden" : ""
                 }`}
                 style={{
-                    boxShadow: "0 8px 28px -4px rgba(251,191,36,0.5)",
+                    boxShadow: "0 8px 28px -4px rgba(180,151,90,0.5)",
                 }}
             >
                 {/* Halo pulsante cuando está cerrado */}
                 {!open && (
                     <span
-                        className="absolute inset-0 rounded-full bg-amber-400 pointer-events-none"
+                        className="absolute inset-0 rounded-full bg-[#B4975A] pointer-events-none"
                         style={{
                             opacity: 0.5,
                             animation: "aria-pulse 2.4s cubic-bezier(0,0,0.2,1) infinite",
@@ -138,7 +138,7 @@ export default function ChatWidget() {
                     <span
                         aria-hidden="true"
                         className="absolute bottom-0.5 right-0.5 h-3 w-3 rounded-full bg-emerald-400"
-                        style={{ border: "2px solid #FBBF24" }}
+                        style={{ border: "2px solid #B4975A" }}
                     />
                 )}
             </motion.button>

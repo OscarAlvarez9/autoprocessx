@@ -16,41 +16,46 @@ import { Badge } from "@/components/ui/badge"
 import { formatDate, getCategory, type BlogPost } from "@/lib/blog"
 import { cn } from "@/lib/utils"
 
-const accentMap: Record<string, { dot: string; text: string; border: string; glow: string; ringHover: string }> = {
+const accentMap: Record<string, { dot: string; text: string; tint: string; border: string; glow: string; ringHover: string }> = {
     pink: {
-        dot: "bg-pink-400",
-        text: "text-pink-300",
-        border: "hover:border-pink-400/40",
-        glow: "hover:shadow-[0_0_40px_-15px_rgba(244,114,182,0.4)]",
-        ringHover: "group-hover:text-pink-300",
+        dot: "bg-pink-500",
+        text: "text-pink-600",
+        tint: "from-pink-500/10",
+        border: "hover:border-pink-400/50",
+        glow: "hover:shadow-[0_10px_40px_-18px_rgba(236,72,153,0.45)]",
+        ringHover: "group-hover:text-pink-600",
     },
     emerald: {
-        dot: "bg-emerald-400",
-        text: "text-emerald-300",
-        border: "hover:border-emerald-400/40",
-        glow: "hover:shadow-[0_0_40px_-15px_rgba(52,211,153,0.4)]",
-        ringHover: "group-hover:text-emerald-300",
+        dot: "bg-emerald-500",
+        text: "text-emerald-600",
+        tint: "from-emerald-500/10",
+        border: "hover:border-emerald-400/50",
+        glow: "hover:shadow-[0_10px_40px_-18px_rgba(16,185,129,0.45)]",
+        ringHover: "group-hover:text-emerald-600",
     },
     orange: {
-        dot: "bg-orange-400",
-        text: "text-orange-300",
-        border: "hover:border-orange-400/40",
-        glow: "hover:shadow-[0_0_40px_-15px_rgba(251,146,60,0.4)]",
-        ringHover: "group-hover:text-orange-300",
+        dot: "bg-orange-500",
+        text: "text-orange-600",
+        tint: "from-orange-500/10",
+        border: "hover:border-orange-400/50",
+        glow: "hover:shadow-[0_10px_40px_-18px_rgba(249,115,22,0.45)]",
+        ringHover: "group-hover:text-orange-600",
     },
     red: {
-        dot: "bg-red-400",
-        text: "text-red-300",
-        border: "hover:border-red-400/40",
-        glow: "hover:shadow-[0_0_40px_-15px_rgba(248,113,113,0.4)]",
-        ringHover: "group-hover:text-red-300",
+        dot: "bg-red-500",
+        text: "text-red-600",
+        tint: "from-red-500/10",
+        border: "hover:border-red-400/50",
+        glow: "hover:shadow-[0_10px_40px_-18px_rgba(239,68,68,0.45)]",
+        ringHover: "group-hover:text-red-600",
     },
     blue: {
-        dot: "bg-blue-400",
-        text: "text-blue-300",
-        border: "hover:border-blue-400/40",
-        glow: "hover:shadow-[0_0_40px_-15px_rgba(96,165,250,0.4)]",
-        ringHover: "group-hover:text-blue-300",
+        dot: "bg-blue-500",
+        text: "text-blue-600",
+        tint: "from-blue-500/10",
+        border: "hover:border-blue-400/50",
+        glow: "hover:shadow-[0_10px_40px_-18px_rgba(59,130,246,0.45)]",
+        ringHover: "group-hover:text-blue-600",
     },
 }
 
@@ -76,7 +81,7 @@ export default function BlogCard({
         >
             <Card
                 className={cn(
-                    "group h-full flex bg-[#0F1424] border-white/10 text-white rounded-2xl overflow-hidden hover:bg-[#11162A] transition-all p-0 shadow-none",
+                    "group h-full flex bg-[#FFFFFF] border-[#E4E4E7] text-[#09090B] rounded-2xl overflow-hidden hover:bg-[#F4F4F5] transition-all p-0 shadow-none",
                     a.border,
                     a.glow,
                     featured ? "md:flex-row" : "flex-col"
@@ -87,7 +92,8 @@ export default function BlogCard({
                     href={`/blog/${post.slug}`}
                     aria-label={post.title}
                     className={cn(
-                        "relative shrink-0 overflow-hidden bg-gradient-to-br from-[#0F1424] via-[#0a0d18] to-[#0F1424]",
+                        "relative shrink-0 overflow-hidden bg-gradient-to-br via-[#FAFAFA] to-[#FFFFFF]",
+                        a.tint,
                         featured ? "md:w-1/2 aspect-[16/10] md:aspect-auto" : "aspect-[16/10]"
                     )}
                 >
@@ -100,29 +106,31 @@ export default function BlogCard({
                                 sizes={featured ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 33vw"}
                                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                             />
-                            {/* dark overlay for legibility */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0F1424]/80 via-[#0F1424]/20 to-transparent" />
+                            {/* sutil oscurecido arriba para legibilidad del badge */}
+                            <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-transparent" />
                         </>
                     ) : (
                         <>
-                            {/* grid pattern */}
+                            {/* grid fino (líneas oscuras, visibles sobre claro) */}
                             <div
-                                className="absolute inset-0 opacity-30"
+                                className="absolute inset-0 opacity-[0.5]"
                                 style={{
                                     backgroundImage:
-                                        "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
-                                    backgroundSize: "32px 32px",
+                                        "linear-gradient(to right, rgba(9,9,11,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(9,9,11,0.04) 1px, transparent 1px)",
+                                    backgroundSize: "28px 28px",
                                     maskImage:
+                                        "radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%)",
+                                    WebkitMaskImage:
                                         "radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%)",
                                 }}
                             />
-                            {/* accent glow */}
-                            <div className={cn("absolute -top-10 -right-10 w-48 h-48 rounded-full blur-3xl opacity-30", a.dot)} />
-                            {/* ghost typography */}
+                            {/* glow de acento sutil */}
+                            <div className={cn("absolute -top-10 -right-10 w-48 h-48 rounded-full blur-3xl opacity-20", a.dot)} />
+                            {/* tipografía fantasma (acento tintado) */}
                             <div className="absolute inset-0 flex items-center justify-center p-6 z-0">
                                 <span
                                     className={cn(
-                                        "text-5xl md:text-7xl font-black tracking-tight opacity-[0.07] uppercase group-hover:opacity-[0.12] transition-opacity",
+                                        "text-5xl md:text-7xl font-black tracking-tight opacity-[0.12] uppercase group-hover:opacity-[0.18] transition-opacity",
                                         a.text
                                     )}
                                 >
@@ -137,7 +145,7 @@ export default function BlogCard({
                         <Badge
                             variant="outline"
                             className={cn(
-                                "bg-black/60 backdrop-blur-md border-white/10 gap-1.5 px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.25em]",
+                                "bg-[#FFFFFF]/90 backdrop-blur-md border-[#E4E4E7] gap-1.5 px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.25em] shadow-sm",
                                 a.text
                             )}
                         >
@@ -150,9 +158,9 @@ export default function BlogCard({
                 {/* Content */}
                 <div className="flex flex-col flex-1 min-w-0">
                     <CardHeader className={cn("space-y-3 pt-5 px-5 md:px-6 pb-0", featured && "md:pt-7 md:px-8")}>
-                        <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.25em] text-white/40">
+                        <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.25em] text-zinc-500">
                             <time dateTime={post.date}>{formatDate(post.date)}</time>
-                            <span className="h-1 w-1 rounded-full bg-white/20" />
+                            <span className="h-1 w-1 rounded-full bg-zinc-200" />
                             <span className="flex items-center gap-1.5">
                                 <Clock className="h-3 w-3" />
                                 {post.readingMinutes} min
@@ -162,7 +170,7 @@ export default function BlogCard({
                         <Link href={`/blog/${post.slug}`}>
                             <CardTitle
                                 className={cn(
-                                    "font-black tracking-tight leading-[1.15] text-white transition-colors",
+                                    "font-black tracking-tight leading-[1.15] text-[#09090B] transition-colors",
                                     a.ringHover,
                                     featured ? "text-2xl md:text-3xl" : "text-base md:text-lg"
                                 )}
@@ -175,7 +183,7 @@ export default function BlogCard({
                     <CardContent className={cn("flex-1 px-5 md:px-6 py-4", featured && "md:px-8")}>
                         <CardDescription
                             className={cn(
-                                "text-white/55 font-medium leading-relaxed",
+                                "text-zinc-600 font-medium leading-relaxed",
                                 featured ? "text-sm md:text-base line-clamp-3" : "text-xs md:text-sm line-clamp-2"
                             )}
                         >
@@ -188,7 +196,7 @@ export default function BlogCard({
                                     <Badge
                                         key={tag}
                                         variant="outline"
-                                        className="bg-white/[0.04] border-white/10 text-white/50 px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-[0.2em]"
+                                        className="bg-zinc-100 border-[#E4E4E7] text-zinc-500 px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-[0.2em]"
                                     >
                                         {tag}
                                     </Badge>
@@ -199,17 +207,17 @@ export default function BlogCard({
 
                     <CardFooter
                         className={cn(
-                            "mt-auto pt-4 px-5 md:px-6 pb-5 border-t border-white/10 flex items-center justify-between",
+                            "mt-auto pt-4 px-5 md:px-6 pb-5 border-t border-[#E4E4E7] flex items-center justify-between",
                             featured && "md:px-8 md:pb-6"
                         )}
                     >
-                        <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40">
+                        <span className="text-[10px] font-black uppercase tracking-[0.25em] text-zinc-500">
                             {post.author}
                         </span>
                         <Link
                             href={`/blog/${post.slug}`}
                             className={cn(
-                                "inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.25em] hover:text-white transition-colors",
+                                "inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.25em] hover:text-[#09090B] transition-colors",
                                 a.text
                             )}
                         >

@@ -1,37 +1,37 @@
 import type { Metadata } from "next"
-import Hero from "@/components/Hero"
-import Navigation from "@/components/Navigation"
-import CaseStudies from "@/components/CaseStudies"
-import Services from "@/components/Services"
-import Verticals from "@/components/Verticals"
-import ROICalculator from "@/components/ROICalculator"
-import Comparison from "@/components/Comparison"
-import FAQ from "@/components/FAQ"
-import FinalCTA from "@/components/FinalCTA"
-import Footer from "@/components/Footer"
+import ThemeRegistry from "@/components/mui/ThemeRegistry"
+import HomeMui from "@/components/mui/HomeMui"
+import JsonLd from "@/components/JsonLd"
+import { ORG_ID, SITE_URL } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "AutoProcessX | Agencia IA Barcelona · Chatbot y Apps IA",
-  description: "Agencia de inteligencia artificial en Barcelona. Automatización de procesos, chatbots personalizados y aplicaciones IA para empresas.",
-  alternates: {
-    canonical: "https://www.autoprocessx.com",
+  title: {
+    absolute: "Agencia ecommerce en Barcelona: SEO, GEO, CRO e IA | SEOscar",
   },
+  description:
+    "Agencia de ecommerce en Barcelona. Hago que tu tienda venda más con SEO y GEO que traen tráfico que compra, agente de ventas IA y automatización. Sin migrar.",
+  alternates: { canonical: SITE_URL },
+}
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${SITE_URL}/#service-home`,
+  name: "Crecimiento de ecommerce con IA",
+  description:
+    "SEO técnico y GEO/AI Search, optimización de conversión (CRO), agente de ventas IA anclado al catálogo y automatización con n8n para tiendas online.",
+  serviceType: "Ecommerce growth engineering",
+  provider: { "@id": ORG_ID },
+  areaServed: [{ "@type": "Country", name: "España" }],
 }
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground selection:bg-primary/20">
-      <Navigation />
-      <Hero />
-      <Comparison />
-
-      <Services />
-      <CaseStudies />
-      <Verticals />
-      <ROICalculator />
-      <FinalCTA />
-      <FAQ />
-      <Footer />
-    </main>
+    <>
+      <JsonLd data={serviceSchema} />
+      <ThemeRegistry>
+        <HomeMui />
+      </ThemeRegistry>
+    </>
   )
 }

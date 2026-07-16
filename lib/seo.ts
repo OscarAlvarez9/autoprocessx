@@ -1,4 +1,4 @@
-export const SITE_URL = "https://www.autoprocessx.com"
+export const SITE_URL = "https://www.seoscar.com"
 export const ORG_ID = `${SITE_URL}/#organization`
 
 interface ServiceSchemaArgs {

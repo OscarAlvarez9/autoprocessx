@@ -201,7 +201,7 @@ const mapEntry = (entry: RawEntry): BlogPost => {
                 : new Date().toISOString().slice(0, 10),
         readingMinutes: minutes,
         tags: f.tags ?? [],
-        author: f.autor ?? "AutoProcessX",
+        author: f.autor ?? "SEOscar",
         cover: buildCoverUrl(f.imagen),
     }
 }

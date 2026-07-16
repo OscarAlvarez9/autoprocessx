@@ -32,8 +32,8 @@ const pillars = [
         hoverBorder: "hover:border-cyan-400/30",
         label: "Layer · Intelligence",
         title: "Capa de Inteligencia",
-        stack: ["Claude 3.5", "Gemini 2.0", "RAG", "Vector DB"],
-        desc: "LLMs razonadores + recuperación semántica con Zero-Hallucination sobre datos propios.",
+        stack: ["Claude", "Gemini", "RAG", "Vector DB"],
+        desc: "LLMs razonadores + recuperación semántica con citación de fuentes sobre datos propios.",
     },
     {
         id: "L4",
@@ -42,7 +42,7 @@ const pillars = [
         hoverBorder: "hover:border-accent/30",
         label: "Layer · Application",
         title: "Interfaz & Producto",
-        stack: ["Next.js 15", "TypeScript", "Prisma", "Tailwind"],
+        stack: ["Next.js", "TypeScript", "Prisma", "Tailwind"],
         desc: "Plataformas completas, no plantillas. Agentes IA con acceso nativo a cada módulo.",
     },
 ]

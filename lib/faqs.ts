@@ -5,7 +5,7 @@ export interface FAQItem {
 
 export const homeFaqs: FAQItem[] = [
     {
-        q: "¿Qué hace AutoProcessX exactamente?",
+        q: "¿Qué hace SEOscar exactamente?",
         a: "Diseñamos y desplegamos infraestructura IA propia para tu empresa: automatizaciones (n8n), plataformas corporativas con agentes y chatbots conversacionales — todo bajo tu propiedad, sin SaaS ni licencias mensuales por usuario.",
     },
     {
@@ -113,7 +113,7 @@ export const platformFaqs: FAQItem[] = [
 
 export const aboutFaqs: FAQItem[] = [
     {
-        q: "¿Quién está detrás de AutoProcessX?",
+        q: "¿Quién está detrás de SEOscar?",
         a: "Un equipo técnico de ingenieros con experiencia previa en arquitectura de plataformas, big data e IA aplicada. El arquitecto que diseña tu sistema es el mismo que lo despliega — sin capas de gestión ni subcontratas.",
     },
     {
@@ -136,28 +136,32 @@ export const aboutFaqs: FAQItem[] = [
 
 export const techFaqs: FAQItem[] = [
     {
-        q: "¿Qué stack tecnológico utilizáis?",
-        a: "Next.js + TypeScript para frontends, PostgreSQL/Prisma para datos, n8n como motor de orquestación, Claude 3.5 Sonnet y GPT-4o como LLMs, arquitecturas RAG con vector DB (pgvector/Pinecone) y despliegue en AWS/GCP o servidor on-premise.",
+        q: "¿Sobre qué plataformas trabajáis?",
+        a: "Magento/Adobe Commerce, Shopify, WooCommerce, PrestaShop, BigCommerce y arquitecturas headless (Contentful, Strapi, Sanity). Me adapto a tu plataforma actual; no te obligo a migrar.",
     },
     {
-        q: "¿Qué LLMs usáis y por qué?",
-        a: "Por defecto Claude 3.5 Sonnet (Anthropic) por calidad de razonamiento y baja tasa de alucinación. GPT-4o para tareas multimodales. Para casos sensibles, modelos open-source (Llama, Mistral) en servidor propio sin enviar datos a APIs externas.",
+        q: "¿Qué stack tecnológico utilizáis por debajo?",
+        a: "Next.js + TypeScript en frontend, PostgreSQL/Prisma para datos, n8n + Node.js/Python para orquestación y automatización, y arquitecturas RAG con base vectorial (pgvector/Pinecone). Despliegue en nube (AWS/GCP) o en servidor propio.",
     },
     {
-        q: "¿Cómo garantizáis la seguridad de los datos?",
-        a: "Despliegue bajo tu firewall, cifrado AES-256 en reposo y TLS 1.3 en tránsito, Zero Retention policies con proveedores LLM, backups cifrados, acceso SSH bajo control y auditoría completa de logs.",
+        q: "¿Qué modelos de IA usáis y por qué?",
+        a: "Los modelos de última generación de Anthropic (Claude) y OpenAI (GPT), elegidos por tarea. La arquitectura es agnóstica al modelo: cambiamos de motor sin rehacer el sistema.",
     },
     {
         q: "¿Cómo es la arquitectura RAG que implementáis?",
-        a: "Pipeline de ingesta (chunking semántico + embeddings), vector DB para recuperación, re-ranking con cross-encoder, prompt construction con context window optimizado y guardrails para prevenir alucinaciones. Todo medible y trazable.",
+        a: "El modelo no responde de memoria: recupera la información de tu propia fuente (catálogo, stock, docs) y responde citándola. Eso evita que se invente precios, productos o disponibilidad — el fallo número uno de los chatbots genéricos en ecommerce.",
+    },
+    {
+        q: "¿Vuestras automatizaciones son solo n8n?",
+        a: "No. n8n es el orquestador, pero la lógica va en código propio (Node.js/Python). Eso permite automatizaciones que un flujo no-code no puede: integraciones a medida, transformaciones de datos complejas y control real sobre cada paso.",
+    },
+    {
+        q: "¿Cómo garantizáis la seguridad de los datos?",
+        a: "Cifrado AES-256 en reposo, despliegue en la UE con aislamiento por cliente, y opción on-premise para datos sensibles. Tus datos no entrenan modelos públicos.",
     },
     {
         q: "¿Soportáis ejecución en local sin cloud?",
-        a: "Sí. Para clientes con requisitos estrictos de privacidad desplegamos toda la stack on-premise: n8n, vector DB y modelos open-source corren en tu servidor sin salida a internet. Coste por inferencia: 0€.",
-    },
-    {
-        q: "¿Cómo monitorizáis los sistemas en producción?",
-        a: "Stack de observabilidad con métricas de ejecución, latencia LLM, tasa de éxito de workflows, alertas a Slack/WhatsApp ante fallos y dashboard de salud accesible 24/7. Acuerdo de operación documentado por proyecto.",
+        a: "Sí. On-premise o en tu propio servidor, con n8n self-hosted y base de datos bajo tu control.",
     },
 ]
 
