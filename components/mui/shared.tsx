@@ -253,9 +253,9 @@ const NAV_LINKS = [
 
 function Logo() {
   return (
-    <Typography component={Link} href="/" sx={{ textDecoration: "none", fontFamily: fonts.sans, fontWeight: 800, letterSpacing: "-0.02em", color: tokens.ink, fontSize: 20 }}>
-      <Box component="span" sx={{ color: tokens.bronze }}>SEO</Box>scar
-    </Typography>
+    <Box component={Link} href="/" aria-label="SEOscar · inicio" sx={{ display: "inline-flex", alignItems: "center", "&:focus-visible": { outline: `2px solid ${tokens.petrol}`, outlineOffset: 3, borderRadius: 1 } }}>
+      <Image src="/logo-seoscar.png" alt="SEOscar" width={380} height={112} priority style={{ height: 30, width: "auto" }} />
+    </Box>
   )
 }
 
@@ -704,9 +704,9 @@ export function SiteFooter() {
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1.5fr 1fr 1.1fr 1.2fr" }, gap: { xs: 5, md: 5 } }}>
           {/* Columna 1 · marca y contacto (NAP) */}
           <Box sx={{ order: { md: 1 } }}>
-            <Typography component={Link} href="/" sx={{ textDecoration: "none", fontFamily: fonts.sans, fontWeight: 800, letterSpacing: "-0.02em", fontSize: 22, color: cream, display: "inline-block", ...focus }}>
-              <Box component="span" sx={{ color: tokens.accentSoft }}>SEO</Box>scar
-            </Typography>
+            <Box component={Link} href="/" aria-label="SEOscar · inicio" sx={{ display: "inline-flex", alignItems: "center", ...focus }}>
+              <Image src="/logo-seoscar-cream.png" alt="SEOscar" width={380} height={112} style={{ height: 32, width: "auto" }} />
+            </Box>
             <Typography sx={{ color: tokens.onDarkMuted, fontSize: 14, mt: 1.5, maxWidth: 320, lineHeight: 1.6 }}>
               Agencia de ecommerce en Barcelona. Hago que tu tienda venda más sin migrar de plataforma.
             </Typography>

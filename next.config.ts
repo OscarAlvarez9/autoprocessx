@@ -74,15 +74,15 @@ const nextConfig: NextConfig = {
 
       // Blog antiguo de Framer: LISTA EXPLÍCITA al listado. NUNCA un catch-all
       // /blog/:slug* (mataría los /blog/<slug> nuevos de Contentful). Next casa
-      // el pathname DECODIFICADO, así que los acentos van en unicode, no %XX.
-      // Lista parcial; completar con el export de GSC (ver /docs/migracion/).
+      // el pathname CODIFICADO: los acentos van en %XX (verificado con curl; la
+      // forma unicode no casa). Lista parcial; completar con el export de GSC.
       { source: "/blog/3MJucQsILqVS74NhRwmaBE", destination: "/blog", permanent: true },
       { source: "/blog/chatgpt-claude-gemini-o-perplexity-cual-elegir-segun-lo-que-necesites", destination: "/blog", permanent: true },
       { source: "/blog/como-implementar-mcp-con-claude-code-para-automatizacion-de-auditorias-en", destination: "/blog", permanent: true },
       { source: "/blog/que-es-es-seo-y-como-funciona", destination: "/blog", permanent: true },
-      { source: "/blog/cómo-optimizar-tu-sitio-para-google-discover", destination: "/blog", permanent: true },
-      { source: "/blog/técnicas-avanzadas-de-seo-semántico-y-topic-clustering", destination: "/blog", permanent: true },
-      { source: "/blog/seo-internacional-avanzado-hreflang-y-geolocalización", destination: "/blog", permanent: true },
+      { source: "/blog/c%C3%B3mo-optimizar-tu-sitio-para-google-discover", destination: "/blog", permanent: true },
+      { source: "/blog/t%C3%A9cnicas-avanzadas-de-seo-sem%C3%A1ntico-y-topic-clustering", destination: "/blog", permanent: true },
+      { source: "/blog/seo-internacional-avanzado-hreflang-y-geolocalizaci%C3%B3n", destination: "/blog", permanent: true },
     ];
   },
 };

@@ -4,7 +4,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import "./globals.css";
 import { ContactDrawerProvider } from "@/context/ContactDrawerContext";
 import ContactDrawer from "@/components/ContactDrawer";
-import ChatWidget from "@/components/ChatWidget";
+// import ChatWidget from "@/components/ChatWidget"; // desactivado temporalmente
 import CookieConsent from "@/components/CookieConsent";
 
 const geistSans = Geist({
@@ -156,9 +156,9 @@ export const metadata: Metadata = {
     canonical: "https://www.seoscar.com",
   },
   icons: {
-    icon: "/icon.png",
-    apple: "/apple-icon.png",
-    shortcut: "/favicon.ico",
+    icon: "/faviconseoscar.jpg",
+    apple: "/faviconseoscar.jpg",
+    shortcut: "/faviconseoscar.jpg",
   },
   robots: {
     index: true,
@@ -210,7 +210,8 @@ export default function RootLayout({
 
               <ContactDrawer />
             </ContactDrawerProvider>
-            <ChatWidget />
+            {/* Chatbot desactivado temporalmente hasta actualizar su contenido. */}
+            {/* <ChatWidget /> */}
             <CookieConsent />
           </AppRouterCacheProvider>
         </div>

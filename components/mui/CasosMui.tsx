@@ -121,11 +121,6 @@ function Intro() {
             Empiezo siempre por un diagnóstico: dónde se te escapan las ventas o el tiempo, y qué palancas mueven la aguja.
           </Typography>
           <PrimaryCTA />
-          <Box sx={{ mt: 6, borderRadius: 3, border: `1px dashed ${tokens.line}`, p: 4 }}>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted }}>
-              {`// [[ testimonios reales: nombre · cargo · foto ]]`}
-            </Typography>
-          </Box>
         </Reveal>
       </Container>
     </Box>

@@ -711,10 +711,6 @@ function Faq() {
             </AccordionDetails>
           </Accordion>
         ))}
-        {/* Testimonios */}
-        <Box sx={{ mt: 6, borderRadius: 3, border: `1px dashed ${tokens.line}`, p: 4, textAlign: "center" }}>
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted }}>{`// [[ testimonios reales: nombre · cargo · foto ]]`}</Typography>
-        </Box>
       </Container>
     </Box>
   )
