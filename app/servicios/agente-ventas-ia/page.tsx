@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     "Agente de ventas IA anclado a tu catálogo real: recomienda producto, resuelve dudas y acompaña al checkout en tu web y WhatsApp 24/7. No inventa precios ni stock.",
   keywords: ["agente de ventas IA", "chatbot ecommerce", "asistente de ventas IA", "chatbot WhatsApp tienda", "IA para ecommerce", "RAG catálogo", "agente IA Shopify WooCommerce"],
   openGraph: {
+            images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
     title: "Agente de ventas IA para ecommerce y WhatsApp | SEOscar",
     description:
       "Agente de ventas IA anclado a tu catálogo real: recomienda producto, resuelve dudas y acompaña al checkout en tu web y WhatsApp 24/7. No inventa precios ni stock.",

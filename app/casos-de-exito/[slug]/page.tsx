@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: caso.summary,
     alternates: { canonical: `${SITE_URL}/casos-de-exito/${caso.slug}` },
     openGraph: {
+            images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
       title,
       description: caso.summary,
       type: "article",

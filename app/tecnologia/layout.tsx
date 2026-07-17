@@ -78,6 +78,7 @@ export const metadata: Metadata = {
   description: "El stack con el que trabajo: n8n self-hosted, arquitecturas RAG con fuente citada, LLMs de última generación, Next.js y PostgreSQL. Código propio, trazable y tuyo.",
   keywords: ["stack tecnológico ecommerce", "n8n self-hosted", "arquitectura RAG", "LLMs para tiendas online", "Next.js ecommerce", "PostgreSQL", "automatización para ecommerce"],
   openGraph: {
+            images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
     title: "Tecnología: n8n, RAG y LLMs para ecommerce | SEOscar",
     description: "El stack con el que trabajo: n8n self-hosted, arquitecturas RAG con fuente citada, LLMs de última generación, Next.js y PostgreSQL. Código propio, trazable y tuyo.",
     type: "website",

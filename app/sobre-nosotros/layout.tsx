@@ -5,12 +5,12 @@ const aboutSchema = {
   "@type": "AboutPage",
   name: "Sobre SEOscar",
   url: "https://www.seoscar.com/sobre-nosotros",
-  description: "SEOscar es un estudio boutique de sistemas de IA para ecommerce en Barcelona. Hacemos crecer tiendas online con SEO, conversión, agentes de ventas IA y automatización, sobre su propia plataforma y con el código en su propiedad.",
+  description: "SEOscar es una agencia de ecommerce en Barcelona. Hago que las tiendas online vendan más con SEO técnico, GEO, CRO, agente de ventas IA y automatización, sobre su plataforma actual y con el código en su propiedad.",
   mainEntity: {
     "@type": "Organization",
     name: "SEOscar",
     url: "https://www.seoscar.com",
-    description: "Estudio de sistemas de IA para ecommerce. Especializados en SEO y GEO, optimización de conversión, agentes de ventas IA anclados al catálogo y automatización con n8n.",
+    description: "Agencia de ecommerce en Barcelona. SEO técnico y GEO que traen tráfico que compra, CRO, agente de ventas IA anclado al catálogo y automatización con n8n.",
     founder: { "@type": "Person", name: "Oscar Álvarez" },
     address: { "@type": "PostalAddress", addressLocality: "Premià de Mar", addressRegion: "Barcelona", addressCountry: "ES" },
     areaServed: "ES",
@@ -33,6 +33,7 @@ export const metadata: Metadata = {
   description: "Detrás de SEOscar: Óscar, Roger y Sam, en Barcelona. Hago que las tiendas online vendan más con SEO, agente de ventas IA y automatización. El código es tuyo.",
   keywords: ["estudio IA ecommerce Barcelona", "agencia crecimiento ecommerce", "especialistas n8n", "sobre SEOscar", "sistemas de IA tiendas online", "agencia ecommerce Barcelona"],
   openGraph: {
+            images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
     title: "Conócenos: Óscar, Roger y Sam, ecommerce Barcelona | SEOscar",
     description: "Detrás de SEOscar: Óscar, Roger y Sam, en Barcelona. Hago que las tiendas online vendan más con SEO, agente de ventas IA y automatización. El código es tuyo.",
     type: "website",

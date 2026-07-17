@@ -75,7 +75,7 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
     {
-        slug: "claude-4-7-y-el-fin-del-prompting-frágil",
+        slug: "claude-4-7-y-el-fin-del-prompting-fragil",
         title: "Claude 4.7 y el fin del prompting frágil",
         excerpt: "El nuevo modelo de Anthropic redefine la fiabilidad en producción. Análisis de cambios reales que afectan a las arquitecturas RAG y a los agentes con tool calling.",
         category: "ia-news",

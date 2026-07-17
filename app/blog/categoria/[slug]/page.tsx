@@ -1,9 +1,8 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import Navigation from "@/components/Navigation"
-import Footer from "@/components/Footer"
-import FinalCTA from "@/components/FinalCTA"
+import ThemeRegistry from "@/components/mui/ThemeRegistry"
+import { SiteHeader, SiteFooter, DiagnosticoCTA } from "@/components/mui/shared"
 import Breadcrumbs from "@/components/Breadcrumbs"
 import BlogCard from "@/components/BlogCard"
 import { blogCategories, getCategory, type CategorySlug } from "@/lib/blog"
@@ -29,6 +28,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         description: cat.description,
         alternates: { canonical: `${SITE_URL}/blog/categoria/${cat.slug}` },
         openGraph: {
+            images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
             title: `${cat.name} · Blog SEOscar`,
             description: cat.description,
             type: "website",
@@ -38,27 +38,27 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 const accentText: Record<string, string> = {
-    pink: "text-pink-300",
-    emerald: "text-emerald-300",
-    orange: "text-orange-300",
-    red: "text-red-300",
-    blue: "text-blue-300",
+    pink: "text-[#013E37]",
+    emerald: "text-[#013E37]",
+    orange: "text-[#013E37]",
+    red: "text-[#013E37]",
+    blue: "text-[#013E37]",
 }
 
 const accentBg: Record<string, string> = {
-    pink: "bg-pink-400/10 border-pink-400/30",
-    emerald: "bg-emerald-400/10 border-emerald-400/30",
-    orange: "bg-orange-400/10 border-orange-400/30",
-    red: "bg-red-400/10 border-red-400/30",
-    blue: "bg-blue-400/10 border-blue-400/30",
+    pink: "bg-[#013E37]/10 border-[#013E37]/25",
+    emerald: "bg-[#013E37]/10 border-[#013E37]/25",
+    orange: "bg-[#013E37]/10 border-[#013E37]/25",
+    red: "bg-[#013E37]/10 border-[#013E37]/25",
+    blue: "bg-[#013E37]/10 border-[#013E37]/25",
 }
 
 const accentDot: Record<string, string> = {
-    pink: "bg-pink-400",
-    emerald: "bg-emerald-400",
-    orange: "bg-orange-400",
-    red: "bg-red-400",
-    blue: "bg-blue-400",
+    pink: "bg-[#013E37]",
+    emerald: "bg-[#013E37]",
+    orange: "bg-[#013E37]",
+    red: "bg-[#013E37]",
+    blue: "bg-[#013E37]",
 }
 
 export default async function CategoryPage({ params }: Params) {
@@ -70,12 +70,13 @@ export default async function CategoryPage({ params }: Params) {
     const subtopics = Array.from(new Set(posts.flatMap((p) => p.tags ?? []))).slice(0, 10)
 
     return (
-        <main className="min-h-screen bg-[#FAFAFA] text-[#09090B] selection:bg-[#B4975A]/30">
-            <Navigation />
+        <ThemeRegistry>
+        <main className="min-h-screen bg-[#FAF8F0] text-[#14201D]">
+            <SiteHeader />
 
             {/* Hero */}
-            <section className="relative pt-32 pb-12 md:pt-36 md:pb-20 overflow-hidden">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#B4975A]/[0.07] blur-[160px] rounded-full pointer-events-none" />
+            <section className="relative pt-10 pb-12 md:pt-14 md:pb-20 overflow-hidden">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#013E37]/[0.07] blur-[160px] rounded-full pointer-events-none" />
 
                 <div className="container relative z-10 px-6 mx-auto max-w-6xl">
                     <Breadcrumbs
@@ -94,16 +95,16 @@ export default async function CategoryPage({ params }: Params) {
                             </span>
                         </div>
 
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#09090B] tracking-[-0.025em] leading-[1] mb-6">
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-[family-name:var(--font-fraunces)] font-semibold text-[#14201D] tracking-[-0.025em] leading-[1] mb-6">
                             <span
-                                className="relative inline-block bg-gradient-to-br from-[#B4975A] via-[#B4975A] to-[#B4975A] bg-clip-text text-transparent"
-                                style={{ filter: "drop-shadow(0 0 24px rgba(180,151,90,0.35))" }}
+                                className="relative inline-block bg-gradient-to-br from-[#013E37] via-[#013E37] to-[#013E37] bg-clip-text text-transparent"
+                                style={{ filter: "drop-shadow(0 0 24px rgba(1,62,55,0.16))" }}
                             >
                                 {cat.name}
                             </span>
                         </h1>
 
-                        <p className="text-base md:text-lg text-zinc-600 font-medium leading-relaxed max-w-2xl mx-auto">
+                        <p className="text-base md:text-lg text-[#26332F] font-medium leading-relaxed max-w-2xl mx-auto">
                             {cat.description}
                         </p>
                     </div>
@@ -116,7 +117,7 @@ export default async function CategoryPage({ params }: Params) {
                     <div className="flex flex-wrap justify-center gap-2 md:gap-3">
                         <Link
                             href="/blog"
-                            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-zinc-100 border border-[#E4E4E7] hover:bg-zinc-100 text-zinc-600 hover:text-[#09090B] text-[10px] font-black uppercase tracking-[0.25em] transition-all"
+                            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#F1EEE1] border border-[#E1DCCB] hover:bg-[#F1EEE1] text-[#26332F] hover:text-[#14201D] text-[10px] font-black uppercase tracking-[0.25em] transition-all"
                         >
                             ← Todos
                         </Link>
@@ -129,7 +130,7 @@ export default async function CategoryPage({ params }: Params) {
                                     className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.25em] transition-all ${
                                         active
                                             ? `${accentBg[c.accent]} ${accentText[c.accent]}`
-                                            : "bg-zinc-100 border border-[#E4E4E7] text-zinc-600 hover:bg-zinc-100"
+                                            : "bg-[#F1EEE1] border border-[#E1DCCB] text-[#26332F] hover:bg-[#F1EEE1]"
                                     }`}
                                 >
                                     <span className={`h-1.5 w-1.5 rounded-full ${accentDot[c.accent]} ${active ? "animate-pulse" : ""}`} />
@@ -145,14 +146,14 @@ export default async function CategoryPage({ params }: Params) {
             {subtopics.length > 0 && (
                 <section className="relative pb-10 md:pb-12">
                     <div className="container px-6 mx-auto max-w-6xl">
-                        <div className="rounded-2xl border border-[#E4E4E7] bg-[#FFFFFF] p-5 md:p-6">
+                        <div className="rounded-2xl border border-[#E1DCCB] bg-[#FEFDF9] p-5 md:p-6">
                             <div className="flex items-center gap-2 mb-4">
                                 <span className={`h-1.5 w-1.5 rounded-full ${accentDot[cat.accent]}`} aria-hidden />
                                 <span className={`text-[11px] font-mono font-medium uppercase tracking-wide ${accentText[cat.accent]}`}>Qué cubre esta vertical</span>
                             </div>
                             <div className="flex flex-wrap gap-2">
                                 {subtopics.map((t) => (
-                                    <span key={t} className="inline-flex items-center rounded-lg bg-zinc-50 border border-[#E4E4E7] px-3 py-1.5 text-xs font-mono text-zinc-600">
+                                    <span key={t} className="inline-flex items-center rounded-lg bg-[#F1EEE1] border border-[#E1DCCB] px-3 py-1.5 text-xs font-mono text-[#26332F]">
                                         {t}
                                     </span>
                                 ))}
@@ -167,7 +168,7 @@ export default async function CategoryPage({ params }: Params) {
                 <div className="container px-6 mx-auto max-w-6xl">
                     {posts.length === 0 ? (
                         <div className="text-center py-20">
-                            <p className="text-zinc-500 text-sm font-medium">
+                            <p className="text-[#5E6B63] text-sm font-medium">
                                 Aún no hay artículos publicados en esta categoría.
                             </p>
                         </div>
@@ -181,8 +182,9 @@ export default async function CategoryPage({ params }: Params) {
                 </div>
             </section>
 
-            <FinalCTA />
-            <Footer />
+            <DiagnosticoCTA />
+            <SiteFooter />
         </main>
+        </ThemeRegistry>
     )
 }

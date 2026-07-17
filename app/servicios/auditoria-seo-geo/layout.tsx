@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     "auditoría GA4 y píxeles",
   ],
   openGraph: {
+            images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
     title: "Auditoría SEO, GEO y CRO para tu ecommerce | SEOscar",
     description:
       "Un documento con todo lo que aplicar en tu tienda: SEO y GEO de fichas y landing, fugas de conversión, diseño CRO y medición. Priorizado por impacto en ventas.",

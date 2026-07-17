@@ -46,6 +46,7 @@ export const metadata: Metadata = {
   description: "Casos reales de tiendas sobre Shopify, WooCommerce y web nativa: agente de ventas IA, SEO que trae tráfico que compra y CRO. Sin migrar y con el código contigo.",
   keywords: ["casos de éxito ecommerce", "crecimiento tienda online", "agente de ventas IA caso", "SEO ecommerce resultados", "CRO tienda online", "casos IA ecommerce Barcelona"],
   openGraph: {
+            images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
     title: "Casos de éxito: ecommerce creciendo con IA | SEOscar",
     description: "Casos reales de tiendas sobre Shopify, WooCommerce y web nativa: agente de ventas IA, SEO que trae tráfico que compra y CRO. Sin migrar y con el código contigo.",
     type: "website",

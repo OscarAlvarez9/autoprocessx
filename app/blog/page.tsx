@@ -17,6 +17,7 @@ export const metadata: Metadata = {
         "Análisis técnico de ecommerce: SEO y GEO para los motores generativos, automatización de procesos, arquitecturas RAG y agentes de ventas reales en producción.",
     alternates: { canonical: `${SITE_URL}/blog` },
     openGraph: {
+            images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
         title: "Blog de IA para ecommerce: SEO, GEO y n8n | SEOscar",
         description: "Análisis técnico de ecommerce: SEO y GEO para los motores generativos, automatización de procesos, arquitecturas RAG y agentes de ventas reales en producción.",
         type: "website",

@@ -337,11 +337,18 @@ export async function getPostsByCategory(category: CategorySlug): Promise<BlogPo
 export async function getPostWithBody(
     slug: string
 ): Promise<{ post: BlogPost; body?: Document | string } | null> {
+    // Los params de App Router llegan percent-encoded y el slug guardado puede
+    // traer tildes: se decodifica y se normaliza antes de buscar, de forma que
+    // /blog/fr%C3%A1gil, /blog/frágil y /blog/fragil resuelven al mismo post
+    // (el canonical ya apunta a la forma limpia).
+    let decoded = slug
+    try { decoded = decodeURIComponent(slug) } catch { /* slug malformado: se usa tal cual */ }
+    const clean = cleanSlug(decoded)
     if (!isConfigured) {
-        const seed = getPostSeed(slug)
+        const seed = getPostSeed(clean)
         return seed ? { post: seed } : null
     }
-    return fetchPostBySlug(slug)
+    return fetchPostBySlug(clean)
 }
 
 export async function getAllPostSlugs(): Promise<string[]> {

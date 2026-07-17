@@ -69,8 +69,13 @@ const nextConfig: NextConfig = {
       { source: "/servicios/linkbuilding", destination: "/servicios/crecimiento-ecommerce", permanent: true },
       { source: "/servicios/automatizacion", destination: "/servicios/automatizaciones", permanent: true },
       { source: "/proyectos", destination: "/casos-de-exito", permanent: true },
+      { source: "/proyectos/bebubbleibiza", destination: "/casos-de-exito", permanent: true },
       { source: "/pricing", destination: "/diagnostico", permanent: true },
       { source: "/terminos", destination: "/aviso-legal", permanent: true },
+      // Producto/plataforma del seoscar viejo: sin equivalente directo, la página
+      // de tecnología es lo más afín.
+      { source: "/plataforma", destination: "/tecnologia", permanent: true },
+      { source: "/roadmap", destination: "/tecnologia", permanent: true },
 
       // Blog antiguo de Framer: LISTA EXPLÍCITA al listado. NUNCA un catch-all
       // /blog/:slug* (mataría los /blog/<slug> nuevos de Contentful). Next casa
@@ -83,6 +88,14 @@ const nextConfig: NextConfig = {
       { source: "/blog/c%C3%B3mo-optimizar-tu-sitio-para-google-discover", destination: "/blog", permanent: true },
       { source: "/blog/t%C3%A9cnicas-avanzadas-de-seo-sem%C3%A1ntico-y-topic-clustering", destination: "/blog", permanent: true },
       { source: "/blog/seo-internacional-avanzado-hreflang-y-geolocalizaci%C3%B3n", destination: "/blog", permanent: true },
+      // Verificados en GSC el 2026-07-17 (impresiones últimos 90 días, daban 404):
+      { source: "/blog/3modzTbvbJX01DNniPS16p", destination: "/blog", permanent: true },
+      { source: "/blog/claude-seo-es-tan-bueno-como-parece-o-nos-va-a-quitar-el-trabajo", destination: "/blog", permanent: true },
+      { source: "/blog/arquitectura-seo-por-que-tu-web-es-un-laberinto-sin-salida-y-como", destination: "/blog", permanent: true },
+      { source: "/blog/google-maps-no-es-un-desierto-por-que-tu-web-es-el-mando-a-distancia-de-tu", destination: "/blog", permanent: true },
+      { source: "/blog/yoast-seo-por-que-obsesionarte-con-el-semaforo-verde-te-esta-haciendo-perder-dinero", destination: "/blog", permanent: true },
+      // Post antiguo sobre Make: el nuevo n8n-vs-make-vs-zapier es equivalente directo.
+      { source: "/blog/automatiza-o-muere-como-conectar-tus-formularios-a-make-para-no-perder-ni-un", destination: "/blog/n8n-vs-zapier-make-comparativa-real", permanent: true },
     ];
   },
 };

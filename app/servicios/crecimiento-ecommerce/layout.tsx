@@ -47,6 +47,7 @@ export const metadata: Metadata = {
   description: "Pack Crecimiento ecommerce: SEO técnico y GEO que traen tráfico que compra, CRO y agente de ventas IA que lo convierten, y automatización. Sin migrar nada.",
   keywords: ["crecimiento ecommerce", "SEO ecommerce", "GEO", "CRO ecommerce", "optimización de conversión", "agente de ventas IA", "SEO Barcelona", "automatización n8n ecommerce"],
   openGraph: {
+            images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
     title: "Crecimiento ecommerce: consultoría SEO, GEO y CRO | SEOscar",
     description: "Pack Crecimiento ecommerce: SEO técnico y GEO que traen tráfico que compra, CRO y agente de ventas IA que lo convierten, y automatización. Sin migrar nada.",
     type: "website",

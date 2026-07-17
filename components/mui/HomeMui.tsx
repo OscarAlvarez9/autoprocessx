@@ -327,7 +327,10 @@ function LooseCarousel({ items }: { items: React.ReactNode[] }) {
         sx={{
           display: "flex", alignItems: "stretch", gap: 2, overflowX: "auto",
           scrollSnapType: "x mandatory", scrollPaddingLeft: "24px",
-          mx: -3, px: 3, pb: 1,
+          // pt compensado con mt: el track recorta en vertical (overflow-x auto
+          // implica clip en Y) y el translateY(-4px) del tap cortaba el borde
+          // superior de la card. Con 8px de aire la elevación queda dentro.
+          mx: -3, px: 3, pb: 1, pt: 1, mt: -1,
           WebkitOverflowScrolling: "touch", scrollbarWidth: "none", "&::-webkit-scrollbar": { display: "none" },
         }}
       >

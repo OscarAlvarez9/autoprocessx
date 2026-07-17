@@ -81,7 +81,7 @@ export default function BlogCard({
         >
             <Card
                 className={cn(
-                    "group h-full flex bg-[#FFFFFF] border-[#E4E4E7] text-[#09090B] rounded-2xl overflow-hidden hover:bg-[#F4F4F5] transition-all p-0 shadow-none",
+                    "group h-full flex bg-[#FEFDF9] border-[#E1DCCB] text-[#14201D] rounded-2xl overflow-hidden hover:bg-[#F1EEE1] transition-all p-0 shadow-none",
                     a.border,
                     a.glow,
                     featured ? "md:flex-row" : "flex-col"
@@ -92,7 +92,7 @@ export default function BlogCard({
                     href={`/blog/${post.slug}`}
                     aria-label={post.title}
                     className={cn(
-                        "relative shrink-0 overflow-hidden bg-gradient-to-br via-[#FAFAFA] to-[#FFFFFF]",
+                        "relative shrink-0 overflow-hidden bg-gradient-to-br via-[#FAF8F0] to-[#FEFDF9]",
                         a.tint,
                         featured ? "md:w-1/2 aspect-[16/10] md:aspect-auto" : "aspect-[16/10]"
                     )}
@@ -145,7 +145,7 @@ export default function BlogCard({
                         <Badge
                             variant="outline"
                             className={cn(
-                                "bg-[#FFFFFF]/90 backdrop-blur-md border-[#E4E4E7] gap-1.5 px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.25em] shadow-sm",
+                                "bg-[#FEFDF9]/90 backdrop-blur-md border-[#E1DCCB] gap-1.5 px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.25em] shadow-sm",
                                 a.text
                             )}
                         >
@@ -158,9 +158,9 @@ export default function BlogCard({
                 {/* Content */}
                 <div className="flex flex-col flex-1 min-w-0">
                     <CardHeader className={cn("space-y-3 pt-5 px-5 md:px-6 pb-0", featured && "md:pt-7 md:px-8")}>
-                        <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.25em] text-zinc-500">
+                        <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.25em] text-[#5E6B63]">
                             <time dateTime={post.date}>{formatDate(post.date)}</time>
-                            <span className="h-1 w-1 rounded-full bg-zinc-200" />
+                            <span className="h-1 w-1 rounded-full bg-[#E1DCCB]" />
                             <span className="flex items-center gap-1.5">
                                 <Clock className="h-3 w-3" />
                                 {post.readingMinutes} min
@@ -170,7 +170,7 @@ export default function BlogCard({
                         <Link href={`/blog/${post.slug}`}>
                             <CardTitle
                                 className={cn(
-                                    "font-black tracking-tight leading-[1.15] text-[#09090B] transition-colors",
+                                    "font-[family-name:var(--font-fraunces)] font-semibold tracking-tight leading-[1.15] text-[#14201D] transition-colors",
                                     a.ringHover,
                                     featured ? "text-2xl md:text-3xl" : "text-base md:text-lg"
                                 )}
@@ -183,7 +183,7 @@ export default function BlogCard({
                     <CardContent className={cn("flex-1 px-5 md:px-6 py-4", featured && "md:px-8")}>
                         <CardDescription
                             className={cn(
-                                "text-zinc-600 font-medium leading-relaxed",
+                                "text-[#26332F] font-medium leading-relaxed",
                                 featured ? "text-sm md:text-base line-clamp-3" : "text-xs md:text-sm line-clamp-2"
                             )}
                         >
@@ -196,7 +196,7 @@ export default function BlogCard({
                                     <Badge
                                         key={tag}
                                         variant="outline"
-                                        className="bg-zinc-100 border-[#E4E4E7] text-zinc-500 px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-[0.2em]"
+                                        className="bg-[#F1EEE1] border-[#E1DCCB] text-[#5E6B63] px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-[0.2em]"
                                     >
                                         {tag}
                                     </Badge>
@@ -207,17 +207,17 @@ export default function BlogCard({
 
                     <CardFooter
                         className={cn(
-                            "mt-auto pt-4 px-5 md:px-6 pb-5 border-t border-[#E4E4E7] flex items-center justify-between",
+                            "mt-auto pt-4 px-5 md:px-6 pb-5 border-t border-[#E1DCCB] flex items-center justify-between",
                             featured && "md:px-8 md:pb-6"
                         )}
                     >
-                        <span className="text-[10px] font-black uppercase tracking-[0.25em] text-zinc-500">
+                        <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#5E6B63]">
                             {post.author}
                         </span>
                         <Link
                             href={`/blog/${post.slug}`}
                             className={cn(
-                                "inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.25em] hover:text-[#09090B] transition-colors",
+                                "inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.25em] hover:text-[#14201D] transition-colors",
                                 a.text
                             )}
                         >

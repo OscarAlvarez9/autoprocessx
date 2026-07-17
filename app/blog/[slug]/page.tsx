@@ -2,9 +2,8 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { Clock, ArrowLeft, ArrowRight } from "lucide-react"
-import Navigation from "@/components/Navigation"
-import Footer from "@/components/Footer"
-import FinalCTA from "@/components/FinalCTA"
+import ThemeRegistry from "@/components/mui/ThemeRegistry"
+import { SiteHeader, SiteFooter, DiagnosticoCTA } from "@/components/mui/shared"
 import Breadcrumbs from "@/components/Breadcrumbs"
 import JsonLd from "@/components/JsonLd"
 import Image from "next/image"
@@ -42,6 +41,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         description: post.excerpt,
         alternates: { canonical: `${SITE_URL}/blog/${post.slug}` },
         openGraph: {
+            images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
             title: post.title,
             description: post.excerpt,
             type: "article",
@@ -52,25 +52,25 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 const accentText: Record<string, string> = {
-    pink: "text-pink-300",
-    emerald: "text-emerald-300",
-    orange: "text-orange-300",
-    red: "text-red-300",
-    blue: "text-blue-300",
+    pink: "text-[#013E37]",
+    emerald: "text-[#013E37]",
+    orange: "text-[#013E37]",
+    red: "text-[#013E37]",
+    blue: "text-[#013E37]",
 }
 const accentBg: Record<string, string> = {
-    pink: "bg-pink-400/10 border-pink-400/30",
-    emerald: "bg-emerald-400/10 border-emerald-400/30",
-    orange: "bg-orange-400/10 border-orange-400/30",
-    red: "bg-red-400/10 border-red-400/30",
-    blue: "bg-blue-400/10 border-blue-400/30",
+    pink: "bg-[#013E37]/10 border-[#013E37]/25",
+    emerald: "bg-[#013E37]/10 border-[#013E37]/25",
+    orange: "bg-[#013E37]/10 border-[#013E37]/25",
+    red: "bg-[#013E37]/10 border-[#013E37]/25",
+    blue: "bg-[#013E37]/10 border-[#013E37]/25",
 }
 const accentDot: Record<string, string> = {
-    pink: "bg-pink-400",
-    emerald: "bg-emerald-400",
-    orange: "bg-orange-400",
-    red: "bg-red-400",
-    blue: "bg-blue-400",
+    pink: "bg-[#013E37]",
+    emerald: "bg-[#013E37]",
+    orange: "bg-[#013E37]",
+    red: "bg-[#013E37]",
+    blue: "bg-[#013E37]",
 }
 
 export default async function BlogPostPage({ params }: Params) {
@@ -109,12 +109,13 @@ export default async function BlogPostPage({ params }: Params) {
     }
 
     return (
-        <main className="min-h-screen bg-[#FAFAFA] text-[#09090B] selection:bg-[#B4975A]/30">
-            <Navigation />
+        <ThemeRegistry>
+        <main className="min-h-screen bg-[#FAF8F0] text-[#14201D]">
+            <SiteHeader />
             <JsonLd data={articleSchema} />
 
-            <article className="relative pt-32 pb-16 md:pt-36 md:pb-24 overflow-hidden">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#B4975A]/[0.05] blur-[160px] rounded-full pointer-events-none" />
+            <article className="relative pt-10 pb-16 md:pt-14 md:pb-24 overflow-hidden">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#013E37]/[0.05] blur-[160px] rounded-full pointer-events-none" />
 
                 <div className="container relative z-10 px-6 mx-auto max-w-3xl">
                     <Breadcrumbs
@@ -127,7 +128,7 @@ export default async function BlogPostPage({ params }: Params) {
                     />
 
                     {/* Category & meta */}
-                    <div className="flex flex-wrap items-center gap-3 mb-6 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">
+                    <div className="flex flex-wrap items-center gap-3 mb-6 text-[10px] font-black uppercase tracking-[0.3em] text-[#5E6B63]">
                         <Link
                             href={`/blog/categoria/${cat.slug}`}
                             className={`inline-flex items-center gap-2 px-3 py-1 rounded-full backdrop-blur-md ${accentBg[cat.accent]} ${accentText[cat.accent]}`}
@@ -143,12 +144,12 @@ export default async function BlogPostPage({ params }: Params) {
                     </div>
 
                     {/* Title */}
-                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-[-0.025em] leading-[1.05] text-[#09090B] mb-6">
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-[family-name:var(--font-fraunces)] font-semibold tracking-[-0.025em] leading-[1.05] text-[#14201D] mb-6">
                         {post.title}
                     </h1>
 
                     {/* Excerpt */}
-                    <p className="text-lg md:text-xl text-zinc-600 font-medium leading-relaxed mb-10 max-w-2xl">
+                    <p className="text-lg md:text-xl text-[#26332F] font-medium leading-relaxed mb-10 max-w-2xl">
                         {post.excerpt}
                     </p>
 
@@ -159,7 +160,7 @@ export default async function BlogPostPage({ params }: Params) {
                                 <Badge
                                     key={tag}
                                     variant="outline"
-                                    className="bg-zinc-100 border-[#E4E4E7] text-zinc-600 px-2.5 py-1 rounded text-[9px] font-black uppercase tracking-[0.2em]"
+                                    className="bg-[#F1EEE1] border-[#E1DCCB] text-[#26332F] px-2.5 py-1 rounded text-[9px] font-black uppercase tracking-[0.2em]"
                                 >
                                     {tag}
                                 </Badge>
@@ -169,7 +170,7 @@ export default async function BlogPostPage({ params }: Params) {
 
                     {/* Cover image */}
                     {post.cover && (
-                        <div className="mb-10 rounded-2xl md:rounded-3xl overflow-hidden border border-[#E4E4E7] bg-[#FFFFFF]">
+                        <div className="mb-10 rounded-2xl md:rounded-3xl overflow-hidden border border-[#E1DCCB] bg-[#FEFDF9]">
                             <Image
                                 src={post.cover}
                                 alt={post.title}
@@ -191,7 +192,7 @@ export default async function BlogPostPage({ params }: Params) {
                                 {body.split(/\n{2,}/).map((para, i) => (
                                     <p
                                         key={i}
-                                        className="text-zinc-600 text-base md:text-lg font-medium leading-relaxed whitespace-pre-line"
+                                        className="text-[#26332F] text-base md:text-lg font-medium leading-relaxed whitespace-pre-line"
                                     >
                                         {para}
                                     </p>
@@ -199,15 +200,15 @@ export default async function BlogPostPage({ params }: Params) {
                             </div>
                         ) : post.content ? (
                             <div
-                                className="prose prose-invert max-w-none prose-p:text-zinc-600 prose-p:leading-relaxed prose-headings:text-[#09090B] prose-headings:font-black prose-strong:text-[#09090B] prose-a:text-[#B4975A] prose-a:no-underline hover:prose-a:underline"
+                                className="prose prose-invert max-w-none prose-p:text-[#26332F] prose-p:leading-relaxed prose-headings:text-[#14201D] prose-headings:font-black prose-strong:text-[#14201D] prose-a:text-[#013E37] prose-a:no-underline hover:prose-a:underline"
                                 dangerouslySetInnerHTML={{ __html: post.content }}
                             />
                         ) : (
-                            <div className="rounded-2xl border border-[#B4975A]/20 bg-[#B4975A]/[0.04] p-6 md:p-8">
-                                <p className="text-[#B4975A] text-sm font-black uppercase tracking-[0.3em] mb-3">
+                            <div className="rounded-2xl border border-[#013E37]/20 bg-[#013E37]/[0.04] p-6 md:p-8">
+                                <p className="text-[#013E37] text-sm font-black uppercase tracking-[0.3em] mb-3">
                                     Artículo en preparación
                                 </p>
-                                <p className="text-zinc-600 text-base font-medium leading-relaxed">
+                                <p className="text-[#26332F] text-base font-medium leading-relaxed">
                                     El contenido completo se publica próximamente. Si quieres ser notificado cuando esté disponible o necesitas el material técnico antes, contáctanos.
                                 </p>
                             </div>
@@ -216,33 +217,33 @@ export default async function BlogPostPage({ params }: Params) {
                         {/* DEV-ONLY debug panel — shows what Contentful actually returned */}
                         {debugFields && (
                             <div className="mt-8 rounded-2xl border border-red-500/30 bg-red-500/5 p-5 md:p-6">
-                                <p className="text-red-300 text-[10px] font-black uppercase tracking-[0.3em] mb-3">
+                                <p className="text-[#013E37] text-[10px] font-black uppercase tracking-[0.3em] mb-3">
                                     🔧 Debug · Fields recibidos de Contentful (solo en dev)
                                 </p>
-                                <p className="text-zinc-600 text-xs mb-4">
+                                <p className="text-[#26332F] text-xs mb-4">
                                     El cuerpo del artículo no se encontró en ninguno de los fields esperados. Estos son los fields que devuelve tu entry:
                                 </p>
-                                <pre className="text-[11px] text-zinc-600 bg-black/40 p-4 rounded-lg overflow-auto font-mono leading-relaxed">
+                                <pre className="text-[11px] text-[#26332F] bg-black/40 p-4 rounded-lg overflow-auto font-mono leading-relaxed">
 {JSON.stringify(debugFields, null, 2)}
                                 </pre>
-                                <p className="text-zinc-600 text-xs mt-4">
-                                    Busca el field que dice <code className="text-[#B4975A]">[Rich Text Document]</code> o el string largo. Si su API ID no es uno de:{" "}
-                                    <code className="text-[#B4975A]">texto, cuerpo, contenido, body, content, descripcion</code> — dime cuál es y lo añado.
+                                <p className="text-[#26332F] text-xs mt-4">
+                                    Busca el field que dice <code className="text-[#013E37]">[Rich Text Document]</code> o el string largo. Si su API ID no es uno de:{" "}
+                                    <code className="text-[#013E37]">texto, cuerpo, contenido, body, content, descripcion</code> — dime cuál es y lo añado.
                                 </p>
                             </div>
                         )}
                     </div>
 
                     {/* Footer nav */}
-                    <div className="mt-16 pt-8 border-t border-[#E4E4E7] flex flex-col sm:flex-row gap-3 justify-between">
+                    <div className="mt-16 pt-8 border-t border-[#E1DCCB] flex flex-col sm:flex-row gap-3 justify-between">
                         <Link href={`/blog/categoria/${cat.slug}`}>
-                            <Button className="h-11 px-5 rounded-xl bg-zinc-100 border border-[#E4E4E7] hover:border-[#B4975A]/40 hover:bg-[#B4975A]/10 text-[#09090B] text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2">
+                            <Button className="h-11 px-5 rounded-xl bg-[#F1EEE1] border border-[#E1DCCB] hover:border-[#013E37]/40 hover:bg-[#013E37]/10 text-[#14201D] text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2">
                                 <ArrowLeft className="h-3.5 w-3.5" />
                                 Más en {cat.name}
                             </Button>
                         </Link>
                         <Link href="/blog">
-                            <Button className="h-11 px-5 rounded-xl bg-[#B4975A]/10 border border-[#B4975A]/40 hover:bg-[#B4975A]/20 text-[#B4975A] text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2">
+                            <Button className="h-11 px-5 rounded-xl bg-[#013E37]/10 border border-[#013E37]/40 hover:bg-[#013E37]/20 text-[#013E37] text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2">
                                 Todos los artículos
                                 <ArrowRight className="h-3.5 w-3.5" />
                             </Button>
@@ -253,7 +254,7 @@ export default async function BlogPostPage({ params }: Params) {
 
             {/* Related */}
             {related.length > 0 && (
-                <section className="relative py-16 md:py-20 border-t border-[#E4E4E7]">
+                <section className="relative py-16 md:py-20 border-t border-[#E1DCCB]">
                     <div className="container px-6 mx-auto max-w-6xl">
                         <div className="text-center max-w-3xl mx-auto mb-10">
                             <div className={`inline-flex items-center gap-3 px-4 py-1.5 rounded-full backdrop-blur-md mb-5 ${accentBg[cat.accent]}`}>
@@ -262,7 +263,7 @@ export default async function BlogPostPage({ params }: Params) {
                                     Más en {cat.name}
                                 </span>
                             </div>
-                            <h2 className="text-2xl md:text-4xl font-black text-[#09090B] leading-[1.05] tracking-tight">
+                            <h2 className="text-2xl md:text-4xl font-[family-name:var(--font-fraunces)] font-semibold text-[#14201D] leading-[1.05] tracking-tight">
                                 Sigue leyendo.
                             </h2>
                         </div>
@@ -270,19 +271,19 @@ export default async function BlogPostPage({ params }: Params) {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {related.map((p) => (
                                 <Link key={p.slug} href={`/blog/${p.slug}`} className="group">
-                                    <Card className="h-full bg-[#FFFFFF] border-[#E4E4E7] hover:bg-[#F4F4F5] hover:border-[#B4975A]/30 rounded-2xl shadow-none transition-all">
+                                    <Card className="h-full bg-[#FEFDF9] border-[#E1DCCB] hover:bg-[#F1EEE1] hover:border-[#013E37]/30 rounded-2xl shadow-none transition-all">
                                         <CardHeader className="space-y-3 pt-5 px-5 pb-0">
-                                            <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.25em] text-zinc-500">
+                                            <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.25em] text-[#5E6B63]">
                                                 <time dateTime={p.date}>{formatDate(p.date)}</time>
-                                                <span className="h-1 w-1 rounded-full bg-zinc-200" />
+                                                <span className="h-1 w-1 rounded-full bg-[#E1DCCB]" />
                                                 <span>{p.readingMinutes} min</span>
                                             </div>
-                                            <CardTitle className="text-base font-black tracking-tight leading-snug text-[#09090B] group-hover:text-[#B4975A] transition-colors">
+                                            <CardTitle className="text-base font-black tracking-tight leading-snug text-[#14201D] group-hover:text-[#013E37] transition-colors">
                                                 {p.title}
                                             </CardTitle>
                                         </CardHeader>
                                         <CardContent className="px-5 pb-5">
-                                            <p className="text-zinc-600 text-xs font-medium leading-relaxed line-clamp-3">
+                                            <p className="text-[#26332F] text-xs font-medium leading-relaxed line-clamp-3">
                                                 {p.excerpt}
                                             </p>
                                         </CardContent>
@@ -294,8 +295,9 @@ export default async function BlogPostPage({ params }: Params) {
                 </section>
             )}
 
-            <FinalCTA />
-            <Footer />
+            <DiagnosticoCTA />
+            <SiteFooter />
         </main>
+        </ThemeRegistry>
     )
 }

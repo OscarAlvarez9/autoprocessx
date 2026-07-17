@@ -24,6 +24,7 @@ export const metadata: Metadata = {
         canonical: `${SITE_URL}/contacto`,
     },
     openGraph: {
+            images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
         title: "Contacto | Agencia de ecommerce en Barcelona | SEOscar",
         description:
             "Cuéntame qué frena tu tienda online y te devuelvo un diagnóstico con plan priorizado por impacto en ventas. Respuesta en 24 a 48h, sin compromiso y sin humo.",
