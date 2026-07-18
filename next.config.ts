@@ -90,8 +90,11 @@ const nextConfig: NextConfig = {
       { source: "/blog/seo-internacional-avanzado-hreflang-y-geolocalizaci%C3%B3n", destination: "/blog", permanent: true },
       // Verificados en GSC el 2026-07-17 (impresiones últimos 90 días, daban 404):
       { source: "/blog/3modzTbvbJX01DNniPS16p", destination: "/blog", permanent: true },
-      { source: "/blog/claude-seo-es-tan-bueno-como-parece-o-nos-va-a-quitar-el-trabajo", destination: "/blog", permanent: true },
-      { source: "/blog/arquitectura-seo-por-que-tu-web-es-un-laberinto-sin-salida-y-como", destination: "/blog", permanent: true },
+      // OJO: /blog/claude-seo-es-tan-bueno... NO se redirige: el post se republicó
+      // en Contentful con el MISMO slug y un redirect aquí lo secuestraría (308 al
+      // listado). Regla general: antes de añadir un redirect de blog, comprobar que
+      // el slug no existe (ni va a existir) como post real.
+      { source: "/blog/arquitectura-seo-por-que-tu-web-es-un-laberinto-sin-salida-y-como", destination: "/blog/arquitectura-seo-por-que-tu-web-es-un-laberinto-sin-salida-y-como-arreglarlo", permanent: true },
       { source: "/blog/google-maps-no-es-un-desierto-por-que-tu-web-es-el-mando-a-distancia-de-tu", destination: "/blog", permanent: true },
       { source: "/blog/yoast-seo-por-que-obsesionarte-con-el-semaforo-verde-te-esta-haciendo-perder-dinero", destination: "/blog", permanent: true },
       // Post antiguo sobre Make: el nuevo n8n-vs-make-vs-zapier es equivalente directo.

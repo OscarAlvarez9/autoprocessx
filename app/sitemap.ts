@@ -3,6 +3,10 @@ import { allCaseSlugs } from '@/lib/casesEcom'
 import { blogCategories } from '@/lib/blog'
 import { getAllPosts } from '@/lib/contentful'
 
+// Sin esto el sitemap se genera solo en build y los posts nuevos de Contentful
+// no entran hasta el siguiente deploy. Con revalidate se refresca como el blog.
+export const revalidate = 300
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogPosts = await getAllPosts()
   const baseUrl = 'https://www.seoscar.com'
