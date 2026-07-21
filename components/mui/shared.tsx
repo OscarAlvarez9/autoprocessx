@@ -248,7 +248,7 @@ const NAV_LINKS = [
   { label: "Casos", href: "/casos-de-exito" },
   { label: "Método", href: "/metodo" },
   { label: "Blog", href: "/blog" },
-  { label: "Nosotros", href: "/sobre-nosotros" },
+  { label: "Quién hay detrás", href: "/sobre-nosotros" },
 ]
 
 function Logo() {
@@ -681,7 +681,7 @@ export function SiteFooter() {
     ["Casos de éxito", "/casos-de-exito"],
     ["Blog", "/blog"],
     ["Tecnología", "/tecnologia"],
-    ["Conócenos", "/sobre-nosotros"],
+    ["Quién hay detrás", "/sobre-nosotros"],
   ]
   const LEGAL: [string, string][] = [
     ["Aviso legal", "/aviso-legal"],

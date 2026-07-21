@@ -29,12 +29,12 @@ const aboutSchema = {
 
 
 export const metadata: Metadata = {
-  title: { absolute: "Conócenos: Óscar, Roger y Sam, ecommerce Barcelona | SEOscar" },
+  title: { absolute: "Quién hay detrás: Óscar, Roger y Sam, ecommerce | SEOscar" },
   description: "Detrás de SEOscar: Óscar, Roger y Sam, en Barcelona. Hago que las tiendas online vendan más con SEO, agente de ventas IA y automatización. El código es tuyo.",
   keywords: ["estudio IA ecommerce Barcelona", "agencia crecimiento ecommerce", "especialistas n8n", "sobre SEOscar", "sistemas de IA tiendas online", "agencia ecommerce Barcelona"],
   openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
-    title: "Conócenos: Óscar, Roger y Sam, ecommerce Barcelona | SEOscar",
+    title: "Quién hay detrás: Óscar, Roger y Sam, ecommerce | SEOscar",
     description: "Detrás de SEOscar: Óscar, Roger y Sam, en Barcelona. Hago que las tiendas online vendan más con SEO, agente de ventas IA y automatización. El código es tuyo.",
     type: "website",
     locale: "es_ES",

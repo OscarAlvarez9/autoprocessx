@@ -21,7 +21,7 @@ const navLinks = [
   { label: "Casos", href: "/casos-de-exito" },
   { label: "Tecnología", href: "/tecnologia" },
   { label: "Blog", href: "/blog" },
-  { label: "Equipo", href: "/sobre-nosotros" },
+  { label: "Quién hay detrás", href: "/sobre-nosotros" },
 ]
 
 export default function Navigation() {
@@ -212,7 +212,7 @@ export default function Navigation() {
                   { href: "/casos-de-exito", label: "Casos de Éxito" },
                   { href: "/tecnologia", label: "Tecnología" },
                   { href: "/blog", label: "Blog" },
-                  { href: "/sobre-nosotros", label: "Equipo" },
+                  { href: "/sobre-nosotros", label: "Quién hay detrás" },
                 ].map((link) => (
                   <Link
                     key={link.href}

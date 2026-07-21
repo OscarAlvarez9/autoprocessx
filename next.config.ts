@@ -88,7 +88,12 @@ const nextConfig: NextConfig = {
       { source: "/blog/c%C3%B3mo-optimizar-tu-sitio-para-google-discover", destination: "/blog", permanent: true },
       { source: "/blog/t%C3%A9cnicas-avanzadas-de-seo-sem%C3%A1ntico-y-topic-clustering", destination: "/blog", permanent: true },
       { source: "/blog/seo-internacional-avanzado-hreflang-y-geolocalizaci%C3%B3n", destination: "/blog", permanent: true },
-      // Verificados en GSC el 2026-07-17 (impresiones últimos 90 días, daban 404):
+      // Verificados en GSC el 2026-07-17 (impresiones últimos 90 días, daban 404).
+      // REGLA: antes de añadir aquí un redirect sacado de GSC, comprobar que el
+      // slug no existe ni va a existir como post real — si se republica contenido
+      // con el mismo slug, la URL resolviendo 200 vale más que cualquier redirect,
+      // y este redirect taparía la página (quitar la línea al publicar). Candidatos
+      // a republicar: claude-seo-... y arquitectura-seo-... (ver plan 17-jul).
       { source: "/blog/3modzTbvbJX01DNniPS16p", destination: "/blog", permanent: true },
       // OJO: /blog/claude-seo-es-tan-bueno... NO se redirige: el post se republicó
       // en Contentful con el MISMO slug y un redirect aquí lo secuestraría (308 al
