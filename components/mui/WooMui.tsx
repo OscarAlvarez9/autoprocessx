@@ -411,7 +411,14 @@ export default function WooMui() {
         closing={{ t: FRENOS[3][0], d: FRENOS[3][1] }}
       />
       <Bloques title="Cómo optimizo tu tienda WooCommerce." intro="El Pack Crecimiento ecommerce aplicado a Woo aprovecha lo mejor de la plataforma: control total." items={TRABAJO} numbered
-        closing={<AuditFindings tag="auditoría WooCommerce · ejemplo" findings={AUDIT_FINDINGS} foot="hallazgos de ejemplo · TTFB ilustrativo · los tuyos salen del diagnóstico" />} />
+        closing={
+          <Box>
+            <AuditFindings tag="auditoría WooCommerce · ejemplo" findings={AUDIT_FINDINGS} foot="hallazgos de ejemplo · TTFB ilustrativo · los tuyos salen del diagnóstico" />
+            <Typography variant="body2" sx={{ color: tokens.muted, mt: 2.5, textAlign: "center" }}>
+              El mapa completo de tu tienda sale de una <Box component={Link} href="/servicios/auditoria-seo-geo" sx={{ color: tokens.ink, fontWeight: 600, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { textDecorationColor: tokens.petrol } }}>auditoría SEO</Box> y GEO completa.
+            </Typography>
+          </Box>
+        } />
       <Relacionados />
       <SinMigrar />
       <ParaQuien />

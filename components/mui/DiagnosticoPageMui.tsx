@@ -1,11 +1,15 @@
 "use client"
 
+import Link from "next/link"
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
+import Paper from "@mui/material/Paper"
 import { tokens, fonts } from "@/lib/mui/theme"
 import { SiteHeader, SiteFooter, Blueprint, Reveal, DiagnosticoFlow, Crumbs } from "@/components/mui/shared"
+
+const linkSx = { color: tokens.ink, fontWeight: 600, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { textDecorationColor: tokens.petrol } } as const
 
 function Check() {
   return (
@@ -92,6 +96,28 @@ export default function DiagnosticoPageMui() {
                 </Reveal>
               ))}
             </Box>
+          </Container>
+        </Box>
+
+        {/* Puente del embudo: captura "auditoría SEO gratis" y encauza al
+            diagnóstico; el enlace de vuelta cierra el ciclo gratis -> pago. */}
+        <Box component="section" sx={{ borderTop: `1px solid ${tokens.lineSoft}`, py: { xs: 8, md: 11 } }}>
+          <Container sx={{ maxWidth: 820 }}>
+            <Reveal>
+              <Paper elevation={0} sx={{ bgcolor: tokens.surface, border: `1px solid ${tokens.line}`, borderRadius: 4, p: { xs: 4, md: 6 } }}>
+                <Typography variant="h2" sx={{ fontSize: { xs: 24, md: 32 }, color: tokens.ink, mb: 2, maxWidth: 620 }}>
+                  ¿Buscas una auditoría SEO gratis?
+                </Typography>
+                <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, mb: 2.5, maxWidth: 640 }}>
+                  Empieza por aquí. El diagnóstico es justo eso: respondes cuatro preguntas, miro tu tienda a mano y en 24 a 48 horas te digo las tres o cuatro cosas que más ventas te están costando ahora mismo. Gratis, sin compromiso y sin volcados automáticos de herramienta.
+                </Typography>
+                <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 640 }}>
+                  ¿Necesitas la auditoría completa? El diagnóstico te orienta; la{" "}
+                  <Box component={Link} href="/servicios/auditoria-seo-geo" sx={linkSx}>auditoría SEO y GEO</Box>{" "}
+                  es el documento entero, con todo lo que aplicar en tu tienda priorizado por impacto en ventas.
+                </Typography>
+              </Paper>
+            </Reveal>
           </Container>
         </Box>
       </Box>

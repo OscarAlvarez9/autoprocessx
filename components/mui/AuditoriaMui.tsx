@@ -44,7 +44,9 @@ const ENTREGABLES = [
   { n: "04", t: "Sesión de entrega", d: "Te lo explico en directo y resuelvo dudas, para que el documento no se quede en un PDF sin abrir." },
 ]
 
-const FAQS = [
+const linkSx = { color: tokens.ink, fontWeight: 600, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { textDecorationColor: tokens.petrol } } as const
+
+const FAQS: { q: string; a: React.ReactNode }[] = [
   {
     q: "¿Es lo mismo que el diagnóstico gratuito?",
     a: "No. El diagnóstico es gratis y te dice dónde mirar: las tres o cuatro cosas que más ventas te están costando. La auditoría es el documento completo: todo lo que aplicar en tu tienda, en qué orden y por qué, con SEO y GEO de fichas y landing, fugas de conversión, diseño CRO y medición. El diagnóstico te orienta; la auditoría te da el plan entero.",
@@ -59,7 +61,20 @@ const FAQS = [
   },
   {
     q: "¿Cuánto cuesta la auditoría?",
-    a: "Depende del tamaño del catálogo y de las plataformas que haya que auditar, así que el precio exacto sale del diagnóstico, que es gratis y sin compromiso. Lo que sí te adelanto: es un precio cerrado, lo sabes antes de empezar, y el documento es tuyo lo apliques conmigo o por tu cuenta.",
+    a: "Empieza en 500€ y sube según el tamaño del catálogo, las plataformas implicadas y los idiomas. Es un precio cerrado que sabes antes de empezar, y el documento es tuyo lo apliques conmigo o por tu cuenta. Lo tienes desglosado más arriba.",
+  },
+  {
+    q: "¿Cuánto tarda una auditoría SEO?",
+    a: "[[plazo real]] semanas desde que tengo los accesos. El rastreo y el análisis de datos son la parte rápida; lo que lleva tiempo es revisar tu tienda como comprador y cruzar lo que veo con lo que dicen GA4 y Search Console. La sesión de entrega la agendamos al cerrar el documento.",
+  },
+  {
+    q: "¿Qué diferencia hay entre auditoría SEO y auditoría técnica?",
+    a: (
+      <>
+        La auditoría técnica es una parte de la auditoría SEO, no un sinónimo. Lo técnico cubre rastreo, indexación, velocidad, schema y errores de servidor: que Google pueda leer tu tienda. La auditoría completa añade lo que decide si vendes: intención de búsqueda de tus categorías, calidad de las fichas, visibilidad en los buscadores de IA, las fugas de conversión del funnel y la{" "}
+        <Box component={Link} href="#medicion" sx={linkSx}>medición y tracking</Box>. Una tienda puede estar técnicamente perfecta y no vender nada.
+      </>
+    ),
   },
 ]
 
@@ -70,10 +85,10 @@ function Hero() {
     <ServiceHero
       title={
         <>
-          Auditoría SEO/GEO de tu ecommerce + <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>fugas</Box> de conversión
+          Auditoría SEO y GEO de tu ecommerce, más las <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>fugas</Box> de conversión
         </>
       }
-      sub="Analizo tu tienda a fondo, de la búsqueda al checkout, y te entrego un único documento con todo lo que hay que aplicar y mejorar, ordenado por impacto en ventas."
+      sub="Una auditoría SEO completa de tu tienda, de la búsqueda al checkout: qué frena tu posicionamiento en Google, si la IA te cita cuando alguien pregunta qué comprar y dónde se te escapa la conversión. Todo en un documento, ordenado por impacto en ventas."
       specs={[
         ["alcance", "SEO/GEO + CRO + diseño + medición"],
         ["entregable", "un documento con todo lo que aplicar y mejorar"],
@@ -149,6 +164,9 @@ function BlockSeoGeo() {
                 <Typography variant="body2" sx={{ color: tokens.body, maxWidth: 460 }}>{s.d}</Typography>
               </Box>
             ))}
+            <Typography variant="body2" sx={{ color: tokens.muted, pt: 2.5, borderTop: `1px solid ${tokens.lineSoft}`, maxWidth: 460 }}>
+              ¿Tu tienda es de una plataforma concreta? El detalle está en el <Box component={Link} href="/agencia-shopify" sx={linkSx}>SEO para Shopify</Box> y el <Box component={Link} href="/agencia-woocommerce" sx={linkSx}>SEO para WooCommerce</Box>.
+            </Typography>
           </Stack>
         </Reveal>
       </Box>
@@ -222,7 +240,7 @@ function BlockDiseno() {
 // Bloque 4: texto a la izquierda, artefacto datos vs intuición a la derecha.
 function BlockMedicion() {
   return (
-    <Box>
+    <Box id="medicion" sx={{ scrollMarginTop: 90 }}>
       <BlockHead num="04" title="Medición y tracking" />
       <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.05fr 0.95fr" }, gap: { xs: 4, md: 7 }, alignItems: "center" }}>
         <Reveal>
@@ -302,6 +320,76 @@ function QueTeLlevas() {
   )
 }
 
+// Bloque de precio: captura el clúster "auditoría seo precio". El [[precio desde]]
+// lo rellena Óscar con una cifra real antes de publicar; sin número, la sección
+// no compite por esas keywords.
+function Precio() {
+  const FACTORES: [string, string][] = [
+    ["El tamaño del catálogo.", "Auditar 300 fichas de producto y auditar 30.000 no es el mismo trabajo. La estructura de categorías, los filtros y las variantes son donde más se rompe el SEO de un ecommerce, y eso escala con el catálogo."],
+    ["Cuántas plataformas hay que tocar.", "Una tienda Shopify es un trabajo. Una tienda Shopify más un WordPress corporativo más un blog en otro dominio son tres."],
+    ["Cuántos idiomas o mercados.", "Cada versión de idioma añade hreflang, canonicals cruzados y su propia estrategia de contenido."],
+  ]
+  return (
+    <Box component="section" id="precio" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}`, scrollMarginTop: 90 }}>
+      <Container sx={{ maxWidth: 760 }}>
+        <Reveal>
+          <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, mb: 3 }}>
+            Cuánto cuesta una auditoría SEO
+          </Typography>
+          <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, mb: 2.5, maxWidth: 680 }}>
+            Te lo digo directo, porque buscar el precio de una auditoría SEO y encontrar &laquo;depende, contacta&raquo; es perder el tiempo de todos.
+          </Typography>
+          <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, mb: 4, maxWidth: 680 }}>
+            Una auditoría SEO y GEO de ecommerce conmigo empieza en <Box component="span" sx={{ color: tokens.ink, fontWeight: 700 }}>500€</Box>. Ese es el suelo: catálogo estándar, una plataforma, un idioma. A partir de ahí sube según tres cosas concretas, y solo esas tres:
+          </Typography>
+          <Stack sx={{ mb: 4 }}>
+            {FACTORES.map(([t, d], i) => (
+              <Box key={t} sx={{ py: 2.5, borderTop: `1px solid ${tokens.lineSoft}`, ...(i === FACTORES.length - 1 ? { borderBottom: `1px solid ${tokens.lineSoft}` } : {}) }}>
+                <Typography variant="body1" sx={{ color: tokens.body, maxWidth: 640 }}>
+                  <Box component="span" sx={{ color: tokens.ink, fontWeight: 700 }}>{t}</Box> {d}
+                </Typography>
+              </Box>
+            ))}
+          </Stack>
+          <Typography variant="body1" sx={{ color: tokens.body, maxWidth: 680 }}>
+            Lo que no cambia el precio: el sector, la urgencia o lo bien que vaya el negocio. El precio es cerrado y lo sabes antes de empezar. Sin bolsa de horas, sin ampliaciones a mitad, sin permanencia. Y si luego trabajas{" "}
+            <Box component={Link} href="/servicios/crecimiento-ecommerce" sx={linkSx}>el pack Crecimiento</Box>, este plan ya está hecho.
+          </Typography>
+        </Reveal>
+      </Container>
+    </Box>
+  )
+}
+
+// Bloque "auditoría gratis": encauza esa búsqueda al diagnóstico, que es el
+// activo real de captación. Sin inventar nada.
+function Gratis() {
+  return (
+    <Box component="section" id="gratis" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}`, scrollMarginTop: 90 }}>
+      <Container sx={{ maxWidth: 760 }}>
+        <Reveal>
+          <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, mb: 3 }}>
+            ¿Y la auditoría SEO gratis?
+          </Typography>
+          <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, mb: 2.5, maxWidth: 680 }}>
+            Existe, y es{" "}
+            <Box component={Link} href="/diagnostico" sx={linkSx}>el diagnóstico gratis de tu tienda</Box>. Respondes cuatro preguntas, yo miro tu tienda y en 24 a 48 horas te digo las tres o cuatro cosas que más ventas te están costando ahora mismo. Gratis y sin compromiso.
+          </Typography>
+          <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, mb: 2.5, maxWidth: 680 }}>
+            Lo que no es: un informe automático de 40 páginas generado por una herramienta. Esos los puedes sacar tú en Ahrefs o en SEOptimer en dos minutos y te dirán que tienes 1.400 errores, la mayoría irrelevantes. Un PDF de colores no es una auditoría, es un volcado.
+          </Typography>
+          <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, mb: 4, maxWidth: 680 }}>
+            La diferencia entre el diagnóstico gratis y la auditoría completa es de alcance, no de calidad: el gratis te orienta, la auditoría te da el plan entero con las cuatro áreas cubiertas y el orden de ejecución.
+          </Typography>
+          <Button component={Link} href="/diagnostico" variant="contained" color="primary" sx={{ borderRadius: 2 }}>
+            Reserva tu diagnóstico gratis <Box component="span" sx={{ ml: 0.75 }}>→</Box>
+          </Button>
+        </Reveal>
+      </Container>
+    </Box>
+  )
+}
+
 function MetodoLink() {
   return (
     <Box component="section" sx={{ py: { xs: 7, md: 10 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
@@ -356,6 +444,8 @@ export default function AuditoriaMui() {
       <QueAuditamos />
       <StatementBand as="p" title="No puedes arreglar lo que no has medido." photo="/assets/gen/photo-analitica.png" />
       <QueTeLlevas />
+      <Precio />
+      <Gratis />
       <MetodoLink />
       <FeaturedCases
         title="Tiendas que ya han pasado por aquí."

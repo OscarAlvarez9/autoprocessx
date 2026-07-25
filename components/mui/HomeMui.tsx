@@ -35,7 +35,7 @@ function Hero() {
             Hago que tu <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>tienda online</Box> venda más con el tráfico que ya tienes.
           </Typography>
           <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 580, mx: "auto", mb: 4 }}>
-            Soy Óscar. Trabajo el SEO, la visibilidad en IA, la conversión y la automatización de tiendas que ya facturan, sobre tu plataforma actual y sin migrar nada. Ingeniería, no humo.
+            Soy Óscar, consultor SEO de ecommerce. Trabajo el SEO, la visibilidad en IA, la conversión y la automatización de tiendas que ya facturan, sobre tu plataforma actual y sin migrar nada. Ingeniería, no humo.
           </Typography>
           <Stack direction={{ xs: "column", sm: "row" }} spacing={2.5} sx={{ alignItems: "center", justifyContent: "center" }}>
             <PrimaryCTA />
@@ -489,18 +489,20 @@ function Problems() {
 /* ---------- Soluciones (artefactos ricos) ---------- */
 function Stage({ children }: { children: React.ReactNode }) {
   return (
-    <Box sx={{ borderRadius: 2.5, border: `1px solid ${tokens.lineSoft}`, bgcolor: "#F3F4F1", aspectRatio: "4 / 3", overflow: "hidden", p: 1.5, display: "grid", placeItems: "center" }}>
+    <Box sx={{ flexShrink: 0, borderRadius: 2.5, border: `1px solid ${tokens.lineSoft}`, bgcolor: "#F3F4F1", aspectRatio: "4 / 3", overflow: "hidden", p: 1.5, display: "grid", placeItems: "center" }}>
       {children}
     </Box>
   )
 }
+// height:100% + texto flexible dejan el Stage siempre abajo, así los artefactos
+// cuadran en la fila aunque los títulos/descripciones ocupen distinto alto.
 function SolutionCard({ artifact, title, desc }: { artifact: React.ReactNode; title: string; desc: string }) {
   return (
     <Reveal>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <Box>
-          <Typography variant="h5" component="h3" sx={{ fontSize: 20, color: tokens.ink, mb: 0.5 }}>{title}</Typography>
-          <Typography variant="body2" sx={{ color: tokens.muted }}>{desc}</Typography>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 2, height: "100%" }}>
+        <Box sx={{ flexGrow: 1 }}>
+          <Typography variant="h5" component="h3" sx={{ fontSize: 20, lineHeight: 1.25, color: tokens.ink, mb: 0.75 }}>{title}</Typography>
+          <Typography variant="body2" sx={{ color: tokens.muted, lineHeight: 1.5 }}>{desc}</Typography>
         </Box>
         <Stage>{artifact}</Stage>
       </Box>

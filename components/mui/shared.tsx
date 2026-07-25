@@ -677,6 +677,7 @@ export function SiteFooter() {
     ["Agencia Shopify", "/agencia-shopify"],
     ["Agencia WooCommerce", "/agencia-woocommerce"],
     ["Agencia Magento", "/agencia-magento"],
+    ["SEO local en Catalunya", "/seo-catalunya"],
     ["Método", "/metodo"],
     ["Casos de éxito", "/casos-de-exito"],
     ["Blog", "/blog"],

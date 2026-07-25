@@ -373,8 +373,11 @@ function Donde() {
             {/* dónde estoy + fortalezas */}
             <Box>
               <Typography variant="h3" sx={{ fontSize: { xs: 22, md: 30 }, color: tokens.ink, mb: 1.5 }}>Barcelona, y a un clic de tu tienda.</Typography>
-              <Typography variant="body1" sx={{ color: tokens.body, mb: 3, maxWidth: 460 }}>
+              <Typography variant="body1" sx={{ color: tokens.body, mb: 2, maxWidth: 460 }}>
                 Trabajo con tiendas de toda España, en remoto y con reuniones cuando toca. Cerca para lo importante, sin peaje de oficina para lo demás.
+              </Typography>
+              <Typography variant="body1" sx={{ color: tokens.body, mb: 3, maxWidth: 460 }}>
+                ¿Negocio local catalán? También hago <Box component={Link} href="/seo-catalunya" sx={{ color: tokens.ink, fontWeight: 600, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { textDecorationColor: tokens.petrol } }}>SEO local en Catalunya</Box>, del Maresme a Barcelona.
               </Typography>
               <Typography sx={{ fontSize: 13, fontWeight: 700, color: tokens.ink, mb: 1.5 }}>Stack y plataformas</Typography>
               <Stack direction="row" sx={{ flexWrap: "wrap", gap: 1 }}>
