@@ -65,7 +65,7 @@ const FAQS: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "¿Cuánto tarda una auditoría SEO?",
-    a: "[[plazo real]] semanas desde que tengo los accesos. El rastreo y el análisis de datos son la parte rápida; lo que lleva tiempo es revisar tu tienda como comprador y cruzar lo que veo con lo que dicen GA4 y Search Console. La sesión de entrega la agendamos al cerrar el documento.",
+    a: "Unas dos semanas, 14 días, desde que tengo los accesos. El rastreo y el análisis de datos son la parte rápida; lo que lleva tiempo es revisar tu tienda como comprador y cruzar lo que veo con lo que dicen GA4 y Search Console. La sesión de entrega la agendamos al cerrar el documento.",
   },
   {
     q: "¿Qué diferencia hay entre auditoría SEO y auditoría técnica?",

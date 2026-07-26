@@ -126,10 +126,10 @@ export function FlowRunSimulator() {
    ============================================================ */
 
 const MANUAL = [
-  { t: "Copiar pedidos al ERP a mano", h: "[[ h ]]" },
-  { t: "Cuadrar el stock entre web y almacén", h: "[[ h ]]" },
-  { t: "Montar el informe semanal en Excel", h: "[[ h ]]" },
-  { t: "Corregir un descuadre a las 23:00", h: "[[ h ]]" },
+  { t: "Copiar pedidos al ERP a mano", h: "a mano" },
+  { t: "Cuadrar el stock entre web y almacén", h: "a mano" },
+  { t: "Montar el informe semanal en Excel", h: "a mano" },
+  { t: "Corregir un descuadre a las 23:00", h: "a mano" },
 ]
 
 export function ManualOpsStrip() {
@@ -150,8 +150,8 @@ export function ManualOpsStrip() {
           ))}
         </Stack>
         <Box sx={{ mt: 2, pt: 2, borderTop: `1px dashed ${tokens.line}`, display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted }}>total a la semana</Typography>
-          <Typography sx={{ fontFamily: fonts.serif, fontSize: 26, fontWeight: 600, color: tokens.brick }}>[[ X ]] h</Typography>
+          <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted }}>cada semana</Typography>
+          <Typography sx={{ fontFamily: fonts.serif, fontSize: 22, fontWeight: 600, color: tokens.brick }}>horas que no vuelven</Typography>
         </Box>
       </Box>
     </Frame>

@@ -212,14 +212,6 @@ export function ShopifyPhone() {
   )
 }
 
-function Pill({ children }: { children: React.ReactNode }) {
-  return (
-    <Box sx={{ bgcolor: `${tokens.teal}12`, border: `1px solid ${tokens.teal}33`, borderRadius: 1.5, px: 0.9, py: 0.2 }}>
-      <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: tokens.teal, fontWeight: 600 }}>{children}</Typography>
-    </Box>
-  )
-}
-
 /* ---- Órbita AOV: tienda central + satélites girando ---- */
 export function AovOrbit() {
   const reduce = useReducedMotion()
@@ -381,10 +373,6 @@ export function ConversionChart() {
       <Stack direction="row" spacing={1.5} sx={{ position: "absolute", top: 6, left: 0 }}>
         <Legend color={tokens.muted} label="sesiones" />
         <Legend color={tokens.teal} label="ingresos" />
-      </Stack>
-      <Stack direction="row" spacing={1} sx={{ position: "absolute", bottom: 2, right: 2 }}>
-        <Pill>+[[ X ]]% pedidos</Pill>
-        <Pill>AOV [[ €→€ ]]</Pill>
       </Stack>
     </Box>
   )
