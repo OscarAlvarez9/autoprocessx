@@ -678,6 +678,7 @@ export function SiteFooter() {
     ["Agencia WooCommerce", "/agencia-woocommerce"],
     ["Agencia Magento", "/agencia-magento"],
     ["SEO local en Catalunya", "/seo-catalunya"],
+    ["SEO en el Maresme", "/agencia-seo-maresme"],
     ["Método", "/metodo"],
     ["Casos de éxito", "/casos-de-exito"],
     ["Blog", "/blog"],
