@@ -77,6 +77,14 @@ const nextConfig: NextConfig = {
       { source: "/plataforma", destination: "/tecnologia", permanent: true },
       { source: "/roadmap", destination: "/tecnologia", permanent: true },
 
+      // Canibalización detectada en GSC (2026-08-25): dos posts del mismo cluster
+      // ("Automatizaciones IA para empresas" vs "Automatización Empresarial: Guía
+      // 2026") se repartían ~370 imp/quincena sin ningún clic. Consolidado en el
+      // slug limpio; la entrada "-automatizacion" debe DESPUBLICARSE en Contentful
+      // para salir del sitemap (este redirect ya gana a la ruta mientras tanto),
+      // y lo mejor de su contenido se funde en el post superviviente.
+      { source: "/blog/automatizaciones-ia-empresas-automatizacion", destination: "/blog/automatizaciones-ia-empresas", permanent: true },
+
       // Blog antiguo de Framer: LISTA EXPLÍCITA al listado. NUNCA un catch-all
       // /blog/:slug* (mataría los /blog/<slug> nuevos de Contentful). Next casa
       // el pathname CODIFICADO: los acentos van en %XX (verificado con curl; la
