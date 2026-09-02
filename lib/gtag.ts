@@ -1,4 +1,5 @@
-export const GA_MEASUREMENT_ID = 'G-TVHV4PRDNN'
+// El ID de medición de GA4 vive en components/CookieConsent.tsx (única
+// pieza que lo necesita, para inyectar el script tras el consentimiento).
 
 type GtagEventParams = {
   event_category?: string

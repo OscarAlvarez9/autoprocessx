@@ -6,7 +6,7 @@ import Script from "next/script"
 
 const STORAGE_KEY = "apx-cookie-consent"
 const GTM_ID = "GTM-WD6GMRVN"
-const GA_ID = "G-Z275B8GKHX"
+const GA_ID = "G-P9MZJ98X97"
 
 type Consent = "granted" | "denied" | null
 
