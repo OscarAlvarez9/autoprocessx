@@ -89,7 +89,7 @@ function AgenteArt() {
     </Stack>
   )
   return (
-    <MiniWindow tag="agente · marea.es" right={cartBadge}>
+    <MiniWindow tag="agente · catálogo real" right={cartBadge}>
       <Stack spacing={0.9} sx={{ width: "100%" }}>
         <Stack direction="row" spacing={0.7} sx={{ alignItems: "center" }}>
           <Box component={motion.span} animate={reduce ? {} : { opacity: [1, 0.4, 1] }} transition={{ duration: 1.6, repeat: Infinity }} sx={{ width: 6, height: 6, borderRadius: 999, bgcolor: tokens.teal }} />

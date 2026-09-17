@@ -90,6 +90,8 @@ export interface CasoDeep {
   hallazgos?: { title: string; intro: string; items: Hallazgo[] }
   /** Reglas de método que explican el cero de errores. */
   metodo?: { title: string; intro: string; reglas: Regla[] }
+  /** Cierre del caso: enlaza al servicio que este proyecto demuestra. */
+  cta?: { title: string; body: string; label: string; href: string }
 }
 
 export const casosDeep: Record<string, CasoDeep> = {
@@ -244,6 +246,12 @@ export const casosDeep: Record<string, CasoDeep> = {
           body: "Ni un producto tiene un H2 en su descripción, y las 50 categorías no tienen una sola palabra de texto. Los dos únicos H2 de la web son el título del popup de newsletter, duplicado. Diagnosticado y con la solución preparada.",
         },
       ],
+    },
+    cta: {
+      title: "Esto es crecimiento ecommerce hecho por dentro.",
+      body: "Catálogo que llega solo del proveedor a la tienda, filtros que funcionan y fichas que Google entiende. Sobre tu plataforma actual, sin migrar nada.",
+      label: "Ver el pack Crecimiento",
+      href: "/servicios/crecimiento-ecommerce",
     },
     metodo: {
       title: "Cómo se trabajó",
@@ -405,6 +413,12 @@ export const casosDeep: Record<string, CasoDeep> = {
         },
       ],
     },
+    cta: {
+      title: "¿Y si te citan también las respuestas de IA?",
+      body: "Este caso es contenido anclado a la fuente y una web preparada para que la lean los modelos. Es exactamente lo que mide una auditoría de SEO y GEO.",
+      label: "Ver la auditoría SEO y GEO",
+      href: "/servicios/auditoria-seo-geo",
+    },
     metodo: {
       title: "Cómo se trabaja esto",
       intro: "Una sola rutina explica los hallazgos de arriba.",
@@ -543,6 +557,12 @@ export const casosDeep: Record<string, CasoDeep> = {
         { label: "Jerarquía de portfolios en Asana", antes: "no viene en una sola llamada", despues: "reconstruida por niveles" },
         { label: "Límite de ejecución de n8n cloud", antes: "un workflow que no cabía", despues: "dos encadenados, capítulos 1-3 y 4-6" },
       ],
+    },
+    cta: {
+      title: "Tu operativa, en sistemas que se ejecutan solos.",
+      body: "Ocho workflows que convierten cinco procesos de agencia en trabajo terminado, entregado donde el equipo ya trabaja. Esto es lo que hace el servicio de automatización.",
+      label: "Ver automatizaciones",
+      href: "/servicios/automatizaciones",
     },
     metodo: {
       title: "Decisiones que sostienen el sistema",

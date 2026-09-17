@@ -519,20 +519,57 @@ function Detalle({ c }: { c: Caso }) {
   )
 }
 
-function CrossLinks() {
+// Cierre del caso. Cada proyecto enlaza al servicio que de verdad demuestra:
+// un caso de automatización no puede terminar vendiendo el pack de ecommerce.
+// Prioridad: CTA propio del caso, y si no, el servicio de su categoría.
+const CTA_POR_SERVICIO: Record<Caso["service"], { title: string; body: string; label: string; href: string }> = {
+  crecimiento: {
+    title: "Esto es el pack Crecimiento en acción.",
+    body: "Más tráfico que compra y más visitas que convierten, sobre tu propia plataforma.",
+    label: "Ver el pack Crecimiento",
+    href: "/servicios/crecimiento-ecommerce",
+  },
+  // Los casos de SEO no son tiendas (peritaje, estudios, climatización...), así
+  // que no pueden cerrar vendiendo el pack de ecommerce.
+  seo: {
+    title: "Esto es posicionamiento que trae clientes.",
+    body: "Visibilidad en Google y en los buscadores de IA para la gente que ya está buscando lo que haces.",
+    label: "Ver la auditoría SEO y GEO",
+    href: "/servicios/auditoria-seo-geo",
+  },
+  automatizacion: {
+    title: "Tu operativa, en sistemas que se ejecutan solos.",
+    body: "n8n orquestando el trabajo repetitivo que hoy le come el día a tu equipo.",
+    label: "Ver automatizaciones",
+    href: "/servicios/automatizaciones",
+  },
+  amedida: {
+    title: "Cuando el stack estándar no llega.",
+    body: "Plataformas propias construidas de cero, de la idea a producción.",
+    label: "Ver aplicaciones a medida",
+    href: "/servicios/a-medida",
+  },
+}
+
+function CrossLinks({ c, deep }: { c: Caso; deep?: CasoDeep }) {
+  const base = CTA_POR_SERVICIO[c.service]
+  const href = deep?.cta?.href ?? base.href
+  const title = deep?.cta?.title ?? base.title
+  const body = deep?.cta?.body ?? base.body
+  const label = deep?.cta?.label ?? base.label
   return (
     <Box component="section" sx={{ py: { xs: 8, md: 11 } }}>
-      <Container sx={{ textAlign: "center", maxWidth: 680 }}>
+      <Container sx={{ textAlign: "center", maxWidth: 700 }}>
         <Reveal>
           <Typography variant="h2" sx={{ fontSize: { xs: 24, md: 32 }, color: tokens.ink, mb: 2 }}>
-            Esto es el pack Crecimiento en acción.
+            {title}
           </Typography>
           <Typography variant="body1" sx={{ color: tokens.body, mb: 4 }}>
-            Más tráfico que compra y más visitas que convierten, sobre tu propia plataforma.
+            {body}
           </Typography>
           <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ justifyContent: "center" }}>
-            <Button component={Link} href="/servicios/crecimiento-ecommerce" variant="outlined" sx={{ borderRadius: 2, borderColor: tokens.line, color: tokens.ink, fontWeight: 700, "&:hover": { borderColor: tokens.petrol, bgcolor: "transparent" } }}>
-              Ver el pack Crecimiento <Box component="span" sx={{ color: tokens.petrol, ml: 0.75 }}>↗</Box>
+            <Button component={Link} href={href} variant="outlined" sx={{ borderRadius: 2, borderColor: tokens.line, color: tokens.ink, fontWeight: 700, "&:hover": { borderColor: tokens.petrol, bgcolor: "transparent" } }}>
+              {label} <Box component="span" sx={{ color: tokens.petrol, ml: 0.75 }}>↗</Box>
             </Button>
             <Button component={Link} href="/casos-de-exito" sx={{ color: tokens.ink, fontWeight: 700, "&:hover": { bgcolor: "transparent", color: tokens.petrol } }}>
               Ver más casos
@@ -570,7 +607,7 @@ export default function CasoDetalleMui({ caso }: { caso: Caso }) {
           <StackSection items={caso.stack} />
         </>
       )}
-      <CrossLinks />
+      <CrossLinks c={caso} deep={deep} />
       <DiagnosticoCTA />
       <SiteFooter />
     </Box>

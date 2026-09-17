@@ -157,7 +157,7 @@ export function AgentChatSimulator() {
 
   return (
     <Box onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-      <Frame tag="agente · marea.es" right={cartBadge} minH={0}>
+      <Frame tag="agente · catálogo real" right={cartBadge} minH={0}>
         <Box ref={scRef} sx={{ height: { xs: 300, sm: 340 }, overflowY: "auto", p: 2, display: "flex", flexDirection: "column", gap: 1.1 }}>
           {shown.map((s, idx) => {
             if (s.k === "typing") {

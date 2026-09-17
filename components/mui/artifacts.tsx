@@ -645,7 +645,7 @@ export function AgentChatRich() {
             <Typography sx={{ color: "#fff", fontWeight: 800, fontSize: 12, fontFamily: fonts.serif }}>m</Typography>
           </Box>
           <Box>
-            <Typography sx={{ fontSize: 12.5, fontWeight: 700, color: tokens.ink, lineHeight: 1.1 }}>agente · marea.es</Typography>
+            <Typography sx={{ fontSize: 12.5, fontWeight: 700, color: tokens.ink, lineHeight: 1.1 }}>agente · catálogo real</Typography>
             <Stack direction="row" spacing={0.5} sx={{ alignItems: "center" }}>
               <Box sx={{ width: 6, height: 6, borderRadius: "50%", bgcolor: tokens.teal }} />
               <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>en línea</Typography>

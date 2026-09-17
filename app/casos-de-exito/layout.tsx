@@ -12,8 +12,8 @@ const caseStudiesSchema = {
       position: 1,
       item: {
         "@type": "Article",
-        name: "marea.es — agente de ventas IA y conversión sobre WooCommerce",
-        description: "Tienda de relojes con un agente de ventas IA anclado al catálogo y optimización de conversión, sin migrar de plataforma.",
+        name: "marea.es: automatización de catálogo y SEO técnico sobre WooCommerce",
+        description: "Tienda de relojes con 2.293 referencias: 19 automatizaciones que llevan el catálogo del proveedor a la tienda, y SEO técnico sobre WooCommerce.",
         author: { "@type": "Organization", name: "SEOscar" },
       },
     },
@@ -22,7 +22,7 @@ const caseStudiesSchema = {
       position: 2,
       item: {
         "@type": "Article",
-        name: "Farmacia García del Cerro — contenido SEO automatizado sobre Shopify",
+        name: "Farmacia García del Cerro: contenido SEO automatizado sobre Shopify",
         description: "Motor de contenido SEO autónomo para captar tráfico orgánico que llega a comprar, sobre Shopify.",
         author: { "@type": "Organization", name: "SEOscar" },
       },
@@ -32,7 +32,7 @@ const caseStudiesSchema = {
       position: 3,
       item: {
         "@type": "Article",
-        name: "Totfinestra — web de ventanas a medida orientada a presupuesto",
+        name: "Totfinestra: web de ventanas a medida orientada a presupuesto",
         description: "Web enfocada a captar y cualificar solicitudes de presupuesto de ventanas de aluminio a medida, con SEO local.",
         author: { "@type": "Organization", name: "SEOscar" },
       },
