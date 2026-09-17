@@ -38,7 +38,10 @@
   --color-ring: #B4975A;
 
   /* ── Paleta home: tinta (ink) + oro de detalle ── */
-  --color-base: #FBFBFA;
+  /* OJO: no llamar a ninguna variable --color-base. En Tailwind v4 eso genera
+     una utilidad de color `text-base` que pisa a la nativa de tamaño de fuente
+     y deja el texto del cuerpo casi blanco en todo el sitio. */
+  --color-paper: #FBFBFA;
   --color-surface-alt: #F4F4F3;
   --color-ink-50: #F0F4F8;
   --color-ink-100: #C9D4DE;

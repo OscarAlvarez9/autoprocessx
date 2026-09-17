@@ -26,7 +26,7 @@ const personSchema = {
 
 export default function FounderBlock({ className = "" }: { className?: string }) {
   return (
-    <section className={`py-16 md:py-24 bg-base ${className}`}>
+    <section className={`py-16 md:py-24 bg-paper ${className}`}>
       <JsonLd data={personSchema} />
       <div className="container px-6 mx-auto max-w-5xl">
         <div className="mb-8 flex items-center gap-3">

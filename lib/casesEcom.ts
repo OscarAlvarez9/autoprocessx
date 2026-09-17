@@ -1,7 +1,8 @@
 // Casos de éxito, agrupados por servicio. Honestidad primero: NO publicamos
 // métricas ni testimonios inventados. Los datos duros van como `[[ dato real ]]`
 // hasta que el cliente confirma la cifra. La narrativa (reto, solución, qué
-// hicimos, stack) describe trabajo real prestado.
+// hice, stack) describe trabajo real prestado. Voz en primera persona del
+// singular: los casos los firma Óscar, no un "nosotros" de agencia.
 
 import { projects, type Project } from "./projects"
 
@@ -21,6 +22,8 @@ export interface Caso {
   reto: string
   solucion: string
   did: string[]
+  /** Igual que `did` pero con la explicación de cada paso, cuando existe. */
+  didDetail?: { title: string; text: string }[]
   stack: string[]
   /** Métricas: si no hay `value` confirmado, se muestra el hueco `[[ dato ]]`. */
   metrics: { value?: string; label: string; note: string }[]
@@ -44,18 +47,19 @@ export const cases: Caso[] = [
     platform: "WooCommerce",
     service: "crecimiento",
     visual: { mock: "marea" },
-    summary: "Tienda de relojes sobre WooCommerce con agente de ventas IA anclado al catálogo y trabajo de conversión.",
-    reto: "Un catálogo de relojes con muchas referencias y matices (movimiento, tamaño, correa) donde el visitante necesita ayuda para elegir. Buena parte de las visitas llegaban, dudaban y se iban sin comprar.",
-    solucion: "Montamos un agente de ventas IA anclado al catálogo real de WooCommerce: recomienda según lo que busca el cliente, resuelve dudas de stock y precio sin inventar, y acompaña hasta el carrito. En paralelo, trabajo de conversión sobre las fichas.",
+    summary: "Automatización del catálogo completo y SEO técnico sobre WooCommerce: 2.293 referencias que ahora llegan solas del proveedor a la tienda.",
+    reto: "Un catálogo de más de 2.200 referencias gestionado a mano desde hojas de cálculo del proveedor. Las fichas se creaban una a una y las fotos se subían a mano, así que los datos que producto mantenía en el sheet nunca llegaban a la tienda. Además, los diez filtros de la barra lateral no funcionaban: WooCommerce solo filtra por atributos globales y todo el catálogo los tenía como locales.",
+    solucion: "Un ecosistema de 19 automatizaciones en n8n que cubre el ciclo de vida completo del producto, desde el alta con descripción y meta generadas con IA hasta las fotos, el stock y la publicación controlada. En paralelo, migración de atributos a globales con normalización de vocabulario para dejar los filtros operativos, y trabajo de estructura y diseño sobre la propia tienda.",
     did: [
-      "Agente de ventas IA conectado al catálogo real (producto, precio, stock).",
-      "Optimización de fichas de producto para decisión de compra.",
-      "Recomendación y guía de compra en la propia web, sin migrar de plataforma.",
+      "19 automatizaciones en n8n: alta de producto, imágenes, stock, nombres, categorías y variantes.",
+      "Descripción larga y meta description generadas con IA a partir del sheet del proveedor.",
+      "Migración de atributos locales a globales con normalización de vocabulario: filtros operativos por fin.",
+      "Estructura y diseño de la tienda, y saneado de slugs para cortar la canibalización.",
     ],
-    stack: ["WooCommerce", "Agente de ventas IA", "RAG sobre catálogo", "CRO"],
+    stack: ["WooCommerce", "n8n", "Claude", "Rank Math", "Google Sheets", "Dropbox"],
     metrics: [
-      { label: "Conversión de la tienda", note: "antes vs después del agente" },
-      { label: "Consultas resueltas sin humano", note: "web · 24/7" },
+      { value: "3.060", label: "clics desde Google", note: "primera semana en producción" },
+      { value: "13,6 %", label: "CTR medio en Search Console", note: "posición media 5,6" },
     ],
     publishedAt: "2026-03-01",
   },
@@ -68,7 +72,7 @@ export const cases: Caso[] = [
     visual: { mock: "farmacia" },
     summary: "Motor de contenido SEO automatizado sobre Shopify para captar tráfico orgánico que llega a comprar.",
     reto: "Una farmacia con equipo asistencial a tiempo completo y sin departamento de marketing. El contenido digital era esporádico, sin plan editorial ni keywords objetivo, y el tráfico orgánico no crecía.",
-    solucion: "Construimos un motor de contenido autónomo que investiga temas con volumen real, redacta con tono profesional sanitario y publica en el CMS con los campos SEO listos. El equipo solo revisa antes de publicar, manteniendo el control editorial.",
+    solucion: "Construí un motor de contenido autónomo que investiga temas con volumen real, redacta con tono profesional sanitario y publica en el CMS con los campos SEO listos. El equipo solo revisa antes de publicar, manteniendo el control editorial.",
     did: [
       "Calendario editorial SEO anual orientado a intención de compra.",
       "Pipeline de contenido con LLM anclado a datos reales de búsqueda.",
@@ -77,8 +81,8 @@ export const cases: Caso[] = [
     ],
     stack: ["Shopify", "n8n", "Claude", "Contentful", "Search Console"],
     metrics: [
-      { label: "Tráfico orgánico que compra", note: "clientes auditados" },
-      { label: "Horas de contenido ahorradas", note: "publicación automatizada" },
+      { value: "TOP 20", label: "farmacias de España", note: "visibilidad orgánica" },
+      { value: "+5.000", label: "referencias en catálogo", note: "alcance nacional" },
     ],
     publishedAt: "2025-09-15",
   },
@@ -91,7 +95,7 @@ export const cases: Caso[] = [
     visual: { mock: "totfinestra" },
     summary: "Web de ventanas a medida enfocada a captar y cualificar solicitudes de presupuesto.",
     reto: "Un negocio de ventanas a medida donde la venta no es un carrito, sino un presupuesto. La web tenía que transmitir oficio y convertir la visita en una solicitud cualificada.",
-    solucion: "Rehicimos la web para dejar clara la propuesta (ventanas de aluminio a medida) y guiar hacia el presupuesto, con SEO local para captar la demanda de la zona. Todo sobre una base rápida y medible.",
+    solucion: "Rehice la web para dejar clara la propuesta (ventanas de aluminio a medida) y guiar hacia el presupuesto, con SEO local para captar la demanda de la zona. Todo sobre una base rápida y medible.",
     did: [
       "Web enfocada a la solicitud de presupuesto como conversión principal.",
       "SEO local para captar demanda de proximidad.",
@@ -99,8 +103,8 @@ export const cases: Caso[] = [
     ],
     stack: ["Web nativa", "SEO local", "CRO", "Core Web Vitals"],
     metrics: [
-      { label: "Solicitudes de presupuesto", note: "captación desde la web" },
-      { label: "Facturación primer año", note: "caso en producción" },
+      { value: "+70 %", label: "clientes potenciales", note: "captación desde la web" },
+      { value: "+10 %", label: "facturación anual", note: "primer año con la web nueva" },
     ],
     publishedAt: "2025-12-01",
   },
@@ -124,8 +128,8 @@ export const cases: Caso[] = [
     ],
     stack: ["n8n", "Claude", "Metricool API", "Asana API", "WhatsApp Business API"],
     metrics: [
-      { label: "Eficiencia operativa", note: "tareas por hora-equipo" },
-      { label: "Procesos automatizados", note: "en paralelo" },
+      { value: "187", label: "nodos en producción", note: "8 workflows, 5 sistemas" },
+      { value: "122", label: "páginas de estrategia por ejecución", note: "de la transcripción al Google Doc" },
     ],
     publishedAt: "2025-11-10",
   },
@@ -160,19 +164,19 @@ export const cases: Caso[] = [
     platform: "Next.js + RAG",
     service: "amedida",
     visual: { logo: "/assets/opoai_logo.png" },
-    summary: "Plataforma de estudio de oposiciones con IA: temario adaptativo, tutor conversacional anclado al temario y simulacros reales.",
-    reto: "Los opositores estudian con PDFs estáticos, apuntes desorganizados y tests genéricos que no se adaptan a sus puntos débiles. Sin feedback inmediato, el ratio de abandono es altísimo.",
-    solucion: "Plataforma full-stack con RAG sobre el temario oficial, tutor IA que cita la fuente en cada respuesta, simulacros con el formato exacto de la convocatoria y dashboard de progreso con ranking.",
+    summary: "Plataforma SaaS de oposiciones de Justicia con tutor jurídico que cita el BOE, y la estrategia de contenido y GEO que la está sacando de depender de su propia marca.",
+    reto: "Una categoría que pasó de dos actores a veinte en un año, todos con la misma propuesta y la misma estética. Tras migrar de dominio en junio, Google empezaba de cero y el 95 % de los clics venían de buscar la marca: la web era una landing de producto, sin nada que capturase lo que busca un opositor.",
+    solucion: "Plataforma full-stack con RAG sobre el temario oficial y tutor que cita la fuente en cada respuesta, más una arquitectura de contenido paralela organizada por cuerpo e intención de búsqueda (41 URLs), anclada al BOE y preparada para que la citen los modelos de lenguaje.",
     did: [
-      "Ingesta y vectorización del temario oficial con chunking jerárquico.",
-      "Tutor IA conversacional anclado, con citación de fuente obligatoria.",
-      "Motor de simulacros con el formato oficial de la convocatoria.",
-      "Dashboard de progreso por bloque y ranking entre usuarios.",
+      "Ingesta y vectorización del temario oficial: 133.889 fragmentos de 131 temas.",
+      "Tutor IA conversacional anclado, con citación obligatoria del artículo.",
+      "Arquitectura de contenido por cuerpo e intención, con 41 URLs en sitemap.",
+      "Trabajo de GEO: llms.txt, datos estructurados y rastreo de IA sin bloquear.",
     ],
-    stack: ["Next.js", "Claude", "PostgreSQL + pgvector", "n8n", "RAG"],
+    stack: ["Next.js", "Claude", "PostgreSQL + pgvector", "n8n", "RAG", "Search Console", "Stripe"],
     metrics: [
-      { label: "Módulos en producción", note: "plataforma activa" },
-      { label: "Precisión de simulacros", note: "formato oficial" },
+      { value: "+209 %", label: "impresiones en un mes", note: "de 1.314 a 4.066" },
+      { value: "765", label: "impresiones en AI Search", note: "en 28 días" },
     ],
     publishedAt: "2025-12-05",
   },
@@ -197,6 +201,7 @@ function projectToCaso(p: Project, i: number): Caso {
     reto: p.about.challenge,
     solucion: `${p.strategy.title}. ${p.strategy.steps[0]?.text ?? ""}`.trim(),
     did: p.strategy.steps.map((s) => s.title),
+    didDetail: p.strategy.steps.map((s) => ({ title: s.title, text: s.text })),
     stack: p.tech_stack,
     metrics: p.results.metrics.slice(0, 2).map((m) => ({ value: m.value, label: m.label, note: m.note })),
     publishedAt: "2025-06-01",

@@ -325,7 +325,7 @@ function LooseCarousel({ items }: { items: React.ReactNode[] }) {
         role="group"
         aria-label="Servicios que también se contratan sueltos"
         sx={{
-          display: "flex", alignItems: "stretch", gap: 2, overflowX: "auto",
+          display: "flex", alignItems: "stretch", gap: 2, overflowX: "auto", overscrollBehaviorX: "contain",
           scrollSnapType: "x mandatory", scrollPaddingLeft: "24px",
           // pt compensado con mt: el track recorta en vertical (overflow-x auto
           // implica clip en Y) y el translateY(-4px) del tap cortaba el borde

@@ -200,7 +200,7 @@ export default async function BlogPostPage({ params }: Params) {
                             </div>
                         ) : post.content ? (
                             <div
-                                className="prose prose-invert max-w-none prose-p:text-[#26332F] prose-p:leading-relaxed prose-headings:text-[#14201D] prose-headings:font-black prose-strong:text-[#14201D] prose-a:text-[#013E37] prose-a:no-underline hover:prose-a:underline"
+                                className="prose max-w-none prose-p:text-[#26332F] prose-p:leading-relaxed prose-headings:text-[#14201D] prose-headings:font-black prose-strong:text-[#14201D] prose-a:text-[#013E37] prose-a:no-underline hover:prose-a:underline"
                                 dangerouslySetInnerHTML={{ __html: post.content }}
                             />
                         ) : (

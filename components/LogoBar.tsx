@@ -73,7 +73,7 @@ export default function LogoBar({ caption = "Empresas con las que he trabajado" 
   }, [])
 
   return (
-    <section className="w-full bg-base border-b border-zinc-200 py-10 overflow-hidden">
+    <section className="w-full bg-paper border-b border-zinc-200 py-10 overflow-hidden">
       {caption && (
         <p className="mb-7 text-center text-xs uppercase tracking-[0.1em] text-zinc-400">{caption}</p>
       )}

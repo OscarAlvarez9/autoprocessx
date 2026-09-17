@@ -68,7 +68,7 @@ const serviceStacks = [
 
 export default function Tecnologia() {
   return (
-    <main className="min-h-screen bg-base text-ink-900 selection:bg-oro-500/20">
+    <main className="min-h-screen bg-paper text-ink-900 selection:bg-oro-500/20">
       <Navigation />
 
       {/* 1 · HERO — asimétrico, textura blueprint, artefacto de código (sin glow) */}
@@ -150,7 +150,7 @@ export default function Tecnologia() {
       </section>
 
       {/* 2 · Cuatro pilares técnicos */}
-      <section className="py-16 md:py-24 bg-base border-b border-[#E4E4E7]">
+      <section className="py-16 md:py-24 bg-paper border-b border-[#E4E4E7]">
         <div className="container px-6 mx-auto max-w-4xl">
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight leading-tight mb-3">Cuatro líneas rojas de ingeniería.</h2>
           <p className="text-zinc-600 text-base font-normal leading-relaxed mb-8">Las decisiones que no negociamos — y lo que significan para tu tienda.</p>
@@ -176,7 +176,7 @@ export default function Tecnologia() {
       </section>
 
       {/* 3 · El stack, en dos capas */}
-      <section className="py-16 md:py-24 bg-base border-b border-[#E4E4E7]">
+      <section className="py-16 md:py-24 bg-paper border-b border-[#E4E4E7]">
         <div className="container px-6 mx-auto max-w-4xl">
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight leading-tight mb-3">El stack, en dos capas.</h2>
           <p className="text-zinc-600 text-base font-normal leading-relaxed mb-10">Dos pruebas para dos lectores: la plataforma que ya usas, y la ingeniería que hay debajo.</p>
@@ -242,7 +242,7 @@ export default function Tecnologia() {
       </section>
 
       {/* 4 · Soberanía y privacidad */}
-      <section className="py-16 md:py-24 bg-base border-b border-[#E4E4E7]">
+      <section className="py-16 md:py-24 bg-paper border-b border-[#E4E4E7]">
         <div className="container px-6 mx-auto max-w-3xl">
           <div className="rounded-3xl border border-[#E4E4E7] bg-white p-8 md:p-10">
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight leading-tight mb-6">Soberanía y privacidad.</h2>
@@ -266,7 +266,7 @@ export default function Tecnologia() {
       </section>
 
       {/* 5 · CTA técnico — al mismo embudo de diagnóstico */}
-      <section className="py-16 md:py-24 bg-base border-b border-[#E4E4E7]">
+      <section className="py-16 md:py-24 bg-paper border-b border-[#E4E4E7]">
         <div className="container px-6 mx-auto max-w-3xl text-center">
           <Server className="h-6 w-6 text-oro-600 mx-auto mb-5" />
           <h2 className="text-2xl md:text-4xl font-semibold tracking-tight leading-tight mb-6">

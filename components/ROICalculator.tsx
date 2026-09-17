@@ -17,7 +17,7 @@ export default function ROICalculator() {
   const monthlySavings = (yearlySavings / 12).toFixed(0)
 
   return (
-    <section className="py-16 md:py-20 bg-base text-ink-900 overflow-hidden relative">
+    <section className="py-16 md:py-20 bg-paper text-ink-900 overflow-hidden relative">
       <div className="absolute top-0 left-1/4 w-1/2 h-[400px] bg-accent/5 blur-[120px] rounded-full -mt-40 z-0 opacity-40" />
 
       <div className="container relative z-10 px-6 mx-auto max-w-6xl">

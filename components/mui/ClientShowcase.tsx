@@ -167,6 +167,7 @@ export default function ClientShowcase() {
           gap: 2,
           px: { xs: 3, md: "max(24px, calc((100vw - 1120px) / 2 + 24px))" },
           overflowX: "auto",
+          overscrollBehaviorX: "contain",
           pb: 1,
           scrollbarWidth: "none",
           "&::-webkit-scrollbar": { display: "none" },
