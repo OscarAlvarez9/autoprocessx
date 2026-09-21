@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Capturas de trabajo sueltas en public/. Suelen llevar datos de cliente sin
+# pixelar (nombres, importes de factura), y cualquier cosa dentro de public/
+# se sirve en abierto. Las versiones publicables, ya redactadas, viven en
+# public/assets/casos/.
+/public/Captura de pantalla*
