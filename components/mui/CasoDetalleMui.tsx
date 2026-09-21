@@ -206,6 +206,52 @@ function Evidencia({ deep }: { deep: CasoDeep }) {
             </Reveal>
           ))}
         </Stack>
+
+        {deep.galeria && deep.galeria.length > 0 && (
+          <Box sx={{ mt: { xs: 6, md: 9 } }}>
+            <Reveal>
+              {deep.galeriaIntro && (
+                <Typography variant="body1" sx={{ color: tokens.body, maxWidth: 640, mb: { xs: 3, md: 4 } }}>
+                  {deep.galeriaIntro}
+                </Typography>
+              )}
+            </Reveal>
+            <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: { xs: 3, md: 4 } }}>
+              {deep.galeria.map((g, i) => (
+                <Reveal key={g.src} delay={(i % 2) * 0.05}>
+                  <Box>
+                    <Box
+                      component="a"
+                      href={g.src}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{
+                        display: "block",
+                        border: `1px solid ${tokens.line}`,
+                        borderRadius: 2.5,
+                        overflow: "hidden",
+                        bgcolor: tokens.win,
+                        p: 0.75,
+                        transition: "border-color .2s",
+                        "&:hover": { borderColor: tokens.petrol },
+                      }}
+                    >
+                      <Image
+                        src={g.src}
+                        alt={g.alt}
+                        width={g.w}
+                        height={g.h}
+                        sizes="(max-width: 600px) 100vw, 540px"
+                        style={{ width: "100%", height: "auto", display: "block", borderRadius: 4 }}
+                      />
+                    </Box>
+                    <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, mt: 1.25 }}>{g.caption}</Typography>
+                  </Box>
+                </Reveal>
+              ))}
+            </Box>
+          </Box>
+        )}
       </Container>
     </Box>
   )

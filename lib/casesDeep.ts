@@ -76,6 +76,9 @@ export interface CasoDeep {
   /** Título y entradilla de la sección de evidencia. */
   evidenciaTitulo?: string
   evidenciaIntro?: string
+  /** Capturas secundarias, en rejilla compacta bajo las principales. */
+  galeria?: Evidencia[]
+  galeriaIntro?: string
   /** Párrafos del punto de partida. */
   contexto: string[]
   /** Entradilla de la sección "Qué hice". */
@@ -648,11 +651,70 @@ export const casosDeep: Record<string, CasoDeep> = {
         caption: "Agentes. Ocho asistentes especializados, cada uno con su instrucción, su modelo preferido y su tope de tokens. Abajo a la derecha se ve el coste por millón de tokens del modelo activo, y arriba el saldo restante.",
       },
       {
+        src: "/assets/casos/seoscaros-facturacion.png",
+        w: 2000,
+        h: 1145,
+        alt: "Facturación trimestral de SEOscar OS",
+        caption: "Facturación. Trimestres con base, IVA, IRPF y exportación en CSV, que es lo que sustituye al programa de facturación española. Los nombres de cliente y los importes van pixelados.",
+      },
+      {
         src: "/assets/casos/seoscaros-propuestas.png",
         w: 2000,
         h: 1141,
         alt: "Pantalla de propuestas comerciales de SEOscar OS",
         caption: "Propuestas. Cuatro plantillas ya redactadas que salen en PDF descargable. Junto con clientes, agenda y facturación española, es la parte que sustituye al CRM y al programa de facturación.",
+      },
+    ],
+    galeriaIntro: "El resto de la plataforma, sección a sección.",
+    galeria: [
+      {
+        src: "/assets/casos/seoscaros-agenda.png",
+        w: 2000,
+        h: 1132,
+        alt: "Tablero de agenda de SEOscar OS con tareas por columna",
+        caption: "Agenda. Tablero por estado con prioridad y horas estimadas, filtrable por cliente.",
+      },
+      {
+        src: "/assets/casos/seoscaros-calendario.png",
+        w: 2000,
+        h: 1149,
+        alt: "Vista de calendario de la agenda de SEOscar OS",
+        caption: "La misma agenda en calendario, con las tareas publicadas en Google Calendar.",
+      },
+      {
+        src: "/assets/casos/seoscaros-facturacion.png",
+        w: 2000,
+        h: 1145,
+        alt: "Facturación trimestral de SEOscar OS con exportación CSV",
+        caption: "Facturación española por trimestres, con IVA, retención de IRPF y exportación en CSV.",
+      },
+      {
+        src: "/assets/casos/seoscaros-factura-nueva.png",
+        w: 2000,
+        h: 1143,
+        alt: "Formulario de nueva factura de SEOscar OS",
+        caption: "Alta de factura con conceptos, IVA al 21 % y retención configurable.",
+      },
+      {
+        src: "/assets/casos/seoscaros-correos.png",
+        w: 2000,
+        h: 1135,
+        alt: "Pantalla de correos de SEOscar OS con comprobación de entregabilidad",
+        caption: "Correos desde el Gmail propio, con comprobación de SPF, DKIM y DMARC antes de enviar.",
+      },
+      {
+        src: "/assets/casos/seoscaros-archivo.png",
+        w: 2000,
+        h: 1131,
+        alt: "Archivo de notas y documentos de SEOscar OS",
+        caption: "Archivo de notas y documentos por carpetas, lo que sustituye a Notion.",
+      },
+      {
+        src: "/assets/casos/seoscaros-hoja.png",
+        w: 2000,
+        h: 1140,
+        alt: "Editor de hoja de cálculo de SEOscar OS",
+        caption: "Hojas de cálculo propias: se pega una tabla desde Excel, Sheets o un CSV y se rellena sola.",
       },
     ],
     contexto: [
