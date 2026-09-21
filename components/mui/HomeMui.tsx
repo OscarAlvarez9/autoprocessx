@@ -666,7 +666,19 @@ function RoiCalc() {
                     <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted }}>{s.l}</Typography>
                     <Typography sx={{ fontFamily: fonts.mono, fontSize: 13, color: tokens.ink, fontWeight: 600 }}>{s.fmt(s.val)}</Typography>
                   </Stack>
-                  <Slider value={s.val} min={s.min} max={s.max} step={s.step} onChange={(_, n) => s.set(n as number)} sx={{ color: tokens.ink, "& .MuiSlider-thumb": { boxShadow: "none" } }} />
+                  <Slider
+                    value={s.val}
+                    min={s.min}
+                    max={s.max}
+                    step={s.step}
+                    onChange={(_, n) => s.set(n as number)}
+                    // La etiqueta visible de arriba no está asociada al input, así
+                    // que sin esto el control llega sin nombre al árbol de
+                    // accesibilidad (y a los agentes que leen la página).
+                    aria-label={s.l}
+                    getAriaValueText={(n) => `${s.l}: ${s.fmt(n)}`}
+                    sx={{ color: tokens.ink, "& .MuiSlider-thumb": { boxShadow: "none" } }}
+                  />
                 </Box>
               ))}
             </Stack>

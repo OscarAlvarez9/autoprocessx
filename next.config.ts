@@ -3,7 +3,16 @@ import retired from "./lib/blog-retired.json";
 
 const nextConfig: NextConfig = {
   images: {
-    unoptimized: true,
+    // Estaba en unoptimized: true, y eso anulaba next/image por completo: se
+    // servía el PNG original (hasta 3 MB) para pintarlo a 660 px. La home
+    // llegaba a 19 MB solo de imágenes. Con la optimización activa, Next
+    // sirve AVIF o WebP al tamaño que toca según el viewport.
+    formats: ["image/avif", "image/webp"],
+    // Las fotos de marca se pintan a 530 px y las de sección a 662 px; el
+    // resto son artefactos pequeños. No hace falta generar tamaños enormes.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 540, 720],
+    minimumCacheTTL: 60 * 60 * 24 * 365,
   },
   async headers() {
     return [
