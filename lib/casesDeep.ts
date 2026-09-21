@@ -720,7 +720,6 @@ export const casosDeep: Record<string, CasoDeep> = {
     contexto: [
       "Un consultor independiente que trabaja tiendas online necesita, como mínimo, ocho herramientas: una suite de investigación SEO, un rastreador técnico, algo que mida su visibilidad en las respuestas de IA, prospección en frío, un CRM, facturación española y un sitio donde escribir.",
       "A precios de lista de septiembre de 2026 son 521,20 $ al mes, 6.254 $ al año. Pero el problema no era solo el precio. Era que los datos vivían en ocho sitios que no se hablan entre sí: la tienda que encuentras en una herramienta no es la misma ficha que cualificas en otra, ni la que facturas en la tercera.",
-      "Y sobre todo, ninguna de las ocho soportaba el método de trabajo real, que es prospección manual e individualizada: analizar cada tienda, localizar un fallo concreto, hacer una captura y escribir el correo a mano.",
     ],
     queHiceIntro:
       "Diez secciones organizadas por el ciclo del negocio, no por tipo de archivo: captar, entregar y herramientas. Cada empresa tiene una sola ficha identificada por su dominio, que reúne la búsqueda que la encontró, su cualificación con evidencia, los rastreos de su web, los correos enviados y, si firmó, sus facturas y tareas.",

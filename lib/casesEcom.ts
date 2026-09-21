@@ -142,7 +142,7 @@ export const cases: Caso[] = [
     service: "amedida",
     visual: { logo: "/assets/businessoslogo.jpeg" },
     summary: "Plataforma propia que cubre el ciclo completo de un consultor SEO independiente y sustituye ocho suscripciones de 521 $ al mes.",
-    reto: "Un consultor que trabaja tiendas online necesita ocho herramientas para operar: investigación SEO, rastreador, medición de visibilidad en IA, prospección, CRM, facturación española y un sitio donde escribir. Son 521,20 $ al mes, pero el problema de fondo era peor: los datos vivían en ocho sitios que no se hablan, y ninguno soportaba el método real de trabajo, que es prospección manual e individualizada.",
+    reto: "Un consultor que trabaja tiendas online necesita ocho herramientas para operar: investigación SEO, rastreador, medición de visibilidad en IA, prospección, CRM, facturación española y un sitio donde escribir. Son 521,20 $ al mes, pero el problema de fondo era peor: los datos vivían en ocho sitios que no se hablan entre sí, así que la misma tienda existía por duplicado en cada herramienta.",
     solucion: "Una plataforma interna con diez secciones organizadas por el ciclo del negocio, no por tipo de archivo: captar, entregar y herramientas. Cada empresa tiene una sola ficha identificada por su dominio, que reúne la búsqueda que la encontró, su cualificación con evidencia, los rastreos, los correos y sus facturas.",
     did: [
       "Motor de cualificación de leads en tres capas, con evidencia verificable y umbrales editables.",
