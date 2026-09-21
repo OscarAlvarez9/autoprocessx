@@ -1,0 +1,11 @@
+{
+  "_comment": "Slugs retirados del blog. next.config.ts genera los 301 desde aquí y el blog/sitemap excluyen los posts aunque sigan publicados en Contentful. Es JSON (no TS) porque next.config.ts no puede importar módulos .ts.",
+  "posts": {
+    "automatizaciones-ia-empresas-automatizacion": "automatizaciones-ia-empresas"
+  },
+  "categories": {
+    "ia-news": "ia-empresas",
+    "plataformas-ia": "ia-empresas",
+    "chatbots": "agentes-ia"
+  }
+}

@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import retired from "./lib/blog-retired.json";
 
 const nextConfig: NextConfig = {
   images: {
@@ -80,13 +81,14 @@ const nextConfig: NextConfig = {
       { source: "/plataforma", destination: "/tecnologia", permanent: true },
       { source: "/roadmap", destination: "/tecnologia", permanent: true },
 
-      // Canibalización detectada en GSC (2026-08-25): dos posts del mismo cluster
-      // ("Automatizaciones IA para empresas" vs "Automatización Empresarial: Guía
-      // 2026") se repartían ~370 imp/quincena sin ningún clic. Consolidado en el
-      // slug limpio; la entrada "-automatizacion" debe DESPUBLICARSE en Contentful
-      // para salir del sitemap (este redirect ya gana a la ruta mientras tanto),
-      // y lo mejor de su contenido se funde en el post superviviente.
-      { source: "/blog/automatizaciones-ia-empresas-automatizacion", destination: "/blog/automatizaciones-ia-empresas", permanent: true },
+      // Posts retirados y categorías antiguas del blog: la lista vive en lib/blog-retired.json
+      // (el blog y el sitemap usan la misma para excluirlos).
+      ...Object.entries(retired.posts).map(([from, to]) => (
+        { source: `/blog/${from}`, destination: `/blog/${to}`, permanent: true }
+      )),
+      ...Object.entries(retired.categories).map(([from, to]) => (
+        { source: `/blog/categoria/${from}`, destination: `/blog/categoria/${to}`, permanent: true }
+      )),
 
       // Blog antiguo de Framer: LISTA EXPLÍCITA al listado. NUNCA un catch-all
       // /blog/:slug* (mataría los /blog/<slug> nuevos de Contentful). Next casa

@@ -4,6 +4,7 @@ import {
     blogPosts as seedPosts,
     getPostSeed,
     getPostsByCategorySeed,
+    retiredPostSlugs,
     sortedSeedPosts,
     type BlogPost,
     type CategorySlug,
@@ -49,7 +50,7 @@ const getClient = (preview = false) => {
  *  - titulo          (Short text · required)
  *  - slug            (Short text · required · unique)
  *  - fecha           (Date · required)
- *  - categoria       (Short text · required · valid values: "ia-news" | "plataformas-ia" | "automatizaciones" | "chatbots" | "geo")
+ *  - categoria       (Short text · required · valid values: "seo" | "geo" | "automatizaciones" | "agentes-ia" | "ia-empresas")
  *  - imagen          (Media · single asset · optional)
  *  - metadescripcion (Long text · required · used as excerpt and meta description)
  *  - texto           (Rich Text · required · article body)
@@ -123,24 +124,31 @@ const countWords = (input?: Document | string): number => {
 }
 
 const VALID_CATEGORIES: CategorySlug[] = [
-    "ia-news",
-    "plataformas-ia",
-    "automatizaciones",
-    "chatbots",
+    "seo",
     "geo",
+    "automatizaciones",
+    "agentes-ia",
+    "ia-empresas",
 ]
 
 // Keys must be in slugified form (lowercase, no accents, hyphen-separated)
 // because normalizeCategory() runs slugify() before looking them up.
+// Los valores antiguos (antes del 2026-09-21) siguen resolviendo a la categoría
+// nueva, así ninguna entrada de Contentful sin migrar se queda huérfana.
 const CATEGORY_ALIASES: Record<string, CategorySlug> = {
-    "plataforma-ia": "plataformas-ia",
-    "plataformas": "plataformas-ia",
-    "ia-news": "ia-news",
-    "noticias": "ia-news",
-    "news": "ia-news",
+    "ia-news": "ia-empresas",
+    "plataformas-ia": "ia-empresas",
+    "plataforma-ia": "ia-empresas",
+    "plataformas": "ia-empresas",
+    "noticias": "ia-empresas",
+    "news": "ia-empresas",
+    "chatbots": "agentes-ia",
+    "chatbot": "agentes-ia",
+    "agentes": "agentes-ia",
+    "seo-ecommerce": "seo",
+    "ecommerce": "seo",
     "automatizacion": "automatizaciones",
     "automation": "automatizaciones",
-    "chatbot": "chatbots",
 }
 
 /**
@@ -176,11 +184,11 @@ const extractCategoryString = (raw: unknown): string | undefined => {
 
 const normalizeCategory = (raw: unknown): CategorySlug => {
     const value = extractCategoryString(raw)
-    if (!value) return "ia-news"
+    if (!value) return "ia-empresas"
     const slug = slugify(value)
     if (VALID_CATEGORIES.includes(slug as CategorySlug)) return slug as CategorySlug
     if (slug in CATEGORY_ALIASES) return CATEGORY_ALIASES[slug]
-    return "ia-news"
+    return "ia-empresas"
 }
 
 const cleanSlug = (raw?: string) => slugify(raw)
@@ -217,7 +225,7 @@ export async function fetchAllPosts({ preview = false }: { preview?: boolean } =
         } as never)) as unknown as RawCollection
         const posts = res.items.map(mapEntry)
         // DEV diagnostic: see how each post's raw `categoria` field maps to a slug.
-        // If an "Automatizaciones" post shows category "ia-news" here, the raw value
+        // If an "Automatizaciones" post shows category "ia-empresas" here, the raw value
         // didn't match — copy the raw value printed and add it to CATEGORY_ALIASES.
         if (process.env.NODE_ENV !== "production") {
             console.log(
@@ -229,7 +237,7 @@ export async function fetchAllPosts({ preview = false }: { preview?: boolean } =
                 }))
             )
         }
-        return posts
+        return posts.filter((p) => !(p.slug in retiredPostSlugs))
     } catch (err) {
         console.error("[contentful] fetchAllPosts failed:", err)
         return []
@@ -310,7 +318,7 @@ export async function fetchAllSlugs(): Promise<string[]> {
             select: ["fields.slug"],
             limit: 200,
         } as never)) as unknown as RawCollection
-        return res.items.map((i) => cleanSlug(i.fields.slug)).filter(Boolean)
+        return res.items.map((i) => cleanSlug(i.fields.slug)).filter((s) => s && !(s in retiredPostSlugs))
     } catch (err) {
         console.error("[contentful] fetchAllSlugs failed:", err)
         return []

@@ -234,8 +234,26 @@ export default async function BlogPostPage({ params }: Params) {
                         )}
                     </div>
 
+                    {/* Servicio de la categoría: el siguiente paso natural para quien ha leído el post */}
+                    <aside className="mt-16 rounded-2xl border border-[#013E37]/20 bg-[#013E37]/[0.04] p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
+                        <div className="flex-1">
+                            <p className="text-[11px] font-mono font-medium uppercase tracking-wide text-[#013E37] mb-2">
+                                {cat.service.label}
+                            </p>
+                            <p className="text-[#14201D] text-lg md:text-xl font-[family-name:var(--font-fraunces)] font-semibold leading-snug">
+                                {cat.service.pitch}
+                            </p>
+                        </div>
+                        <Link href={cat.service.href} className="shrink-0">
+                            <Button className="h-11 px-5 rounded-xl bg-[#013E37] hover:bg-[#012A25] text-[#FAF8F0] text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2">
+                                Ver el servicio
+                                <ArrowRight className="h-3.5 w-3.5" />
+                            </Button>
+                        </Link>
+                    </aside>
+
                     {/* Footer nav */}
-                    <div className="mt-16 pt-8 border-t border-[#E1DCCB] flex flex-col sm:flex-row gap-3 justify-between">
+                    <div className="mt-10 pt-8 border-t border-[#E1DCCB] flex flex-col sm:flex-row gap-3 justify-between">
                         <Link href={`/blog/categoria/${cat.slug}`}>
                             <Button className="h-11 px-5 rounded-xl bg-[#F1EEE1] border border-[#E1DCCB] hover:border-[#013E37]/40 hover:bg-[#013E37]/10 text-[#14201D] text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2">
                                 <ArrowLeft className="h-3.5 w-3.5" />

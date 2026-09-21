@@ -34,7 +34,7 @@ export default async function BlogIndex() {
         "@id": `${SITE_URL}/blog#blog`,
         name: "Blog SEOscar",
         url: `${SITE_URL}/blog`,
-        description: "Análisis técnico sobre IA, automatización, plataformas RAG, chatbots y GEO.",
+        description: "SEO para ecommerce, GEO, automatizaciones, agentes de IA e IA para empresas, con casos reales.",
         publisher: { "@id": ORG_ID },
         blogPost: posts.map((p) => ({
             "@type": "BlogPosting",

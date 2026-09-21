@@ -45,7 +45,7 @@ export default function BlogHero({ posts, query = "", activeCat }: { posts: Blog
                     </h1>
 
                     <p className="text-zinc-600 text-base md:text-lg font-normal leading-relaxed max-w-2xl mb-8">
-                        Arquitecturas, código y métricas de lo que desplegamos en producción: automatización con n8n, plataformas RAG, chatbots y GEO. Para equipos técnicos que quieren el cómo, no el hype.
+                        Lo que aplico con mis clientes, con datos reales: SEO para ecommerce, GEO, automatizaciones con n8n y agentes de IA. El cómo, no el hype.
                     </p>
 
                     {/* Buscador (server-side: GET → /blog?q=) */}
@@ -58,7 +58,7 @@ export default function BlogHero({ posts, query = "", activeCat }: { posts: Blog
                             name="q"
                             defaultValue={query}
                             enterKeyHint="search"
-                            placeholder="Busca: RAG, n8n, GEO, chatbots…"
+                            placeholder="Busca: SEO, WooCommerce, GEO, n8n…"
                             className="flex-1 h-10 bg-transparent text-base text-[#09090B] placeholder:text-zinc-400 focus:outline-none"
                         />
                         <button type="submit" className="h-10 px-5 rounded-xl bg-[#B4975A] text-[#09090B] text-xs font-bold uppercase tracking-wide hover:bg-[#a3854a] transition-colors shrink-0">
