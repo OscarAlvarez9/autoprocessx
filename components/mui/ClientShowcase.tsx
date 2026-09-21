@@ -78,7 +78,7 @@ export default function ClientShowcase() {
   const ORDER = [
     "marea-es", "farmacia-garcia-del-cerro", "totfinestra", "pelican-catchy-infraestructura-ia",
     "bebubbleibiza", "salvador-mendoza", "controltemp", "diomento-homelift",
-    "business-suite-ia-plataforma-corporativa", "opoai-plataforma-estudio-oposiciones",
+    "seoscar-os-plataforma-propia", "opoai-plataforma-estudio-oposiciones",
     "regalalo-io", "peritando-es", "quad-studios", "growmybiss",
   ]
   const known = new Set(allCaseSlugs())

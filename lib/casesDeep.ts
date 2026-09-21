@@ -595,6 +595,186 @@ export const casosDeep: Record<string, CasoDeep> = {
       ],
     },
   },
+  "seoscar-os-plataforma-propia": {
+    shot: "/assets/casos/seoscaros-prospeccion.png",
+    shotFrame: "plain",
+    shotTag: "SEOscar OS · prospección",
+    shotCaption: "La cola de leads cualificados, con su puntuación y su evidencia.",
+    kpis: [
+      {
+        title: "Ocho suscripciones, sustituidas",
+        note: "precios de lista a septiembre de 2026",
+        items: [
+          { value: "521 $", label: "al mes que deja de pagarse", note: "6.254 $ al año" },
+          { value: "8", label: "herramientas en una sola", note: "de Semrush a Holded" },
+          { value: "8,60 $", label: "gastado en datos", note: "en siete semanas de uso real" },
+          { value: "0 $", label: "de cuota fija", note: "el coste sigue al trabajo hecho" },
+        ],
+      },
+      {
+        title: "Lo que hay construido",
+        note: "en uso real y en evolución continua desde agosto de 2026",
+        items: [
+          { value: "20.805", label: "líneas de código propio", note: "escritas y mantenidas en solitario" },
+          { value: "496", label: "tests automáticos", note: "en 45 ficheros" },
+          { value: "51", label: "tablas en base de datos", note: "37 migraciones versionadas" },
+          { value: "49", label: "pantallas", note: "y 35 rutas de API" },
+        ],
+      },
+    ],
+    evidenciaTitulo: "La plataforma, por dentro",
+    evidenciaIntro:
+      "Capturas del entorno real en uso. Los nombres de clientes van difuminados a propósito.",
+    evidencia: [
+      {
+        src: "/assets/casos/seoscaros-prospeccion.png",
+        w: 2000,
+        h: 1144,
+        alt: "Pantalla de prospección de SEOscar OS con la cola de leads cualificados",
+        caption: "Prospección. La cola solo admite leads de 70 puntos o más, y cada ejecución muestra el gasto del día contra el tope configurado. El sistema produce la cola y la evidencia, pero no envía nada: el correo lo escribe una persona.",
+      },
+      {
+        src: "/assets/casos/seoscaros-analisis.png",
+        w: 2000,
+        h: 1145,
+        alt: "Pantalla de análisis SEO de SEOscar OS con el rastreador propio",
+        caption: "Análisis SEO. Rastreador propio, analizador de keywords, tráfico estimado y medidor de visibilidad en las respuestas de IA. Estas cuatro pestañas son las que sustituyen a Screaming Frog, a media suite de investigación y a la herramienta de 95 $ al mes.",
+      },
+      {
+        src: "/assets/casos/seoscaros-agentes.png",
+        w: 2000,
+        h: 1138,
+        alt: "Pantalla de agentes de IA de SEOscar OS",
+        caption: "Agentes. Ocho asistentes especializados, cada uno con su instrucción, su modelo preferido y su tope de tokens. Abajo a la derecha se ve el coste por millón de tokens del modelo activo, y arriba el saldo restante.",
+      },
+      {
+        src: "/assets/casos/seoscaros-propuestas.png",
+        w: 2000,
+        h: 1141,
+        alt: "Pantalla de propuestas comerciales de SEOscar OS",
+        caption: "Propuestas. Cuatro plantillas ya redactadas que salen en PDF descargable. Junto con clientes, agenda y facturación española, es la parte que sustituye al CRM y al programa de facturación.",
+      },
+    ],
+    contexto: [
+      "Un consultor independiente que trabaja tiendas online necesita, como mínimo, ocho herramientas: una suite de investigación SEO, un rastreador técnico, algo que mida su visibilidad en las respuestas de IA, prospección en frío, un CRM, facturación española y un sitio donde escribir.",
+      "A precios de lista de septiembre de 2026 son 521,20 $ al mes, 6.254 $ al año. Pero el problema no era solo el precio. Era que los datos vivían en ocho sitios que no se hablan entre sí: la tienda que encuentras en una herramienta no es la misma ficha que cualificas en otra, ni la que facturas en la tercera.",
+      "Y sobre todo, ninguna de las ocho soportaba el método de trabajo real, que es prospección manual e individualizada: analizar cada tienda, localizar un fallo concreto, hacer una captura y escribir el correo a mano.",
+    ],
+    queHiceIntro:
+      "Diez secciones organizadas por el ciclo del negocio, no por tipo de archivo: captar, entregar y herramientas. Cada empresa tiene una sola ficha identificada por su dominio, que reúne la búsqueda que la encontró, su cualificación con evidencia, los rastreos de su web, los correos enviados y, si firmó, sus facturas y tareas.",
+    capitulos: [
+      {
+        n: "01",
+        title: "El motor de cualificación de leads",
+        body: "La pieza central, con un principio detrás: la capacidad de listar no manda, manda la capacidad de analizar. Vale más una cola corta de leads muy buenos que una lista larga de mediocres. Tres capas sobre cada dominio: elegibilidad como filtro binario, dolor de 0 a 60 puntos y capacidad y timing de 0 a 40. Con 70 o más entra en la cola con ficha completa.",
+      },
+      {
+        n: "02",
+        title: "Comprobar de lo barato a lo caro",
+        body: "La elegibilidad se comprueba por etapas para no pagar antes de descartar: tumbar un dominio por plataforma cuesta 0,012 $ en vez de los 0,047 $ que costaría comprobarlo todo. Cada lead sale con su evidencia numérica verificable a mano, una frase de dato para usar como gancho y la URL exacta de la captura que hay que hacer.",
+      },
+      {
+        n: "03",
+        title: "Una sola puerta de salida para la IA",
+        body: "Toda la IA del producto sale por OpenRouter con una única clave. Cada llamada envía una lista ordenada de modelos y una ruta de reserva: si el proveedor preferido falla o aplica un límite, la pasarela pasa al siguiente sin que la aplicación se entere. Cada respuesta devuelve qué modelo contestó, cuántos tokens consumió y cuánto costó, y eso se guarda.",
+      },
+      {
+        n: "04",
+        title: "Ocho asistentes, no un chat genérico",
+        body: "Cada asistente tiene su instrucción, su modelo preferido y su tope de tokens según el tipo de trabajo: Claude Sonnet donde hay que redactar de cara al cliente, Gemini Flash donde hace falta búsqueda web, Kimi para clasificar y resumir en masa. Las instrucciones comparten tres reglas: prohibido inventar datos, obligación de separar el hecho verificado de la estimación, y primera persona sin plural corporativo.",
+      },
+      {
+        n: "05",
+        title: "Herramientas reales, no solo texto",
+        body: "Los agentes pueden llamar a cuatro funciones y encadenar hasta cuatro vueltas antes de responder: listar propiedades de Search Console, consultar clics, impresiones y posición real, inspeccionar el estado de indexación de una URL y generar un PDF descargable. Se le puede preguntar por el rendimiento de un cliente y responde con datos de Google, no con una estimación.",
+      },
+      {
+        n: "06",
+        title: "Contexto del cliente con presupuesto",
+        body: "Al abrir un proyecto de cliente, la plataforma construye el contexto leyendo de la base: ficha, ficheros, tareas abiertas, notas, facturas y conversaciones anteriores. Va ordenado por utilidad y se recorta por el final cuando no cabe en el presupuesto de tokens, de modo que lo imprescindible, que es quién es el cliente, nunca se pierde por culpa de las notas.",
+      },
+      {
+        n: "07",
+        title: "El medidor de visibilidad en IA",
+        body: "La función que sustituye a una herramienta de 95 $ al mes. Se define una marca con sus variantes y sus competidores y una lista de preguntas de comprador. Cada pregunta se lanza contra tres modelos de familias distintas, con búsqueda web activada, para no medir el sesgo de un solo proveedor. De cada respuesta se extrae si la marca aparece, en qué orden frente a los competidores y qué fuentes cita el modelo.",
+      },
+    ],
+    verificado: {
+      intro: "Volumen real procesado por la plataforma hasta hoy.",
+      filas: [
+        { value: "918", label: "páginas rastreadas", note: "rastreador propio" },
+        { value: "356", label: "empresas localizadas", note: "búsqueda por sector y ciudad" },
+        { value: "310", label: "dominios descubiertos", note: "deduplicados por dominio" },
+        { value: "61", label: "dominios cualificados con puntuación", note: "con evidencia verificable" },
+        { value: "411", label: "consultas de enriquecimiento guardadas", note: "caché de 30 días" },
+      ],
+      cierre: "Todo eso por 8,60 $ de datos, sobre infraestructura en plan gratuito.",
+    },
+    tecnico: {
+      title: "Siete decisiones que explican por qué funciona con tan poco",
+      body: [
+        "Next.js con App Router, TypeScript, Supabase sobre Postgres y despliegue en Vercel. Sin capa de API para la interfaz: cada pantalla consulta Postgres directamente en el servidor y cada formulario invoca una función de servidor, así que no hay estado duplicado que mantener sincronizado.",
+        "Los trabajos largos no caben en una petición HTTP. En vez de montar Redis y workers, cada trabajo avanza en tandas de 40 segundos que el propio navegador pide en bucle, con un cerrojo para que dos pestañas abiertas no dupliquen el trabajo ni el gasto.",
+        "Y se completa lo que el proveedor no da: DataForSEO no reconoce la plataforma de la mayoría de tiendas españolas pequeñas, así que la plataforma lee por su cuenta la portada y el sitemap de cada tienda, gratis, y combina ambas lecturas.",
+      ],
+      tabla: [
+        { label: "Coste de las herramientas", antes: "521,20 $ al mes fijos", despues: "pago por uso, 8,60 $ en siete semanas" },
+        { label: "Ficha de una empresa", antes: "repartida en cuatro tablas", despues: "una sola, por dominio" },
+        { label: "Trabajos largos", antes: "Redis y workers", despues: "tandas de 40 s desde el navegador" },
+        { label: "Consultas a la API de pago", antes: "se pagan cada vez", despues: "caché de 30 días y tope diario" },
+      ],
+    },
+    hallazgos: {
+      title: "Lo que falló",
+      intro: "Un caso de éxito sin esto no es creíble.",
+      items: [
+        {
+          value: "0",
+          title: "leads en la primera ejecución real",
+          body: "Cincuenta dominios, 3,67 $ gastados y 34 descartados por \"sin plataforma ecommerce\" cuando muchos eran parafarmacias perfectamente válidas. Tres causas: el proveedor no reconocía PrestaShop en tiendas pequeñas, Cloudflare devolvía 403 al lector de sitemaps, y PrestaShop envuelve las URLs en bloques CDATA que el lector no interpretaba. Corregidas las tres, y cambiado el orden de comprobación para no pagar antes de descartar.",
+        },
+        {
+          value: "4",
+          title: "veces existía la misma tienda",
+          body: "Encontrada en un sitio, cualificada en otro, contactada en un tercero y facturada en un cuarto, sin ninguna relación entre las cuatro filas. Se resolvió con una ficha única por dominio, que es lo que hoy sostiene el buscador global.",
+        },
+        {
+          value: "2",
+          title: "listas de exclusión separadas, y una fuga legal",
+          body: "Había una lista de bajas por módulo. Quien se daba de baja desde un correo no quedaba bloqueado en el pipeline de prospección, así que podía reaparecer en la cola. Ahora cualquier baja escribe en ambas y descarta el dominio en el momento, que es lo que el documento de interés legítimo promete.",
+        },
+        {
+          value: "1",
+          title: "comprobación ingenua que daba falsos positivos",
+          body: "El medidor de visibilidad en IA daba por mencionada a \"Marea\" dentro de la palabra \"mareado\". La detección pasó a buscar palabra completa y sin acentos.",
+        },
+      ],
+    },
+    metodo: {
+      title: "Cómo se trabaja",
+      intro: "Tres prácticas que hacen sostenible mantener esto en solitario.",
+      reglas: [
+        {
+          title: "Verificar antes de dar nada por hecho",
+          body: "Cada cambio pasa por tipado estricto, lint, los 496 tests y una compilación de producción. Y antes de integrar cualquier endpoint de pago se comprueba su nombre y sus campos en la documentación y se mide su coste real con una llamada pequeña. Así se supo que el histórico de rankings cuesta 0,138 $ por dominio.",
+        },
+        {
+          title: "Desarrollo asistido, criterio propio",
+          body: "El código se escribe con un agente de programación que lee el repositorio, ejecuta comandos, consulta la base y lanza los tests antes de dar nada por bueno. Acelera el trabajo y abarata mantener una base de este tamaño en solitario, pero las decisiones de producto y de arquitectura son mías.",
+        },
+        {
+          title: "n8n orquesta, la plataforma ejecuta",
+          body: "La plataforma expone un único webhook autenticado con doce acciones: crear tareas y notas, dar de alta clientes, cambiar el estado de una factura, consultar pendientes y cinco para el pipeline de leads. La regla es no duplicar automatizaciones en los dos sitios.",
+        },
+      ],
+    },
+    cta: {
+      title: "Lo mismo que hago para mí, para tu negocio.",
+      body: "Cuando el stack estándar no llega, la salida es construir la pieza que falta. Esta plataforma es la prueba de que sale a cuenta y de cómo se sostiene.",
+      label: "Ver aplicaciones a medida",
+      href: "/servicios/a-medida",
+    },
+  },
 }
 
 export function getCasoDeep(slug: string): CasoDeep | undefined {

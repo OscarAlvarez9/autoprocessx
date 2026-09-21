@@ -26,7 +26,7 @@ const fromCase = (slug: string): Item | null => {
 }
 
 const ecommerce = ["marea-es", "garcia-del-cerro"].map(fromProject).filter(Boolean) as Item[]
-const propia = ["business-suite-ia-plataforma-corporativa", "opoai-plataforma-estudio-oposiciones"].map(fromCase).filter(Boolean) as Item[]
+const propia = ["seoscar-os-plataforma-propia", "opoai-plataforma-estudio-oposiciones"].map(fromCase).filter(Boolean) as Item[]
 const automatizaciones = ["pelican-catchy-infraestructura-ia"].map(fromCase).filter(Boolean) as Item[]
 
 function CaseCard({ item }: { item: Item }) {

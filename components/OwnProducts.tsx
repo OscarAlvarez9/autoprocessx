@@ -34,7 +34,7 @@ const businessSuite: Product = {
     id: "01",
     name: "Business Suite IA",
     tagline: "CRM · Pipeline · Multi-Agent Orchestration",
-    slug: "business-suite-ia-plataforma-corporativa",
+    slug: "seoscar-os-plataforma-propia",
     description: "Arquitectura corporativa full-stack orquestada por agentes autónomos. 7 módulos críticos en producción real.",
     image: "/assets/businessoslogo.jpeg",
     modules: ["Dashboard", "CRM", "Pipeline", "Calendario", "Tareas", "Propuestas", "Agentes"],

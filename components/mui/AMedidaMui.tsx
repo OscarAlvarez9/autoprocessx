@@ -158,7 +158,7 @@ export default function AMedidaMui() {
       <Hero />
       <Cuando />
       <RagDetalle />
-      <FeaturedCases title="Construidas a medida, en producción." slugs={["business-suite-ia-plataforma-corporativa", "opoai-plataforma-estudio-oposiciones"]} />
+      <FeaturedCases title="Construidas a medida, en producción." slugs={["seoscar-os-plataforma-propia", "opoai-plataforma-estudio-oposiciones"]} />
       <MetodoLink />
       <Faq />
       <DiagnosticoCTA />

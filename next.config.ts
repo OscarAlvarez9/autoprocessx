@@ -59,6 +59,9 @@ const nextConfig: NextConfig = {
 
       // 3) seoscar.com viejo (agencia SEO) → nuevo (ecommerce), mismo dominio,
       //    sin condición de host. Evita 404 de lo ya indexado.
+      // El caso se renombró de Business Suite IA a SEOscar OS. La URL vieja
+      // estaba indexada, así que va con 301 en vez de romperse.
+      { source: "/casos-de-exito/business-suite-ia-plataforma-corporativa", destination: "/casos-de-exito/seoscar-os-plataforma-propia", permanent: true },
       { source: "/servicios/ai-chatbot", destination: "/servicios/agente-ventas-ia", permanent: true },
       { source: "/servicios/seo-geo", destination: "/servicios/crecimiento-ecommerce", permanent: true },
       { source: "/servicios/aplicaciones-ia", destination: "/servicios/a-medida", permanent: true },

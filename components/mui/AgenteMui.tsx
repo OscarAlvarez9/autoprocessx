@@ -244,7 +244,7 @@ export default function AgenteMui() {
       <FeaturedCases
         title="La misma ingeniería, en producción."
         sub="El principio del agente (responder solo con datos reales) ya funciona en estos proyectos."
-        slugs={["opoai-plataforma-estudio-oposiciones", "business-suite-ia-plataforma-corporativa"]}
+        slugs={["opoai-plataforma-estudio-oposiciones", "seoscar-os-plataforma-propia"]}
       />
       <StatementBand as="p" title="Si no lo sabe, lo dice. Por eso el cliente le compra." photo="/assets/gen/photo-shopify.png" />
       <Faq />

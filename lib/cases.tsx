@@ -137,8 +137,8 @@ export const caseStudies: CaseStudy[] = [
     },
     {
         id: "03",
-        slug: "business-suite-ia-plataforma-corporativa",
-        title: "Business Suite IA · Plataforma Corporativa",
+        slug: "seoscar-os-plataforma-propia",
+        title: "SEOscar OS · Plataforma propia",
         client: "Producto Propio",
         sector: "SaaS & Agencias",
         result: "7",

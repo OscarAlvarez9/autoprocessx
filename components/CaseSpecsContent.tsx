@@ -357,7 +357,7 @@ export default function CaseSpecsContent({ caso }: Props) {
             </section>
 
             {/* Platform Module Showcase — Business Suite only */}
-            {caso.slug === 'business-suite-ia-plataforma-corporativa' && (
+            {caso.slug === 'seoscar-os-plataforma-propia' && (
                 <section className="py-16 md:py-32 bg-[#FAFAFA] border-b border-[#E4E4E7]">
                     <div className="container px-6 mx-auto">
                         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 md:gap-12 mb-12 md:mb-24">
