@@ -20,12 +20,20 @@ SEOscar es una agencia de ecommerce, no una consultora de IA abstracta. El objet
 ## Casos de éxito
 
 - [Todos los casos](https://www.seoscar.com/casos-de-exito): tiendas y proyectos reales con reto, solución y stack aplicado.
-- [marea.es](https://www.seoscar.com/casos-de-exito/marea-es): relojería sobre WooCommerce. Agente de ventas IA anclado al catálogo real (producto, precio, stock) más trabajo de CRO sobre las fichas para convertir la duda en compra. Caso ecommerce destacado.
+- [marea.es](https://www.seoscar.com/casos-de-exito/marea-es): relojería sobre WooCommerce con 2.293 referencias. 19 automatizaciones en n8n que llevan el catálogo del proveedor a la tienda (alta, fotos, stock, categorías) y SEO técnico: migración de atributos a globales para dejar operativos los filtros. 3.060 clics y 13,6 % de CTR en la primera semana. Caso ecommerce destacado.
 - [Totfinestra](https://www.seoscar.com/casos-de-exito/totfinestra): ventanas de aluminio a medida. Web rehecha para captar y cualificar solicitudes de presupuesto, con SEO local y base técnica rápida (Core Web Vitals en verde). Caso ecommerce destacado.
 - [Farmacia García del Cerro](https://www.seoscar.com/casos-de-exito/farmacia-garcia-del-cerro): parafarmacia sobre Shopify. Motor de contenido SEO automatizado con n8n, Claude y Contentful para captar tráfico orgánico con intención de compra.
 - [Pelican Catchy](https://www.seoscar.com/casos-de-exito/pelican-catchy-infraestructura-ia): arquitectura multi-agente en n8n que automatiza ocho procesos de marketing en paralelo (estrategia, SEO, publicación, tareas y reporting).
 - [OpoAI](https://www.seoscar.com/casos-de-exito/opoai-plataforma-estudio-oposiciones): plataforma EdTech propia con tutor IA, RAG sobre temario y motor de simulacros. Caso de desarrollo a medida.
-- [Business Suite IA](https://www.seoscar.com/casos-de-exito/business-suite-ia-plataforma-corporativa): plataforma corporativa propia con CRM, pipeline, tareas y agentes autónomos. Caso de desarrollo a medida.
+- [SEOscar OS](https://www.seoscar.com/casos-de-exito/seoscar-os-plataforma-propia): plataforma propia que cubre el ciclo completo de un consultor SEO independiente (prospección, CRM, análisis SEO, agentes, facturación española) y sustituye ocho suscripciones de 521 $ al mes. 20.805 líneas de código propio con 496 tests. Caso de desarrollo a medida.
+- [regalalo.io](https://www.seoscar.com/casos-de-exito/regalalo-io): recomendador de regalos con IA local. 1.900 usuarios en dos días y posición media en el top 3.
+- [Peritando.es](https://www.seoscar.com/casos-de-exito/peritando-es): peritajes judiciales. Refactorización técnica y arquitectura de servicios por tipo de peritaje: x4 leads mensuales y +45 % de CTR.
+- [Controltemp](https://www.seoscar.com/casos-de-exito/controltemp): climatización industrial. SEO internacional que abrió tres países nuevos y multiplicó por cuatro los leads.
+- [Diomento Homelift](https://www.seoscar.com/casos-de-exito/diomento-homelift): salvaescaleras y ascensores domésticos. Posicionamiento de marca premium con +60 % de leads cualificados.
+- [Quad Studios](https://www.seoscar.com/casos-de-exito/quad-studios): estudios de grabación. SEO local en el top 3 del local pack y duplicación de llamadas directas.
+- [BeBubble Ibiza](https://www.seoscar.com/casos-de-exito/bebubbleibiza): eventos en Ibiza. Visibilidad en Maps y captación multiidioma de lead premium.
+- [Salvador Mendoza](https://www.seoscar.com/casos-de-exito/salvador-mendoza): marca personal y autoridad profesional, con posición local en el top 3.
+- [GrowMyBiss](https://www.seoscar.com/casos-de-exito/growmybiss): consultoría de negocio. +30 keywords en el top 5 desde cero.
 
 ## Stack técnico
 
