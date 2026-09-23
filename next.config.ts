@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import retired from "./lib/blog-retired.json";
+import { CATEGORY_ALIASES } from "./lib/blogCategories";
 
 const nextConfig: NextConfig = {
   images: {
@@ -95,7 +96,9 @@ const nextConfig: NextConfig = {
       ...Object.entries(retired.posts).map(([from, to]) => (
         { source: `/blog/${from}`, destination: `/blog/${to}`, permanent: true }
       )),
-      ...Object.entries(retired.categories).map(([from, to]) => (
+      // Se generan desde lib/blogCategories.ts: cada alias que el código sabe
+      // resolver tiene aquí su 301, sin listas paralelas que desincronizar.
+      ...Object.entries(CATEGORY_ALIASES).map(([from, to]) => (
         { source: `/blog/categoria/${from}`, destination: `/blog/categoria/${to}`, permanent: true }
       )),
 

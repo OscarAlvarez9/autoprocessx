@@ -6,6 +6,16 @@
   "categories": {
     "ia-news": "ia-empresas",
     "plataformas-ia": "ia-empresas",
-    "chatbots": "agentes-ia"
+    "chatbots": "agentes-ia",
+    "plataforma-ia": "ia-empresas",
+    "plataformas": "ia-empresas",
+    "noticias": "ia-empresas",
+    "news": "ia-empresas",
+    "chatbot": "agentes-ia",
+    "agentes": "agentes-ia",
+    "seo-ecommerce": "seo",
+    "ecommerce": "seo",
+    "automatizacion": "automatizaciones",
+    "automation": "automatizaciones"
   }
 }

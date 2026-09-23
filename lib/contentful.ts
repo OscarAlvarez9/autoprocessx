@@ -1,4 +1,5 @@
 import { createClient } from "contentful"
+import { CATEGORIES, CATEGORY_ALIASES, CATEGORY_FALLBACK } from "./blogCategories"
 import type { Document } from "@contentful/rich-text-types"
 import {
     blogPosts as seedPosts,
@@ -123,33 +124,9 @@ const countWords = (input?: Document | string): number => {
     return count
 }
 
-const VALID_CATEGORIES: CategorySlug[] = [
-    "seo",
-    "geo",
-    "automatizaciones",
-    "agentes-ia",
-    "ia-empresas",
-]
-
-// Keys must be in slugified form (lowercase, no accents, hyphen-separated)
-// because normalizeCategory() runs slugify() before looking them up.
-// Los valores antiguos (antes del 2026-09-21) siguen resolviendo a la categoría
-// nueva, así ninguna entrada de Contentful sin migrar se queda huérfana.
-const CATEGORY_ALIASES: Record<string, CategorySlug> = {
-    "ia-news": "ia-empresas",
-    "plataformas-ia": "ia-empresas",
-    "plataforma-ia": "ia-empresas",
-    "plataformas": "ia-empresas",
-    "noticias": "ia-empresas",
-    "news": "ia-empresas",
-    "chatbots": "agentes-ia",
-    "chatbot": "agentes-ia",
-    "agentes": "agentes-ia",
-    "seo-ecommerce": "seo",
-    "ecommerce": "seo",
-    "automatizacion": "automatizaciones",
-    "automation": "automatizaciones",
-}
+// Las categorías y sus alias viven en lib/blogCategories.ts, que también usa
+// next.config.ts para generar las redirecciones. Una sola lista, sin copias.
+const VALID_CATEGORIES: readonly CategorySlug[] = CATEGORIES
 
 /**
  * Normalize any string into a URL-safe slug:
@@ -184,11 +161,11 @@ const extractCategoryString = (raw: unknown): string | undefined => {
 
 const normalizeCategory = (raw: unknown): CategorySlug => {
     const value = extractCategoryString(raw)
-    if (!value) return "ia-empresas"
+    if (!value) return CATEGORY_FALLBACK
     const slug = slugify(value)
     if (VALID_CATEGORIES.includes(slug as CategorySlug)) return slug as CategorySlug
     if (slug in CATEGORY_ALIASES) return CATEGORY_ALIASES[slug]
-    return "ia-empresas"
+    return CATEGORY_FALLBACK
 }
 
 const cleanSlug = (raw?: string) => slugify(raw)
