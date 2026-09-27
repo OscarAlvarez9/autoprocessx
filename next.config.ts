@@ -8,6 +8,15 @@ const nextConfig: NextConfig = {
     // servía el PNG original (hasta 3 MB) para pintarlo a 660 px. La home
     // llegaba a 19 MB solo de imágenes. Con la optimización activa, Next
     // sirve AVIF o WebP al tamaño que toca según el viewport.
+    // Las portadas del blog viven en Contentful. Con la optimización activa,
+    // Next rechaza (400) cualquier dominio externo que no esté autorizado
+    // aquí, así que sin esto las portadas desaparecen.
+    remotePatterns: [
+      { protocol: "https", hostname: "images.ctfassets.net" },
+      { protocol: "https", hostname: "assets.ctfassets.net" },
+      { protocol: "https", hostname: "videos.ctfassets.net" },
+      { protocol: "https", hostname: "downloads.ctfassets.net" },
+    ],
     formats: ["image/avif", "image/webp"],
     // Las fotos de marca se pintan a 530 px y las de sección a 662 px; el
     // resto son artefactos pequeños. No hace falta generar tamaños enormes.

@@ -6,6 +6,8 @@ import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
+import Tabs from "@mui/material/Tabs"
+import Tab from "@mui/material/Tab"
 import { tokens, fonts } from "@/lib/mui/theme"
 import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, Reveal, Crumbs } from "@/components/mui/shared"
 import type { BlogPost, BlogCategory } from "@/lib/blog"
@@ -14,15 +16,19 @@ function fmtDate(iso: string) {
   return new Date(iso).toLocaleDateString("es-ES", { day: "numeric", month: "short", year: "numeric" })
 }
 
+function fmtDateLarga(iso: string) {
+  return new Date(iso).toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long", year: "numeric" })
+}
+
 // Portada: imagen real cuando el post la tiene (con zoom suave al hover), y un
 // fallback sobrio de marca (lienzo blueprint + etiqueta de categoría) cuando no,
 // en vez de una letra suelta. Sin imágenes autogeneradas.
-function Cover({ post, catName, ratio = "16 / 10" }: { post: BlogPost; catName?: string; ratio?: string }) {
+function Cover({ post, catName, ratio = "16 / 10", sizes = "(max-width: 900px) 100vw, 33vw" }: { post: BlogPost; catName?: string; ratio?: string; sizes?: string }) {
   return (
     <Box sx={{ position: "relative", aspectRatio: ratio, overflow: "hidden", bgcolor: tokens.surface }}>
       {post.cover ? (
         <Box className="cover-img" sx={{ position: "absolute", inset: 0, transition: "transform .6s cubic-bezier(.22,1,.36,1)" }}>
-          <Image src={post.cover} alt="" fill sizes="(max-width: 900px) 100vw, 33vw" style={{ objectFit: "cover" }} />
+          <Image src={post.cover} alt="" fill sizes={sizes} style={{ objectFit: "cover" }} />
         </Box>
       ) : (
         <>
@@ -51,109 +57,237 @@ function Meta({ post, catName, showCat = true }: { post: BlogPost; catName?: str
   )
 }
 
-/* ---------- first view: masthead editorial + destacado ---------- */
+/* ---------------------------------------------------- cabecera de diario --- */
 
-function Masthead({ count, categories, activeName }: { count: number; categories: BlogCategory[]; activeName?: string }) {
+// Cabecera compacta, al modo de un diario: una sola línea de identidad con la
+// fecha de la última edición y el número de piezas. Antes ocupaba una pantalla
+// entera para decir lo mismo.
+function Cabecera({ posts, activeName }: { posts: BlogPost[]; activeName?: string }) {
+  const ultima = posts[0]?.date
   return (
-    <Box component="section" sx={{ position: "relative", overflow: "hidden", borderBottom: `1px solid ${tokens.lineSoft}` }}>
+    <Box component="section" sx={{ position: "relative", overflow: "hidden" }}>
       <Blueprint />
-      <Container sx={{ position: "relative", zIndex: 1, pt: { xs: 5, md: 8 }, pb: { xs: 4, md: 6 } }}>
+      <Container sx={{ position: "relative", zIndex: 1, pt: { xs: 4, md: 6 }, pb: { xs: 3, md: 4 } }}>
         <Reveal>
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted, mb: { xs: 2, md: 2.5 } }}>
-            {count} {count === 1 ? "artículo" : "artículos"}
-          </Typography>
-          <Typography variant="h1" sx={{ fontSize: { xs: 38, sm: 52, md: 66 }, letterSpacing: "-0.025em", lineHeight: 1.05, color: tokens.ink, maxWidth: 920, mb: 3 }}>
-            Lo que aprendo construyendo, contado sin humo.
-          </Typography>
-          <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 560 }}>
-            n8n en producción, RAG que no alucina, SEO que vende. Análisis desde proyectos reales, no refritos.
-          </Typography>
+          <Box sx={{ borderTop: `2px solid ${tokens.ink}`, pt: { xs: 2, md: 2.5 } }}>
+            <Typography sx={{ fontFamily: fonts.mono, fontSize: 11.5, color: tokens.muted, mb: 1.5 }}>
+              {ultima ? fmtDateLarga(ultima) : ""} · {posts.length} {posts.length === 1 ? "artículo" : "artículos"}
+            </Typography>
+            <Typography
+              component="h1"
+              sx={{ fontFamily: fonts.serif, fontSize: { xs: 32, sm: 42, md: 52 }, fontWeight: 600, letterSpacing: "-0.02em", color: tokens.ink, lineHeight: 1.06, maxWidth: 780 }}
+            >
+              {activeName ?? "Lo que aprendo construyendo, contado sin humo."}
+            </Typography>
+          </Box>
         </Reveal>
-        <Reveal delay={0.08}>
-          <Stack direction="row" sx={{ flexWrap: "wrap", gap: { xs: 2, md: 3 }, mt: { xs: 4, md: 5 }, pt: { xs: 3, md: 3.5 }, borderTop: `1px solid ${tokens.line}` }}>
-            <CatLink href="/blog" label="Todos" active={!activeName} />
-            {categories.map((c) => <CatLink key={c.slug} href={`/blog/categoria/${c.slug}`} label={c.name} active={activeName === c.name} />)}
+      </Container>
+    </Box>
+  )
+}
+
+/* ------------------------------------------------------------- secciones --- */
+
+// Las categorías, una sola vez y como control de verdad. Antes salían dos
+// veces: como enlaces aquí arriba y otra vez como sección a pantalla completa.
+// Son enlaces reales a /blog/categoria/... para no romper esas URLs.
+function Secciones({ categories, counts, activeSlug }: { categories: BlogCategory[]; counts: Record<string, number>; activeSlug?: string }) {
+  // Una categoría sin artículos no se enseña: antes "SEO y Ecommerce" ocupaba
+  // una fila entera con un 0 al lado.
+  const conPosts = categories.filter((c) => (counts[c.slug] ?? 0) > 0)
+  const valor = activeSlug && conPosts.some((c) => c.slug === activeSlug) ? activeSlug : "todos"
+  return (
+    <Box
+      component="nav"
+      aria-label="Secciones del blog"
+      sx={{
+        position: "sticky",
+        // El header flotante mide 54-58 px y va a 8-14 px del borde. Sin este
+        // desplazamiento, las pestañas se quedaban escondidas detrás.
+        top: { xs: 70, md: 80 },
+        zIndex: 20,
+        bgcolor: `${tokens.paper}f2`,
+        backdropFilter: "blur(8px)",
+        borderTop: `1px solid ${tokens.line}`,
+        borderBottom: `1px solid ${tokens.line}`,
+      }}
+    >
+      <Container>
+        <Tabs
+          value={valor}
+          variant="scrollable"
+          scrollButtons="auto"
+          allowScrollButtonsMobile
+          sx={{
+            minHeight: 46,
+            "& .MuiTabs-indicator": { backgroundColor: tokens.petrol, height: 2 },
+            "& .MuiTab-root": {
+              minHeight: 46,
+              px: 0,
+              mr: 3.5,
+              minWidth: 0,
+              fontFamily: fonts.mono,
+              fontSize: 12.5,
+              textTransform: "none",
+              color: tokens.muted,
+              "&.Mui-selected": { color: tokens.ink, fontWeight: 600 },
+            },
+          }}
+        >
+          <Tab value="todos" label="Todo" component={Link} href="/blog" />
+          {conPosts.map((c) => (
+            <Tab
+              key={c.slug}
+              value={c.slug}
+              component={Link}
+              href={`/blog/categoria/${c.slug}`}
+              label={`${c.shortName ?? c.name} (${counts[c.slug]})`}
+            />
+          ))}
+        </Tabs>
+      </Container>
+    </Box>
+  )
+}
+
+/* ------------------------------------------------------------- portada ----- */
+
+// Portada de diario: una pieza de apertura grande y dos de acompañamiento en
+// columna. Da jerarquía de verdad en vez de veinte tarjetas iguales.
+function Portada({ lead, laterales, catName }: { lead: BlogPost; laterales: BlogPost[]; catName: (s: string) => string | undefined }) {
+  return (
+    <Box component="section" sx={{ py: { xs: 4, md: 6 }, borderBottom: `1px solid ${tokens.line}` }}>
+      <Container>
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.55fr 1fr" }, gap: { xs: 4, md: 6 } }}>
+          <Reveal>
+            <Box
+              component={Link}
+              href={`/blog/${lead.slug}`}
+              sx={{ display: "block", textDecoration: "none", "&:hover .cover-img": { transform: "scale(1.03)" }, "&:hover .lead-title": { color: tokens.petrol } }}
+            >
+              <Box sx={{ borderRadius: 2, overflow: "hidden", mb: 2.5 }}>
+                <Cover post={lead} catName={catName(lead.category)} ratio="16 / 9" sizes="(max-width: 900px) 100vw, 62vw" />
+              </Box>
+              <Meta post={lead} catName={catName(lead.category)} />
+              <Typography
+                className="lead-title"
+                component="h2"
+                sx={{ fontFamily: fonts.serif, fontSize: { xs: 27, md: 38 }, fontWeight: 600, lineHeight: 1.12, color: tokens.ink, mt: 1, mb: 1.25, transition: "color .2s" }}
+              >
+                {lead.title}
+              </Typography>
+              <Typography variant="body1" sx={{ color: tokens.body, maxWidth: 620 }}>{lead.excerpt}</Typography>
+            </Box>
+          </Reveal>
+
+          <Stack divider={<Box sx={{ borderTop: `1px solid ${tokens.lineSoft}` }} />} spacing={0}>
+            {laterales.map((p, i) => (
+              <Reveal key={p.slug} delay={0.06 + i * 0.05}>
+                <Box
+                  component={Link}
+                  href={`/blog/${p.slug}`}
+                  sx={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 92px",
+                    gap: 2,
+                    alignItems: "start",
+                    py: { xs: 2.5, md: 3 },
+                    textDecoration: "none",
+                    "&:first-of-type": { pt: 0 },
+                    "&:hover .sec-title": { color: tokens.petrol },
+                    "&:hover .cover-img": { transform: "scale(1.05)" },
+                  }}
+                >
+                  <Box sx={{ minWidth: 0 }}>
+                    <Meta post={p} catName={catName(p.category)} />
+                    <Typography
+                      className="sec-title"
+                      component="h3"
+                      sx={{ fontFamily: fonts.serif, fontSize: { xs: 18, md: 20 }, fontWeight: 600, lineHeight: 1.22, color: tokens.ink, mt: 0.75, transition: "color .2s" }}
+                    >
+                      {p.title}
+                    </Typography>
+                  </Box>
+                  <Box sx={{ borderRadius: 1.5, overflow: "hidden", flexShrink: 0 }}>
+                    <Cover post={p} catName={catName(p.category)} ratio="1 / 1" sizes="92px" />
+                  </Box>
+                </Box>
+              </Reveal>
+            ))}
           </Stack>
-        </Reveal>
+        </Box>
       </Container>
     </Box>
   )
 }
 
-// Enlace de categoría editorial: texto con subrayado petróleo al hover/activo, no una pastilla.
-function CatLink({ href, label, active }: { href: string; label: string; active?: boolean }) {
-  return (
-    <Box component={Link} href={href} sx={{ textDecoration: "none", position: "relative", pb: 0.5 }}>
-      <Typography sx={{ fontSize: 14, fontWeight: 600, color: active ? tokens.ink : tokens.muted, transition: "color .2s", "&:hover": { color: tokens.ink } }}>{label}</Typography>
-      <Box sx={{ position: "absolute", left: 0, bottom: 0, height: 2, borderRadius: 999, bgcolor: tokens.petrol, width: active ? "100%" : 0, transition: "width .25s" }} />
-    </Box>
-  )
-}
+/* --------------------------------------------------------------- índice ---- */
 
-function Destacado({ post, catName }: { post: BlogPost; catName?: string }) {
+// El resto, como el índice de un diario: filas densas con filete. Aquí es donde
+// se recupera el scroll que antes se iba en portadas gigantes y vacías.
+function Indice({ posts, catName, titulo }: { posts: BlogPost[]; catName: (s: string) => string | undefined; titulo: string }) {
+  if (posts.length === 0) {
+    return (
+      <Box component="section" sx={{ py: { xs: 6, md: 9 } }}>
+        <Container>
+          <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted, textAlign: "center" }}>Más artículos en camino.</Typography>
+        </Container>
+      </Box>
+    )
+  }
   return (
-    <Box component="section" sx={{ py: { xs: 5, md: 8 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
+    <Box component="section" sx={{ py: { xs: 5, md: 7 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Container>
         <Reveal>
-          <Box component={Link} href={`/blog/${post.slug}`}
-            sx={{
-              display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.05fr 0.95fr" }, gap: { xs: 3, md: 6 }, alignItems: "center", textDecoration: "none",
-              "&:hover .cover-img": { transform: "scale(1.04)" },
-              "&:hover .feat-title": { color: tokens.petrol },
-              "&:hover .feat-arrow": { transform: "translate(3px,-3px)" },
-            }}>
-            <Box sx={{ borderRadius: 4, overflow: "hidden", border: `1px solid ${tokens.line}`, order: { xs: 1, md: 2 } }}>
-              <Cover post={post} catName={catName} ratio="16 / 10" />
-            </Box>
-            <Box sx={{ order: { xs: 2, md: 1 } }}>
-              <Stack direction="row" spacing={1.5} sx={{ alignItems: "center", mb: 2 }}>
-                <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, color: tokens.petrol, border: `1px solid ${tokens.petrol}44`, borderRadius: 999, px: 1, py: 0.35 }}>destacado</Typography>
-                <Meta post={post} catName={catName} />
-              </Stack>
-              <Typography className="feat-title" variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, lineHeight: 1.1, color: tokens.ink, mb: 2, transition: "color .2s" }}>{post.title}</Typography>
-              <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 17 }, color: tokens.body, mb: 3, maxWidth: 520, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{post.excerpt}</Typography>
-              <Stack direction="row" spacing={0.75} sx={{ alignItems: "center", color: tokens.ink }}>
-                <Typography sx={{ fontFamily: fonts.mono, fontSize: 13, fontWeight: 600 }}>Leer el artículo</Typography>
-                <Box className="feat-arrow" component="span" sx={{ color: tokens.petrol, transition: "transform .2s" }}>↗</Box>
-              </Stack>
-            </Box>
-          </Box>
+          <Typography
+            component="h2"
+            sx={{ fontFamily: fonts.mono, fontSize: 11.5, letterSpacing: "0.08em", color: tokens.muted, textTransform: "uppercase", pb: 1.5, borderBottom: `2px solid ${tokens.ink}`, mb: 0.5 }}
+          >
+            {titulo}
+          </Typography>
         </Reveal>
-      </Container>
-    </Box>
-  )
-}
-
-/* ---------- clusters: índice editorial numerado ---------- */
-
-function Clusters({ categories, counts }: { categories: BlogCategory[]; counts: Record<string, number> }) {
-  return (
-    <Box component="section" sx={{ py: { xs: 7, md: 11 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
-      <Container>
-        <Reveal>
-          <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", justifyContent: "space-between", gap: 2, mb: { xs: 4, md: 6 } }}>
-            <Typography variant="h2" sx={{ fontSize: { xs: 26, md: 36 }, color: tokens.ink }}>Explora por tema.</Typography>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted }}>{categories.length} clusters</Typography>
-          </Box>
-        </Reveal>
-        <Box sx={{ borderTop: `1px solid ${tokens.line}` }}>
-          {categories.map((c, i) => (
-            <Reveal key={c.slug} delay={(i % 2) * 0.05}>
-              <Box component={Link} href={`/blog/categoria/${c.slug}`}
+        <Box>
+          {posts.map((p, i) => (
+            <Reveal key={p.slug} delay={Math.min(i, 5) * 0.03}>
+              <Box
+                component={Link}
+                href={`/blog/${p.slug}`}
                 sx={{
-                  display: "grid", gridTemplateColumns: { xs: "auto 1fr auto", md: "56px 1.1fr 1.4fr auto" }, gap: { xs: 2, md: 3 }, alignItems: { xs: "center", md: "baseline" },
-                  textDecoration: "none", py: { xs: 2.5, md: 3.25 }, borderBottom: `1px solid ${tokens.line}`, transition: "background-color .2s",
+                  display: "grid",
+                  gridTemplateColumns: { xs: "1fr", md: "104px 1fr 1.1fr" },
+                  gap: { xs: 0.75, md: 3 },
+                  alignItems: "baseline",
+                  py: { xs: 2.5, md: 2.75 },
+                  borderBottom: `1px solid ${tokens.lineSoft}`,
+                  textDecoration: "none",
+                  transition: "background-color .2s",
                   "&:hover": { bgcolor: tokens.surface },
-                  "&:hover .cl-name": { color: tokens.petrol },
-                  "&:hover .cl-arrow": { transform: "translate(3px,-3px)" },
-                }}>
-                <Typography sx={{ fontFamily: fonts.mono, fontSize: { xs: 13, md: 15 }, color: tokens.muted }}>{`0${i + 1}`}</Typography>
-                <Typography className="cl-name" sx={{ fontFamily: fonts.serif, fontSize: { xs: 21, md: 26 }, fontWeight: 600, color: tokens.ink, transition: "color .2s" }}>{c.name}</Typography>
-                <Typography variant="body2" sx={{ color: tokens.body, display: { xs: "none", md: "block" }, maxWidth: 460 }}>{c.description}</Typography>
-                <Stack direction="row" spacing={1.25} sx={{ alignItems: "center", justifySelf: "end" }}>
-                  <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted }}>{counts[c.slug] ?? 0}</Typography>
-                  <Box className="cl-arrow" component="span" sx={{ color: tokens.petrol, fontFamily: fonts.mono, fontSize: 14, transition: "transform .2s" }}>↗</Box>
-                </Stack>
+                  "&:hover .idx-title": { color: tokens.petrol },
+                }}
+              >
+                <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, whiteSpace: "nowrap" }}>
+                  {fmtDate(p.date)}
+                </Typography>
+                <Box sx={{ minWidth: 0 }}>
+                  <Typography
+                    className="idx-title"
+                    component="h3"
+                    sx={{ fontFamily: fonts.serif, fontSize: { xs: 19, md: 21 }, fontWeight: 600, lineHeight: 1.22, color: tokens.ink, transition: "color .2s" }}
+                  >
+                    {p.title}
+                  </Typography>
+                  <Stack direction="row" spacing={1} sx={{ alignItems: "center", mt: 0.5 }}>
+                    <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: tokens.petrol, fontWeight: 600 }}>{catName(p.category)}</Typography>
+                    <Box sx={{ width: 3, height: 3, borderRadius: 999, bgcolor: tokens.line }} />
+                    <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: tokens.muted }}>{p.readingMinutes} min</Typography>
+                  </Stack>
+                </Box>
+                <Typography
+                  variant="body2"
+                  sx={{ color: tokens.body, display: { xs: "none", md: "-webkit-box" }, WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}
+                >
+                  {p.excerpt}
+                </Typography>
               </Box>
             </Reveal>
           ))}
@@ -163,55 +297,23 @@ function Clusters({ categories, counts }: { categories: BlogCategory[]; counts: 
   )
 }
 
-/* ---------- rejilla de artículos ---------- */
-
-function PostCard({ post, catName, delay }: { post: BlogPost; catName?: string; delay: number }) {
-  return (
-    <Reveal delay={delay}>
-      <Box component={Link} href={`/blog/${post.slug}`}
-        sx={{
-          display: "flex", flexDirection: "column", height: "100%", textDecoration: "none",
-          "&:hover .cover-img": { transform: "scale(1.04)" },
-          "&:hover .pc-title": { color: tokens.petrol },
-        }}>
-        <Box sx={{ borderRadius: 3, overflow: "hidden", border: `1px solid ${tokens.line}`, mb: 2 }}>
-          <Cover post={post} catName={catName} />
-        </Box>
-        <Meta post={post} catName={catName} />
-        <Typography className="pc-title" sx={{ fontFamily: fonts.serif, fontSize: 20, fontWeight: 600, lineHeight: 1.25, color: tokens.ink, mt: 1, mb: 1, transition: "color .2s" }}>{post.title}</Typography>
-        <Typography variant="body2" sx={{ color: tokens.body, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{post.excerpt}</Typography>
-      </Box>
-    </Reveal>
-  )
-}
-
-export default function BlogMui({ posts, categories, featuredSlug }: { posts: BlogPost[]; categories: BlogCategory[]; featuredSlug?: string }) {
+export default function BlogMui({ posts, categories, featuredSlug, activeSlug }: { posts: BlogPost[]; categories: BlogCategory[]; featuredSlug?: string; activeSlug?: string }) {
   const catName = (slug: string) => categories.find((c) => c.slug === slug)?.shortName ?? categories.find((c) => c.slug === slug)?.name
+  const activa = categories.find((c) => c.slug === activeSlug)
   const featured = posts.find((p) => p.slug === featuredSlug) ?? posts[0]
-  const rest = posts.filter((p) => p.slug !== featured?.slug)
+  const resto = posts.filter((p) => p.slug !== featured?.slug)
+  const laterales = resto.slice(0, 3)
+  const indice = resto.slice(3)
   const counts = posts.reduce<Record<string, number>>((acc, p) => { acc[p.category] = (acc[p.category] ?? 0) + 1; return acc }, {})
 
   return (
     <Box sx={{ bgcolor: tokens.paper, color: tokens.body, fontFamily: fonts.sans }}>
       <SiteHeader />
-      <Crumbs items={[{ label: "Blog" }]} />
-      <Masthead count={posts.length} categories={categories} />
-      {featured && <Destacado post={featured} catName={catName(featured.category)} />}
-      <Clusters categories={categories} counts={counts} />
-      <Box component="section" sx={{ py: { xs: 7, md: 11 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
-        <Container>
-          <Reveal>
-            <Typography variant="h2" sx={{ fontSize: { xs: 24, md: 32 }, color: tokens.ink, mb: { xs: 4, md: 6 } }}>Últimos artículos.</Typography>
-          </Reveal>
-          {rest.length > 0 ? (
-            <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(3, 1fr)" }, gap: { xs: 4, md: 5 } }}>
-              {rest.map((p, i) => <PostCard key={p.slug} post={p} catName={catName(p.category)} delay={(i % 3) * 0.06} />)}
-            </Box>
-          ) : (
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted, textAlign: "center", py: 4 }}>Más artículos en camino.</Typography>
-          )}
-        </Container>
-      </Box>
+      <Crumbs items={activa ? [{ label: "Blog", href: "/blog" }, { label: activa.name }] : [{ label: "Blog" }]} />
+      <Cabecera posts={posts} activeName={activa?.name} />
+      <Secciones categories={categories} counts={counts} activeSlug={activeSlug} />
+      {featured && <Portada lead={featured} laterales={laterales} catName={catName} />}
+      <Indice posts={indice} catName={catName} titulo={indice.length > 0 ? "Todos los artículos" : ""} />
       <DiagnosticoCTA />
       <SiteFooter />
     </Box>
