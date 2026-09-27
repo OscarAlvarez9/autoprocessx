@@ -77,7 +77,7 @@ function Cabecera({ posts, activeName }: { posts: BlogPost[]; activeName?: strin
               component="h1"
               sx={{ fontFamily: fonts.serif, fontSize: { xs: 32, sm: 42, md: 52 }, fontWeight: 600, letterSpacing: "-0.02em", color: tokens.ink, lineHeight: 1.06, maxWidth: 780 }}
             >
-              {activeName ?? "Lo que aprendo construyendo, contado sin humo."}
+              {activeName ?? "Lo que aprendo construyendo, contado al detalle."}
             </Typography>
           </Box>
         </Reveal>
