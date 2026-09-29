@@ -12,8 +12,8 @@ const caseStudiesSchema = {
       position: 1,
       item: {
         "@type": "Article",
-        name: "marea.es: automatización de catálogo y SEO técnico sobre WooCommerce",
-        description: "Tienda de relojes con 2.293 referencias: 19 automatizaciones que llevan el catálogo del proveedor a la tienda, y SEO técnico sobre WooCommerce.",
+        name: "marea.es: automatización de catálogo y estrategia SEO de venta sobre WooCommerce",
+        description: "Tienda de relojes con 2.293 referencias: 19 automatizaciones que llevan el catálogo del proveedor a la tienda, y estrategia SEO de venta sobre WooCommerce.",
         author: { "@type": "Organization", name: "SEOscar" },
       },
     },

@@ -14,6 +14,8 @@ import AccordionSummary from "@mui/material/AccordionSummary"
 import AccordionDetails from "@mui/material/AccordionDetails"
 import { siShopify } from "simple-icons"
 import { tokens, fonts } from "@/lib/mui/theme"
+import BrandCaseCard from "@/components/mui/BrandCaseCard"
+import { getCase, casePhoto, caseVertical } from "@/lib/casesEcom"
 import { SiteHeader, SiteFooter, DiagnosticoCTA, ServiceHero, StatementBand, Reveal, ArtifactWindow, Crumbs } from "@/components/mui/shared"
 import { BlockGlyph, EsNoMark, type GlyphName } from "@/components/mui/landingGlyphs"
 import { FrenosSection } from "@/components/mui/landingSections"
@@ -305,29 +307,44 @@ function ParaQuien() {
   )
 }
 
+// Caso real de Shopify con sus cifras confirmadas. Antes eran dos cajas con
+// "[[ caso Shopify ]]" dentro.
 function Resultados() {
+  const caso = getCase("farmacia-garcia-del-cerro")
+  if (!caso) return null
+  const cifras = caso.metrics.filter((m) => m.value)
   return (
     <Box component="section" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Container>
         <Reveal>
-          <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, mb: { xs: 5, md: 7 }, maxWidth: 560 }}>
+          <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, mb: { xs: 4, md: 6 }, maxWidth: 560 }}>
             Resultados en tiendas como la tuya.
           </Typography>
         </Reveal>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: { xs: 3, md: 4 }, mb: 4 }}>
-          {[0, 1].map((i) => (
-            <Reveal key={i} delay={i * 0.08}>
-              <Box sx={{ aspectRatio: "16 / 9", borderRadius: 3, border: `1px dashed ${tokens.line}`, display: "grid", placeItems: "center", p: 3 }}>
-                <Typography sx={{ fontFamily: fonts.mono, fontSize: 12.5, color: tokens.muted, textAlign: "center" }}>{`[[ caso Shopify: marca + métrica real confirmada ]]`}</Typography>
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "0.85fr 1.15fr" }, gap: { xs: 4, md: 6 }, alignItems: "center" }}>
+          <Reveal>
+            <BrandCaseCard name={caso.client} vertical={caseVertical(caso)} href={`/casos-de-exito/${caso.slug}`} photo={casePhoto(caso)} ratio="4 / 3" />
+          </Reveal>
+          <Reveal delay={0.08}>
+            <Box>
+              <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, mb: { xs: 3.5, md: 4.5 }, maxWidth: 520 }}>
+                {caso.summary}
+              </Typography>
+              <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: `repeat(${Math.min(cifras.length, 2)}, 1fr)` }, gap: { xs: 3, sm: 0 } }}>
+                {cifras.map((m, i) => (
+                  <Box key={m.label} sx={{ pl: { sm: i === 0 ? 0 : 3 }, borderLeft: { xs: "none", sm: i === 0 ? "none" : `1px solid ${tokens.lineSoft}` } }}>
+                    <Typography sx={{ fontFamily: fonts.serif, fontSize: { xs: 38, md: 48 }, fontWeight: 600, lineHeight: 1, color: tokens.petrol }}>{m.value}</Typography>
+                    <Typography sx={{ fontSize: 14.5, fontWeight: 700, color: tokens.ink, mt: 1 }}>{m.label}</Typography>
+                    <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, mt: 0.4 }}>{m.note}</Typography>
+                  </Box>
+                ))}
               </Box>
-            </Reveal>
-          ))}
+              <Button component={Link} href={`/casos-de-exito/${caso.slug}`} sx={{ color: tokens.ink, fontWeight: 700, px: 0, mt: { xs: 3, md: 4 }, "&:hover": { bgcolor: "transparent", color: tokens.petrol } }}>
+                El detalle está en el caso completo <Box component="span" sx={{ color: tokens.petrol, ml: 0.5 }}>↗</Box>
+              </Button>
+            </Box>
+          </Reveal>
         </Box>
-        <Reveal>
-          <Button component={Link} href="/casos-de-exito" sx={{ color: tokens.ink, fontWeight: 700, px: 0, "&:hover": { bgcolor: "transparent", color: tokens.petrol } }}>
-            El detalle de cada trabajo está en los casos de éxito <Box component="span" sx={{ color: tokens.petrol, ml: 0.5 }}>↗</Box>
-          </Button>
-        </Reveal>
       </Container>
     </Box>
   )

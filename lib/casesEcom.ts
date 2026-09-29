@@ -47,7 +47,7 @@ export const cases: Caso[] = [
     platform: "WooCommerce",
     service: "crecimiento",
     visual: { mock: "marea" },
-    summary: "Automatización del catálogo completo y SEO técnico sobre WooCommerce: 2.293 referencias que ahora llegan solas del proveedor a la tienda.",
+    summary: "Automatización del catálogo completo y Estrategia SEO de venta sobre WooCommerce: 2.293 referencias que ahora llegan solas del proveedor a la tienda.",
     reto: "Un catálogo de más de 2.200 referencias gestionado a mano desde hojas de cálculo del proveedor. Las fichas se creaban una a una y las fotos se subían a mano, así que los datos que producto mantenía en el sheet nunca llegaban a la tienda. Además, los diez filtros de la barra lateral no funcionaban: WooCommerce solo filtra por atributos globales y todo el catálogo los tenía como locales.",
     solucion: "Un ecosistema de 19 automatizaciones en n8n que cubre el ciclo de vida completo del producto, desde el alta con descripción y meta generadas con IA hasta las fotos, el stock y la publicación controlada. En paralelo, migración de atributos a globales con normalización de vocabulario para dejar los filtros operativos, y trabajo de estructura y diseño sobre la propia tienda.",
     did: [
@@ -70,7 +70,7 @@ export const cases: Caso[] = [
     platform: "Shopify",
     service: "crecimiento",
     visual: { mock: "farmacia" },
-    summary: "Motor de contenido SEO automatizado sobre Shopify para captar tráfico orgánico que llega a comprar.",
+    summary: "Tienda construida desde cero sobre Shopify que hoy vende de forma independiente, sostenida por la estrategia SEO y un motor de contenido automatizado.",
     reto: "Una farmacia con equipo asistencial a tiempo completo y sin departamento de marketing. El contenido digital era esporádico, sin plan editorial ni keywords objetivo, y el tráfico orgánico no crecía.",
     solucion: "Construí un motor de contenido autónomo que investiga temas con volumen real, redacta con tono profesional sanitario y publica en el CMS con los campos SEO listos. El equipo solo revisa antes de publicar, manteniendo el control editorial.",
     did: [
