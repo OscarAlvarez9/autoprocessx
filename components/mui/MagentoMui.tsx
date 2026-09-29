@@ -191,34 +191,6 @@ function ParaQuien() {
   )
 }
 
-function Resultados() {
-  return (
-    <Box component="section" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
-      <Container>
-        <Reveal>
-          <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, mb: { xs: 5, md: 7 }, maxWidth: 560 }}>
-            Resultados en tiendas como la tuya.
-          </Typography>
-        </Reveal>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: { xs: 3, md: 4 }, mb: 4 }}>
-          {[0, 1].map((i) => (
-            <Reveal key={i} delay={i * 0.08}>
-              <Box sx={{ aspectRatio: "16 / 9", borderRadius: 3, border: `1px dashed ${tokens.line}`, display: "grid", placeItems: "center", p: 3 }}>
-                <Typography sx={{ fontFamily: fonts.mono, fontSize: 12.5, color: tokens.muted, textAlign: "center" }}>{`[[ caso Magento: marca + métrica real confirmada ]]`}</Typography>
-              </Box>
-            </Reveal>
-          ))}
-        </Box>
-        <Reveal>
-          <Button component={Link} href="/casos-de-exito" sx={{ color: tokens.ink, fontWeight: 700, px: 0, "&:hover": { bgcolor: "transparent", color: tokens.petrol } }}>
-            El detalle está en los casos de éxito <Box component="span" sx={{ color: tokens.petrol, ml: 0.5 }}>↗</Box>
-          </Button>
-        </Reveal>
-      </Container>
-    </Box>
-  )
-}
-
 function MetodoLink() {
   return (
     <Box component="section" sx={{ py: { xs: 7, md: 10 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
@@ -274,7 +246,6 @@ export default function MagentoMui() {
       <SinMigrar />
       <ParaQuien />
       <StatementBand title="El SEO de Magento es un problema de ingeniería. Esa es la buena noticia." photo="/assets/gen/photo-pizarra.png" />
-      <Resultados />
       <MetodoLink />
       <Faq />
       <DiagnosticoCTA />
