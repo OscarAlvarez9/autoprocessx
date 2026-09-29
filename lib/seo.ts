@@ -1,5 +1,34 @@
 export const SITE_URL = "https://www.seoscar.com"
 export const ORG_ID = `${SITE_URL}/#organization`
+export const FOUNDER_ID = `${SITE_URL}/#founder`
+
+/** Perfil del negocio. La ficha de Google es la señal local más fuerte. */
+export const ORG_PROFILES = [
+  "https://maps.app.goo.gl/4DiyPoE85C2G1JKn8",
+]
+
+/** Perfiles verificados de la persona. Solo los que existen y responden. */
+export const FOUNDER_PROFILES = [
+  "https://www.linkedin.com/in/oscar-alvarez-romani-7882302b3",
+  "https://github.com/OscarAlvarez9",
+]
+
+/**
+ * La persona detrás de SEOscar, en una sola definición. Va en el layout, así
+ * que existe en todas las páginas y no solo en /sobre-nosotros: es lo que
+ * permite a Google unir la marca con la persona, que es la entidad que nadie
+ * más puede registrar.
+ */
+export const founderSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": FOUNDER_ID,
+  name: "Óscar Álvarez",
+  jobTitle: "Consultor SEO",
+  worksFor: { "@id": ORG_ID },
+  url: `${SITE_URL}/sobre-nosotros`,
+  sameAs: FOUNDER_PROFILES,
+}
 
 interface ServiceSchemaArgs {
     slug: string

@@ -35,7 +35,7 @@ function Hero() {
             Consultor SEO para <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>tiendas online</Box>: más ventas con el tráfico que ya tienes.
           </Typography>
           <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 580, mx: "auto", mb: 4 }}>
-            Soy Óscar, consultor SEO de ecommerce. Trabajo el SEO, la visibilidad en IA, la conversión y la automatización de tiendas que ya facturan, sobre tu plataforma actual y sin migrar nada. Ingeniería, no humo.
+            Soy Óscar Álvarez, consultor SEO de ecommerce. Trabajo el SEO, la visibilidad en IA, la conversión y la automatización de tiendas que ya facturan, sobre tu plataforma actual y sin migrar nada. Ingeniería, no humo.
           </Typography>
           <Stack direction={{ xs: "column", sm: "row" }} spacing={2.5} sx={{ alignItems: "center", justifyContent: "center" }}>
             <PrimaryCTA />

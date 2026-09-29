@@ -6,6 +6,7 @@ import { ContactDrawerProvider } from "@/context/ContactDrawerContext";
 import ContactDrawer from "@/components/ContactDrawer";
 // import ChatWidget from "@/components/ChatWidget"; // desactivado temporalmente
 import CookieConsent from "@/components/CookieConsent";
+import { FOUNDER_ID, ORG_PROFILES, founderSchema } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,8 +41,13 @@ const organizationSchema = {
   },
   description: "Agencia de ecommerce en Barcelona. Hacemos que las tiendas online vendan más con SEO y GEO que traen tráfico que compra, CRO, agente de ventas IA y automatización de procesos. Sobre tu plataforma actual, sin migrar.",
   slogan: "Más tráfico que compra. Más visitas que convierten.",
-  // TODO Oscar: rellenar con los perfiles reales (LinkedIn de empresa, Instagram, X) para reforzar la entidad.
-  sameAs: [],
+  // Antes era un array vacío, que afirma "no tengo perfiles". Ahora va la
+  // ficha de Google, que es la señal local más fuerte para un negocio con
+  // dirección. TODO Oscar: añadir LinkedIn de empresa cuando exista.
+  sameAs: ORG_PROFILES,
+  // Enlaza la marca con la persona. "SEOscar" lo puede registrar cualquiera;
+  // "Óscar Álvarez" no, así que es la entidad que conviene consolidar.
+  founder: { "@id": FOUNDER_ID },
   address: {
     "@type": "PostalAddress",
     addressLocality: "Premià de Mar",
@@ -195,6 +201,11 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          suppressHydrationWarning
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(founderSchema) }}
           suppressHydrationWarning
         />
       </head>
