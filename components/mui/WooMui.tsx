@@ -131,15 +131,15 @@ function PluginsArtifact() {
       <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
         <Box sx={{ flex: 1, minHeight: 0 }}>
           <UnnecessaryApps bare
-            tag="plugins activos · [[ dato ]]"
+            tag="plugins activos · 38"
             items={[
               { n: "Maquetador visual", meta: "+1,2s", c: "#C77D48" },
               { n: "Slider Revolution", meta: "+0,8s", c: "#4C7FBF" },
               { n: "Reviews y base de datos", meta: "32 consultas", c: "#2A9D8F" },
             ]}
-            more="+ [[ dato ]] más…"
+            more="+ 35 más…"
             loadTag="carga lenta"
-            total="[[ dato ]]"
+            total="+3,4s"
           />
         </Box>
         <Typography sx={{ fontFamily: fonts.mono, fontSize: 9, color: tokens.muted, mt: 1 }}>ejemplo ilustrativo · el peso real de cada plugin sale del diagnóstico</Typography>

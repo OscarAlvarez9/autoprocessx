@@ -119,13 +119,14 @@ function DuplicateUrlsArt() {
   )
 }
 
-// Reutiliza el artefacto de apps de la Home, con cifras en hueco [[ dato ]].
+// Reutiliza el artefacto de apps de la Home con sus mismas cifras ilustrativas
+// (14 apps, +11, 340€/mes) para que Home y landing cuenten la misma historia.
 function AppsArtifact() {
   return (
     <ArtifactWindow tag="apps · coste real" ratio="4 / 3">
       <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
         <Box sx={{ flex: 1, minHeight: 0 }}>
-          <UnnecessaryApps bare tag="apps instaladas · [[ dato ]]" more="+ [[ dato ]] más…" loadTag="carga +2,4s" total="[[ dato ]]€/mes" />
+          <UnnecessaryApps bare tag="apps instaladas · 14" more="+ 11 más…" loadTag="carga +2,4s" total="340€/mes" />
         </Box>
         <Typography sx={{ fontFamily: fonts.mono, fontSize: 9, color: tokens.muted, mt: 1 }}>ejemplo ilustrativo · el coste y la carga reales salen del diagnóstico</Typography>
       </Box>
