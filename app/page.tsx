@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     absolute: "Consultor SEO para ecommerce · Barcelona y Maresme | SEOscar",
   },
   description:
-    "Óscar Álvarez, consultor SEO para ecommerce en Barcelona y el Maresme. Más ventas con SEO y GEO que traen tráfico que compra, CRO y automatización. Sin migrar.",
+    "Óscar Álvarez, consultor SEO para ecommerce. SEO y GEO que traen tráfico que compra, CRO que lo convierte y automatización que te ahorra horas.",
   alternates: { canonical: SITE_URL },
 }
 

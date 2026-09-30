@@ -16,12 +16,12 @@ const aboutSchema = {
 
 export const metadata: Metadata = {
   title: { absolute: "Quién hay detrás: Óscar, Roger y Sam, ecommerce | SEOscar" },
-  description: "Detrás de SEOscar: Óscar, Roger y Sam, en Barcelona. Hago que las tiendas online vendan más con SEO, agente de ventas IA y automatización. El código es tuyo.",
+  description: "Óscar, Roger y Sam, desde Barcelona: SEO, agente de ventas IA y automatización para que las tiendas online vendan más. El código es siempre del cliente.",
   keywords: ["estudio IA ecommerce Barcelona", "consultor SEO ecommerce", "especialistas n8n", "sobre SEOscar", "sistemas de IA tiendas online", "Óscar Álvarez consultor SEO"],
   openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Óscar Álvarez, consultor SEO para ecommerce · SEOscar" }],
     title: "Quién hay detrás: Óscar, Roger y Sam, ecommerce | SEOscar",
-    description: "Detrás de SEOscar: Óscar, Roger y Sam, en Barcelona. Hago que las tiendas online vendan más con SEO, agente de ventas IA y automatización. El código es tuyo.",
+    description: "Óscar, Roger y Sam, desde Barcelona: SEO, agente de ventas IA y automatización para que las tiendas online vendan más. El código es siempre del cliente.",
     type: "website",
     locale: "es_ES",
     url: "https://www.seoscar.com/sobre-nosotros",

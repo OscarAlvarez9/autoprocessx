@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: { absolute: "Auditoría SEO y GEO para ecommerce: qué incluye y cuánto cuesta | SEOscar" },
   description:
-    "Auditoría SEO técnica y GEO de tu tienda online: qué incluye, qué te llevas y cuánto cuesta. Un documento con todo lo que aplicar, priorizado por impacto en ventas.",
+    "Auditoría SEO técnica y GEO para tiendas online: qué falla, cuánto te cuesta en ventas y en qué orden arreglarlo. Un plan claro, listo para aplicar.",
   keywords: [
     "auditoría SEO",
     "auditoría SEO ecommerce",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
     title: "Auditoría SEO y GEO para ecommerce: qué incluye y cuánto cuesta | SEOscar",
     description:
-      "Auditoría SEO técnica y GEO de tu tienda online: qué incluye, qué te llevas y cuánto cuesta. Un documento con todo lo que aplicar, priorizado por impacto en ventas.",
+      "Auditoría SEO técnica y GEO para tiendas online: qué falla, cuánto te cuesta en ventas y en qué orden arreglarlo. Un plan claro, listo para aplicar.",
     type: "website",
     locale: "es_ES",
     url: "https://www.seoscar.com/servicios/auditoria-seo-geo",

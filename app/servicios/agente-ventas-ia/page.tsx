@@ -7,13 +7,13 @@ import { ORG_ID, SITE_URL } from "@/lib/seo"
 export const metadata: Metadata = {
   title: { absolute: "Agente de ventas IA para ecommerce y WhatsApp | SEOscar" },
   description:
-    "Agente de ventas IA anclado a tu catálogo real: recomienda producto, resuelve dudas y acompaña al checkout en tu web y WhatsApp 24/7. No inventa precios ni stock.",
+    "Agente de ventas IA que no inventa precios ni stock: anclado a tu catálogo, recomienda producto y acompaña al checkout en tu web y WhatsApp 24/7.",
   keywords: ["agente de ventas IA", "chatbot ecommerce", "asistente de ventas IA", "chatbot WhatsApp tienda", "IA para ecommerce", "RAG catálogo", "agente IA Shopify WooCommerce"],
   openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
     title: "Agente de ventas IA para ecommerce y WhatsApp | SEOscar",
     description:
-      "Agente de ventas IA anclado a tu catálogo real: recomienda producto, resuelve dudas y acompaña al checkout en tu web y WhatsApp 24/7. No inventa precios ni stock.",
+      "Agente de ventas IA que no inventa precios ni stock: anclado a tu catálogo, recomienda producto y acompaña al checkout en tu web y WhatsApp 24/7.",
     type: "website",
     locale: "es_ES",
     url: `${SITE_URL}/servicios/agente-ventas-ia`,

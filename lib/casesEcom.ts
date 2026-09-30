@@ -256,6 +256,27 @@ export function caseTitle(caso: Caso): string {
   return CASE_TITLES[caso.slug] ?? `Caso ${caso.client} · ${caso.platform} | SEOscar`
 }
 
+
+/**
+ * Meta description de cada ficha, escrita a mano. Por defecto se usaba
+ * `summary`, que está escrito para leerse dentro de la página y no siempre
+ * funciona como reclamo en resultados. Las que no tengan entrada aquí siguen
+ * usando el resumen.
+ */
+export const CASE_DESCRIPTIONS: Record<string, string> = {
+  "marea-es": "Pack Crecimiento ecommerce sobre WooCommerce: estrategia SEO de venta y catálogo de 2.293 referencias que llegan solas del proveedor a la tienda.",
+  "opoai-plataforma-estudio-oposiciones": "SaaS de oposiciones de Justicia con tutor jurídico que cita el BOE, y la estrategia de contenido y GEO para que deje de depender de su propia marca.",
+  "quad-studios": "SEO local para Quad Studios: creación y optimización avanzada de su ficha de Google Business Profile para captar clientes de su zona.",
+  "growmybiss": "Web completa, arquitectura y estrategia SEO para posicionar a GrowMyBiss en búsquedas de IA y Growth Marketing.",
+  "regalalo-io": "Digitalización y lanzamiento de un recomendador de regalos basado en IA, con estrategia de pre-lanzamiento y posicionamiento desde el primer día.",
+  "totfinestra": "Web de ventanas de aluminio a medida diseñada para captar y cualificar solicitudes de presupuesto.",
+}
+
+/** Meta description de una ficha: la escrita a mano, y si no, el resumen. */
+export function caseDescription(caso: Caso): string {
+  return CASE_DESCRIPTIONS[caso.slug] ?? caso.summary
+}
+
 /** Foto de ambiente de marca por convención de slug (public/assets/gen). */
 export function casePhoto(caso: Caso): string {
   return `/assets/gen/brand-${caso.slug}.png`

@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: { absolute: "Consultor SEO en Barcelona y toda Catalunya | SEOscar" },
   description:
-    "Consultor SEO catalán para negocios del Maresme, Bages, Vallès y Barcelona. Posicionamiento local con enfoque en resultados y automatización. Diagnóstico gratis.",
+    "Consultor SEO en Barcelona y Catalunya para tiendas online y negocios del Maresme, Vallès y Bages. Posicionamiento con datos. Diagnóstico gratis.",
   keywords: [
     "agencia SEO Maresme",
     "consultor SEO Catalunya",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
     title: "Consultor SEO en Barcelona y toda Catalunya | SEOscar",
     description:
-      "Consultor SEO catalán para negocios del Maresme, Bages, Vallès y Barcelona. Posicionamiento local con enfoque en resultados y automatización. Diagnóstico gratis.",
+      "Consultor SEO en Barcelona y Catalunya para tiendas online y negocios del Maresme, Vallès y Bages. Posicionamiento con datos. Diagnóstico gratis.",
     type: "website",
     locale: "es_ES",
     url: "https://www.seoscar.com/seo-catalunya",

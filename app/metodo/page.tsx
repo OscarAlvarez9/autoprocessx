@@ -7,12 +7,12 @@ import { ORG_ID, SITE_URL } from "@/lib/seo"
 export const metadata: Metadata = {
   title: { absolute: "Mi método: del diagnóstico a vender más, con datos | SEOscar" },
   description:
-    "Cómo trabajo: diagnóstico con datos reales, plan priorizado por impacto, implementación sobre tu tienda sin migrar y seguimiento mensual. El código es tuyo.",
+    "Cómo trabajo: diagnóstico con datos reales, plan priorizado por impacto en ventas, implementación sobre tu tienda y seguimiento mensual. El código es tuyo.",
   keywords: ["método agencia ecommerce", "diagnóstico ecommerce", "cómo trabajamos", "proceso agencia IA", "auditoría tienda online", "plan de crecimiento ecommerce"],
   openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
     title: "Mi método: del diagnóstico a vender más, con datos | SEOscar",
-    description: "Cómo trabajo: diagnóstico con datos reales, plan priorizado por impacto, implementación sobre tu tienda sin migrar y seguimiento mensual. El código es tuyo.",
+    description: "Cómo trabajo: diagnóstico con datos reales, plan priorizado por impacto en ventas, implementación sobre tu tienda y seguimiento mensual. El código es tuyo.",
     type: "website",
     locale: "es_ES",
     url: `${SITE_URL}/metodo`,

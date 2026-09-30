@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { allCaseSlugs, casePhoto, caseTitle, getCase, SERVICES } from "@/lib/casesEcom"
+import { allCaseSlugs, casePhoto, caseDescription, caseTitle, getCase, SERVICES } from "@/lib/casesEcom"
 import { getCasoDeep } from "@/lib/casesDeep"
 import { ORG_ID, SITE_URL } from "@/lib/seo"
 import JsonLd from "@/components/JsonLd"
@@ -22,12 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = caseTitle(caso)
   return {
     title: { absolute: title },
-    description: caso.summary,
+    description: caseDescription(caso),
     alternates: { canonical: `${SITE_URL}/casos-de-exito/${caso.slug}` },
     openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
       title,
-      description: caso.summary,
+      description: caseDescription(caso),
       type: "article",
       url: `${SITE_URL}/casos-de-exito/${caso.slug}`,
     },
