@@ -46,9 +46,8 @@ const organizationSchema = {
   },
   description: "Consultoría SEO para ecommerce de Óscar Álvarez, en Barcelona y el Maresme. SEO y GEO que traen tráfico que compra, CRO, agente de ventas IA y automatización de procesos. Sobre tu plataforma actual, sin migrar.",
   slogan: "Más tráfico que compra. Más visitas que convierten.",
-  // Antes era un array vacío, que afirma "no tengo perfiles". Ahora va la
-  // ficha de Google, que es la señal local más fuerte para un negocio con
-  // dirección. TODO Oscar: añadir LinkedIn de empresa cuando exista.
+  // Antes era un array vacío, que afirma "no tengo perfiles". Ahora van los
+  // dos perfiles del negocio: LinkedIn de empresa y ficha de Google.
   sameAs: ORG_PROFILES,
   // Enlaza la marca con la persona. "SEOscar" lo puede registrar cualquiera;
   // "Óscar Álvarez" no, así que es la entidad que conviene consolidar.

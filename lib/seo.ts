@@ -4,6 +4,7 @@ export const FOUNDER_ID = `${SITE_URL}/#founder`
 
 /** Perfil del negocio. La ficha de Google es la señal local más fuerte. */
 export const ORG_PROFILES = [
+  "https://www.linkedin.com/company/137094046",
   "https://maps.app.goo.gl/4DiyPoE85C2G1JKn8",
 ]
 
