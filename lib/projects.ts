@@ -283,7 +283,7 @@ export const projects: Project[] = [
   },
   {
     slug: "quad-studios",
-    client: "Quan Studios",
+    client: "Quad Studios",
     website: "https://quanstudios.com",
     title: "Optimización de SEO Local & Google Business",
     summary: "Dominio del mercado local mediante la creación y optimización avanzada de la ficha de negocio para captación directa.",
@@ -563,7 +563,7 @@ export const projects: Project[] = [
   },
   {
     slug: "diomento-homelift",
-    client: "Dimonte Homelift",
+    client: "Diomento Homelift",
     website: "https://diomontehomelift.com",
     title: "Ascensores de Lujo: Branding & Conversión",
     summary: "Estrategia completa de contenido SEO y arquitectura web para posicionar ascensores domésticos de gama alta.",
@@ -571,7 +571,7 @@ export const projects: Project[] = [
     color: "emerald",
     about: {
       description:
-        "Dimonte Homelift fabrica e instala ascensores domésticos de lujo, elevadores privativos para viviendas unifamiliares de alto standing. Su producto es premium, con precios que superan los 30.000€, y su público objetivo es muy específico.",
+        "Diomento Homelift fabrica e instala ascensores domésticos de lujo, elevadores privativos para viviendas unifamiliares de alto standing. Su producto es premium, con precios que superan los 30.000€, y su público objetivo es muy específico.",
       challenge:
         "Competir en un nicho ultra-especializado contra marcas internacionales establecidas. Necesitaban una estrategia de contenido SEO y una arquitectura web que transmitiera exclusividad y captara leads high-ticket de calidad.",
     },
@@ -600,7 +600,7 @@ export const projects: Project[] = [
     blog_strategy: {
       title: "Contenido que Vende Aspiración",
       description:
-        "Estrategia editorial que posiciona a Dimonte como la opción premium del mercado, atacando tanto keywords informacionales como transaccionales del nicho.",
+        "Estrategia editorial que posiciona a Diomento como la opción premium del mercado, atacando tanto keywords informacionales como transaccionales del nicho.",
       points: [
         { icon: "Search", title: "Nicho High-Ticket", text: "Posicionamiento en keywords de alta intención y ticket elevado: 'ascensor doméstico', 'elevador privado hogar'." },
         { icon: "Zap", title: "Contenido Aspiracional", text: "Artículos y galerías que inspiran al comprador premium: proyectos realizados, tendencias de diseño residencial." },
@@ -614,7 +614,7 @@ export const projects: Project[] = [
         { value: "High", label: "Ticket Medio", note: "Ventas por encima de 30.000€" },
       ],
       summary:
-        "Dimonte Homelift se ha posicionado como la referencia en ascensores domésticos de lujo en España. Su estrategia de contenido SEO y arquitectura web premium genera un flujo constante de leads cualificados de alto valor.",
+        "Diomento Homelift se ha posicionado como la referencia en ascensores domésticos de lujo en España. Su estrategia de contenido SEO y arquitectura web premium genera un flujo constante de leads cualificados de alto valor.",
     },
     tags: ["Lujo", "High-Ticket", "Diseño Web"],
     tech_stack: ["Next.js", "Google Search Console", "Semrush", "Google Analytics 4", "Schema.org", "Tailwind CSS"],

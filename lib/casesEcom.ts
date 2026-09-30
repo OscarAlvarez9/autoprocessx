@@ -228,6 +228,34 @@ export function allCaseSlugs(): string[] {
   return [...cases.map((c) => c.slug), ...seoCases().map((c) => c.slug)]
 }
 
+
+/**
+ * Title de cada ficha, escrito a mano. La fórmula automática
+ * ("Caso {cliente} · {plataforma}") describía el stack en vez del trabajo y se
+ * pasaba de los 60 caracteres en varios casos. Estos se quedan por debajo.
+ */
+export const CASE_TITLES: Record<string, string> = {
+  "bebubbleibiza": "Caso BebubbleIbiza: SEO local para lujo en Ibiza | SEOscar",
+  "quad-studios": "Caso Quad Studios: SEO local con Google Business | SEOscar",
+  "peritando-es": "Caso Peritando.es: SEO para el sector pericial | SEOscar",
+  "diomento-homelift": "Caso Diomento Homelift: SEO para ascensores | SEOscar",
+  "growmybiss": "Caso GrowMyBiss: web y SEO para términos de IA | SEOscar",
+  "opoai-plataforma-estudio-oposiciones": "Caso OpoAI: SaaS de oposiciones con IA y GEO | SEOscar",
+  "marea-es": "Caso marea.es: Pack Crecimiento ecommerce | SEOscar",
+  "salvador-mendoza": "Caso Salvador Mendoza: SEO de marca personal | SEOscar",
+  "regalalo-io": "Caso Regalalo.io: recomendador de regalos con IA | SEOscar",
+  "seoscar-os-plataforma-propia": "Caso SEOscar OS: 8 herramientas SEO en una plataforma",
+  "farmacia-garcia-del-cerro": "Caso Farmacia García del Cerro: Shopify desde cero",
+  "pelican-catchy-infraestructura-ia": "Caso Pelican Catchy: marketing con multi-agente IA | SEOscar",
+  "totfinestra": "Caso Totfinestra: web de ventanas a medida | SEOscar",
+  "controltemp": "Caso ControlTemp: SEO B2B industrial | SEOscar",
+}
+
+/** Title de una ficha: el escrito a mano, y si no, la fórmula anterior. */
+export function caseTitle(caso: Caso): string {
+  return CASE_TITLES[caso.slug] ?? `Caso ${caso.client} · ${caso.platform} | SEOscar`
+}
+
 /** Foto de ambiente de marca por convención de slug (public/assets/gen). */
 export function casePhoto(caso: Caso): string {
   return `/assets/gen/brand-${caso.slug}.png`

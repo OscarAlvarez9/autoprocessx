@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { allCaseSlugs, casePhoto, getCase, SERVICES } from "@/lib/casesEcom"
+import { allCaseSlugs, casePhoto, caseTitle, getCase, SERVICES } from "@/lib/casesEcom"
 import { getCasoDeep } from "@/lib/casesDeep"
 import { ORG_ID, SITE_URL } from "@/lib/seo"
 import JsonLd from "@/components/JsonLd"
@@ -19,9 +19,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const caso = getCase(slug)
   if (!caso) return {}
-  const title = `Caso ${caso.client} · ${caso.platform} | SEOscar`
+  const title = caseTitle(caso)
   return {
-    title: `Caso ${caso.client} · ${caso.sector.split(" · ")[0]}`,
+    title: { absolute: title },
     description: caso.summary,
     alternates: { canonical: `${SITE_URL}/casos-de-exito/${caso.slug}` },
     openGraph: {
