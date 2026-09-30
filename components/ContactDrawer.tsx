@@ -8,19 +8,10 @@ import { useContactDrawer } from "@/context/ContactDrawerContext"
 import ContactForm from "@/components/ContactForm"
 import CalendlyInline from "@/components/CalendlyInline"
 import JsonLd from "@/components/JsonLd"
-import { ORG_ID, SITE_URL } from "@/lib/seo"
+import { founderSchema } from "@/lib/seo"
 
 const LINKEDIN = "https://www.linkedin.com/in/oscar-alvarez-romani-7882302b3"
 
-const founderSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${SITE_URL}/#founder`,
-  name: "Óscar Álvarez",
-  jobTitle: "Fundador e ingeniero",
-  worksFor: { "@id": ORG_ID },
-  sameAs: [LINKEDIN],
-}
 
 /* Mini-bloque founder (card oscura + acento oro). TODO Oscar: foto real. */
 function FounderStrip() {

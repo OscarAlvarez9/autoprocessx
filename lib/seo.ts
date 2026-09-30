@@ -25,7 +25,9 @@ export const founderSchema = {
   "@id": FOUNDER_ID,
   name: "Óscar Álvarez",
   jobTitle: "Consultor SEO",
+  description: "Consultor SEO para ecommerce. Máster en Machine Learning y en Big Data. Creador de OpoAI.",
   worksFor: { "@id": ORG_ID },
+  address: { "@type": "PostalAddress", addressLocality: "Premià de Mar", addressRegion: "Barcelona", addressCountry: "ES" },
   url: `${SITE_URL}/sobre-nosotros`,
   sameAs: FOUNDER_PROFILES,
 }

@@ -1,6 +1,6 @@
 import Link from "next/link"
 import JsonLd from "@/components/JsonLd"
-import { ORG_ID, SITE_URL } from "@/lib/seo"
+import { founderSchema } from "@/lib/seo"
 
 /*
  * Bloque Founder — presencia humana / E-E-A-T. Estilo editorial claro (no card
@@ -14,20 +14,11 @@ const FOUNDER = {
   linkedin: "https://www.linkedin.com/in/oscar-alvarez-romani-7882302b3",
 }
 
-const personSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${SITE_URL}/#founder`,
-  name: FOUNDER.name,
-  jobTitle: "Fundador e ingeniero",
-  worksFor: { "@id": ORG_ID },
-  sameAs: [FOUNDER.linkedin],
-}
 
 export default function FounderBlock({ className = "" }: { className?: string }) {
   return (
     <section className={`py-16 md:py-24 bg-paper ${className}`}>
-      <JsonLd data={personSchema} />
+      <JsonLd data={founderSchema} />
       <div className="container px-6 mx-auto max-w-5xl">
         <div className="mb-8 flex items-center gap-3">
           <span className="text-[11px] font-mono font-medium uppercase tracking-wide text-oro-600">Quién está detrás</span>

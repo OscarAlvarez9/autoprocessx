@@ -31,7 +31,12 @@ const organizationSchema = {
   "@type": ["Organization", "ProfessionalService"],
   "@id": ORG_ID,
   name: "SEOscar",
-  alternateName: "SEOscar · Agencia de Ecommerce Barcelona",
+  alternateName: "SEOscar · Óscar Álvarez, consultor SEO para ecommerce",
+  // Existe otra "SEOscar" (un SaaS en inglés, registrado once meses después).
+  // disambiguatingDescription es la propiedad de schema.org pensada justo para
+  // esto: decirle al buscador qué entidad es esta sin nombrar a la otra.
+  disambiguatingDescription: "Consultoría SEO para tiendas online en España, de Óscar Álvarez. No está relacionada con ninguna plataforma de software del mismo nombre.",
+  foundingDate: "2025",
   url: SITE_URL,
   logo: {
     "@type": "ImageObject",
@@ -39,7 +44,7 @@ const organizationSchema = {
     width: 512,
     height: 512,
   },
-  description: "Agencia de ecommerce en Barcelona. Hacemos que las tiendas online vendan más con SEO y GEO que traen tráfico que compra, CRO, agente de ventas IA y automatización de procesos. Sobre tu plataforma actual, sin migrar.",
+  description: "Consultoría SEO para ecommerce de Óscar Álvarez, en Barcelona y el Maresme. SEO y GEO que traen tráfico que compra, CRO, agente de ventas IA y automatización de procesos. Sobre tu plataforma actual, sin migrar.",
   slogan: "Más tráfico que compra. Más visitas que convierten.",
   // Antes era un array vacío, que afirma "no tengo perfiles". Ahora va la
   // ficha de Google, que es la señal local más fuerte para un negocio con
@@ -140,14 +145,14 @@ const websiteSchema = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.seoscar.com"),
   title: {
-    default: "Agencia de ecommerce en Barcelona, vende más | SEOscar",
+    default: "Consultor SEO para ecommerce · Barcelona y Maresme | SEOscar",
     template: "%s | SEOscar",
   },
-  description: "Agencia de ecommerce en Barcelona. SEO y GEO que traen tráfico que compra, agente de ventas IA que convierte y automatización de procesos. Sobre tu propia tienda.",
-  keywords: ["sistemas de IA ecommerce", "agencia ecommerce Barcelona", "SEO ecommerce", "GEO AI Search", "agente de ventas IA", "automatización n8n", "CRO tienda online", "crecimiento ecommerce"],
+  description: "Óscar Álvarez, consultor SEO para ecommerce en Barcelona y el Maresme. Tráfico que compra, CRO y automatización sobre tu propia tienda, sin migrar.",
+  keywords: ["consultor SEO ecommerce", "consultor SEO Barcelona", "consultor SEO Maresme", "SEO ecommerce", "GEO AI Search", "agente de ventas IA", "automatización n8n", "CRO tienda online", "crecimiento ecommerce"],
   openGraph: {
-    title: "Agencia de ecommerce en Barcelona, vende más | SEOscar",
-    description: "Agencia de ecommerce en Barcelona. SEO y GEO que traen tráfico que compra, agente de ventas IA que convierte y automatización de procesos. Sobre tu propia tienda.",
+    title: "Consultor SEO para ecommerce · Barcelona y Maresme | SEOscar",
+    description: "Óscar Álvarez, consultor SEO para ecommerce en Barcelona y el Maresme. Tráfico que compra, CRO y automatización sobre tu propia tienda, sin migrar.",
     type: "website",
     locale: "es_ES",
     siteName: "SEOscar",
@@ -155,8 +160,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Agencia de ecommerce en Barcelona, vende más | SEOscar",
-    description: "Agencia de ecommerce en Barcelona. SEO y GEO que traen tráfico que compra, agente de ventas IA que convierte y automatización de procesos. Sobre tu propia tienda.",
+    title: "Consultor SEO para ecommerce · Barcelona y Maresme | SEOscar",
+    description: "Óscar Álvarez, consultor SEO para ecommerce en Barcelona y el Maresme. Tráfico que compra, CRO y automatización sobre tu propia tienda, sin migrar.",
   },
   alternates: {
     canonical: "https://www.seoscar.com",
