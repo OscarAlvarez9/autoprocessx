@@ -74,7 +74,7 @@ function Hero({ c, deep }: { c: Caso; deep?: CasoDeep }) {
                 </Box>
               </Box>
             ) : deep?.shot ? (
-              <BrowserFrame src={deep.shot} alt={deep.shotCaption ?? `${c.client} en producción`} url={`https://${c.client.replace(/^www\./, "")}`} />
+              <BrowserFrame src={deep.shot} alt={deep.shotCaption ?? `${c.client} en producción`} url={`https://${deep.shotUrl ?? c.client.replace(/^www\./, "")}`} />
             ) : (
               <ArtifactWindow tag={`${c.client} · en producción`} ratio="4 / 3">
                 <CaseVisualBox caso={c} />

@@ -180,6 +180,29 @@ export const cases: Caso[] = [
     ],
     publishedAt: "2025-12-05",
   },
+  {
+    slug: "clinica-de-la-ansiedad",
+    client: "Clínica de la Ansiedad",
+    sector: "Salud mental · consulta privada",
+    platform: "Next.js",
+    service: "seo",
+    visual: { art: "geo" },
+    summary: "Web construida desde cero y posicionada para un psicoanalista del Maresme: bilingüe, con datos estructurados de sector salud y páginas locales que captan por su zona.",
+    reto: "Una consulta privada de psicoanálisis compite en un sector donde Google es especialmente exigente: salud mental es contenido que afecta a decisiones delicadas, y sin señales claras de quién firma y con qué titulación, una web no sale. Además hacía falta en dos idiomas, español y catalán, sin duplicar contenido a ojos de Google.",
+    solucion: "Construí la web entera y su posicionamiento. Arquitectura bilingüe real con hreflang y x-default, páginas locales por zona del Maresme, y datos estructurados de sector salud que declaran la titulación, el centro donde se formó, las terapias y el horario de consulta. El contenido editorial ataca las dudas concretas que trae a alguien a terapia.",
+    did: [
+      "Web construida de cero en Next.js, con versión en español y catalán espejadas.",
+      "hreflang y x-default para que Google sirva el idioma correcto sin canibalizar.",
+      "Datos estructurados de salud: MedicalClinic, Person con tres credenciales, terapias y horarios.",
+      "Páginas locales por zona y contenido editorial sobre los motivos reales de consulta.",
+    ],
+    stack: ["Next.js", "Vercel", "Schema.org", "Search Console", "SEO local"],
+    metrics: [
+      { value: "Top 3", label: "en búsquedas genéricas de psicólogo", note: "no de marca: psicólogo, centro de psicología" },
+      { value: "13,5 %", label: "CTR de la página del Maresme", note: "17 clics sobre 126 impresiones" },
+    ],
+    publishedAt: "2026-10-05",
+  },
 ]
 
 /* ---------- Casos SEO / web (adaptados de lib/projects) ---------- */
@@ -213,7 +236,10 @@ export function seoCases(): Caso[] {
 }
 
 export function casesByService(key: ServiceKey): Caso[] {
-  if (key === "seo") return seoCases()
+  // Los casos de SEO salían solo de lib/projects. Un caso escrito a mano con
+  // service "seo" quedaba fuera del listado sin avisar; ahora van los dos,
+  // primero los escritos a mano.
+  if (key === "seo") return [...cases.filter((c) => c.service === "seo"), ...seoCases()]
   return cases.filter((c) => c.service === key)
 }
 
@@ -249,6 +275,7 @@ export const CASE_TITLES: Record<string, string> = {
   "pelican-catchy-infraestructura-ia": "Caso Pelican Catchy: marketing con multi-agente IA | SEOscar",
   "totfinestra": "Caso Totfinestra: web de ventanas a medida | SEOscar",
   "controltemp": "Caso ControlTemp: SEO B2B industrial | SEOscar",
+  "clinica-de-la-ansiedad": "Caso Clínica de la Ansiedad: web y SEO en salud | SEOscar",
 }
 
 /** Title de una ficha: el escrito a mano, y si no, la fórmula anterior. */
@@ -270,6 +297,7 @@ export const CASE_DESCRIPTIONS: Record<string, string> = {
   "growmybiss": "Web completa, arquitectura y estrategia SEO para posicionar a GrowMyBiss en búsquedas de IA y Growth Marketing.",
   "regalalo-io": "Digitalización y lanzamiento de un recomendador de regalos basado en IA, con estrategia de pre-lanzamiento y posicionamiento desde el primer día.",
   "totfinestra": "Web de ventanas de aluminio a medida diseñada para captar y cualificar solicitudes de presupuesto.",
+  "clinica-de-la-ansiedad": "Web construida desde cero y posicionada para un psicoanalista del Maresme: bilingüe, con schema de sector salud y páginas locales por zona.",
 }
 
 /** Meta description de una ficha: la escrita a mano, y si no, el resumen. */

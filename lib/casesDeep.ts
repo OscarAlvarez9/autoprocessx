@@ -67,6 +67,9 @@ export interface CasoDeep {
   shotCaption?: string
   /** "browser" (por defecto) enmarca como navegador; "plain" para lo que no es una web. */
   shotFrame?: "browser" | "plain"
+  /** Dominio que se enseña en la barra del navegador. Por defecto se deriva del
+   *  nombre del cliente, que solo sirve si ese nombre ya es un dominio. */
+  shotUrl?: string
   /** Etiqueta del marco cuando shotFrame es "plain". */
   shotTag?: string
   /** Bandas de cifras grandes. */
@@ -834,6 +837,116 @@ export const casosDeep: Record<string, CasoDeep> = {
       body: "Cuando el stack estándar no llega, la salida es construir la pieza que falta. Esta plataforma es la prueba de que sale a cuenta y de cómo se sostiene.",
       label: "Ver aplicaciones a medida",
       href: "/servicios/a-medida",
+    },
+  },
+  "clinica-de-la-ansiedad": {
+    shot: "/assets/casos/clinica-home.png",
+    shotUrl: "www.clinicadelansiedad.com/es",
+    shotCaption: "clinicadelansiedad.com en producción.",
+    kpis: [
+      {
+        title: "Dónde aparece hoy",
+        note: "Search Console, 90 días hasta el 5 de octubre de 2026",
+        items: [
+          { value: "Top 3", label: "en \"psicólogo\" genérico", note: "posición media 2,2" },
+          { value: "1", label: "en \"centro de psicología\"", note: "búsqueda sin marca" },
+          { value: "2,4", label: "en \"psicólogo cerca de mí\"", note: "intención local pura" },
+          { value: "2,7", label: "en \"psicòlegs maresme\"", note: "la misma fuerza en catalán" },
+        ],
+      },
+      {
+        title: "Lo que mueve la web",
+        note: "mismo periodo, dominio completo",
+        items: [
+          { value: "21.031", label: "impresiones", note: "1.410 consultas distintas" },
+          { value: "13,5 %", label: "CTR de la página del Maresme", note: "17 clics sobre 126 impresiones" },
+          { value: "~14", label: "posición media en septiembre", note: "venía de ~27 en julio" },
+          { value: "2", label: "idiomas espejados", note: "español y catalán, con hreflang" },
+        ],
+      },
+    ],
+    evidenciaTitulo: "La web, por dentro",
+    evidenciaIntro: "Capturas del sitio en producción.",
+    evidencia: [
+      {
+        src: "/assets/casos/clinica-home.png",
+        w: 2000,
+        h: 1250,
+        alt: "Portada de clinicadelansiedad.com con el titular de psicoanalista en Canet de Mar y el Maresme",
+        caption: "La portada declara en el primer bloque quién atiende, dónde y con qué método. En salud eso no es estilo: es lo que permite a Google y a un paciente saber de quién se fían.",
+      },
+      {
+        src: "/assets/casos/clinica-maresme.png",
+        w: 2000,
+        h: 1250,
+        alt: "Página local de psicólogo en el Maresme de clinicadelansiedad.com",
+        caption: "La página local del Maresme, la que mejor convierte de todo el sitio: 13,5 % de CTR, seis veces la media del dominio.",
+      },
+    ],
+    contexto: [
+      "Una consulta privada de psicoanálisis en Canet de Mar, con treinta años de trayectoria, pero sin una web que la sostuviera en Google.",
+      "La salud mental es de las categorías más exigentes que hay: Google pide señales claras de quién firma, con qué titulación y dónde atiende, porque el contenido afecta a decisiones delicadas. Una web genérica no sale, por bien escrita que esté.",
+      "Y hacía falta en dos idiomas, español y catalán, sin que las dos versiones compitieran entre sí por las mismas búsquedas.",
+    ],
+    queHiceIntro:
+      "Construí la web entera y su posicionamiento. No fue poner contenido sobre una plantilla: la arquitectura, los idiomas y los datos estructurados se diseñaron juntos, porque en sector salud son la misma cosa.",
+    capitulos: [
+      {
+        n: "01",
+        title: "La web, de cero",
+        body: "Next.js sobre Vercel, con la estructura pensada desde el principio alrededor de los motivos reales por los que alguien busca un psicoanalista: ansiedad, crisis de pánico, depresión, terapia de pareja. No alrededor de un menú corporativo.",
+      },
+      {
+        n: "02",
+        title: "Dos idiomas que no compiten",
+        body: "Versión en español y en catalán espejadas, con hreflang y x-default declarados. Sin eso, las dos versiones se canibalizan y Google acaba eligiendo mal cuál enseñar. Con eso, cada búsqueda recibe su idioma: \"psicòlegs maresme\" sale en catalán y \"psicólogo cerca de mí\" en español.",
+      },
+      {
+        n: "03",
+        title: "Datos estructurados de sector salud",
+        body: "No basta con marcar la empresa. El sitio declara MedicalClinic, la persona que atiende con sus tres credenciales y el centro donde se formó, las terapias que ofrece, el horario de consulta, las coordenadas y las nueve poblaciones que cubre. Diecinueve tipos de schema distintos, cada uno respondiendo a una pregunta que Google se hace antes de posicionar salud.",
+      },
+      {
+        n: "04",
+        title: "Páginas locales por zona",
+        body: "Una página propia para la búsqueda local del Maresme, en los dos idiomas. Es la que mejor rinde de todo el sitio: 13,5 % de CTR, seis veces la media del dominio, porque responde exactamente lo que se pregunta.",
+      },
+      {
+        n: "05",
+        title: "Contenido sobre el motivo de consulta",
+        body: "Artículos sobre lo que de verdad trae a alguien a terapia, no sobre palabras clave sueltas: celos patológicos, ansiedad generalizada, ludopatía. Son los que abren la puerta a quien todavía no busca un psicólogo, solo busca entender qué le pasa.",
+      },
+    ],
+    verificado: {
+      intro: "Posición media en búsquedas sin marca, que son las que traen pacientes nuevos.",
+      filas: [
+        { value: "1", label: "centro de psicología", note: "posición media" },
+        { value: "2,2", label: "psicólogo", note: "genérico puro" },
+        { value: "2,4", label: "psicólogo cerca de mí", note: "intención local" },
+        { value: "2,6", label: "psiquiatra", note: "categoría adyacente" },
+        { value: "2,7", label: "psicòlegs maresme", note: "en catalán" },
+      ],
+      cierre: "Ninguna de estas cinco contiene el nombre de la clínica.",
+    },
+    tecnico: {
+      title: "Lo que cambió en tres meses",
+      body: [
+        "La posición media del dominio pasó de rondar la 27 en julio a la 14 en la segunda quincena de septiembre. Es el movimiento que hace que una web deje de estar en la tercera página y empiece a verse.",
+        "El dato que mejor explica el trabajo no es el volumen, es el contraste: el dominio entero tiene un CTR del 1 %, y la página local del Maresme un 13,5 %. La diferencia es que esa página responde una pregunta concreta y las demás todavía no.",
+        "Ese es el margen que queda por recorrer: hay 21.031 impresiones repartidas en 1.410 consultas, casi todas en posiciones donde nadie hace clic. Cuando suban, los clics se multiplican sin tocar nada más.",
+      ],
+      tabla: [
+        { label: "Posición media del dominio", antes: "~27 en julio", despues: "~14 en septiembre" },
+        { label: "Idiomas", antes: "uno", despues: "dos, con hreflang y x-default" },
+        { label: "Señales de sector salud", antes: "ninguna", despues: "19 tipos de schema" },
+        { label: "Búsqueda local del Maresme", antes: "sin página propia", despues: "13,5 % de CTR" },
+      ],
+    },
+    cta: {
+      title: "Lo mismo, para tu consulta o tu negocio local.",
+      body: "Una web construida para que te encuentren quienes te buscan por tu zona y por lo que haces, no solo por tu nombre.",
+      label: "Ver la auditoría SEO y GEO",
+      href: "/servicios/auditoria-seo-geo",
     },
   },
 }
