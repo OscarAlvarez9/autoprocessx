@@ -7,6 +7,8 @@ import Container from "@mui/material/Container"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
+import Dialog from "@mui/material/Dialog"
+import { useState } from "react"
 import { tokens, fonts } from "@/lib/mui/theme"
 import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, Reveal, ArtifactWindow, Crumbs } from "@/components/mui/shared"
 import { CaseVisualBox } from "@/components/mui/CasosMui"
@@ -150,7 +152,22 @@ function KpiBands({ deep }: { deep: CasoDeep }) {
 
 /* --------------------------------------------------------- evidencia ------ */
 
+// Las capturas se amplían en un visor dentro de la página. Antes eran enlaces
+// al PNG suelto en otra pestaña: el visitante salía de la web y acababa en un
+// fichero sin contexto ni forma de volver.
+type Zoom = { src: string; alt: string; w: number; h: number }
+
+const zoomBtn = {
+  display: "block",
+  width: "100%",
+  textAlign: "left" as const,
+  font: "inherit",
+  cursor: "zoom-in",
+  appearance: "none" as const,
+}
+
 function Evidencia({ deep }: { deep: CasoDeep }) {
+  const [zoom, setZoom] = useState<Zoom | null>(null)
   if (!deep.evidencia?.length) return null
   return (
     <Box component="section" sx={{ py: { xs: 7, md: 11 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
@@ -166,12 +183,12 @@ function Evidencia({ deep }: { deep: CasoDeep }) {
             <Reveal key={e.src} delay={i * 0.06}>
               <Box>
                 <Box
-                  component="a"
-                  href={e.src}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  component="button"
+                  type="button"
+                  aria-label={`Ampliar: ${e.alt}`}
+                  onClick={() => setZoom(e)}
                   sx={{
-                    display: "block",
+                    ...zoomBtn,
                     border: `1px solid ${tokens.line}`,
                     borderRadius: 3,
                     overflow: "hidden",
@@ -193,13 +210,12 @@ function Evidencia({ deep }: { deep: CasoDeep }) {
                 <Stack direction="row" spacing={1.5} sx={{ mt: 1.5, alignItems: "baseline", flexWrap: "wrap", rowGap: 0.5 }}>
                   <Typography sx={{ fontFamily: fonts.mono, fontSize: 11.5, color: tokens.muted, maxWidth: 760 }}>{e.caption}</Typography>
                   <Typography
-                    component="a"
-                    href={e.src}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.petrol, textDecoration: "none", whiteSpace: "nowrap", "&:hover": { textDecoration: "underline" } }}
+                    component="button"
+                    type="button"
+                    onClick={() => setZoom(e)}
+                    sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.petrol, bgcolor: "transparent", border: 0, p: 0, cursor: "zoom-in", whiteSpace: "nowrap", "&:hover": { textDecoration: "underline" } }}
                   >
-                    ver a tamaño completo ↗
+                    ampliar
                   </Typography>
                 </Stack>
               </Box>
@@ -221,12 +237,12 @@ function Evidencia({ deep }: { deep: CasoDeep }) {
                 <Reveal key={g.src} delay={(i % 2) * 0.05}>
                   <Box>
                     <Box
-                      component="a"
-                      href={g.src}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      component="button"
+                      type="button"
+                      aria-label={`Ampliar: ${g.alt}`}
+                      onClick={() => setZoom(g)}
                       sx={{
-                        display: "block",
+                        ...zoomBtn,
                         border: `1px solid ${tokens.line}`,
                         borderRadius: 2.5,
                         overflow: "hidden",
@@ -253,6 +269,28 @@ function Evidencia({ deep }: { deep: CasoDeep }) {
           </Box>
         )}
       </Container>
+      <Dialog
+        open={zoom !== null}
+        onClose={() => setZoom(null)}
+        maxWidth={false}
+        aria-label={zoom?.alt}
+        slotProps={{ paper: { sx: { bgcolor: tokens.win, borderRadius: 3, m: { xs: 1.5, md: 4 }, maxWidth: "min(1600px, calc(100vw - 32px))" } } }}
+      >
+        {zoom && (
+          <Box onClick={() => setZoom(null)} sx={{ position: "relative", cursor: "zoom-out", p: { xs: 1, md: 1.5 } }}>
+            <Image src={zoom.src} alt={zoom.alt} width={zoom.w} height={zoom.h} sizes="100vw" style={{ width: "100%", height: "auto", maxHeight: "calc(100vh - 96px)", objectFit: "contain", display: "block", borderRadius: 6 }} />
+            <Box
+              component="button"
+              type="button"
+              aria-label="Cerrar"
+              onClick={() => setZoom(null)}
+              sx={{ position: "absolute", top: 12, right: 12, width: 36, height: 36, borderRadius: 999, border: `1px solid ${tokens.line}`, bgcolor: tokens.paper, color: tokens.ink, fontSize: 18, lineHeight: 1, cursor: "pointer" }}
+            >
+              ×
+            </Box>
+          </Box>
+        )}
+      </Dialog>
     </Box>
   )
 }

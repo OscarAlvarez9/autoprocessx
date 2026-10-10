@@ -212,7 +212,7 @@ export const cases: Caso[] = [
     visual: { art: "geo" },
     summary: "1 de cada 5 visitantes pide cita en el primer mes de la nueva estrategia. Web nueva, contenido, blog automatizado y medición de conversiones desde cero.",
     reto: "La clínica tenía una web en WordPress que no funcionaba como canal. No estaba dada de alta en Search Console, no tenía analítica y no le llegaban pacientes por ahí. Para Google, la clínica casi no existía.",
-    solucion: "Web nueva en React, rehecha desde cero y diseñada para convertir, con la reserva y el WhatsApp siempre a mano. Encima, una estrategia de contenido completa con un blog que publica solo y medición de cada clic en \"Reservar\" y en WhatsApp. En el primer mes con la estrategia asentada, 11 de los 51 visitantes pulsaron \"Reservar\".",
+    solucion: "Web nueva en React, rehecha desde cero y diseñada para convertir, con la reserva y el WhatsApp siempre a mano. Encima, una estrategia de contenido completa con un blog que publica solo y medición de cada clic en \"Reservar\" y en WhatsApp. En el primer mes con la estrategia asentada, 11 de los 51 visitantes pulsaron \"Reservar\". Y solo lleva mes y medio con la estrategia acabada: lo esperable es que siga creciendo en los próximos meses.",
     did: [
       "Web nueva en React, más rápida y con la reserva y el WhatsApp siempre a mano.",
       "Páginas de servicio orientadas a lo que buscan los pacientes y blog con plan editorial propio.",

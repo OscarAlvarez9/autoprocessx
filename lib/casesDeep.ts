@@ -921,6 +921,7 @@ export const casosDeep: Record<string, CasoDeep> = {
       body: [
         "Migrar una web es perder tráfico durante unas semanas y recuperarlo con intereses si se hace bien. Esto es lo que pasó entre junio, el mes del cambio, y septiembre.",
         "Las impresiones bajan y los clics suben. Es la señal de que Google dejó de enseñar la web en consultas que no eran suyas y empezó a enseñarla en las que sí.",
+        "Y todo esto es mes y medio después de dejar la estrategia acabada y asentada. El blog sigue publicando y cada artículo tarda meses en posicionar del todo, así que lo esperable es que las visitas y las reservas sigan creciendo en los próximos meses.",
       ],
       tabla: [
         { label: "Clics al mes", antes: "36", despues: "77" },
