@@ -12,7 +12,7 @@ import AccordionSummary from "@mui/material/AccordionSummary"
 import AccordionDetails from "@mui/material/AccordionDetails"
 import { motion, useReducedMotion } from "motion/react"
 import { tokens, fonts } from "@/lib/mui/theme"
-import { SiteHeader, SiteFooter, StatementBand, DiagnosticoCTA, Reveal, Crumbs, Blueprint, ArtifactWindow } from "@/components/mui/shared"
+import { SiteHeader, SiteFooter, StatementBand, DiagnosticoCTA, Reveal, HeroReveal, Crumbs, Blueprint, ArtifactWindow } from "@/components/mui/shared"
 import FeaturedCases from "@/components/mui/FeaturedCases"
 
 const linkSx = { color: tokens.ink, fontWeight: 600, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { textDecorationColor: tokens.petrol } } as const
@@ -131,7 +131,7 @@ function Hero() {
       <Container sx={{ position: "relative", zIndex: 1, pt: { xs: 5, md: 6 }, pb: { xs: 8, md: 11 } }}>
         <Crumbs items={[{ label: "SEO local en Catalunya", href: "/seo-catalunya" }, { label: "Maresme" }]} />
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.08fr 0.92fr" }, gap: { xs: 5, md: 8 }, alignItems: "center", mt: { xs: 2, md: 3 } }}>
-          <Reveal>
+          <HeroReveal>
             <Box>
               <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 46, md: 56 }, letterSpacing: "-0.025em", color: tokens.ink, mb: 3 }}>
                 Consultor SEO en el <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>Maresme</Box>.
@@ -146,7 +146,7 @@ function Hero() {
                 <Typography variant="body2" sx={{ color: tokens.muted }}>Gratis, y te digo qué haría con tu web.</Typography>
               </Stack>
             </Box>
-          </Reveal>
+          </HeroReveal>
           <Reveal delay={0.1}>
             <LocalPack />
           </Reveal>

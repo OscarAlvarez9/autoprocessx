@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
 import { tokens, fonts } from "@/lib/mui/theme"
-import { Blueprint, Reveal } from "@/components/mui/shared"
+import { Blueprint, Reveal, HeroReveal } from "@/components/mui/shared"
 import BrandCaseCard from "@/components/mui/BrandCaseCard"
 import { casesByService, casePhoto, caseVertical, type Caso } from "@/lib/casesEcom"
 
@@ -85,7 +85,7 @@ function Hero() {
       <Blueprint />
       <Container sx={{ position: "relative", zIndex: 1, pt: { xs: 6, md: 8 }, pb: { xs: 7, md: 10 } }}>
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.1fr 0.9fr" }, gap: { xs: 5, md: 7 }, alignItems: "center" }}>
-          <Reveal>
+          <HeroReveal>
             <Box>
               <Typography sx={{ fontFamily: fonts.mono, fontSize: 12.5, color: tokens.petrol, mb: 2 }}>seo · geo · automatización</Typography>
               <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 46, md: 56 }, letterSpacing: "-0.025em", lineHeight: 1.1, color: tokens.ink, mb: 3, maxWidth: 620 }}>
@@ -108,7 +108,7 @@ function Hero() {
                 ))}
               </Stack>
             </Box>
-          </Reveal>
+          </HeroReveal>
           {flagship && (
             <Reveal delay={0.12}>
               <Box>

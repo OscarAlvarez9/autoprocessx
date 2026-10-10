@@ -8,7 +8,7 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
 import { tokens, fonts } from "@/lib/mui/theme"
-import { SiteHeader, SiteFooter, DiagnosticoCTA, StatementBand, Reveal, Crumbs, Blueprint } from "@/components/mui/shared"
+import { SiteHeader, SiteFooter, DiagnosticoCTA, StatementBand, Reveal, HeroReveal, Crumbs, Blueprint } from "@/components/mui/shared"
 import { RankClimb } from "@/components/mui/growthArtifacts"
 
 const linkSx = { color: tokens.ink, fontWeight: 600, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { textDecorationColor: tokens.petrol } } as const
@@ -36,7 +36,7 @@ function Hero() {
       <Container sx={{ position: "relative", zIndex: 1, pt: { xs: 5, md: 7 }, pb: { xs: 8, md: 11 } }}>
         <Crumbs items={[{ label: "SEO local en Catalunya" }]} />
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.08fr 0.92fr" }, gap: { xs: 5, md: 8 }, alignItems: "center", mt: { xs: 2, md: 3 } }}>
-          <Reveal>
+          <HeroReveal>
             <Box>
               <Typography variant="h1" sx={{ fontSize: { xs: 32, sm: 44, md: 54 }, letterSpacing: "-0.025em", color: tokens.ink, mb: 3 }}>
                 SEO local en Catalunya, de alguien que <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>es de aquí</Box>.
@@ -55,7 +55,7 @@ function Hero() {
                 ))}
               </Stack>
             </Box>
-          </Reveal>
+          </HeroReveal>
           <Reveal delay={0.1}>
             <RankClimb />
           </Reveal>

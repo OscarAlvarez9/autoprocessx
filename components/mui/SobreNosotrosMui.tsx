@@ -7,7 +7,7 @@ import Container from "@mui/material/Container"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import { tokens, fonts } from "@/lib/mui/theme"
-import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, Reveal, PrimaryCTA, Crumbs } from "@/components/mui/shared"
+import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, Reveal, HeroReveal, PrimaryCTA, Crumbs } from "@/components/mui/shared"
 
 // Mapa de Barcelona dibujado a mano, en la paleta de marca: mar, costa, la
 // trama del Eixample y un pin. Nada de embed crudo de Google.
@@ -154,7 +154,7 @@ function Hero() {
     <Box component="section" sx={{ position: "relative", overflow: "hidden", borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Blueprint />
       <Container sx={{ position: "relative", zIndex: 1, py: { xs: 8, md: 13 } }}>
-        <Reveal>
+        <HeroReveal>
           <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 46, lg: 58 }, color: tokens.ink, mb: 3, maxWidth: 820 }}>
             Una agencia pequeña donde construyo como si la tienda fuera mía.
           </Typography>
@@ -164,7 +164,7 @@ function Hero() {
           <Stack direction={{ xs: "column", sm: "row" }} spacing={2.5} sx={{ alignItems: { sm: "center" } }}>
             <PrimaryCTA />
           </Stack>
-        </Reveal>
+        </HeroReveal>
       </Container>
     </Box>
   )

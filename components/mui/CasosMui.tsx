@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import Paper from "@mui/material/Paper"
 import { tokens, fonts } from "@/lib/mui/theme"
-import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, Reveal, PrimaryCTA, Crumbs } from "@/components/mui/shared"
+import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, Reveal, HeroReveal, PrimaryCTA, Crumbs } from "@/components/mui/shared"
 import { MareaMock, ShopifyPhone, TotfinestraMock, StoreTemplate, GeoAnswer, RoasChart, ConversionChart, N8nFlow } from "@/components/mui/artifacts"
 import BrandCaseCard from "@/components/mui/BrandCaseCard"
 import { SERVICES, casesByService, casePhoto, caseVertical, type Caso, type ArtKey } from "@/lib/casesEcom"
@@ -51,14 +51,14 @@ function Hero() {
     <Box component="section" sx={{ position: "relative", overflow: "hidden", borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Blueprint />
       <Container sx={{ position: "relative", zIndex: 1, py: { xs: 7, md: 11 } }}>
-        <Reveal>
+        <HeroReveal>
           <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 44, lg: 54 }, color: tokens.ink, mb: 3, maxWidth: 760 }}>
             Trabajo en producción, por servicio.
           </Typography>
           <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 580 }}>
             Tiendas creciendo, operativas automatizadas y plataformas a medida. Publico cifras cuando el cliente las confirma.
           </Typography>
-        </Reveal>
+        </HeroReveal>
       </Container>
     </Box>
   )

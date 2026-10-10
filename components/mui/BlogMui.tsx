@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography"
 import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
 import { tokens, fonts } from "@/lib/mui/theme"
-import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, Reveal, Crumbs } from "@/components/mui/shared"
+import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, Reveal, HeroReveal, Crumbs } from "@/components/mui/shared"
 import type { BlogPost, BlogCategory } from "@/lib/blog"
 
 function fmtDate(iso: string) {
@@ -68,7 +68,7 @@ function Cabecera({ posts, activeName }: { posts: BlogPost[]; activeName?: strin
     <Box component="section" sx={{ position: "relative", overflow: "hidden" }}>
       <Blueprint />
       <Container sx={{ position: "relative", zIndex: 1, pt: { xs: 4, md: 6 }, pb: { xs: 3, md: 4 } }}>
-        <Reveal>
+        <HeroReveal>
           <Box sx={{ borderTop: `2px solid ${tokens.ink}`, pt: { xs: 2, md: 2.5 } }}>
             <Typography sx={{ fontFamily: fonts.mono, fontSize: 11.5, color: tokens.muted, mb: 1.5 }}>
               {ultima ? fmtDateLarga(ultima) : ""} · {posts.length} {posts.length === 1 ? "artículo" : "artículos"}
@@ -80,7 +80,7 @@ function Cabecera({ posts, activeName }: { posts: BlogPost[]; activeName?: strin
               {activeName ?? "Lo que aprendo construyendo, contado al detalle."}
             </Typography>
           </Box>
-        </Reveal>
+        </HeroReveal>
       </Container>
     </Box>
   )

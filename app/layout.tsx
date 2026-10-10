@@ -8,14 +8,19 @@ import ContactDrawer from "@/components/ContactDrawer";
 import CookieConsent from "@/components/CookieConsent";
 import { FOUNDER_ID, ORG_PROFILES, founderSchema } from "@/lib/seo";
 
+// Geist solo la usan el formulario de contacto (cerrado al cargar) y las
+// páginas antiguas en Tailwind. Sin precarga, para que no compita con las
+// fuentes del titular en el primer pintado; se descarga cuando se usa.
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  preload: false,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  preload: false,
 });
 
 // Sistema tipográfico (paleta v3): serif editorial (Fraunces) + mono (IBM Plex) + Inter.

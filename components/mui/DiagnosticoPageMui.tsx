@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import Paper from "@mui/material/Paper"
 import { tokens, fonts } from "@/lib/mui/theme"
-import { SiteHeader, SiteFooter, Blueprint, Reveal, DiagnosticoFlow, Crumbs } from "@/components/mui/shared"
+import { SiteHeader, SiteFooter, Blueprint, Reveal, HeroReveal, DiagnosticoFlow, Crumbs } from "@/components/mui/shared"
 
 const linkSx = { color: tokens.ink, fontWeight: 600, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { textDecorationColor: tokens.petrol } } as const
 
@@ -48,7 +48,7 @@ export default function DiagnosticoPageMui() {
           <Container sx={{ position: "relative", zIndex: 1 }}>
             <Crumbs items={[{ label: "Diagnóstico" }]} />
             <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.02fr 0.98fr" }, gap: { xs: 5, md: 8 }, alignItems: "center", mt: { xs: 2, md: 3 } }}>
-              <Reveal>
+              <HeroReveal>
                 <Box>
                   <Typography variant="h1" sx={{ fontSize: { xs: 32, sm: 44, md: 54 }, letterSpacing: "-0.025em", color: tokens.ink, mb: 2.5 }}>
                     Reserva tu <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>diagnóstico</Box> de ecommerce.
@@ -70,7 +70,7 @@ export default function DiagnosticoPageMui() {
                     ))}
                   </Stack>
                 </Box>
-              </Reveal>
+              </HeroReveal>
               <Reveal delay={0.1}>
                 <DiagnosticoFlow />
               </Reveal>

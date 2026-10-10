@@ -10,7 +10,7 @@ import Button from "@mui/material/Button"
 import Dialog from "@mui/material/Dialog"
 import { useState } from "react"
 import { tokens, fonts } from "@/lib/mui/theme"
-import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, Reveal, ArtifactWindow, Crumbs } from "@/components/mui/shared"
+import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, Reveal, HeroReveal, ArtifactWindow, Crumbs } from "@/components/mui/shared"
 import { CaseVisualBox } from "@/components/mui/CasosMui"
 import StackChips from "@/components/mui/StackChips"
 import type { Caso } from "@/lib/casesEcom"
@@ -20,6 +20,8 @@ import { getCasoDeep, type CasoDeep } from "@/lib/casesDeep"
 
 // Marco de navegador para las capturas reales de la tienda del cliente. Es una
 // captura de verdad, no un mockup dibujado: por eso lleva barra de URL.
+// Solo se usa en el hero, donde la captura suele ser el LCP: carga inmediata y
+// prioridad alta, no lazy.
 function BrowserFrame({ src, alt, url, ratio = "16 / 10" }: { src: string; alt: string; url: string; ratio?: string }) {
   return (
     <Box sx={{ border: `1px solid ${tokens.line}`, borderRadius: 3, overflow: "hidden", bgcolor: tokens.win, boxShadow: "0 30px 60px -40px rgba(20,32,29,.45)" }}>
@@ -32,7 +34,7 @@ function BrowserFrame({ src, alt, url, ratio = "16 / 10" }: { src: string; alt: 
         </Box>
       </Stack>
       <Box sx={{ position: "relative", aspectRatio: ratio, bgcolor: tokens.surface }}>
-        <Image src={src} alt={alt} fill sizes="(max-width: 900px) 100vw, 55vw" style={{ objectFit: "cover", objectPosition: "top center" }} />
+        <Image src={src} alt={alt} fill loading="eager" fetchPriority="high" sizes="(max-width: 900px) 100vw, 55vw" style={{ objectFit: "cover", objectPosition: "top center" }} />
       </Box>
     </Box>
   )
@@ -45,7 +47,7 @@ function Hero({ c, deep }: { c: Caso; deep?: CasoDeep }) {
       <Container sx={{ position: "relative", zIndex: 1, py: { xs: 6, md: 10 } }}>
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", lg: "0.85fr 1.15fr" }, gap: { xs: 5, lg: 8 }, alignItems: "center" }}>
           <Box>
-            <Reveal>
+            <HeroReveal>
               {deep?.logo && (
                 <Box sx={{ mb: 3, display: "inline-flex", bgcolor: tokens.win, border: `1px solid ${tokens.lineSoft}`, borderRadius: 2, px: 2, py: 1.25 }}>
                   <Image src={deep.logo} alt={`Logotipo de ${c.client}`} width={150} height={40} style={{ height: 34, width: "auto", objectFit: "contain" }} />
@@ -60,9 +62,9 @@ function Hero({ c, deep }: { c: Caso; deep?: CasoDeep }) {
                   </Box>
                 ))}
               </Stack>
-            </Reveal>
+            </HeroReveal>
           </Box>
-          <Reveal delay={0.1}>
+          <HeroReveal delay={0.1}>
             {deep?.shot && deep.shotFrame === "plain" ? (
               <Box sx={{ border: `1px solid ${tokens.line}`, borderRadius: 3, overflow: "hidden", bgcolor: tokens.win, boxShadow: "0 30px 60px -40px rgba(20,32,29,.45)" }}>
                 {deep.shotTag && (
@@ -72,7 +74,7 @@ function Hero({ c, deep }: { c: Caso; deep?: CasoDeep }) {
                   </Stack>
                 )}
                 <Box sx={{ p: { xs: 1, md: 1.5 } }}>
-                  <Image src={deep.shot} alt={deep.shotCaption ?? c.client} width={2156} height={570} sizes="(max-width: 900px) 100vw, 55vw" style={{ width: "100%", height: "auto", display: "block" }} />
+                  <Image src={deep.shot} alt={deep.shotCaption ?? c.client} width={2156} height={570} loading="eager" fetchPriority="high" sizes="(max-width: 900px) 100vw, 55vw" style={{ width: "100%", height: "auto", display: "block" }} />
                 </Box>
               </Box>
             ) : deep?.shot ? (
@@ -82,7 +84,7 @@ function Hero({ c, deep }: { c: Caso; deep?: CasoDeep }) {
                 <CaseVisualBox caso={c} />
               </ArtifactWindow>
             )}
-          </Reveal>
+          </HeroReveal>
         </Box>
       </Container>
     </Box>

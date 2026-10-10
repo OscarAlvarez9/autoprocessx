@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import Paper from "@mui/material/Paper"
 import { tokens, fonts } from "@/lib/mui/theme"
-import { SiteHeader, SiteFooter, Blueprint, Reveal, PrimaryCTA } from "@/components/mui/shared"
+import { SiteHeader, SiteFooter, Blueprint, Reveal, HeroReveal, PrimaryCTA } from "@/components/mui/shared"
 
 const RUTAS = [
   { label: "Crecimiento ecommerce", tag: "el pack que lo une todo", href: "/servicios/crecimiento-ecommerce" },
@@ -28,7 +28,7 @@ export default function NotFoundMui() {
         <Blueprint />
         <Container sx={{ position: "relative", zIndex: 1, py: { xs: 10, md: 14 } }}>
           <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.1fr 0.9fr" }, gap: { xs: 6, md: 8 }, alignItems: "center" }}>
-            <Reveal>
+            <HeroReveal>
               <Box>
                 <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 48, md: 60 }, letterSpacing: "-0.025em", color: tokens.ink, mb: 2.5 }}>
                   Esta página no <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>existe</Box>.
@@ -43,7 +43,7 @@ export default function NotFoundMui() {
                   </Typography>
                 </Stack>
               </Box>
-            </Reveal>
+            </HeroReveal>
             <Reveal delay={0.08}>
               <Paper elevation={2} sx={{ borderRadius: 3, overflow: "hidden", border: `1px solid ${tokens.lineSoft}`, bgcolor: tokens.win }}>
                 <Stack direction="row" spacing={1.25} sx={{ alignItems: "center", px: 2, py: 1.25, borderBottom: `1px solid ${tokens.lineSoft}` }}>

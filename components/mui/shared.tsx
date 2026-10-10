@@ -104,11 +104,11 @@ export function ServiceHero({ title, sub, specs, note, artifact }: {
     <Box component="section" sx={{ position: "relative", overflow: "hidden", borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Blueprint />
       <Container sx={{ position: "relative", zIndex: 1, pt: { xs: 6, md: 9 }, pb: { xs: 7, md: 10 } }}>
-        <Reveal>
+        <HeroReveal>
           <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 54, md: 70 }, letterSpacing: "-0.025em", color: tokens.ink, maxWidth: 1000, mb: { xs: 3.5, md: 5 } }}>
             {title}
           </Typography>
-        </Reveal>
+        </HeroReveal>
         {/* franja técnica: el sub y el CTA viven entre hairlines, no flotando */}
         <Reveal delay={0.06}>
           <Box sx={{ borderTop: `1px solid ${tokens.line}`, borderBottom: `1px solid ${tokens.line}`, py: { xs: 2.5, md: 3 }, display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.25fr auto" }, gap: { xs: 2.5, md: 5 }, alignItems: "center" }}>
@@ -177,6 +177,25 @@ export function Crumbs({ items }: { items: { label: string; href?: string }[] })
         </Stack>
       </Container>
     </>
+  )
+}
+
+// Variante para lo que se ve al cargar (titular de cabecera, captura del
+// hero). Reveal pinta con opacidad 0 desde el servidor y no enseña nada hasta
+// que hidrata framer-motion: en móvil eso retrasaba el titular ~4 s y era el
+// LCP de casi todas las páginas. Esta es solo CSS y nunca oculta el contenido:
+// se ve en el primer pintado y hace una subida corta.
+export function HeroReveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  return (
+    <Box
+      sx={{
+        "@keyframes heroRise": { from: { transform: "translateY(10px)" }, to: { transform: "none" } },
+        animation: `heroRise .6s cubic-bezier(.22,1,.36,1) ${delay}s both`,
+        "@media (prefers-reduced-motion: reduce)": { animation: "none" },
+      }}
+    >
+      {children}
+    </Box>
   )
 }
 

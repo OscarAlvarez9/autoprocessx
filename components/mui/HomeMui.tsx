@@ -17,7 +17,7 @@ import AccordionSummary from "@mui/material/AccordionSummary"
 import AccordionDetails from "@mui/material/AccordionDetails"
 import { tokens, fonts } from "@/lib/mui/theme"
 import { RoasChart, StoreTemplate, ShopifyPhone, Funnel, AovOrbit, Gauge, DatosIntuicion, StockDesync, N8nFlow, ConversionChart, GeoAnswer, UnnecessaryApps, PlatformsInteractive, AgentChatRich, ToolsScatter } from "@/components/mui/artifacts"
-import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, StatementBand, Reveal, PrimaryCTA, ArtifactWindow } from "@/components/mui/shared"
+import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, StatementBand, Reveal, HeroReveal, PrimaryCTA, ArtifactWindow } from "@/components/mui/shared"
 import ScrollSteps, { type ScrollStep } from "@/components/mui/ScrollSteps"
 import ClientShowcase from "@/components/mui/ClientShowcase"
 import FeaturedCases from "@/components/mui/FeaturedCases"
@@ -30,7 +30,7 @@ function Hero() {
     <Box component="section" sx={{ position: "relative", overflow: "hidden" }}>
       <Blueprint />
       <Container sx={{ position: "relative", zIndex: 1, pt: { xs: 8, md: 12 }, pb: { xs: 6, md: 8 }, textAlign: "center" }}>
-        <Reveal>
+        <HeroReveal>
           <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 56, md: 72 }, letterSpacing: "-0.025em", color: tokens.ink, maxWidth: 980, mx: "auto", mb: 3 }}>
             Consultor SEO para <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>tiendas online</Box>: más ventas con el tráfico que ya tienes.
           </Typography>
@@ -40,7 +40,7 @@ function Hero() {
           <Stack direction={{ xs: "column", sm: "row" }} spacing={2.5} sx={{ alignItems: "center", justifyContent: "center" }}>
             <PrimaryCTA />
           </Stack>
-        </Reveal>
+        </HeroReveal>
       </Container>
     </Box>
   )
