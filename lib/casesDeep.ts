@@ -96,6 +96,8 @@ export interface CasoDeep {
   hallazgos?: { title: string; intro: string; items: Hallazgo[] }
   /** Reglas de método que explican el cero de errores. */
   metodo?: { title: string; intro: string; reglas: Regla[] }
+  /** Bloque corto que lleva a otro caso del mismo cliente. La imagen es opcional. */
+  relacionado?: { title: string; body: string; label: string; href: string; image?: { src: string; alt: string; w: number; h: number } }
   /** Cierre del caso: enlaza al servicio que este proyecto demuestra. */
   cta?: { title: string; body: string; label: string; href: string }
 }
@@ -845,108 +847,251 @@ export const casosDeep: Record<string, CasoDeep> = {
     shotCaption: "clinicadelansiedad.com en producción.",
     kpis: [
       {
-        title: "Dónde aparece hoy",
-        note: "Search Console, 90 días hasta el 5 de octubre de 2026",
+        title: "Primer mes con la estrategia asentada",
+        note: "GA4, eventos propios de reserva, de septiembre a octubre de 2026",
         items: [
-          { value: "Top 3", label: "en \"psicólogo\" genérico", note: "posición media 2,2" },
-          { value: "1", label: "en \"centro de psicología\"", note: "búsqueda sin marca" },
-          { value: "2,4", label: "en \"psicólogo cerca de mí\"", note: "intención local pura" },
-          { value: "2,7", label: "en \"psicòlegs maresme\"", note: "la misma fuerza en catalán" },
+          { value: "1 de cada 5", label: "visitantes pulsa Reservar", note: "11 de 51 usuarios, un 21,6 %" },
+          { value: "17", label: "clics para pedir cita", note: "15 en Reservar y 2 en WhatsApp" },
+          { value: "51", label: "usuarios", note: "106 sesiones y 171 páginas vistas" },
+          { value: "2", label: "conversiones medidas", note: "clic en Reservar y en WhatsApp; antes, ninguna" },
         ],
       },
       {
-        title: "Lo que mueve la web",
-        note: "mismo periodo, dominio completo",
+        title: "Tres meses después de la migración",
+        note: "Search Console, junio frente a septiembre de 2026",
         items: [
-          { value: "21.031", label: "impresiones", note: "1.410 consultas distintas" },
-          { value: "13,5 %", label: "CTR de la página del Maresme", note: "17 clics sobre 126 impresiones" },
-          { value: "~14", label: "posición media en septiembre", note: "venía de ~27 en julio" },
-          { value: "2", label: "idiomas espejados", note: "español y catalán, con hreflang" },
+          { value: "27 → 17", label: "posición media", note: "de tercera página a segunda, misma web" },
+          { value: "×3", label: "CTR", note: "de 0,5 % a 1,5 % de impresión a visita" },
+          { value: "36 → 77", label: "clics al mes", note: "recuperación completa tras el bache de migración" },
+          { value: "−4.500", label: "impresiones irrelevantes al mes", note: "Google dejó de enseñar la web donde no tocaba" },
         ],
       },
-    ],
-    evidenciaTitulo: "La web, por dentro",
-    evidenciaIntro: "Capturas del sitio en producción.",
-    evidencia: [
       {
-        src: "/assets/casos/clinica-home.png",
-        w: 2000,
-        h: 1250,
-        alt: "Portada de clinicadelansiedad.com con el titular de psicoanalista en Canet de Mar y el Maresme",
-        caption: "La portada declara en el primer bloque quién atiende, dónde y con qué método. En salud eso no es estilo: es lo que permite a Google y a un paciente saber de quién se fían.",
-      },
-      {
-        src: "/assets/casos/clinica-maresme.png",
-        w: 2000,
-        h: 1250,
-        alt: "Página local de psicólogo en el Maresme de clinicadelansiedad.com",
-        caption: "La página local del Maresme, la que mejor convierte de todo el sitio: 13,5 % de CTR, seis veces la media del dominio.",
+        title: "Lo que se construyó",
+        note: "informe de trabajo del proyecto",
+        items: [
+          { value: "0", label: "herramientas de medición al empezar", note: "ni Search Console ni analítica" },
+          { value: "2", label: "idiomas espejados", note: "español y catalán con hreflang y x-default" },
+          { value: "3", label: "credenciales en datos estructurados", note: "titulación, centro de formación, terapias" },
+          { value: "8,6", label: "posición del primer artículo del plan", note: "a los 30 días de publicarse" },
+        ],
       },
     ],
     contexto: [
-      "Una consulta privada de psicoanálisis en Canet de Mar, con treinta años de trayectoria, pero sin una web que la sostuviera en Google.",
-      "La salud mental es de las categorías más exigentes que hay: Google pide señales claras de quién firma, con qué titulación y dónde atiende, porque el contenido afecta a decisiones delicadas. Una web genérica no sale, por bien escrita que esté.",
-      "Y hacía falta en dos idiomas, español y catalán, sin que las dos versiones compitieran entre sí por las mismas búsquedas.",
+      "Clínica de la Ansiedad es una consulta privada de psicoanálisis en el Maresme. Tenía una web en WordPress que no funcionaba como canal: no estaba dada de alta en Search Console, no tenía analítica y no le llegaban pacientes por ahí. Para Google, la clínica casi no existía.",
+      "En salud mental Google es especialmente exigente. Es contenido que afecta a decisiones delicadas, y sin señales claras de quién firma, con qué titulación y dónde atiende, una web no sale por nada que no sea su propio nombre.",
+      "Lo primero fue medir. Lo segundo, construir una web que pudiera posicionar y convertir. Lo tercero, migrar sin perder lo poco que había y montar un blog que creciera sin quitarle tiempo a la clínica.",
     ],
     queHiceIntro:
-      "Construí la web entera y su posicionamiento. No fue poner contenido sobre una plantilla: la arquitectura, los idiomas y los datos estructurados se diseñaron juntos, porque en sector salud son la misma cosa.",
+      "Web nueva en React, rehecha desde cero, más rápida y diseñada para convertir, con la reserva y el WhatsApp siempre a mano. Encima, una estrategia de contenido completa: páginas de servicio orientadas a lo que buscan los pacientes y un blog automatizado con plan editorial propio. Y todo medido: cada clic en Reservar y en WhatsApp queda registrado.",
     capitulos: [
       {
         n: "01",
-        title: "La web, de cero",
-        body: "Next.js sobre Vercel, con la estructura pensada desde el principio alrededor de los motivos reales por los que alguien busca un psicoanalista: ansiedad, crisis de pánico, depresión, terapia de pareja. No alrededor de un menú corporativo.",
+        title: "Medición",
+        body: "Alta de la propiedad de dominio en Search Console y de GA4 con Consent Mode v2: el consentimiento se deniega por defecto y solo se mide a quien acepta. Eventos propios para cada clic en Reservar y en WhatsApp, para saber qué página lleva a pedir cita y cuál no.",
       },
       {
         n: "02",
-        title: "Dos idiomas que no compiten",
-        body: "Versión en español y en catalán espejadas, con hreflang y x-default declarados. Sin eso, las dos versiones se canibalizan y Google acaba eligiendo mal cuál enseñar. Con eso, cada búsqueda recibe su idioma: \"psicòlegs maresme\" sale en catalán y \"psicólogo cerca de mí\" en español.",
+        title: "Web nueva, pensada para convertir",
+        body: "Rehecha desde cero en React (Next.js), más rápida que el WordPress anterior y con la reserva y el WhatsApp siempre a mano, en cualquier página y en móvil. Español y catalán como rutas espejadas, con hreflang y x-default, para que Google sirva el idioma correcto sin tratar las dos versiones como contenido duplicado. Páginas locales por zona del Maresme, que son las que captan a quien busca cerca.",
       },
       {
         n: "03",
-        title: "Datos estructurados de sector salud",
-        body: "No basta con marcar la empresa. El sitio declara MedicalClinic, la persona que atiende con sus tres credenciales y el centro donde se formó, las terapias que ofrece, el horario de consulta, las coordenadas y las nueve poblaciones que cubre. Diecinueve tipos de schema distintos, cada uno respondiendo a una pregunta que Google se hace antes de posicionar salud.",
+        title: "Datos estructurados de salud",
+        body: "MedicalClinic para el centro y Person para el profesional, con titulación, centro donde se formó y terapias que ofrece. Horario de consulta y dirección en el mismo bloque. Es lo que convierte una web de psicología en una entidad que Google puede fiarse de enseñar.",
       },
       {
         n: "04",
-        title: "Páginas locales por zona",
-        body: "Una página propia para la búsqueda local del Maresme, en los dos idiomas. Es la que mejor rinde de todo el sitio: 13,5 % de CTR, seis veces la media del dominio, porque responde exactamente lo que se pregunta.",
+        title: "Migración",
+        body: "Redirecciones 301 de cada URL antigua a su equivalente, canonicals en todas las páginas y sitemap limpio. El bache de junio es el precio normal de una migración; la recuperación en tres meses es la prueba de que se hizo bien.",
       },
       {
         n: "05",
-        title: "Contenido sobre el motivo de consulta",
-        body: "Artículos sobre lo que de verdad trae a alguien a terapia, no sobre palabras clave sueltas: celos patológicos, ansiedad generalizada, ludopatía. Son los que abren la puerta a quien todavía no busca un psicólogo, solo busca entender qué le pasa.",
+        title: "Títulos y descripciones",
+        body: "Reescritura de title y meta description de la home y las páginas de servicio para decir qué es la clínica y dónde está, no solo cómo se llama. La home dobló los clics y triplicó el CTR en el mes siguiente al cambio.",
+      },
+      {
+        n: "06",
+        title: "Blog automatizado",
+        body: "Plan editorial propio sobre problemas concretos: qué es, cómo se manifiesta, cuándo pedir ayuda, enlace al servicio. El blog se escribe solo: de una fila del calendario a un artículo listo en Contentful, sin quitarle tiempo a la clínica, y cada artículo va firmado por un psicólogo colegiado con página de autor. El primero, sobre celos patológicos, entró en posición 8,6 a los 30 días.",
       },
     ],
-    verificado: {
-      intro: "Posición media en búsquedas sin marca, que son las que traen pacientes nuevos.",
-      filas: [
-        { value: "1", label: "centro de psicología", note: "posición media" },
-        { value: "2,2", label: "psicólogo", note: "genérico puro" },
-        { value: "2,4", label: "psicólogo cerca de mí", note: "intención local" },
-        { value: "2,6", label: "psiquiatra", note: "categoría adyacente" },
-        { value: "2,7", label: "psicòlegs maresme", note: "en catalán" },
-      ],
-      cierre: "Ninguna de estas cinco contiene el nombre de la clínica.",
-    },
     tecnico: {
-      title: "Lo que cambió en tres meses",
+      title: "La migración, en números",
       body: [
-        "La posición media del dominio pasó de rondar la 27 en julio a la 14 en la segunda quincena de septiembre. Es el movimiento que hace que una web deje de estar en la tercera página y empiece a verse.",
-        "El dato que mejor explica el trabajo no es el volumen, es el contraste: el dominio entero tiene un CTR del 1 %, y la página local del Maresme un 13,5 %. La diferencia es que esa página responde una pregunta concreta y las demás todavía no.",
-        "Ese es el margen que queda por recorrer: hay 21.031 impresiones repartidas en 1.410 consultas, casi todas en posiciones donde nadie hace clic. Cuando suban, los clics se multiplican sin tocar nada más.",
+        "Migrar una web es perder tráfico durante unas semanas y recuperarlo con intereses si se hace bien. Esto es lo que pasó entre junio, el mes del cambio, y septiembre.",
+        "Las impresiones bajan y los clics suben. Es la señal de que Google dejó de enseñar la web en consultas que no eran suyas y empezó a enseñarla en las que sí.",
       ],
       tabla: [
-        { label: "Posición media del dominio", antes: "~27 en julio", despues: "~14 en septiembre" },
-        { label: "Idiomas", antes: "uno", despues: "dos, con hreflang y x-default" },
-        { label: "Señales de sector salud", antes: "ninguna", despues: "19 tipos de schema" },
-        { label: "Búsqueda local del Maresme", antes: "sin página propia", despues: "13,5 % de CTR" },
+        { label: "Clics al mes", antes: "36", despues: "77" },
+        { label: "Posición media", antes: "27", despues: "17" },
+        { label: "CTR", antes: "0,5 %", despues: "1,5 %" },
+        { label: "Impresiones al mes", antes: "8.160", despues: "5.090" },
+        { label: "Clics de la home (28 días)", antes: "13", despues: "26" },
+        { label: "CTR de la home", antes: "0,3 %", despues: "1,2 %" },
+      ],
+    },
+    hallazgos: {
+      title: "Lo que apareció sin buscarlo",
+      intro: "Dar de alta la medición destapó cosas que nadie había visto.",
+      items: [
+        {
+          value: "304",
+          title: "impresiones en 30 días de un solo artículo",
+          body: "El primer artículo del plan editorial, sobre celos patológicos, es la tercera página más vista del sitio al mes de publicarse. El blog funciona cuando se publica.",
+        },
+        {
+          value: "1",
+          title: "URL antigua que Google sigue prefiriendo",
+          body: "Tras la migración, Google siguió mostrando la URL http antigua para las búsquedas de marca durante meses. No es un error: es el tiempo que tarda en trasladar la confianza. Se resuelve solo.",
+        },
+      ],
+    },
+    relacionado: {
+      title: "El blog que se escribe solo",
+      body: "Cada artículo del plan editorial sale de un workflow en n8n: una fila del calendario entra y un artículo completo, revisado y con imagen, llega a Contentful. Cómo está montado, en su propio caso.",
+      label: "Ver el caso de automatización",
+      href: "/casos-de-exito/clinica-de-la-ansiedad-blog-automatizado",
+      image: {
+        src: "/assets/casos/clinica-blog-workflow.png",
+        alt: "Workflow de n8n que genera los artículos del blog de Clínica de la Ansiedad",
+        w: 2226,
+        h: 414,
+      },
+    },
+    metodo: {
+      title: "Método",
+      intro: "",
+      reglas: [
+        {
+          title: "Medir antes de tocar",
+          body: "Sin Search Console ni eventos de reserva no hay antes, y sin antes no hay forma de saber si algo funcionó. Hoy cada cita que empieza en la web se ve.",
+        },
+        {
+          title: "Migrar con red",
+          body: "Cada URL vieja tiene su destino, cada página su canonical, y el sitemap solo lleva lo que debe indexarse.",
+        },
+        {
+          title: "Firmar el contenido",
+          body: "En salud, un artículo sin autor identificable posiciona peor que ninguno. Nombre, colegiado y página de autor en cada pieza.",
+        },
+        {
+          title: "Que el contenido no dependa de la agenda",
+          body: "El crecimiento de una consulta pequeña depende del contenido, y una clínica no tiene tiempo para escribir. Por eso el blog publica solo, sobre un plan editorial cerrado.",
+        },
       ],
     },
     cta: {
-      title: "Lo mismo, para tu consulta o tu negocio local.",
-      body: "Una web construida para que te encuentren quienes te buscan por tu zona y por lo que haces, no solo por tu nombre.",
-      label: "Ver la auditoría SEO y GEO",
-      href: "/servicios/auditoria-seo-geo",
+      title: "¿Tu web trae clientes y no lo sabes?",
+      body: "Lo primero que hago en cualquier proyecto es medir. Lo segundo, decirte qué está pasando de verdad.",
+      label: "Pide un diagnóstico",
+      href: "/diagnostico",
+    },
+  },
+  "clinica-de-la-ansiedad-blog-automatizado": {
+    shot: "/assets/casos/clinica-blog-workflow.png",
+    shotFrame: "plain",
+    shotTag: "n8n · blog automatizado · 27 nodos",
+    shotCaption: "El workflow en n8n, del calendario editorial a la entrada en Contentful",
+    kpis: [
+      {
+        title: "El workflow",
+        note: "n8n cloud, estado a 10 de octubre de 2026",
+        items: [
+          { value: "27", label: "nodos", note: "del calendario a la entrada en Contentful" },
+          { value: "96", label: "artículos planificados", note: "48 semanas, dos por semana" },
+          { value: "~3 min", label: "por artículo", note: "el redactor es lo más lento" },
+          { value: "8", label: "artículos hechos", note: "los dos últimos, marcados ya por el propio workflow" },
+        ],
+      },
+      {
+        title: "El último artículo",
+        note: "salida real del 1 de octubre de 2026",
+        items: [
+          { value: "1.723", label: "palabras", note: "siguiendo la estructura del briefing" },
+          { value: "35", label: "bloques de Rich Text", note: "en el formato propio de Contentful" },
+          { value: "6", label: "preguntas frecuentes", note: "también como FAQPage en JSON-LD" },
+          { value: "154", label: "caracteres de meta description", note: "dentro de rango, ajustada por el propio flujo" },
+        ],
+      },
+    ],
+    evidenciaTitulo: "El workflow, entero",
+    evidenciaIntro: "Captura del lienzo de n8n tal como está en producción.",
+    evidencia: [
+      {
+        src: "/assets/casos/clinica-blog-workflow.png",
+        w: 2226,
+        h: 414,
+        alt: "Lienzo de n8n con los 27 nodos del workflow del blog de Clínica de la Ansiedad",
+        caption: "De izquierda a derecha: lectura del calendario, bucle por artículo, redactor (Opus) y editor (Sonnet), Rich Text, imagen, subida a Contentful en cinco pasos y marca en el Sheet solo si la entrada se creó.",
+      },
+    ],
+    contexto: [
+      "La estrategia SEO de Clínica de la Ansiedad se apoya en el contenido: artículos sobre lo que de verdad trae a alguien a terapia. El plan son 96 artículos en 48 semanas, dos por semana. Una consulta pequeña no puede escribir a ese ritmo.",
+      "Y en salud mental no vale cualquier texto. Cada artículo tiene que seguir una estructura pensada para la búsqueda, llevar su categoría y su autor, y llegar con imagen, metadatos y preguntas frecuentes marcadas para los buscadores.",
+      "La idea fue que el calendario editorial fuera el único sitio donde se decide algo. Todo lo demás, desde la redacción hasta la entrada en Contentful, lo hace el workflow.",
+    ],
+    queHiceIntro:
+      "Un workflow en n8n que convierte una fila de un Google Sheet en un artículo completo en Contentful: texto, imagen de cabecera, metadatos SEO, categoría y autor. Sin intervención manual entre medias.",
+    capitulos: [
+      {
+        n: "01",
+        title: "El calendario manda",
+        body: "Un Google Sheet con trece columnas: categoría, título, keywords, intención, URL, estructura de H1 y H2, y una casilla de completado. Esa casilla es todo el estado del sistema. No hay base de datos: el workflow lee las filas, se queda con las pendientes y marca las que termina. Se puede lanzar las veces que haga falta y nunca duplica; para rehacer un artículo basta con vaciar su celda.",
+      },
+      {
+        n: "02",
+        title: "El brief",
+        body: "Un nodo compone el encargo con todo lo de la fila: tema, keywords, intención, la estructura del briefing y la URL. La IA redacta sobre ese encargo, pero no decide de qué escribir ni dónde se publica: la URL sale del calendario, así que un artículo rehecho nunca cambia de dirección.",
+      },
+      {
+        n: "03",
+        title: "Redactor y editor",
+        body: "Claude Opus escribe y devuelve el artículo en JSON estructurado mediante una herramienta: título, meta title, meta description, una respuesta directa inicial, los bloques del cuerpo, las FAQ y la descripción de la imagen. Después Claude Sonnet lo revisa y lo devuelve corregido con la lista de cambios. Es un segundo par de ojos, no una reescritura.",
+      },
+      {
+        n: "04",
+        title: "Del JSON a Contentful",
+        body: "El nodo más denso: convierte los bloques al Rich Text de Contentful, genera el JSON-LD de FAQPage para que los buscadores extraigan las preguntas, ajusta la meta description a su rango y traduce la categoría a su entrada real en Contentful.",
+      },
+      {
+        n: "05",
+        title: "La imagen",
+        body: "gpt-image-1 genera la cabecera a 1536 por 1024. El prompt tiene una parte fija que da coherencia visual a todo el blog y una escena variable por artículo o por categoría. La subida a Contentful va en cinco pasos, con una espera obligatoria: Contentful procesa el fichero de forma asíncrona, y si la entrada se crea antes, la imagen no está lista.",
+      },
+      {
+        n: "06",
+        title: "Cerrar el ciclo",
+        body: "Se crea la entrada con todos sus campos y un interruptor decide si se publica o queda en borrador. Solo si la entrada existe se marca la fila; si algo falla, la fila sigue pendiente y el bucle pasa al siguiente artículo. Hoy va en modo conservador: un artículo por ejecución y en borrador, para que la clínica lo lea antes de publicarlo. Al acabar, un resumen dice cuántos se han creado, los avisos y el enlace a cada entrada.",
+      },
+    ],
+    hallazgos: {
+      title: "Lo que se rompió y cómo se arregló",
+      intro: "Un workflow en producción enseña sus fallos. Estos dos eran silenciosos.",
+      items: [
+        {
+          value: "1",
+          title: "fila perdida por marcar al fallar",
+          body: "Al principio la fila se marcaba como completada también cuando el artículo fallaba, y ese artículo ya no se volvía a intentar nunca. Ahora solo se marca cuando Contentful confirma la entrada.",
+        },
+        {
+          value: "0",
+          title: "artículos en el informe, siempre",
+          body: "El nodo que escribe en el Sheet no arrastra los datos del artículo, así que el resumen final contaba siempre cero. Un nodo detrás recupera el artículo y el informe ya cuenta lo que pasó.",
+        },
+      ],
+    },
+    relacionado: {
+      title: "Para qué sirve este blog",
+      body: "Estos artículos son parte de la estrategia SEO de la clínica: web nueva, contenido y medición. En el primer mes con la estrategia asentada, 1 de cada 5 visitantes pulsó Reservar.",
+      label: "Ver el caso de SEO",
+      href: "/casos-de-exito/clinica-de-la-ansiedad",
+    },
+    cta: {
+      title: "¿Tu contenido depende de que alguien tenga tiempo?",
+      body: "Si hay un proceso que se repite igual cada semana, se puede montar para que se haga solo y se pueda revisar.",
+      label: "Ver automatizaciones",
+      href: "/servicios/automatizaciones",
     },
   },
 }

@@ -78,6 +78,7 @@ export default function ClientShowcase() {
   const ORDER = [
     "marea-es", "farmacia-garcia-del-cerro", "totfinestra", "pelican-catchy-infraestructura-ia",
     "bebubbleibiza", "salvador-mendoza", "controltemp", "diomento-homelift",
+    "clinica-de-la-ansiedad",
     "seoscar-os-plataforma-propia", "opoai-plataforma-estudio-oposiciones",
     "regalalo-io", "peritando-es", "quad-studios", "growmybiss",
   ]

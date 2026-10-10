@@ -133,6 +133,29 @@ export const cases: Caso[] = [
     ],
     publishedAt: "2025-11-10",
   },
+  {
+    slug: "clinica-de-la-ansiedad-blog-automatizado",
+    client: "Clínica de la Ansiedad",
+    sector: "Automatización · blog",
+    platform: "n8n",
+    service: "automatizacion",
+    visual: { art: "n8n" },
+    summary: "Una fila del calendario editorial entra y sale un artículo completo en Contentful: texto revisado, imagen de cabecera, metadatos SEO, categoría y autor.",
+    reto: "Una consulta pequeña no tiene tiempo para escribir, y en salud mental el contenido es lo que hace crecer la web. El plan editorial tenía 96 artículos para 48 semanas: imposible de sostener a mano sin quitarle horas a la clínica.",
+    solucion: "Un workflow en n8n que lee el calendario de Google Sheets, encarga el artículo a un redactor (Claude Opus), lo pasa por un editor (Claude Sonnet), genera la imagen, lo monta en el formato de Contentful con sus FAQ en datos estructurados y marca la fila como hecha. El calendario es el único estado del sistema: se puede relanzar las veces que haga falta y nunca duplica.",
+    did: [
+      "Calendario editorial en Google Sheets como única fuente de verdad: tema, keywords, estructura y URL.",
+      "Dos modelos con papeles distintos: Claude Opus redacta y Claude Sonnet revisa.",
+      "Imagen de cabecera con gpt-image-1 y subida a Contentful en cinco pasos, con espera de procesado.",
+      "Rich Text de Contentful, FAQPage en JSON-LD y meta description ajustada a su rango.",
+    ],
+    stack: ["n8n", "Claude", "OpenAI", "Contentful", "Google Sheets", "Schema.org"],
+    metrics: [
+      { value: "27", label: "nodos en el workflow", note: "del calendario a la entrada en Contentful" },
+      { value: "~3 min", label: "por artículo", note: "redacción, revisión, imagen y publicación" },
+    ],
+    publishedAt: "2026-10-10",
+  },
   // ---------- Aplicaciones a medida ----------
   {
     slug: "seoscar-os-plataforma-propia",
@@ -187,19 +210,19 @@ export const cases: Caso[] = [
     platform: "Next.js",
     service: "seo",
     visual: { art: "geo" },
-    summary: "Web construida desde cero y posicionada para un psicoanalista del Maresme: bilingüe, con datos estructurados de sector salud y páginas locales que captan por su zona.",
-    reto: "Una consulta privada de psicoanálisis compite en un sector donde Google es especialmente exigente: salud mental es contenido que afecta a decisiones delicadas, y sin señales claras de quién firma y con qué titulación, una web no sale. Además hacía falta en dos idiomas, español y catalán, sin duplicar contenido a ojos de Google.",
-    solucion: "Construí la web entera y su posicionamiento. Arquitectura bilingüe real con hreflang y x-default, páginas locales por zona del Maresme, y datos estructurados de sector salud que declaran la titulación, el centro donde se formó, las terapias y el horario de consulta. El contenido editorial ataca las dudas concretas que trae a alguien a terapia.",
+    summary: "1 de cada 5 visitantes pide cita en el primer mes de la nueva estrategia. Web nueva, contenido, blog automatizado y medición de conversiones desde cero.",
+    reto: "La clínica tenía una web en WordPress que no funcionaba como canal. No estaba dada de alta en Search Console, no tenía analítica y no le llegaban pacientes por ahí. Para Google, la clínica casi no existía.",
+    solucion: "Web nueva en React, rehecha desde cero y diseñada para convertir, con la reserva y el WhatsApp siempre a mano. Encima, una estrategia de contenido completa con un blog que publica solo y medición de cada clic en \"Reservar\" y en WhatsApp. En el primer mes con la estrategia asentada, 11 de los 51 visitantes pulsaron \"Reservar\".",
     did: [
-      "Web construida de cero en Next.js, con versión en español y catalán espejadas.",
-      "hreflang y x-default para que Google sirva el idioma correcto sin canibalizar.",
-      "Datos estructurados de salud: MedicalClinic, Person con tres credenciales, terapias y horarios.",
-      "Páginas locales por zona y contenido editorial sobre los motivos reales de consulta.",
+      "Web nueva en React, más rápida y con la reserva y el WhatsApp siempre a mano.",
+      "Páginas de servicio orientadas a lo que buscan los pacientes y blog con plan editorial propio.",
+      "Blog automatizado que publica de forma constante sin quitarle tiempo a la clínica.",
+      "Search Console y medición de conversiones: cada clic en Reservar y en WhatsApp queda registrado.",
     ],
-    stack: ["Next.js", "Vercel", "Schema.org", "Search Console", "SEO local"],
+    stack: ["Next.js", "React", "Vercel", "Search Console", "GA4", "Schema.org", "SEO local"],
     metrics: [
-      { value: "Top 3", label: "en búsquedas genéricas de psicólogo", note: "no de marca: psicólogo, centro de psicología" },
-      { value: "13,5 %", label: "CTR de la página del Maresme", note: "17 clics sobre 126 impresiones" },
+      { value: "1 de cada 5", label: "visitantes pulsa Reservar", note: "11 de 51 usuarios en el primer mes con la estrategia asentada. GA4, septiembre a octubre de 2026" },
+      { value: "17", label: "clics para pedir cita en un mes", note: "15 en Reservar y 2 en WhatsApp, en una web que antes no traía pacientes" },
     ],
     publishedAt: "2026-10-05",
   },
@@ -275,7 +298,8 @@ export const CASE_TITLES: Record<string, string> = {
   "pelican-catchy-infraestructura-ia": "Caso Pelican Catchy: marketing con multi-agente IA | SEOscar",
   "totfinestra": "Caso Totfinestra: web de ventanas a medida | SEOscar",
   "controltemp": "Caso ControlTemp: SEO B2B industrial | SEOscar",
-  "clinica-de-la-ansiedad": "Caso Clínica de la Ansiedad: web y SEO en salud | SEOscar",
+  "clinica-de-la-ansiedad": "Clínica de la Ansiedad: 1 de cada 5 visitas pide cita | SEOscar",
+  "clinica-de-la-ansiedad-blog-automatizado": "Clínica de la Ansiedad: blog automatizado con IA | SEOscar",
 }
 
 /** Title de una ficha: el escrito a mano, y si no, la fórmula anterior. */
@@ -297,7 +321,8 @@ export const CASE_DESCRIPTIONS: Record<string, string> = {
   "growmybiss": "Web completa, arquitectura y estrategia SEO para posicionar a GrowMyBiss en búsquedas de IA y Growth Marketing.",
   "regalalo-io": "Digitalización y lanzamiento de un recomendador de regalos basado en IA, con estrategia de pre-lanzamiento y posicionamiento desde el primer día.",
   "totfinestra": "Web de ventanas de aluminio a medida diseñada para captar y cualificar solicitudes de presupuesto.",
-  "clinica-de-la-ansiedad": "Web construida desde cero y posicionada para un psicoanalista del Maresme: bilingüe, con schema de sector salud y páginas locales por zona.",
+  "clinica-de-la-ansiedad": "De una web que no traía pacientes a una en la que 1 de cada 5 visitantes pulsa Reservar en el primer mes. Web nueva, contenido y medición.",
+  "clinica-de-la-ansiedad-blog-automatizado": "Workflow en n8n que convierte una fila del calendario editorial en un artículo completo en Contentful: texto revisado, imagen, SEO y autor.",
 }
 
 /** Meta description de una ficha: la escrita a mano, y si no, el resumen. */

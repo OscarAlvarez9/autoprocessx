@@ -448,6 +448,48 @@ function Hallazgos({ deep }: { deep: CasoDeep }) {
   )
 }
 
+// Puente a otro caso del mismo cliente (la web y su automatización, por
+// ejemplo). Corto a propósito: es una puerta, no otra sección de contenido.
+// La imagen va debajo a ancho completo: las capturas de un lienzo de n8n son
+// muy panorámicas y en media columna no se leen.
+function Relacionado({ deep }: { deep: CasoDeep }) {
+  if (!deep.relacionado) return null
+  const { title, body, label, href, image } = deep.relacionado
+  return (
+    <Box component="section" sx={{ py: { xs: 6, md: 9 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
+      <Container>
+        <Reveal>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "1fr",
+              gap: { xs: 3, md: 6 },
+              alignItems: "center",
+              bgcolor: tokens.surface,
+              border: `1px solid ${tokens.line}`,
+              borderRadius: 3,
+              p: { xs: 3, md: 5 },
+            }}
+          >
+            <Box sx={{ maxWidth: 620 }}>
+              <Typography variant="h2" sx={{ fontSize: { xs: 22, md: 28 }, color: tokens.ink, mb: 1.5 }}>{title}</Typography>
+              <Typography variant="body1" sx={{ color: tokens.body, mb: 3 }}>{body}</Typography>
+              <Button component={Link} href={href} variant="outlined" sx={{ borderRadius: 2, borderColor: tokens.line, color: tokens.ink, fontWeight: 700, "&:hover": { borderColor: tokens.petrol, bgcolor: "transparent" } }}>
+                {label} <Box component="span" sx={{ color: tokens.petrol, ml: 0.75 }}>→</Box>
+              </Button>
+            </Box>
+            {image && (
+              <Box component={Link} href={href} sx={{ display: "block", border: `1px solid ${tokens.lineSoft}`, borderRadius: 2, overflow: "hidden", bgcolor: tokens.win }}>
+                <Image src={image.src} alt={image.alt} width={image.w} height={image.h} sizes="(max-width: 1200px) 100vw, 1200px" style={{ width: "100%", height: "auto", display: "block" }} />
+              </Box>
+            )}
+          </Box>
+        </Reveal>
+      </Container>
+    </Box>
+  )
+}
+
 function Metodo({ deep }: { deep: CasoDeep }) {
   if (!deep.metodo) return null
   const { title, intro, reglas } = deep.metodo
@@ -456,9 +498,10 @@ function Metodo({ deep }: { deep: CasoDeep }) {
       <Container>
         <Reveal>
           <Typography variant="h2" sx={{ fontSize: { xs: 24, md: 34 }, color: tokens.ink, mb: 1.5 }}>{title}</Typography>
-          <Typography variant="body1" sx={{ color: tokens.body, maxWidth: 620, mb: { xs: 4, md: 6 } }}>{intro}</Typography>
+          {intro && <Typography variant="body1" sx={{ color: tokens.body, maxWidth: 620, mb: { xs: 4, md: 6 } }}>{intro}</Typography>}
         </Reveal>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" }, gap: { xs: 3.5, md: 4 } }}>
+        {/* Todas las reglas en una sola fila en escritorio: con 4, la de 3 columnas dejaba una huérfana debajo. */}
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: `repeat(${Math.min(reglas.length, 4)}, 1fr)` }, gap: { xs: 3.5, md: 4 } }}>
           {reglas.map((r, i) => (
             <Reveal key={r.title} delay={i * 0.06}>
               <Box sx={{ borderTop: `2px solid ${tokens.petrol}`, pt: 2.5 }}>
@@ -640,6 +683,7 @@ export default function CasoDetalleMui({ caso }: { caso: Caso }) {
           <Evidencia deep={deep} />
           <Contexto deep={deep} />
           <QueHice deep={deep} />
+          <Relacionado deep={deep} />
           <Verificado deep={deep} />
           <Tecnico deep={deep} />
           <Hallazgos deep={deep} />
