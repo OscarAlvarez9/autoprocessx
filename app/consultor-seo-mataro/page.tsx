@@ -9,7 +9,7 @@ const DESCRIPTION =
   "Consultor SEO en Mataró desde Premià de Mar. Posiciono tu negocio en Google, en el mapa y en ChatGPT, con trato directo. Diagnóstico gratis."
 const URL = `${SITE_URL}/consultor-seo-mataro`
 
-// BORRADOR: noindex, fuera del sitemap y sin enlaces entrantes hasta que Óscar la apruebe.
+// Publicada el 14-oct-2026 con el visto bueno de Óscar.
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
@@ -20,7 +20,6 @@ export const metadata: Metadata = {
     "seo mataro",
     "posicionamiento web mataro",
   ],
-  robots: { index: false, follow: false },
   openGraph: {
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, consultor SEO en Mataró" }],
     title: TITLE,

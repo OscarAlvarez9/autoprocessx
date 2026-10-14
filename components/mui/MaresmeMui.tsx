@@ -249,7 +249,7 @@ function Comarca() {
                 Vivir aquí no es un detalle de marketing: es saber cómo compra la gente de la comarca, qué busca y a quién ya conoce. Esa ventaja se nota en cada proyecto, tengas una tienda a pie de calle en Mataró o vendas a toda España desde un local en Vilassar.
               </Typography>
               <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 520 }}>
-                Trabajo con negocios de Mataró y de Premià de Mar, donde vivo, y del resto de la comarca. Debajo, un dato de cada municipio con su fuente oficial, y lo que significa para tu SEO.
+                Trabajo con negocios de <Box component={Link} href="/consultor-seo-mataro" sx={linkSx}>Mataró</Box> y de <Box component={Link} href="/consultor-seo-premia-de-mar" sx={linkSx}>Premià de Mar</Box>, donde vivo, y del resto de la comarca. Debajo, un dato de cada municipio con su fuente oficial, y lo que significa para tu SEO.
               </Typography>
             </Box>
           </Reveal>

@@ -9,7 +9,7 @@ const DESCRIPTION =
   "Consultor SEO con base en Premià de Mar: posiciono negocios del Maresme en Google, en el mapa y en ChatGPT, con trato directo. Diagnóstico gratis."
 const URL = `${SITE_URL}/consultor-seo-premia-de-mar`
 
-// BORRADOR: noindex, fuera del sitemap y sin enlaces entrantes hasta que Óscar la apruebe.
+// Publicada el 14-oct-2026 con el visto bueno de Óscar.
 // Pendiente: cuando Óscar confirme dirección, teléfono y nombre de la ficha de Google,
 // esta página pasa a llevar ProfessionalService con address y el mapa embebido.
 export const metadata: Metadata = {
@@ -22,7 +22,6 @@ export const metadata: Metadata = {
     "posicionamiento web premià de mar",
     "seo local premià de mar",
   ],
-  robots: { index: false, follow: false },
   openGraph: {
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, consultor SEO en Premià de Mar" }],
     title: TITLE,

@@ -618,7 +618,7 @@ function PlatformsBlock() {
                 </Box>
                 <Box sx={{ flex: 1, minWidth: 0 }}>
                   <Typography component="span" sx={{ display: "block", fontFamily: fonts.serif, fontSize: { xs: 21, md: 25 }, fontWeight: 600, color: tokens.ink }}>{c.anchor}</Typography>
-                  <Typography component="span" sx={{ display: "block", fontSize: 14, color: tokens.body }}>SEO técnico, CRO e IA sobre tu tema actual.</Typography>
+                  <Typography component="span" sx={{ display: "block", fontSize: 14, color: tokens.body }}>SEO técnico, GEO y CRO sobre tu tema actual.</Typography>
                 </Box>
                 <Box className="plat-arrow" component="span" sx={{ color: tokens.petrol, fontFamily: fonts.mono, fontSize: 17, flexShrink: 0, transition: "transform .2s" }}>→</Box>
               </Paper>
@@ -633,6 +633,78 @@ function PlatformsBlock() {
           </Typography>
         </Reveal>
         <Reveal delay={0.05}><Box sx={{ mt: { xs: 5, md: 7 } }}><PlatformsInteractive /></Box></Reveal>
+      </Container>
+    </Box>
+  )
+}
+
+// Dónde trabajo: las páginas locales, enlazadas desde la home. Seis enlaces y
+// no treinta pueblos: un bloque con decenas de enlaces a páginas finas es lo
+// que Google describe como doorway. El resto de municipios vive dentro de
+// sus hubs (Maresme y Vallès Oriental).
+const ZONAS = [
+  { t: "Barcelona", d: "SEO local, Google Maps y tiendas online en la ciudad.", href: "/consultor-seo-barcelona" },
+  { t: "el Maresme", d: "Toda la comarca, de Montgat a Malgrat de Mar.", href: "/agencia-seo-maresme" },
+  { t: "el Vallès Oriental", d: "Granollers, Mollet, Cardedeu y el resto de la comarca.", href: "/consultor-seo-valles-oriental" },
+  { t: "Mataró", d: "Capital del Maresme: en Google, en el mapa y en ChatGPT.", href: "/consultor-seo-mataro" },
+  { t: "Premià de Mar", d: "Donde tengo la base, en el Maresme.", href: "/consultor-seo-premia-de-mar" },
+  { t: "Granollers", d: "Comercio, servicios e industria del Vallès.", href: "/consultor-seo-granollers" },
+]
+
+function DondeTrabajo() {
+  const linkSx = { color: tokens.ink, fontWeight: 600, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { textDecorationColor: tokens.petrol } }
+  return (
+    <Box component="section" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
+      <Container>
+        <Reveal>
+          <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, maxWidth: 680, mb: 1.5 }}>
+            Consultor SEO en Barcelona, el Maresme y el Vallès.
+          </Typography>
+          <Typography variant="body1" sx={{ color: tokens.body, mb: { xs: 4, md: 5 }, maxWidth: 600 }}>
+            Trabajo desde Premià de Mar para tiendas online y negocios locales. Que te encuentren en Google, en el mapa y en ChatGPT cuando buscan lo que haces cerca de ellos.
+          </Typography>
+        </Reveal>
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(3, 1fr)" }, gap: 2 }}>
+          {ZONAS.map((z, i) => (
+            <Reveal key={z.href} delay={(i % 3) * 0.05}>
+              <Paper
+                component={Link}
+                href={z.href}
+                elevation={0}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2,
+                  height: "100%",
+                  textDecoration: "none",
+                  p: { xs: 2.5, md: 3 },
+                  borderRadius: 3,
+                  border: `1px solid ${tokens.line}`,
+                  bgcolor: tokens.win,
+                  transition: "transform .25s, box-shadow .25s, border-color .25s",
+                  "&:hover": { transform: "translateY(-3px)", boxShadow: "0 24px 50px -32px rgba(27,30,34,.35)", borderColor: `${tokens.petrol}55` },
+                  "&:hover .zona-arrow": { transform: "translateX(3px)" },
+                  "@media (prefers-reduced-motion: reduce)": { transition: "none", "&:hover": { transform: "none" } },
+                }}
+              >
+                <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <Typography component="span" sx={{ display: "block", fontFamily: fonts.serif, fontSize: { xs: 20, md: 22 }, fontWeight: 600, color: tokens.ink }}>
+                    SEO en {z.t}
+                  </Typography>
+                  <Typography component="span" sx={{ display: "block", fontSize: 14, color: tokens.body }}>{z.d}</Typography>
+                </Box>
+                <Box className="zona-arrow" component="span" sx={{ color: tokens.petrol, fontFamily: fonts.mono, fontSize: 17, flexShrink: 0, transition: "transform .2s" }}>→</Box>
+              </Paper>
+            </Reveal>
+          ))}
+        </Box>
+        <Reveal>
+          <Typography variant="body2" sx={{ color: tokens.muted, mt: 2.5, maxWidth: 680 }}>
+            Y en{" "}
+            <Box component={Link} href="/seo-catalunya" sx={linkSx}>toda Catalunya</Box>. Si lo que quieres es que ChatGPT y Google AI citen tu marca, mira el{" "}
+            <Box component={Link} href="/posicionamiento-geo" sx={linkSx}>posicionamiento GEO</Box>.
+          </Typography>
+        </Reveal>
       </Container>
     </Box>
   )
@@ -745,6 +817,7 @@ export default function HomeMui() {
       <Problems />
       <Solutions />
       <PlatformsBlock />
+      <DondeTrabajo />
       <AgentShowcase />
       <Methodology />
       {/* BOFU · decisión: prueba real → herramienta de decisión → objeciones → manifiesto → único CTA */}

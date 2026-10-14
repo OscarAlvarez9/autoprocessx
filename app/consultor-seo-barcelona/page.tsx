@@ -9,7 +9,7 @@ const DESCRIPTION =
   "Consultor SEO en Barcelona: posiciono tu web en Google y en ChatGPT. Hablas con quien hace el trabajo y decides con datos reales. Diagnóstico gratis."
 const URL = `${SITE_URL}/consultor-seo-barcelona`
 
-// BORRADOR: noindex, fuera del sitemap y sin enlaces entrantes hasta que Óscar la apruebe.
+// Publicada el 14-oct-2026 con el visto bueno de Óscar.
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
@@ -22,7 +22,6 @@ export const metadata: Metadata = {
     "consultor seo freelance barcelona",
     "seo local barcelona",
   ],
-  robots: { index: false, follow: false },
   openGraph: {
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, consultor SEO en Barcelona" }],
     title: TITLE,

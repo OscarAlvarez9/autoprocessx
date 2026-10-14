@@ -9,7 +9,7 @@ const DESCRIPTION =
   "Consultor SEO en Granollers: posiciono tu negocio en Google, en el mapa y en ChatGPT, con un plan priorizado y trato directo. Diagnóstico gratis."
 const URL = `${SITE_URL}/consultor-seo-granollers`
 
-// BORRADOR: noindex, fuera del sitemap y sin enlaces entrantes hasta que Óscar la apruebe.
+// Publicada el 14-oct-2026 con el visto bueno de Óscar.
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
@@ -20,7 +20,6 @@ export const metadata: Metadata = {
     "posicionamiento web granollers",
     "seo industrial vallès oriental",
   ],
-  robots: { index: false, follow: false },
   openGraph: {
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, consultor SEO en Granollers" }],
     title: TITLE,
