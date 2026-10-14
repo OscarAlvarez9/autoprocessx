@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import Link from "next/link"
+import Link from "@/components/LocaleLink"
 import { useReducedMotion } from "motion/react"
 import Box from "@mui/material/Box"
 import Stack from "@mui/material/Stack"
@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography"
 import { siShopify, siWoocommerce, siGoogleanalytics, siGooglesearchconsole, siClaude } from "simple-icons"
 import { tokens, fonts } from "@/lib/mui/theme"
 import BrandCaseCard from "@/components/mui/BrandCaseCard"
+import { useLocale } from "@/components/LocaleProvider"
 import { allCaseSlugs, getCase, casePhoto, caseVertical, type Caso } from "@/lib/casesEcom"
 
 const AUTO_SPEED = 100 // px/s del desfile automático
@@ -45,11 +46,12 @@ function PlatformLogos() {
 const CREDENTIALS = [
   { name: "Google Analytics Partner", path: siGoogleanalytics.path, hex: siGoogleanalytics.hex },
   { name: "Google Search Console Partner", path: siGooglesearchconsole.path, hex: siGooglesearchconsole.hex },
-  { name: "Ingeniero certificado en Claude", path: siClaude.path, hex: siClaude.hex },
+  { name: "Ingeniero certificado en Claude", nameCa: "Enginyer certificat en Claude", path: siClaude.path, hex: siClaude.hex },
 ]
 
 // Certificaciones del estudio, con el logo oficial de cada programa.
 function CredentialRow() {
+  const locale = useLocale()
   return (
     <Stack direction="row" spacing={{ xs: 2, md: 3 }} sx={{ alignItems: "center", justifyContent: "center", flexWrap: "wrap", rowGap: 1 }}>
       {CREDENTIALS.map((c) => (
@@ -57,7 +59,7 @@ function CredentialRow() {
           <Box component="svg" viewBox="0 0 24 24" sx={{ width: { xs: 14, md: 16 }, height: { xs: 14, md: 16 } }} aria-hidden>
             <path d={c.path} fill={`#${c.hex}`} />
           </Box>
-          <Typography sx={{ fontSize: { xs: 11.5, md: 12.5 }, fontWeight: 600, color: tokens.body }}>{c.name}</Typography>
+          <Typography sx={{ fontSize: { xs: 11.5, md: 12.5 }, fontWeight: 600, color: tokens.body }}>{locale === "ca" && "nameCa" in c ? c.nameCa : c.name}</Typography>
         </Stack>
       ))}
     </Stack>
@@ -70,6 +72,7 @@ function CredentialRow() {
 // la copia queda oculta a lectores de pantalla.
 export default function ClientShowcase() {
   const reduce = useReducedMotion()
+  const locale = useLocale()
   const trackRef = useRef<HTMLDivElement>(null)
   const pausedRef = useRef(false)
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -83,7 +86,7 @@ export default function ClientShowcase() {
     "regalalo-io", "peritando-es", "quad-studios", "growmybiss",
   ]
   const known = new Set(allCaseSlugs())
-  const casos = ORDER.filter((s) => known.has(s)).map(getCase).filter(Boolean) as Caso[]
+  const casos = ORDER.filter((s) => known.has(s)).map((s) => getCase(s, locale)).filter(Boolean) as Caso[]
 
   // Ancho de un set completo (distancia entre una card y su duplicado).
   const setWidth = () => {
@@ -139,7 +142,7 @@ export default function ClientShowcase() {
         inert={hidden || undefined}
         sx={{ flexShrink: 0, width: { xs: "74vw", sm: 340, md: 300 } }}
       >
-        <BrandCaseCard name={c.client} vertical={caseVertical(c)} href={`/casos-de-exito/${c.slug}`} photo={casePhoto(c)} footer={false} />
+        <BrandCaseCard name={c.client} vertical={caseVertical(c, locale)} href={`/casos-de-exito/${c.slug}`} photo={casePhoto(c)} footer={false} />
       </Box>
     ))
 
@@ -152,8 +155,8 @@ export default function ClientShowcase() {
         </Box>
       </Box>
       <Box sx={{ mb: { xs: 2.5, md: 3 }, px: { xs: 3, md: "max(24px, calc((100vw - 1120px) / 2 + 24px))" } }}>
-        <Typography variant="h2" sx={{ fontSize: { xs: 24, md: 32 }, color: tokens.ink }}>Proyectos</Typography>
-        <Typography variant="body1" sx={{ color: tokens.body, mt: 1 }}>Tiendas y plataformas donde ya corre esta ingeniería.</Typography>
+        <Typography variant="h2" sx={{ fontSize: { xs: 24, md: 32 }, color: tokens.ink }}>{locale === "ca" ? "Projectes" : "Proyectos"}</Typography>
+        <Typography variant="body1" sx={{ color: tokens.body, mt: 1 }}>{locale === "ca" ? "Botigues i plataformes on ja funciona aquesta enginyeria." : "Tiendas y plataformas donde ya corre esta ingeniería."}</Typography>
       </Box>
       <Box
         ref={trackRef}

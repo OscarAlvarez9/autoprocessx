@@ -1,3 +1,6 @@
+import type { Locale } from "./i18n"
+import { casosDeepCa } from "./casesDeepCa"
+
 // Capa opcional de "caso en profundidad". Solo la usan los casos que tienen
 // material real suficiente para sostener una ficha larga (marea.es es el
 // primero). El resto de casos siguen con el modelo corto de casesEcom.ts y
@@ -1097,6 +1100,7 @@ export const casosDeep: Record<string, CasoDeep> = {
   },
 }
 
-export function getCasoDeep(slug: string): CasoDeep | undefined {
+export function getCasoDeep(slug: string, locale: Locale = "es"): CasoDeep | undefined {
+  if (locale === "ca") return casosDeepCa[slug] ?? casosDeep[slug]
   return casosDeep[slug]
 }

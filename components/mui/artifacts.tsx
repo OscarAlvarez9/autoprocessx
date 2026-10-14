@@ -11,6 +11,7 @@ import Paper from "@mui/material/Paper"
 import { siShopify, siWoocommerce } from "simple-icons"
 import { tokens, fonts } from "@/lib/mui/theme"
 import { ArtifactWindow } from "@/components/mui/shared"
+import { useLocale } from "@/components/LocaleProvider"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const draw = (reduce: boolean | null): any =>
@@ -21,6 +22,7 @@ const draw = (reduce: boolean | null): any =>
 /* ---- Chart ROAS: inversión sube, retorno baja (se dibuja) ---- */
 export function RoasChart() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   return (
     <Box sx={{ position: "relative", height: "100%" }}>
       <Box component="svg" viewBox="0 0 320 190" sx={{ width: "100%", height: "100%", overflow: "visible" }}>
@@ -34,8 +36,8 @@ export function RoasChart() {
         <motion.circle cx="316" cy="158" r="4" fill={tokens.brick} initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.2 }} />
       </Box>
       <Stack direction="row" spacing={1.5} sx={{ position: "absolute", top: 6, left: 0 }}>
-        <Legend color={tokens.muted} label="inversión en ads" />
-        <Legend color={tokens.brick} label="retorno real" />
+        <Legend color={tokens.muted} label={ca ? "inversió en ads" : "inversión en ads"} />
+        <Legend color={tokens.brick} label={ca ? "retorn real" : "retorno real"} />
       </Stack>
       <Box sx={{ position: "absolute", right: 4, bottom: 26, px: 1, py: 0.25, borderRadius: 1.5, bgcolor: `${tokens.brick}12`, border: `1px solid ${tokens.brick}33` }}>
         <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.brick, fontWeight: 600 }}>ROAS ↓</Typography>
@@ -55,6 +57,7 @@ function Legend({ color, label }: { color: string; label: string }) {
 /* ---- Stock descuadrado: almacén vs tienda (Shopify/Woo), sync rota ---- */
 export function StockDesync() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   const rows = [
     { sku: "SKU-1042", alm: "8", web: "8", bad: false },
     { sku: "SKU-2087", alm: "3", web: "12", bad: true },
@@ -64,7 +67,7 @@ export function StockDesync() {
     <Box sx={{ flex: 1, border: `1px solid ${tokens.lineSoft}`, borderRadius: 1.5, overflow: "hidden", bgcolor: tokens.win }}>
       <Stack direction="row" spacing={0.75} sx={{ alignItems: "center", px: 1, py: 0.6, borderBottom: `1px solid ${tokens.lineSoft}`, bgcolor: "#E8EBEA" }}>
         {side === "alm" ? (
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: 9, color: tokens.muted }}>almacén</Typography>
+          <Typography sx={{ fontFamily: fonts.mono, fontSize: 9, color: tokens.muted }}>{ca ? "magatzem" : "almacén"}</Typography>
         ) : (
           <>
             {[siShopify, siWoocommerce].map((ic, i) => (
@@ -74,7 +77,7 @@ export function StockDesync() {
             ))}
             {/* Magento no está en simple-icons: monograma a su naranja oficial */}
             <Typography aria-hidden sx={{ fontFamily: fonts.mono, fontSize: 8, fontWeight: 700, color: "#EE672F", border: "1.2px solid #EE672F", borderRadius: 0.5, px: 0.35, lineHeight: 1.3 }}>M</Typography>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 9, color: tokens.muted }}>tienda</Typography>
+            <Typography sx={{ fontFamily: fonts.mono, fontSize: 9, color: tokens.muted }}>{ca ? "botiga" : "tienda"}</Typography>
           </>
         )}
       </Stack>
@@ -149,9 +152,11 @@ export function StoreTemplate() {
 
 /* ---- Móvil con pedidos estilo Shopify (reutilizable) ---- */
 export function ShopifyPhone() {
+  const ca = useLocale() === "ca"
+  const frequent = ca ? "Comprador habitual" : "Comprador frecuente"
   const orders = [
-    { id: "#16657", name: "Clara Jiménez", total: "41,80€", tag: "Comprador frecuente" },
-    { id: "#16656", name: "Patricia Romero", total: "72,60€", tag: "Comprador frecuente" },
+    { id: "#16657", name: "Clara Jiménez", total: "41,80€", tag: frequent },
+    { id: "#16656", name: "Patricia Romero", total: "72,60€", tag: frequent },
     { id: "#16655", name: "Diego Santos", total: "29,90€", tag: null as string | null },
   ]
   return (
@@ -247,6 +252,7 @@ export function AovOrbit() {
 /* ---- Gauge "problema detectado" con aguja ---- */
 export function Gauge() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   return (
     <Box sx={{ position: "relative", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 1.5 }}>
       <Box component="svg" viewBox="0 0 200 116" sx={{ width: "82%" }}>
@@ -263,7 +269,7 @@ export function Gauge() {
       </Box>
       <Box sx={{ display: "inline-flex", alignItems: "center", gap: 0.75, bgcolor: `${tokens.brick}10`, border: `1px solid ${tokens.brick}33`, borderRadius: 999, px: 1.25, py: 0.4 }}>
         <Box sx={{ width: 6, height: 6, borderRadius: "50%", bgcolor: tokens.brick }} />
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.brick, fontWeight: 600 }}>Problema detectado · tienda lenta</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.brick, fontWeight: 600 }}>{ca ? "Problema detectat · botiga lenta" : "Problema detectado · tienda lenta"}</Typography>
       </Box>
     </Box>
   )
@@ -314,6 +320,7 @@ export function Funnel() {
 
 /* ---- Toggle DATOS/INTUICIÓN interactivo ---- */
 export function DatosIntuicion() {
+  const ca = useLocale() === "ca"
   const [datos, setDatos] = useState(true)
   return (
     <Box sx={{ position: "relative", height: "100%" }}>
@@ -325,11 +332,11 @@ export function DatosIntuicion() {
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setDatos((v) => !v) }}
         sx={{ position: "absolute", top: "42%", left: "50%", transform: "translate(-50%,-50%)", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 1, bgcolor: tokens.win, border: `1px solid ${tokens.line}`, borderRadius: 999, p: 0.5, boxShadow: "0 6px 20px -10px rgba(10,24,38,.3)" }}
       >
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, color: datos ? tokens.teal : tokens.muted, px: 1 }}>DATOS</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, color: datos ? tokens.teal : tokens.muted, px: 1 }}>{ca ? "DADES" : "DATOS"}</Typography>
         <Box sx={{ width: 40, height: 22, borderRadius: 999, bgcolor: datos ? tokens.teal : "#CBD0CB", position: "relative", transition: "background .25s" }}>
           <motion.div animate={{ left: datos ? 3 : 21 }} transition={{ type: "spring", stiffness: 500, damping: 30 }} style={{ position: "absolute", top: 3, width: 16, height: 16, borderRadius: "50%", background: "#fff" }} />
         </Box>
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, color: datos ? tokens.muted : tokens.brick, px: 1 }}>INTUICIÓN</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, color: datos ? tokens.muted : tokens.brick, px: 1 }}>{ca ? "INTUÏCIÓ" : "INTUICIÓN"}</Typography>
       </Box>
     </Box>
   )
@@ -363,6 +370,7 @@ export function N8nFlow() {
 /* ---- Chart de conversión: sesiones planas, ingresos suben ---- */
 export function ConversionChart() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   return (
     <Box sx={{ position: "relative", height: "100%" }}>
       <Box component="svg" viewBox="0 0 320 190" sx={{ width: "100%", height: "100%", overflow: "visible" }}>
@@ -371,8 +379,8 @@ export function ConversionChart() {
         <motion.path d="M4,150 C120,140 200,88 316,38" fill="none" stroke={tokens.teal} strokeWidth="3" strokeLinecap="round" {...draw(reduce)} />
       </Box>
       <Stack direction="row" spacing={1.5} sx={{ position: "absolute", top: 6, left: 0 }}>
-        <Legend color={tokens.muted} label="sesiones" />
-        <Legend color={tokens.teal} label="ingresos" />
+        <Legend color={tokens.muted} label={ca ? "sessions" : "sesiones"} />
+        <Legend color={tokens.teal} label={ca ? "ingressos" : "ingresos"} />
       </Stack>
     </Box>
   )
@@ -381,6 +389,7 @@ export function ConversionChart() {
 /* ---- Respuesta de IA que cita la tienda (GEO) ---- */
 export function GeoAnswer() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   return (
     <Box sx={{ height: "100%", display: "flex", flexDirection: "column", gap: 1, justifyContent: "center" }}>
       {/* pregunta del usuario a la IA */}
@@ -388,13 +397,13 @@ export function GeoAnswer() {
         <Box component="svg" viewBox="0 0 24 24" sx={{ width: 11, height: 11, flexShrink: 0 }} aria-hidden>
           <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" fill={tokens.petrol} />
         </Box>
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: tokens.body }}>¿qué reloj automático me recomiendas?</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: tokens.body }}>{ca ? "quin rellotge automàtic em recomanes?" : "¿qué reloj automático me recomiendas?"}</Typography>
       </Box>
       {/* respuesta con la marca citada y subrayado que se dibuja */}
       <Box sx={{ border: `1px solid ${tokens.lineSoft}`, borderRadius: 2, bgcolor: tokens.win, px: 1.5, py: 1.25 }}>
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.muted, mb: 0.75 }}>{"respuesta de IA · simulación de cómo se ve una citación"}</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.muted, mb: 0.75 }}>{ca ? "resposta d'IA · simulació de com es veu una citació" : "respuesta de IA · simulación de cómo se ve una citación"}</Typography>
         <Typography sx={{ fontSize: 13, color: tokens.body, lineHeight: 1.6 }}>
-          Para un automático con buena relación calidad-precio en España,{" "}
+          {ca ? "Per a un automàtic amb bona relació qualitat-preu a Espanya," : "Para un automático con buena relación calidad-precio en España,"}{" "}
           <Box component="span" sx={{ position: "relative", color: tokens.ink, fontWeight: 700, whiteSpace: "nowrap" }}>
             marea.es
             <Box
@@ -406,13 +415,13 @@ export function GeoAnswer() {
               sx={{ position: "absolute", left: 0, right: 0, bottom: -1, height: "2px", bgcolor: tokens.teal, transformOrigin: "left", display: "block" }}
             />
           </Box>{" "}
-          destaca por catálogo y envío en 24h.
+          {ca ? "destaca pel catàleg i l'enviament en 24h." : "destaca por catálogo y envío en 24h."}
         </Typography>
       </Box>
       {/* fuentes citadas */}
       <Stack direction="row" spacing={0.75} sx={{ alignItems: "center", flexWrap: "wrap", rowGap: 0.75 }}>
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.muted }}>fuentes:</Typography>
-        {[{ c: "marea.es", hot: true }, { c: "catálogo", hot: false }, { c: "envíos", hot: false }].map(({ c, hot }, i) => (
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.muted }}>{ca ? "fonts:" : "fuentes:"}</Typography>
+        {[{ c: "marea.es", hot: true }, { c: ca ? "catàleg" : "catálogo", hot: false }, { c: ca ? "enviaments" : "envíos", hot: false }].map(({ c, hot }, i) => (
           <Box
             key={c}
             component={motion.div}
@@ -436,14 +445,14 @@ export function GeoAnswer() {
 // en las landings (apps de Shopify, plugins de Woo). Con `bare` pierde su marco
 // propio para vivir dentro de una ArtifactWindow.
 export function UnnecessaryApps({
-  tag = "apps instaladas · 14",
+  tag: tagProp,
   items = [
     { n: "Upsell Pro", meta: "19€/mes", c: "#E76F51" },
     { n: "Reviews+", meta: "12€/mes", c: "#2A9D8F" },
     { n: "Popup Boost", meta: "18€/mes", c: "#E9C46A" },
   ],
-  more = "+ 11 más…",
-  loadTag = "carga +2,4s",
+  more: moreProp,
+  loadTag: loadTagProp,
   total = "−340€/mes",
   bare = false,
 }: {
@@ -454,6 +463,10 @@ export function UnnecessaryApps({
   total?: string
   bare?: boolean
 } = {}) {
+  const ca = useLocale() === "ca"
+  const tag = tagProp ?? (ca ? "apps instal·lades · 14" : "apps instaladas · 14")
+  const more = moreProp ?? (ca ? "+ 11 més…" : "+ 11 más…")
+  const loadTag = loadTagProp ?? (ca ? "càrrega +2,4s" : "carga +2,4s")
   return (
     <Box sx={{ position: "relative", height: "100%", ...(bare ? {} : { bgcolor: "#FBFBF9", borderRadius: 1.5, border: `1px solid ${tokens.lineSoft}`, p: 1.25 }), display: "flex", flexDirection: "column", gap: 0.75 }}>
       <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.muted }}>{tag}</Typography>
@@ -483,7 +496,7 @@ export function UnnecessaryApps({
 // lenguaje del informe de la Home; rojo solo para lo alto/bloqueante, gris para
 // lo medio. `foot` es el disclaimer en mono al pie.
 export function AuditFindings({
-  tag = "auditoría · informe",
+  tag: tagProp,
   findings,
   foot,
 }: {
@@ -492,10 +505,12 @@ export function AuditFindings({
   foot: string
 }) {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
+  const tag = tagProp ?? (ca ? "auditoria · informe" : "auditoría · informe")
   return (
     <ArtifactWindow tag={tag} ratio="16 / 10">
       <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: tokens.muted, mb: 1.25 }}>hallazgos por impacto en ventas</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: tokens.muted, mb: 1.25 }}>{ca ? "troballes per impacte en vendes" : "hallazgos por impacto en ventas"}</Typography>
         <Stack spacing={0.9} sx={{ flex: 1, minHeight: 0 }}>
           {findings.map((f, i) => {
             const sev = f.red ? tokens.red : tokens.muted
@@ -523,6 +538,18 @@ function PIcon({ path, size = 18, color }: { path: string; size?: number; color?
     </Box>
   )
 }
+const PLATS_CA: [string, string][][] = [
+  [
+    ["storefront", "Agent integrat al teu theme, sense apps de pagament que alenteixin la botiga"],
+    ["Admin API", "Estoc, comandes i clients sincronitzats en temps real"],
+    ["SEO", "Schema de producte i metafields sobre el teu theme actual"],
+  ],
+  [
+    ["WordPress", "Plugin lleuger a la teva instal·lació, sense inflar-la de dependències"],
+    ["REST API", "Estoc i comandes sincronitzats amb el teu ERP i l'agent"],
+    ["SEO", "Schema de producte i Core Web Vitals sobre el teu WP"],
+  ],
+]
 const PLATS: { name: string; path: string | null; hex: string | null; points: [string, string][] }[] = [
   {
     name: "Shopify", path: siShopify.path, hex: siShopify.hex,
@@ -545,7 +572,8 @@ const PLATS: { name: string; path: string | null; hex: string | null; points: [s
 export function PlatformsInteractive() {
   const reduce = useReducedMotion()
   const [sel, setSel] = useState(0)
-  const cur = PLATS[sel]
+  const ca = useLocale() === "ca"
+  const cur = ca ? { ...PLATS[sel], points: PLATS_CA[sel] } : PLATS[sel]
   return (
     <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "0.85fr 1.15fr" }, gap: { xs: 3, md: 6 }, alignItems: "start" }}>
       {/* selector con iconos reales */}
@@ -583,7 +611,7 @@ export function PlatformsInteractive() {
             <Box sx={{ width: { xs: 36, sm: 44 }, height: { xs: 36, sm: 44 }, borderRadius: 2, border: `1px solid ${tokens.line}`, bgcolor: tokens.win, display: "grid", placeItems: "center", color: tokens.ink }}>
               {cur.path ? <PIcon path={cur.path} size={24} color={cur.hex ? `#${cur.hex}` : undefined} /> : <Typography sx={{ fontFamily: fonts.serif, fontSize: 18, fontWeight: 700, color: "#EE672F" }}>M</Typography>}
             </Box>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: { xs: 8.5, sm: 9.5 }, color: tokens.muted }}>tu tienda</Typography>
+            <Typography sx={{ fontFamily: fonts.mono, fontSize: { xs: 8.5, sm: 9.5 }, color: tokens.muted }}>{ca ? "la teva botiga" : "tu tienda"}</Typography>
           </Stack>
           <Box sx={{ position: "relative", flex: 1, maxWidth: 150, height: 2, bgcolor: tokens.line, borderRadius: 999 }}>
             <Box
@@ -610,7 +638,7 @@ export function PlatformsInteractive() {
             </Box>
           ))}
           <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, mt: 1.5 }}>
-            {"Sin migrar. El código que añado es tuyo."}
+            {ca ? "Sense migrar. El codi que afegeixo és teu." : "Sin migrar. El código que añado es tuyo."}
           </Typography>
         </Box>
       </Box>
@@ -636,6 +664,7 @@ function TypingDots() {
 export function AgentChatRich() {
   const [ch, setCh] = useState<"web" | "whatsapp">("web")
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   const bubble = (i: number) => reduce ? {} : { initial: { opacity: 0, y: 8 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { delay: 0.2 + i * 0.25 } }
   return (
     <Paper elevation={2} sx={{ borderRadius: 3, overflow: "hidden", border: `1px solid ${tokens.lineSoft}`, bgcolor: tokens.win }}>
@@ -645,10 +674,10 @@ export function AgentChatRich() {
             <Typography sx={{ color: "#fff", fontWeight: 800, fontSize: 12, fontFamily: fonts.serif }}>m</Typography>
           </Box>
           <Box>
-            <Typography sx={{ fontSize: 12.5, fontWeight: 700, color: tokens.ink, lineHeight: 1.1 }}>agente · catálogo real</Typography>
+            <Typography sx={{ fontSize: 12.5, fontWeight: 700, color: tokens.ink, lineHeight: 1.1 }}>{ca ? "agent · catàleg real" : "agente · catálogo real"}</Typography>
             <Stack direction="row" spacing={0.5} sx={{ alignItems: "center" }}>
               <Box sx={{ width: 6, height: 6, borderRadius: "50%", bgcolor: tokens.teal }} />
-              <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>en línea</Typography>
+              <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>{ca ? "en línia" : "en línea"}</Typography>
             </Stack>
           </Box>
         </Stack>
@@ -665,15 +694,15 @@ export function AgentChatRich() {
       <Stack spacing={1.25} sx={{ p: 2 }}>
         <motion.div {...bubble(0)}>
           <Box sx={{ alignSelf: "flex-end", ml: "auto", maxWidth: "80%", bgcolor: "#EEF0EC", borderRadius: "14px 14px 4px 14px", px: 1.5, py: 1, width: "fit-content" }}>
-            <Typography sx={{ fontSize: 13.5, color: tokens.ink }}>Busco un reloj automático para el día a día, sobre 250€.</Typography>
+            <Typography sx={{ fontSize: 13.5, color: tokens.ink }}>{ca ? "Busco un rellotge automàtic per al dia a dia, d'uns 250€." : "Busco un reloj automático para el día a día, sobre 250€."}</Typography>
           </Box>
         </motion.div>
 
         <motion.div {...bubble(1)}>
           <Box sx={{ maxWidth: "88%", bgcolor: "#F4FAF7", border: `1px solid ${tokens.teal}22`, borderRadius: "14px 14px 14px 4px", px: 1.5, py: 1.25 }}>
-            <Typography sx={{ fontSize: 13.5, color: tokens.ink, mb: 1 }}>Automáticos en ese rango, te van estos dos:</Typography>
+            <Typography sx={{ fontSize: 13.5, color: tokens.ink, mb: 1 }}>{ca ? "Automàtics en aquest rang, et van bé aquests dos:" : "Automáticos en ese rango, te van estos dos:"}</Typography>
             <Stack spacing={0.75}>
-              {[{ n: "Automático Acero", p: "249€" }, { n: "Cronógrafo Piel", p: "199€" }].map((prod) => (
+              {(ca ? [{ n: "Automàtic Acer", p: "249€" }, { n: "Cronògraf Pell", p: "199€" }] : [{ n: "Automático Acero", p: "249€" }, { n: "Cronógrafo Piel", p: "199€" }]).map((prod) => (
                 <Stack key={prod.n} direction="row" spacing={1.25} sx={{ alignItems: "center", bgcolor: tokens.win, border: `1px solid ${tokens.lineSoft}`, borderRadius: 2, p: 0.75 }}>
                   <Box sx={{ width: 34, height: 34, borderRadius: 1.5, bgcolor: "#E7EAE6", display: "grid", placeItems: "center", flexShrink: 0 }}>
                     <Box component="svg" viewBox="0 0 40 40" sx={{ width: 26, height: 26 }} aria-hidden>
@@ -695,17 +724,17 @@ export function AgentChatRich() {
 
         <motion.div {...bubble(2)}>
           <Box sx={{ alignSelf: "flex-end", ml: "auto", maxWidth: "80%", bgcolor: "#EEF0EC", borderRadius: "14px 14px 4px 14px", px: 1.5, py: 1, width: "fit-content" }}>
-            <Typography sx={{ fontSize: 13.5, color: tokens.ink }}>¿La primera la tenéis disponible ya?</Typography>
+            <Typography sx={{ fontSize: 13.5, color: tokens.ink }}>{ca ? "El primer ja el teniu disponible?" : "¿La primera la tenéis disponible ya?"}</Typography>
           </Box>
         </motion.div>
 
         <motion.div {...bubble(3)}>
           <Box sx={{ maxWidth: "88%", bgcolor: "#F4FAF7", border: `1px solid ${tokens.teal}22`, borderRadius: "14px 14px 14px 4px", px: 1.5, py: 1.25 }}>
-            <Typography sx={{ fontSize: 13.5, color: tokens.ink }}>Sí, quedan <b>3 uds</b> en almacén. Te la puedo dejar en el carrito.</Typography>
+            <Typography sx={{ fontSize: 13.5, color: tokens.ink }}>{ca ? <>Sí, en queden <b>3 u.</b> al magatzem. Te&apos;l puc deixar a la cistella.</> : <>Sí, quedan <b>3 uds</b> en almacén. Te la puedo dejar en el carrito.</>}</Typography>
             <Box sx={{ mt: 1, display: "inline-flex", alignItems: "center", gap: 0.75, bgcolor: tokens.teal, color: "#fff", borderRadius: 1.5, px: 1, py: 0.5 }}>
-              <Typography sx={{ fontSize: 11, fontWeight: 700 }}>→ Añadir al carrito</Typography>
+              <Typography sx={{ fontSize: 11, fontWeight: 700 }}>{ca ? "→ Afegir a la cistella" : "→ Añadir al carrito"}</Typography>
             </Box>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.muted, mt: 0.75 }}>fuente: catálogo · stock en tiempo real</Typography>
+            <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.muted, mt: 0.75 }}>{ca ? "font: catàleg · estoc en temps real" : "fuente: catálogo · stock en tiempo real"}</Typography>
           </Box>
         </motion.div>
       </Stack>
@@ -713,7 +742,7 @@ export function AgentChatRich() {
       <Box sx={{ px: 2, py: 1, borderTop: `1px solid ${tokens.lineSoft}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <TypingDots />
         <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>
-          {ch === "whatsapp" ? "vía WhatsApp" : "en tu web"} · 0 alucinación
+          {ch === "whatsapp" ? (ca ? "via WhatsApp" : "vía WhatsApp") : (ca ? "al teu web" : "en tu web")}{ca ? " · 0 al·lucinacions" : " · 0 alucinación"}
         </Typography>
       </Box>
     </Paper>
@@ -723,6 +752,7 @@ export function AgentChatRich() {
 /* ---- Scatter de herramientas (diagnóstico) ---- */
 export function ToolsScatter() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   const tools = [
     { l: "Google Analytics 4", top: "12%", left: "6%", r: -6 },
     { l: "Search Console", top: "60%", left: "4%", r: 5 },
@@ -739,7 +769,7 @@ export function ToolsScatter() {
   const store = (
     <Box sx={{ display: "inline-flex", alignItems: "center", gap: 0.75, bgcolor: tokens.win, border: `1px solid ${tokens.line}`, borderRadius: 1.5, px: 1.25, py: 0.75, boxShadow: "0 8px 22px -12px rgba(10,24,38,.4)" }}>
       <Box component="svg" viewBox="0 0 24 24" sx={{ width: 18, height: 18, fill: tokens.ink }}><path d={siShopify.path} /></Box>
-      <Typography sx={{ fontWeight: 800, fontSize: 13, color: tokens.ink }}>tu tienda</Typography>
+      <Typography sx={{ fontWeight: 800, fontSize: 13, color: tokens.ink }}>{ca ? "la teva botiga" : "tu tienda"}</Typography>
     </Box>
   )
   return (
@@ -747,7 +777,7 @@ export function ToolsScatter() {
       {/* Móvil y tablet (<900px): composición ordenada, nada se solapa */}
       <Box sx={{ display: { xs: "flex", md: "none" }, height: "100%", flexDirection: "column", alignItems: "center", justifyContent: "space-between", gap: 1.25, py: 0.5 }}>
         <Box sx={{ bgcolor: tokens.win, border: `1px solid ${tokens.line}`, borderRadius: 2, px: 2, py: 0.75 }}>
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted }}>Investigo con…</Typography>
+          <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted }}>{ca ? "Investigo amb…" : "Investigo con…"}</Typography>
         </Box>
         <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: 1.25 }}>
           {tools.map((t, i) => (
@@ -768,7 +798,7 @@ export function ToolsScatter() {
       {/* Desktop (>=900px): scatter flotante */}
       <Box sx={{ display: { xs: "none", md: "block" }, position: "relative", height: "100%" }}>
         <Box sx={{ position: "absolute", top: "12%", left: "50%", transform: "translateX(-50%)", bgcolor: tokens.win, border: `1px solid ${tokens.line}`, borderRadius: 2, px: 2, py: 1 }}>
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted }}>Investigo con…</Typography>
+          <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted }}>{ca ? "Investigo amb…" : "Investigo con…"}</Typography>
         </Box>
         {tools.map((t, i) => (
           <motion.div
@@ -790,9 +820,10 @@ export function ToolsScatter() {
 
 /* ---- Mock storefront WooCommerce (marea.es · surf) ---- */
 export function MareaMock() {
+  const ca = useLocale() === "ca"
   const prods = [
-    { n: "Automático Acero", p: "249€" },
-    { n: "Cronógrafo Piel", p: "199€" },
+    { n: ca ? "Automàtic Acer" : "Automático Acero", p: "249€" },
+    { n: ca ? "Cronògraf Pell" : "Cronógrafo Piel", p: "199€" },
     { n: "Diver 200m", p: "320€" },
     { n: "Minimal 38mm", p: "129€" },
   ]
@@ -808,7 +839,7 @@ export function MareaMock() {
         </Stack>
       </Stack>
       <Box sx={{ p: 1.5, flex: 1, display: "flex", flexDirection: "column" }}>
-        <Typography sx={{ fontFamily: fonts.serif, fontSize: 15, fontWeight: 700, color: tokens.ink, mb: 1 }}>Relojes para cada momento.</Typography>
+        <Typography sx={{ fontFamily: fonts.serif, fontSize: 15, fontWeight: 700, color: tokens.ink, mb: 1 }}>{ca ? "Rellotges per a cada moment." : "Relojes para cada momento."}</Typography>
         <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1 }}>
           {prods.map((pr, i) => (
             <motion.div key={pr.n} initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.08 }}>
@@ -839,6 +870,7 @@ export function MareaMock() {
 
 /* ---- Mock web de ventanas a medida (Totfinestra) ---- */
 export function TotfinestraMock() {
+  const ca = useLocale() === "ca"
   return (
     <Box sx={{ height: "100%", width: "100%", bgcolor: tokens.win, borderRadius: 1.5, border: `1px solid ${tokens.lineSoft}`, overflow: "hidden", display: "flex", flexDirection: "column" }}>
       <Stack direction="row" spacing={1} sx={{ alignItems: "center", px: 1.5, py: 1, borderBottom: `1px solid ${tokens.lineSoft}`, bgcolor: "#FBFBF9" }}>
@@ -849,10 +881,10 @@ export function TotfinestraMock() {
       <Box sx={{ p: 1.5, flex: 1, display: "flex", flexDirection: "column", gap: 1.25 }}>
         <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
           <Box sx={{ flex: 1 }}>
-            <Typography sx={{ fontFamily: fonts.serif, fontSize: 15, fontWeight: 700, color: tokens.ink, lineHeight: 1.15 }}>Ventanas de aluminio a medida.</Typography>
+            <Typography sx={{ fontFamily: fonts.serif, fontSize: 15, fontWeight: 700, color: tokens.ink, lineHeight: 1.15 }}>{ca ? "Finestres d'alumini a mida." : "Ventanas de aluminio a medida."}</Typography>
             <motion.div initial={{ opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
               <Box sx={{ mt: 1, display: "inline-flex", alignItems: "center", gap: 0.5, bgcolor: tokens.bronze, color: "#fff", borderRadius: 1.5, px: 1, py: 0.5 }}>
-                <Typography sx={{ fontSize: 10, fontWeight: 700 }}>Pedir presupuesto →</Typography>
+                <Typography sx={{ fontSize: 10, fontWeight: 700 }}>{ca ? "Demanar pressupost →" : "Pedir presupuesto →"}</Typography>
               </Box>
             </motion.div>
           </Box>
@@ -876,7 +908,7 @@ export function TotfinestraMock() {
             </motion.div>
           ))}
         </Box>
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 9, color: tokens.muted }}>proyectos realizados · autogestionable</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 9, color: tokens.muted }}>{ca ? "projectes realitzats · autogestionable" : "proyectos realizados · autogestionable"}</Typography>
       </Box>
     </Box>
   )

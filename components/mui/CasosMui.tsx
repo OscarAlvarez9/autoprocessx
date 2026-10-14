@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import Link from "@/components/LocaleLink"
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import Stack from "@mui/material/Stack"
@@ -10,7 +10,27 @@ import { tokens, fonts } from "@/lib/mui/theme"
 import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, Reveal, HeroReveal, PrimaryCTA, Crumbs } from "@/components/mui/shared"
 import { MareaMock, ShopifyPhone, TotfinestraMock, StoreTemplate, GeoAnswer, RoasChart, ConversionChart, N8nFlow } from "@/components/mui/artifacts"
 import BrandCaseCard from "@/components/mui/BrandCaseCard"
-import { SERVICES, casesByService, casePhoto, caseVertical, type Caso, type ArtKey } from "@/lib/casesEcom"
+import { useLocale } from "@/components/LocaleProvider"
+import { servicesFor, casesByService, casePhoto, caseVertical, type Caso, type ArtKey } from "@/lib/casesEcom"
+
+const T = {
+  es: {
+    h1: "Trabajo en producción, por servicio.",
+    lead: "Tiendas creciendo, operativas automatizadas y plataformas a medida. Publico cifras cuando el cliente las confirma.",
+    verServicio: "Ver el servicio",
+    introTitle: "¿Tu proyecto podría ser el próximo caso?",
+    introBody: "Empiezo siempre por un diagnóstico: dónde se te escapan las ventas o el tiempo, y qué palancas mueven la aguja.",
+    crumb: "Casos de éxito",
+  },
+  ca: {
+    h1: "Feina en producció, per servei.",
+    lead: "Botigues que creixen, operatives automatitzades i plataformes a mida. Publico xifres quan el client les confirma.",
+    verServicio: "Veure el servei",
+    introTitle: "El teu projecte podria ser el pròxim cas?",
+    introBody: "Començo sempre per un diagnòstic: on se t'escapen les vendes o el temps, i quines palanques mouen l'agulla.",
+    crumb: "Casos d'èxit",
+  },
+}
 
 function Artifact({ art }: { art: ArtKey }) {
   if (art === "geo") return <GeoAnswer />
@@ -47,16 +67,17 @@ export function CaseVisualBox({ caso }: { caso: Caso }) {
 }
 
 function Hero() {
+  const t = T[useLocale()]
   return (
     <Box component="section" sx={{ position: "relative", overflow: "hidden", borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Blueprint />
       <Container sx={{ position: "relative", zIndex: 1, py: { xs: 7, md: 11 } }}>
         <HeroReveal>
           <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 44, lg: 54 }, color: tokens.ink, mb: 3, maxWidth: 760 }}>
-            Trabajo en producción, por servicio.
+            {t.h1}
           </Typography>
           <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 580 }}>
-            Tiendas creciendo, operativas automatizadas y plataformas a medida. Publico cifras cuando el cliente las confirma.
+            {t.lead}
           </Typography>
         </HeroReveal>
       </Container>
@@ -65,8 +86,10 @@ function Hero() {
 }
 
 
-function ServiceGroup({ serviceKey }: { serviceKey: (typeof SERVICES)[number] }) {
-  const list = casesByService(serviceKey.key)
+function ServiceGroup({ serviceKey }: { serviceKey: ReturnType<typeof servicesFor>[number] }) {
+  const locale = useLocale()
+  const t = T[locale]
+  const list = casesByService(serviceKey.key, locale)
   if (list.length === 0) return null
   return (
     <Box component="section" sx={{ py: { xs: 7, md: 10 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
@@ -78,7 +101,7 @@ function ServiceGroup({ serviceKey }: { serviceKey: (typeof SERVICES)[number] })
               <Typography variant="body1" sx={{ color: tokens.muted, mt: 1, maxWidth: 480 }}>{serviceKey.blurb}</Typography>
             </Box>
             <Typography component={Link} href={serviceKey.href} sx={{ fontFamily: fonts.mono, fontSize: 12.5, fontWeight: 600, color: tokens.ink, textDecoration: "none", whiteSpace: "nowrap", "&:hover": { color: tokens.petrol } }}>
-              Ver el servicio <Box component="span" sx={{ color: tokens.petrol }}>↗</Box>
+              {t.verServicio} <Box component="span" sx={{ color: tokens.petrol }}>↗</Box>
             </Typography>
           </Stack>
         </Reveal>
@@ -100,7 +123,7 @@ function ServiceGroup({ serviceKey }: { serviceKey: (typeof SERVICES)[number] })
         {list.map((c, i) => (
           <Box key={c.slug} sx={{ scrollSnapAlign: "start", flexShrink: 0, width: { xs: "74vw", sm: 340, md: "auto" }, minWidth: { md: 0 }, flex: { md: "initial" } }}>
             <Reveal delay={(i % 3) * 0.07}>
-              <BrandCaseCard name={c.client} vertical={caseVertical(c)} href={`/casos-de-exito/${c.slug}`} photo={casePhoto(c)} />
+              <BrandCaseCard name={c.client} vertical={caseVertical(c, locale)} href={`/casos-de-exito/${c.slug}`} photo={casePhoto(c)} />
             </Reveal>
           </Box>
         ))}
@@ -110,15 +133,16 @@ function ServiceGroup({ serviceKey }: { serviceKey: (typeof SERVICES)[number] })
 }
 
 function Intro() {
+  const t = T[useLocale()]
   return (
     <Box component="section" sx={{ py: { xs: 8, md: 11 } }}>
       <Container sx={{ textAlign: "center", maxWidth: 680 }}>
         <Reveal>
           <Typography variant="h2" sx={{ fontSize: { xs: 24, md: 32 }, color: tokens.ink, mb: 2 }}>
-            ¿Tu proyecto podría ser el próximo caso?
+            {t.introTitle}
           </Typography>
           <Typography variant="body1" sx={{ color: tokens.body, mb: 4 }}>
-            Empiezo siempre por un diagnóstico: dónde se te escapan las ventas o el tiempo, y qué palancas mueven la aguja.
+            {t.introBody}
           </Typography>
           <PrimaryCTA />
         </Reveal>
@@ -128,12 +152,13 @@ function Intro() {
 }
 
 export default function CasosMui() {
+  const locale = useLocale()
   return (
     <Box sx={{ bgcolor: tokens.paper, color: tokens.body, fontFamily: fonts.sans }}>
       <SiteHeader />
-      <Crumbs items={[{ label: "Casos de éxito" }]} />
+      <Crumbs items={[{ label: T[locale].crumb }]} />
       <Hero />
-      {SERVICES.map((s) => <ServiceGroup key={s.key} serviceKey={s} />)}
+      {servicesFor(locale).map((s) => <ServiceGroup key={s.key} serviceKey={s} />)}
       <Intro />
       <DiagnosticoCTA />
       <SiteFooter />

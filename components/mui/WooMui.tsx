@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Link from "next/link"
+import Link from "@/components/LocaleLink"
 import Image from "next/image"
 import { motion, useReducedMotion } from "motion/react"
 import Box from "@mui/material/Box"

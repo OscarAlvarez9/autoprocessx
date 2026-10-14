@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Link from "next/link"
+import Link from "@/components/LocaleLink"
 import { motion, useReducedMotion } from "motion/react"
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
@@ -14,7 +14,7 @@ import AccordionDetails from "@mui/material/AccordionDetails"
 import { tokens, fonts } from "@/lib/mui/theme"
 import { SiteHeader, SiteFooter, DiagnosticoCTA, ServiceHero, Reveal, ArtifactWindow, Crumbs } from "@/components/mui/shared"
 import { BlockGlyph, type GlyphName } from "@/components/mui/landingGlyphs"
-import { GEO_FAQS } from "@/app/posicionamiento-geo/faqs"
+import { GEO_FAQS } from "@/lib/geoFaqs"
 
 const linkSx = { color: tokens.ink, fontWeight: 600, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { textDecorationColor: tokens.petrol } } as const
 

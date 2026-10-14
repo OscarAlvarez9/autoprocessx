@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
+import Link from "@/components/LocaleLink"
 import Image from "next/image"
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"

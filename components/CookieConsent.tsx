@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
+import { localizePath, type Locale } from "@/lib/i18n"
 import Script from "next/script"
 
 const STORAGE_KEY = "apx-cookie-consent"
@@ -10,6 +11,25 @@ const GTM_ID = "GTM-WS2K2D8W"
 const GA_ID = "G-P9MZJ98X97"
 
 type Consent = "granted" | "denied" | null
+
+// El banner vive en RootShell fuera del LocaleProvider, así que el idioma se
+// saca de la URL (/ca/... es catalán) en vez de useLocale().
+const TEXT = {
+    es: {
+        aria: "Consentimiento de cookies",
+        body: "Uso cookies propias y de terceros para analítica. No se activan hasta que las aceptas. Consulta la",
+        link: "política de cookies",
+        reject: "Rechazar",
+        accept: "Aceptar",
+    },
+    ca: {
+        aria: "Consentiment de galetes",
+        body: "Faig servir galetes pròpies i de tercers per a analítica. No s'activen fins que les acceptes. Consulta la",
+        link: "política de galetes",
+        reject: "Rebutja",
+        accept: "Accepta",
+    },
+} as const
 
 /** Event other components can dispatch to reopen the banner (e.g. /cookies page). */
 export const REOPEN_EVENT = "apx:cookie-reopen"
@@ -52,6 +72,9 @@ function PageViewTracker() {
 export default function CookieConsent() {
     // undefined = not yet read from storage (avoids SSR/hydration flash)
     const [consent, setConsent] = useState<Consent | undefined>(undefined)
+    const pathname = usePathname() ?? "/"
+    const locale: Locale = pathname === "/ca" || pathname.startsWith("/ca/") ? "ca" : "es"
+    const t = TEXT[locale]
 
     useEffect(() => {
         const stored = (typeof window !== "undefined"
@@ -101,7 +124,7 @@ export default function CookieConsent() {
             {showBanner && (
                 <div
                     role="dialog"
-                    aria-label="Consentimiento de cookies"
+                    aria-label={t.aria}
                     style={{ fontFamily: sans }}
                     className="fixed inset-x-0 bottom-0 z-[100] p-4 md:p-6"
                 >
@@ -115,14 +138,13 @@ export default function CookieConsent() {
                     >
                         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                             <p className="text-sm leading-relaxed" style={{ color: "#26332F" }}>
-                                Uso cookies propias y de terceros para analítica. No se activan
-                                hasta que las aceptas. Consulta la{" "}
+                                {t.body}{" "}
                                 <Link
-                                    href="/cookies"
+                                    href={localizePath("/cookies", locale)}
                                     className="font-semibold underline underline-offset-4 transition-colors"
                                     style={{ color: "#14201D", textDecorationColor: "rgba(20,32,29,.32)" }}
                                 >
-                                    política de cookies
+                                    {t.link}
                                 </Link>
                                 .
                             </p>
@@ -134,7 +156,7 @@ export default function CookieConsent() {
                                     onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#013E37"; e.currentTarget.style.color = "#013E37" }}
                                     onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(20,32,29,.16)"; e.currentTarget.style.color = "#14201D" }}
                                 >
-                                    Rechazar
+                                    {t.reject}
                                 </button>
                                 <button
                                     onClick={() => decide("granted")}
@@ -143,7 +165,7 @@ export default function CookieConsent() {
                                     onMouseEnter={(e) => { e.currentTarget.style.background = "#012A25" }}
                                     onMouseLeave={(e) => { e.currentTarget.style.background = "#013E37" }}
                                 >
-                                    Aceptar
+                                    {t.accept}
                                 </button>
                             </div>
                         </div>

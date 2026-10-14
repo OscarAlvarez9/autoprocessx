@@ -9,6 +9,7 @@ import Button from "@mui/material/Button"
 import Paper from "@mui/material/Paper"
 import { siShopify, siWoocommerce, siPrestashop, siBigcommerce, siWhatsapp } from "simple-icons"
 import { tokens, fonts } from "@/lib/mui/theme"
+import { useLocale } from "@/components/LocaleProvider"
 
 const WA = "#25D366" // verde WhatsApp, solo dentro del mockup de ese canal
 
@@ -69,10 +70,17 @@ const CATALOG = [
   { id: "diver", n: "Diver 200m", p: "320€", stock: "2 uds", ok: true },
   { id: "minimal", n: "Minimal 38mm", p: "agotado", stock: "0 uds", ok: false },
 ]
-const byId = (id: string) => CATALOG.find((c) => c.id === id)!
+const CATALOG_CA: typeof CATALOG = [
+  { id: "acero", n: "Automàtic Acer", p: "249€", stock: "3 u.", ok: true },
+  { id: "crono", n: "Cronògraf Pell", p: "199€", stock: "7 u.", ok: true },
+  { id: "diver", n: "Diver 200m", p: "320€", stock: "2 u.", ok: true },
+  { id: "minimal", n: "Minimal 38mm", p: "esgotat", stock: "0 u.", ok: false },
+]
+const byId = (id: string, cat: typeof CATALOG = CATALOG) => cat.find((c) => c.id === id)!
 
 function ProductCard({ id }: { id: string }) {
-  const p = byId(id)
+  const ca = useLocale() === "ca"
+  const p = byId(id, ca ? CATALOG_CA : CATALOG)
   return (
     <Stack direction="row" spacing={1.25} sx={{ alignItems: "center", bgcolor: tokens.win, border: `1px solid ${tokens.lineSoft}`, borderRadius: 2, p: 0.75 }}>
       <Box sx={{ width: 36, height: 36, borderRadius: 1.5, bgcolor: "#E7EAE6", display: "grid", placeItems: "center", flexShrink: 0 }}>
@@ -83,7 +91,7 @@ function ProductCard({ id }: { id: string }) {
         <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: tokens.muted }}>{p.p}</Typography>
       </Box>
       <Box sx={{ border: `1px solid ${tokens.red}`, color: tokens.red, borderRadius: 1.5, px: 1, py: 0.35 }}>
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, fontWeight: 700 }}>Añadir</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, fontWeight: 700 }}>{ca ? "Afegir" : "Añadir"}</Typography>
       </Box>
     </Stack>
   )
@@ -124,8 +132,22 @@ const SCRIPT: Step[] = [
   { k: "agent", text: "Te lo dejo listo en el carrito. Envío en 24h, ¿seguimos?" },
 ]
 
+const SCRIPT_CA: Step[] = [
+  { k: "user", text: "Busco un rellotge automàtic per al dia a dia, d'uns 250€." },
+  { k: "typing" },
+  { k: "agent", text: "Automàtics en aquest rang, et van bé aquests dos:", products: ["acero", "crono"] },
+  { k: "user", text: "I per regalar? Alguna cosa amb més presència." },
+  { k: "typing" },
+  { k: "agent", text: "Per regalar llueix molt el Cronògraf Pell, amb capsa prèmium.", products: ["crono"] },
+  { k: "cart", text: "Afegit a la cistella" },
+  { k: "typing" },
+  { k: "agent", text: "Te'l deixo a punt a la cistella. Enviament en 24h, continuem?" },
+]
+
 export function AgentChatSimulator() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
+  const script = ca ? SCRIPT_CA : SCRIPT
   const [i, setI] = useState(reduce ? SCRIPT.length : 1)
   const [paused, setPaused] = useState(false)
   const scRef = useRef<HTMLDivElement>(null)
@@ -140,7 +162,7 @@ export function AgentChatSimulator() {
     if (scRef.current) scRef.current.scrollTop = scRef.current.scrollHeight
   }, [i])
 
-  const shown = reduce ? SCRIPT.filter((s) => s.k !== "typing") : SCRIPT.slice(0, i)
+  const shown = reduce ? script.filter((s) => s.k !== "typing") : script.slice(0, i)
   const cart = shown.filter((s) => s.k === "cart").length
 
   const cartBadge = (
@@ -157,7 +179,7 @@ export function AgentChatSimulator() {
 
   return (
     <Box onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-      <Frame tag="agente · catálogo real" right={cartBadge} minH={0}>
+      <Frame tag={ca ? "agent · catàleg real" : "agente · catálogo real"} right={cartBadge} minH={0}>
         <Box ref={scRef} sx={{ height: { xs: 300, sm: 340 }, overflowY: "auto", p: 2, display: "flex", flexDirection: "column", gap: 1.1 }}>
           {shown.map((s, idx) => {
             if (s.k === "typing") {
@@ -188,7 +210,7 @@ export function AgentChatSimulator() {
         </Box>
         <Box sx={{ borderTop: `1px solid ${tokens.lineSoft}`, px: 2, py: 1 }}>
           <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>
-            {`// anclado al catálogo · si no sé el stock, lo digo`}
+            {ca ? `// ancorat al catàleg · si no sé l'estoc, ho dic` : `// anclado al catálogo · si no sé el stock, lo digo`}
           </Typography>
         </Box>
       </Frame>
@@ -204,9 +226,11 @@ export function GroundingViz() {
   const reduce = useReducedMotion()
   const [mode, setMode] = useState<"in" | "out">("in")
   const usedId = "acero"
+  const ca = useLocale() === "ca"
+  const catalog = ca ? CATALOG_CA : CATALOG
 
   return (
-    <Frame tag="grounding · respuesta anclada al catálogo">
+    <Frame tag={ca ? "grounding · resposta ancorada al catàleg" : "grounding · respuesta anclada al catálogo"}>
       <Box sx={{ p: 2 }}>
         <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
           {(["in", "out"] as const).map((m) => (
@@ -214,7 +238,7 @@ export function GroundingViz() {
               sx={{ px: { xs: 1, sm: 1.5 }, py: 0.5, borderRadius: 999, minWidth: 0, fontFamily: fonts.mono, fontSize: { xs: 10.5, sm: 11.5 }, fontWeight: 600, textTransform: "none",
                 color: mode === m ? "#fff" : tokens.body, bgcolor: mode === m ? tokens.petrol : "transparent", border: `1px solid ${mode === m ? tokens.petrol : tokens.line}`,
                 "&:hover": { bgcolor: mode === m ? tokens.petrol : tokens.surface } }}>
-              {m === "in" ? "En catálogo" : "Fuera de catálogo"}
+              {m === "in" ? (ca ? "Al catàleg" : "En catálogo") : (ca ? "Fora de catàleg" : "Fuera de catálogo")}
             </Button>
           ))}
         </Stack>
@@ -223,14 +247,14 @@ export function GroundingViz() {
           {/* Pregunta */}
           <Bubble side="user">
             <Typography sx={{ fontSize: 13, color: tokens.ink }}>
-              {mode === "in" ? "¿Tenéis un automático de acero sobre 250€?" : "¿Tenéis correas de titanio?"}
+              {mode === "in" ? (ca ? "Teniu algun automàtic d'acer d'uns 250€?" : "¿Tenéis un automático de acero sobre 250€?") : (ca ? "Teniu corretges de titani?" : "¿Tenéis correas de titanio?")}
             </Typography>
           </Bubble>
 
           {/* Catálogo */}
           <Box sx={{ border: `1px solid ${tokens.line}`, borderRadius: 2, overflow: "hidden" }}>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, px: 1.25, py: 0.75, borderBottom: `1px solid ${tokens.lineSoft}`, bgcolor: tokens.surface }}>catálogo · tiempo real</Typography>
-            {CATALOG.map((c) => {
+            <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, px: 1.25, py: 0.75, borderBottom: `1px solid ${tokens.lineSoft}`, bgcolor: tokens.surface }}>{ca ? "catàleg · temps real" : "catálogo · tiempo real"}</Typography>
+            {catalog.map((c) => {
               const on = mode === "in" && c.id === usedId
               return (
                 <Box key={c.id} component={motion.div} animate={on && !reduce ? { backgroundColor: ["rgba(14,122,95,0)", "rgba(14,122,95,0.10)"] } : {}} transition={{ duration: 0.6 }}
@@ -248,20 +272,20 @@ export function GroundingViz() {
           {mode === "in" ? (
             <Bubble side="agent">
               <Typography sx={{ fontSize: 13, color: tokens.ink }}>
-                Sí: el <b>Automático Acero</b> a 249€, quedan 3 uds. Te lo dejo en el carrito.
+                {ca ? <>Sí: l&apos;<b>Automàtic Acer</b> a 249€, en queden 3 u. Te&apos;l deixo a la cistella.</> : <>Sí: el <b>Automático Acero</b> a 249€, quedan 3 uds. Te lo dejo en el carrito.</>}
               </Typography>
-              <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.teal, mt: 0.75 }}>fuente: catálogo · fila usada</Typography>
+              <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.teal, mt: 0.75 }}>{ca ? "font: catàleg · fila utilitzada" : "fuente: catálogo · fila usada"}</Typography>
             </Bubble>
           ) : (
             <Box>
               <Bubble side="agent">
                 <Typography sx={{ fontSize: 13, color: tokens.ink }}>
-                  No tengo ese dato ahora mismo. Te lo confirmo con el equipo antes de prometerte nada.
+                  {ca ? "Ara mateix no tinc aquesta dada. Te la confirmo amb l'equip abans de prometre't res." : "No tengo ese dato ahora mismo. Te lo confirmo con el equipo antes de prometerte nada."}
                 </Typography>
-                <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.muted, mt: 0.75 }}>sin coincidencia en catálogo · no inventa</Typography>
+                <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.muted, mt: 0.75 }}>{ca ? "sense coincidència al catàleg · no s'inventa res" : "sin coincidencia en catálogo · no inventa"}</Typography>
               </Bubble>
               <Box sx={{ mt: 1, display: "inline-flex", alignItems: "center", gap: 0.75, border: `1px solid ${tokens.petrol}`, color: tokens.petrol, borderRadius: 1.5, px: 1, py: 0.5 }}>
-                <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, fontWeight: 700 }}>→ derivar a humano</Typography>
+                <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, fontWeight: 700 }}>{ca ? "→ derivar a una persona" : "→ derivar a humano"}</Typography>
               </Box>
             </Box>
           )}
@@ -280,9 +304,15 @@ const DUAL_MSGS = [
   { side: "agent" as const, text: "Sí, pedido hoy lo tienes el jueves. Quedan 3 uds." },
 ]
 
+const DUAL_MSGS_CA: typeof DUAL_MSGS = [
+  { side: "user", text: "L'Automàtic Acer arriba abans de divendres?" },
+  { side: "agent", text: "Sí, si el demanes avui el tens dijous. En queden 3 u." },
+]
+
 export function DualChannel() {
   const [ch, setCh] = useState<"web" | "wa">("web")
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   const wa = ch === "wa"
   return (
     <Frame
@@ -312,10 +342,10 @@ export function DualChannel() {
               <WatchGlyph size={15} />
             </Box>
             <Typography sx={{ fontSize: 12, fontWeight: 700, color: wa ? "#fff" : tokens.ink }}>marea.es</Typography>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: wa ? "#ffffffcc" : tokens.muted, ml: "auto" }}>{wa ? "en línea" : "asistente · web"}</Typography>
+            <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: wa ? "#ffffffcc" : tokens.muted, ml: "auto" }}>{wa ? (ca ? "en línia" : "en línea") : (ca ? "assistent · web" : "asistente · web")}</Typography>
           </Stack>
           <Stack spacing={1} sx={{ p: 1.5, minHeight: 150 }}>
-            {DUAL_MSGS.map((m, k) => (
+            {(ca ? DUAL_MSGS_CA : DUAL_MSGS).map((m, k) => (
               <Box key={k} sx={{ alignSelf: m.side === "user" ? "flex-end" : "flex-start", maxWidth: "88%" }}>
                 <Box sx={{ px: 1.25, py: 0.85, borderRadius: 2, bgcolor: wa ? (m.side === "user" ? "#DCF8C6" : "#fff") : (m.side === "user" ? "#EEF0EC" : "#F4FAF7"), border: wa ? "none" : `1px solid ${m.side === "user" ? "transparent" : `${tokens.teal}22`}` }}>
                   <Typography sx={{ fontSize: 12.5, color: tokens.ink }}>{m.text}</Typography>
@@ -328,7 +358,7 @@ export function DualChannel() {
             ))}
           </Stack>
         </Box>
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, mt: 1.5 }}>{`// mismo cerebro, dos canales`}</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, mt: 1.5 }}>{ca ? `// mateix cervell, dos canals` : `// mismo cerebro, dos canales`}</Typography>
       </Box>
     </Frame>
   )
@@ -340,6 +370,7 @@ export function DualChannel() {
 
 function Meter({ tag, before, after, lift, fill }: { tag: string; before: string; after: string; lift: string; fill: number }) {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   return (
     <Frame tag={tag}>
       <Box sx={{ p: 3 }}>
@@ -354,17 +385,23 @@ function Meter({ tag, before, after, lift, fill }: { tag: string; before: string
         <Box sx={{ height: 8, borderRadius: 999, bgcolor: tokens.surface, overflow: "hidden" }}>
           <Box component={motion.div} initial={reduce ? false : { width: 0 }} whileInView={{ width: `${fill}%` }} viewport={{ once: true }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} sx={{ height: "100%", bgcolor: tokens.teal }} />
         </Box>
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, mt: 1.5 }}>{`// ilustrativo, no una promesa · dato real en el diagnóstico`}</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, mt: 1.5 }}>{ca ? `// il·lustratiu, no una promesa · dada real al diagnòstic` : `// ilustrativo, no una promesa · dato real en el diagnóstico`}</Typography>
       </Box>
     </Frame>
   )
 }
 
 export function AovLiftMeter() {
-  return <Meter tag="ticket medio (AOV)" before="[[ AOV antes ]]" after="[[ AOV después ]]" lift="+[[ % ]] ticket" fill={74} />
+  const ca = useLocale() === "ca"
+  return ca
+    ? <Meter tag="tiquet mitjà (AOV)" before="[[ AOV abans ]]" after="[[ AOV després ]]" lift="+[[ % ]] tiquet" fill={74} />
+    : <Meter tag="ticket medio (AOV)" before="[[ AOV antes ]]" after="[[ AOV después ]]" lift="+[[ % ]] ticket" fill={74} />
 }
 export function CvrMeter() {
-  return <Meter tag="conversión de la tienda" before="[[ CVR antes ]]" after="[[ CVR después ]]" lift="+[[ % ]] ventas" fill={66} />
+  const ca = useLocale() === "ca"
+  return ca
+    ? <Meter tag="conversió de la botiga" before="[[ CVR abans ]]" after="[[ CVR després ]]" lift="+[[ % ]] vendes" fill={66} />
+    : <Meter tag="conversión de la tienda" before="[[ CVR antes ]]" after="[[ CVR después ]]" lift="+[[ % ]] ventas" fill={66} />
 }
 
 /* ============================================================
@@ -378,12 +415,21 @@ const RECOVERY = [
   { side: "agent" as const, text: "Hecho. Pedido listo, llega mañana.", t: "19:12" },
 ]
 
+const RECOVERY_CA: typeof RECOVERY = [
+  { side: "sys", text: "Cistella abandonada · Automàtic Acer (249€)", t: "18:40" },
+  { side: "agent", text: "He vist que t'has deixat l'Automàtic Acer a la cistella. En queden 3 u., te'l guardo?", t: "19:10" },
+  { side: "user", text: "Sí, si us plau. Enviament en 24h?", t: "19:12" },
+  { side: "agent", text: "Fet. Comanda a punt, arriba demà.", t: "19:12" },
+]
+
 export function CartRecovery() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
+  const recovery = ca ? RECOVERY_CA : RECOVERY
   return (
-    <Frame tag="recuperación de carrito">
+    <Frame tag={ca ? "recuperació de cistelles" : "recuperación de carrito"}>
       <Box sx={{ p: 2, display: "flex", flexDirection: "column", gap: 1.1, minHeight: 260 }}>
-        {RECOVERY.map((m, k) => {
+        {recovery.map((m, k) => {
           if (m.side === "sys") {
             return (
               <Box key={k} component={motion.div} initial={reduce ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: k * 0.5 }}
@@ -404,7 +450,7 @@ export function CartRecovery() {
         })}
         <Box component={motion.div} initial={reduce ? false : { scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ delay: RECOVERY.length * 0.5, type: "spring", stiffness: 300, damping: 16 }}
           sx={{ alignSelf: "center", mt: 0.5, display: "inline-flex", alignItems: "center", gap: 0.75, bgcolor: tokens.teal, color: "#fff", borderRadius: 999, px: 1.5, py: 0.6 }}>
-          <Typography sx={{ fontSize: 11.5, fontWeight: 700 }}>✓ Pedido recuperado</Typography>
+          <Typography sx={{ fontSize: 11.5, fontWeight: 700 }}>{ca ? "✓ Comanda recuperada" : "✓ Pedido recuperado"}</Typography>
         </Box>
       </Box>
     </Frame>
@@ -421,19 +467,27 @@ const MISSED = [
   { text: "¿Hacéis envío exprés?", t: "08:47" },
 ]
 
+const MISSED_CA: typeof MISSED = [
+  { text: "Hola, el Diver 200m el teniu en negre?", t: "23:14" },
+  { text: "Encara el teniu? El voldria per al cap de setmana", t: "01:02" },
+  { text: "Feu enviament exprés?", t: "08:47" },
+]
+
 export function MissedSalesTimeline() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
+  const missed = ca ? MISSED_CA : MISSED
   return (
-    <Frame tag="fuera de horario · sin agente">
+    <Frame tag={ca ? "fora d'horari · sense agent" : "fuera de horario · sin agente"}>
       <Box sx={{ p: 2, display: "flex", flexDirection: "column", gap: 1.1, minHeight: 240 }}>
-        {MISSED.map((m, k) => (
+        {missed.map((m, k) => (
           <Box key={k} component={motion.div} initial={reduce ? false : { opacity: 0, x: -8 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: k * 0.4 }}
             sx={{ alignSelf: "flex-start", maxWidth: "86%" }}>
             <Box sx={{ px: 1.5, py: 1, borderRadius: "14px 14px 14px 4px", bgcolor: tokens.surface, border: `1px solid ${tokens.lineSoft}` }}>
               <Typography sx={{ fontSize: 13, color: tokens.ink }}>{m.text}</Typography>
               <Stack direction="row" spacing={0.75} sx={{ alignItems: "center", mt: 0.35 }}>
                 <Typography sx={{ fontFamily: fonts.mono, fontSize: 8.5, color: tokens.muted }}>{m.t}</Typography>
-                <Typography sx={{ fontFamily: fonts.mono, fontSize: 8.5, color: tokens.brick }}>· visto, sin respuesta</Typography>
+                <Typography sx={{ fontFamily: fonts.mono, fontSize: 8.5, color: tokens.brick }}>{ca ? "· vist, sense resposta" : "· visto, sin respuesta"}</Typography>
               </Stack>
             </Box>
           </Box>
@@ -444,7 +498,7 @@ export function MissedSalesTimeline() {
             <Box sx={{ flex: 1, height: 6, borderRadius: 999, bgcolor: tokens.surface, overflow: "hidden" }}>
               <Box component={motion.div} initial={reduce ? false : { width: "90%" }} whileInView={{ width: "22%" }} viewport={{ once: true }} transition={{ duration: 1.2, delay: MISSED.length * 0.4 }} sx={{ height: "100%", bgcolor: tokens.brick }} />
             </Box>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.brick }}>carrito enfriándose</Typography>
+            <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.brick }}>{ca ? "cistella refredant-se" : "carrito enfriándose"}</Typography>
           </Stack>
         </Box>
       </Box>
@@ -489,10 +543,18 @@ const DEMO_QA = [
   { q: "¿Tenéis correas de titanio?", a: "No tengo ese dato ahora mismo, te lo confirmo. ¿Te derivo con el equipo?", src: "sin coincidencia" },
 ]
 
+const DEMO_QA_CA: typeof DEMO_QA = [
+  { q: "Quin rellotge automàtic em recomanes per 250€?", a: "L'Automàtic Acer a 249€ és el més equilibrat. En queden 3 u.", src: "catàleg" },
+  { q: "Teniu alguna cosa per regalar amb capsa prèmium?", a: "El Cronògraf Pell (199€) ve amb capsa prèmium. Una bona opció per regalar.", src: "catàleg" },
+  { q: "Teniu corretges de titani?", a: "Ara mateix no tinc aquesta dada, te la confirmo. Et passo amb l'equip?", src: "sense coincidència" },
+]
+
 export function AgentDemo() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
+  const demoQa = ca ? DEMO_QA_CA : DEMO_QA
   const [msgs, setMsgs] = useState<{ side: "user" | "agent"; text: string; src?: string }[]>([
-    { side: "agent", text: "Hola, soy el agente de marea.es. Pregúntame por un reloj y te ayudo a elegir." },
+    { side: "agent", text: ca ? "Hola, sóc l'agent de marea.es. Pregunta'm per un rellotge i t'ajudo a triar." : "Hola, soy el agente de marea.es. Pregúntame por un reloj y te ayudo a elegir." },
   ])
   const scRef = useRef<HTMLDivElement>(null)
   useEffect(() => { if (scRef.current) scRef.current.scrollTop = scRef.current.scrollHeight }, [msgs])
@@ -503,27 +565,27 @@ export function AgentDemo() {
   }
 
   return (
-    <Frame tag="demo · pruébalo">
+    <Frame tag={ca ? "demo · prova-ho" : "demo · pruébalo"}>
       <Box ref={scRef} sx={{ height: 260, overflowY: "auto", p: 2, display: "flex", flexDirection: "column", gap: 1.1 }}>
         {msgs.map((m, k) => (
           <Box key={k} component={motion.div} initial={reduce ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} sx={{ display: "flex", flexDirection: "column", alignItems: m.side === "user" ? "flex-end" : "flex-start" }}>
             <Bubble side={m.side}>
               <Typography sx={{ fontSize: 13.5, color: tokens.ink }}>{m.text}</Typography>
-              {m.src && <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: m.src === "catálogo" ? tokens.teal : tokens.muted, mt: 0.5 }}>fuente: {m.src}</Typography>}
+              {m.src && <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: m.src === "catálogo" || m.src === "catàleg" ? tokens.teal : tokens.muted, mt: 0.5 }}>{ca ? "font: " : "fuente: "}{m.src}</Typography>}
             </Bubble>
           </Box>
         ))}
       </Box>
       <Box sx={{ borderTop: `1px solid ${tokens.lineSoft}`, p: 1.5 }}>
         <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: 1 }}>
-          {DEMO_QA.map((qa) => (
+          {demoQa.map((qa) => (
             <Button key={qa.q} onClick={() => ask(qa)} disableRipple sx={{ textTransform: "none", borderRadius: 999, border: `1px solid ${tokens.line}`, color: tokens.body, fontFamily: fonts.sans, fontSize: 12, px: 1.5, py: 0.5, "&:hover": { borderColor: tokens.petrol, bgcolor: "transparent", color: tokens.ink } }}>
               {qa.q}
             </Button>
           ))}
         </Stack>
         <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, mt: 1.5 }}>
-          {`// demo guiada · la versión real se conecta a tu catálogo`}
+          {ca ? `// demo guiada · la versió real es connecta al teu catàleg` : `// demo guiada · la versión real se conecta a tu catálogo`}
         </Typography>
       </Box>
     </Frame>

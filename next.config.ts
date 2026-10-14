@@ -3,6 +3,11 @@ import retired from "./lib/blog-retired.json";
 import { CATEGORY_ALIASES } from "./lib/blogCategories";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // Dos layouts raíz (castellano y catalán): el 404 de URLs que no existen
+    // sale de app/global-not-found.tsx.
+    globalNotFound: true,
+  },
   images: {
     // Estaba en unoptimized: true, y eso anulaba next/image por completo: se
     // servía el PNG original (hasta 3 MB) para pintarlo a 660 px. La home

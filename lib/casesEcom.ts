@@ -5,6 +5,8 @@
 // singular: los casos los firma Óscar, no un "nosotros" de agencia.
 
 import { projects, type Project } from "./projects"
+import type { Locale } from "./i18n"
+import { casesCa, SERVICES_CA, CASE_TITLES_CA, CASE_DESCRIPTIONS_CA } from "./casesCa"
 
 export type EcomCaseMock = "marea" | "farmacia" | "totfinestra"
 export type ArtKey = "store" | "geo" | "roas" | "conversion" | "n8n" | "shopify"
@@ -258,19 +260,36 @@ export function seoCases(): Caso[] {
   return projects.filter((p) => !SEO_SKIP.has(p.slug)).map((p, i) => projectToCaso(p, i))
 }
 
-export function casesByService(key: ServiceKey): Caso[] {
+/**
+ * El caso en el idioma pedido. En castellano se devuelve tal cual; en catalán
+ * se superponen los textos de lib/casesCa.ts (lo que no esté traducido se
+ * queda en castellano).
+ */
+export function localizeCase(caso: Caso, locale: Locale = "es"): Caso {
+  if (locale !== "ca") return caso
+  const t = casesCa[caso.slug]
+  return t ? { ...caso, ...t } : caso
+}
+
+/** SERVICES en el idioma pedido (mismo orden, misma key y href). */
+export function servicesFor(locale: Locale = "es"): typeof SERVICES {
+  if (locale !== "ca") return SERVICES
+  return SERVICES.map((s) => ({ ...s, ...SERVICES_CA[s.key] }))
+}
+
+export function casesByService(key: ServiceKey, locale: Locale = "es"): Caso[] {
   // Los casos de SEO salían solo de lib/projects. Un caso escrito a mano con
   // service "seo" quedaba fuera del listado sin avisar; ahora van los dos,
   // primero los escritos a mano.
-  if (key === "seo") return [...cases.filter((c) => c.service === "seo"), ...seoCases()]
-  return cases.filter((c) => c.service === key)
+  const list = key === "seo" ? [...cases.filter((c) => c.service === "seo"), ...seoCases()] : cases.filter((c) => c.service === key)
+  return locale === "es" ? list : list.map((c) => localizeCase(c, locale))
 }
 
-export function getCase(slug: string): Caso | undefined {
+export function getCase(slug: string, locale: Locale = "es"): Caso | undefined {
   const hand = cases.find((c) => c.slug === slug)
-  if (hand) return hand
+  if (hand) return localizeCase(hand, locale)
   const p = projects.find((pr) => pr.slug === slug && !SEO_SKIP.has(pr.slug))
-  return p ? projectToCaso(p, 0) : undefined
+  return p ? localizeCase(projectToCaso(p, 0), locale) : undefined
 }
 
 export function allCaseSlugs(): string[] {
@@ -303,7 +322,11 @@ export const CASE_TITLES: Record<string, string> = {
 }
 
 /** Title de una ficha: el escrito a mano, y si no, la fórmula anterior. */
-export function caseTitle(caso: Caso): string {
+export function caseTitle(caso: Caso, locale: Locale = "es"): string {
+  if (locale === "ca") {
+    const c = localizeCase(caso, locale)
+    return CASE_TITLES_CA[c.slug] ?? `Cas ${c.client} · ${c.platform} | SEOscar`
+  }
   return CASE_TITLES[caso.slug] ?? `Caso ${caso.client} · ${caso.platform} | SEOscar`
 }
 
@@ -327,7 +350,8 @@ export const CASE_DESCRIPTIONS: Record<string, string> = {
 }
 
 /** Meta description de una ficha: la escrita a mano, y si no, el resumen. */
-export function caseDescription(caso: Caso): string {
+export function caseDescription(caso: Caso, locale: Locale = "es"): string {
+  if (locale === "ca") return CASE_DESCRIPTIONS_CA[caso.slug] ?? localizeCase(caso, locale).summary
   return CASE_DESCRIPTIONS[caso.slug] ?? caso.summary
 }
 
@@ -337,7 +361,8 @@ export function casePhoto(caso: Caso): string {
 }
 
 /** Etiqueta corta para el pie de la card: "relojería · WooCommerce". */
-export function caseVertical(caso: Caso): string {
-  const sector = caso.sector.split("·")[0].trim().toLowerCase()
-  return `${sector} · ${caso.platform}`
+export function caseVertical(caso: Caso, locale: Locale = "es"): string {
+  const c = localizeCase(caso, locale)
+  const sector = c.sector.split(" · ")[0].trim().toLowerCase()
+  return `${sector} · ${c.platform}`
 }

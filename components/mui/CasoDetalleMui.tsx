@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import Link from "@/components/LocaleLink"
 import Image from "next/image"
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
@@ -15,6 +15,49 @@ import { CaseVisualBox } from "@/components/mui/CasosMui"
 import StackChips from "@/components/mui/StackChips"
 import type { Caso } from "@/lib/casesEcom"
 import { getCasoDeep, type CasoDeep } from "@/lib/casesDeep"
+import { useLocale } from "@/components/LocaleProvider"
+
+// Textos fijos de la ficha en los dos idiomas.
+const T = {
+  es: {
+    logo: (c: string) => `Logotipo de ${c}`,
+    enProduccion: "en producción",
+    prueba: "La prueba",
+    pruebaIntro: "Capturas directas de los paneles del cliente. Las cifras de arriba salen de aquí.",
+    ampliar: "Ampliar",
+    ampliarLink: "ampliar",
+    cerrar: "Cerrar",
+    puntoPartida: "El punto de partida",
+    queHice: "Qué hice",
+    medibles: "Resultados medibles",
+    reto: "// el reto",
+    solucion: "// la solución",
+    resultados: "Resultados",
+    datoReal: "[[ dato real ]]",
+    confirma: (c: string) => `// publico la cifra cuando ${c} la confirma, no antes`,
+    masCasos: "Ver más casos",
+    crumb: "Casos de éxito",
+  },
+  ca: {
+    logo: (c: string) => `Logotip de ${c}`,
+    enProduccion: "en producció",
+    prueba: "La prova",
+    pruebaIntro: "Captures directes dels panells del client. Les xifres de dalt surten d'aquí.",
+    ampliar: "Amplia",
+    ampliarLink: "amplia",
+    cerrar: "Tanca",
+    puntoPartida: "El punt de partida",
+    queHice: "Què vaig fer",
+    medibles: "Resultats mesurables",
+    reto: "// el repte",
+    solucion: "// la solució",
+    resultados: "Resultats",
+    datoReal: "[[ dada real ]]",
+    confirma: (c: string) => `// publico la xifra quan ${c} la confirma, no abans`,
+    masCasos: "Veure més casos",
+    crumb: "Casos d'èxit",
+  },
+}
 
 /* ---------------------------------------------------------------- hero ---- */
 
@@ -41,6 +84,7 @@ function BrowserFrame({ src, alt, url, ratio = "16 / 10" }: { src: string; alt: 
 }
 
 function Hero({ c, deep }: { c: Caso; deep?: CasoDeep }) {
+  const t = T[useLocale()]
   return (
     <Box component="section" sx={{ position: "relative", overflow: "hidden", borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Blueprint />
@@ -50,13 +94,13 @@ function Hero({ c, deep }: { c: Caso; deep?: CasoDeep }) {
             <HeroReveal>
               {deep?.logo && (
                 <Box sx={{ mb: 3, display: "inline-flex", bgcolor: tokens.win, border: `1px solid ${tokens.lineSoft}`, borderRadius: 2, px: 2, py: 1.25 }}>
-                  <Image src={deep.logo} alt={`Logotipo de ${c.client}`} width={150} height={40} style={{ height: 34, width: "auto", objectFit: "contain" }} />
+                  <Image src={deep.logo} alt={t.logo(c.client)} width={150} height={40} style={{ height: 34, width: "auto", objectFit: "contain" }} />
                 </Box>
               )}
               <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 44, lg: 52 }, lineHeight: 1.08, color: tokens.ink, mb: 2.5 }}>{c.client}</Typography>
               <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 520, mb: 3.5 }}>{c.summary}</Typography>
               <Stack direction="row" sx={{ flexWrap: "wrap", gap: 1 }}>
-                {[c.sector.split("·")[0].trim(), c.platform].map((t) => (
+                {[c.sector.split(" · ")[0].trim(), c.platform].map((t) => (
                   <Box key={t} sx={{ border: `1px solid ${tokens.line}`, borderRadius: 999, px: 1.5, py: 0.45 }}>
                     <Typography sx={{ fontFamily: fonts.mono, fontSize: 11.5, color: tokens.petrol }}>{t}</Typography>
                   </Box>
@@ -78,9 +122,9 @@ function Hero({ c, deep }: { c: Caso; deep?: CasoDeep }) {
                 </Box>
               </Box>
             ) : deep?.shot ? (
-              <BrowserFrame src={deep.shot} alt={deep.shotCaption ?? `${c.client} en producción`} url={`https://${deep.shotUrl ?? c.client.replace(/^www\./, "")}`} />
+              <BrowserFrame src={deep.shot} alt={deep.shotCaption ?? `${c.client} ${t.enProduccion}`} url={`https://${deep.shotUrl ?? c.client.replace(/^www\./, "")}`} />
             ) : (
-              <ArtifactWindow tag={`${c.client} · en producción`} ratio="4 / 3">
+              <ArtifactWindow tag={`${c.client} · ${t.enProduccion}`} ratio="4 / 3">
                 <CaseVisualBox caso={c} />
               </ArtifactWindow>
             )}
@@ -169,15 +213,16 @@ const zoomBtn = {
 }
 
 function Evidencia({ deep }: { deep: CasoDeep }) {
+  const t = T[useLocale()]
   const [zoom, setZoom] = useState<Zoom | null>(null)
   if (!deep.evidencia?.length) return null
   return (
     <Box component="section" sx={{ py: { xs: 7, md: 11 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Container>
         <Reveal>
-          <Typography variant="h2" sx={{ fontSize: { xs: 24, md: 34 }, color: tokens.ink, mb: 1.5 }}>{deep.evidenciaTitulo ?? "La prueba"}</Typography>
+          <Typography variant="h2" sx={{ fontSize: { xs: 24, md: 34 }, color: tokens.ink, mb: 1.5 }}>{deep.evidenciaTitulo ?? t.prueba}</Typography>
           <Typography variant="body1" sx={{ color: tokens.body, maxWidth: 640, mb: { xs: 4, md: 6 } }}>
-            {deep.evidenciaIntro ?? "Capturas directas de los paneles del cliente. Las cifras de arriba salen de aquí."}
+            {deep.evidenciaIntro ?? t.pruebaIntro}
           </Typography>
         </Reveal>
         <Stack spacing={{ xs: 4, md: 6 }}>
@@ -187,7 +232,7 @@ function Evidencia({ deep }: { deep: CasoDeep }) {
                 <Box
                   component="button"
                   type="button"
-                  aria-label={`Ampliar: ${e.alt}`}
+                  aria-label={`${t.ampliar}: ${e.alt}`}
                   onClick={() => setZoom(e)}
                   sx={{
                     ...zoomBtn,
@@ -217,7 +262,7 @@ function Evidencia({ deep }: { deep: CasoDeep }) {
                     onClick={() => setZoom(e)}
                     sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.petrol, bgcolor: "transparent", border: 0, p: 0, cursor: "zoom-in", whiteSpace: "nowrap", "&:hover": { textDecoration: "underline" } }}
                   >
-                    ampliar
+                    {t.ampliarLink}
                   </Typography>
                 </Stack>
               </Box>
@@ -241,7 +286,7 @@ function Evidencia({ deep }: { deep: CasoDeep }) {
                     <Box
                       component="button"
                       type="button"
-                      aria-label={`Ampliar: ${g.alt}`}
+                      aria-label={`${t.ampliar}: ${g.alt}`}
                       onClick={() => setZoom(g)}
                       sx={{
                         ...zoomBtn,
@@ -284,7 +329,7 @@ function Evidencia({ deep }: { deep: CasoDeep }) {
             <Box
               component="button"
               type="button"
-              aria-label="Cerrar"
+              aria-label={t.cerrar}
               onClick={() => setZoom(null)}
               sx={{ position: "absolute", top: 12, right: 12, width: 36, height: 36, borderRadius: 999, border: `1px solid ${tokens.line}`, bgcolor: tokens.paper, color: tokens.ink, fontSize: 18, lineHeight: 1, cursor: "pointer" }}
             >
@@ -300,11 +345,12 @@ function Evidencia({ deep }: { deep: CasoDeep }) {
 /* ------------------------------------------------------------ relato ------ */
 
 function Contexto({ deep }: { deep: CasoDeep }) {
+  const t = T[useLocale()]
   return (
     <Box component="section" sx={{ py: { xs: 7, md: 11 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Container sx={{ maxWidth: 820 }}>
         <Reveal>
-          <Typography variant="h2" sx={{ fontSize: { xs: 24, md: 34 }, color: tokens.ink, mb: { xs: 3, md: 4 } }}>El punto de partida</Typography>
+          <Typography variant="h2" sx={{ fontSize: { xs: 24, md: 34 }, color: tokens.ink, mb: { xs: 3, md: 4 } }}>{t.puntoPartida}</Typography>
           {deep.contexto.map((p, i) => (
             <Typography
               key={p.slice(0, 24)}
@@ -328,12 +374,13 @@ function Contexto({ deep }: { deep: CasoDeep }) {
 // a ancho completo, con numeración grande y una fila por bloque, en vez de
 // apretada en un grid de dos columnas.
 function QueHice({ deep }: { deep: CasoDeep }) {
+  const t = T[useLocale()]
   return (
     <Box component="section" sx={{ py: { xs: 8, md: 14 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Container>
         <Reveal>
           <Typography variant="h2" sx={{ fontSize: { xs: 32, md: 52 }, lineHeight: 1.05, color: tokens.ink, mb: 2.5, maxWidth: 760 }}>
-            Qué hice
+            {t.queHice}
           </Typography>
           {deep.queHiceIntro && (
             <Typography variant="body1" sx={{ fontSize: { xs: 17, md: 20 }, color: tokens.body, maxWidth: 720, mb: { xs: 5, md: 8 } }}>
@@ -382,13 +429,14 @@ function StackSection({ items }: { items: string[] }) {
 }
 
 function Verificado({ deep }: { deep: CasoDeep }) {
+  const t = T[useLocale()]
   if (!deep.verificado) return null
   const { intro, filas, cierre } = deep.verificado
   return (
     <Box component="section" sx={{ py: { xs: 7, md: 11 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Container>
         <Reveal>
-          <Typography variant="h2" sx={{ fontSize: { xs: 24, md: 34 }, color: tokens.ink, mb: 1.5 }}>Resultados medibles</Typography>
+          <Typography variant="h2" sx={{ fontSize: { xs: 24, md: 34 }, color: tokens.ink, mb: 1.5 }}>{t.medibles}</Typography>
           <Typography variant="body1" sx={{ color: tokens.body, maxWidth: 680, mb: { xs: 4, md: 5 } }}>{intro}</Typography>
         </Reveal>
         <Box>
@@ -560,19 +608,20 @@ function Metodo({ deep }: { deep: CasoDeep }) {
 /* ------------------------------------------- versión corta (resto casos) --- */
 
 function RetoSolucion({ c }: { c: Caso }) {
+  const t = T[useLocale()]
   return (
     <Box component="section" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Container>
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 5, md: 8 } }}>
           <Reveal>
             <Box>
-              <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.petrol, mb: 1.5 }}>{`// el reto`}</Typography>
+              <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.petrol, mb: 1.5 }}>{t.reto}</Typography>
               <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.ink }}>{c.reto}</Typography>
             </Box>
           </Reveal>
           <Reveal delay={0.08}>
             <Box>
-              <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.petrol, mb: 1.5 }}>{`// la solución`}</Typography>
+              <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.petrol, mb: 1.5 }}>{t.solucion}</Typography>
               <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.ink }}>{c.solucion}</Typography>
             </Box>
           </Reveal>
@@ -583,12 +632,13 @@ function RetoSolucion({ c }: { c: Caso }) {
 }
 
 function Detalle({ c }: { c: Caso }) {
+  const t = T[useLocale()]
   return (
     <Box component="section" sx={{ py: { xs: 8, md: 13 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Container>
         <Reveal>
           <Typography variant="h2" sx={{ fontSize: { xs: 30, md: 46 }, lineHeight: 1.06, color: tokens.ink, mb: { xs: 4, md: 7 }, maxWidth: 700 }}>
-            Qué hice
+            {t.queHice}
           </Typography>
         </Reveal>
         <Box sx={{ mb: { xs: 6, md: 9 } }}>
@@ -627,11 +677,11 @@ function Detalle({ c }: { c: Caso }) {
           ))}
         </Box>
         <Reveal>
-          <Typography variant="h2" sx={{ fontSize: { xs: 22, md: 28 }, color: tokens.ink, mb: 3 }}>Resultados</Typography>
+          <Typography variant="h2" sx={{ fontSize: { xs: 22, md: 28 }, color: tokens.ink, mb: 3 }}>{t.resultados}</Typography>
           <Stack spacing={2.5} sx={{ mb: { xs: 5, md: 7 } }}>
             {c.metrics.map((m) => (
               <Box key={m.label}>
-                <Typography sx={{ fontFamily: fonts.serif, fontSize: 38, fontWeight: 600, color: tokens.petrol, lineHeight: 1 }}>{m.value ?? "[[ dato real ]]"}</Typography>
+                <Typography sx={{ fontFamily: fonts.serif, fontSize: 38, fontWeight: 600, color: tokens.petrol, lineHeight: 1 }}>{m.value ?? t.datoReal}</Typography>
                 <Typography variant="body2" sx={{ color: tokens.ink, fontWeight: 600, mt: 0.5 }}>{m.label}</Typography>
                 <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted }}>{m.note}</Typography>
               </Box>
@@ -639,7 +689,7 @@ function Detalle({ c }: { c: Caso }) {
           </Stack>
           {c.metrics.some((m) => !m.value) && (
             <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted }}>
-              {`// publico la cifra cuando ${c.client} la confirma, no antes`}
+              {t.confirma(c.client)}
             </Typography>
           )}
         </Reveal>
@@ -651,7 +701,8 @@ function Detalle({ c }: { c: Caso }) {
 // Cierre del caso. Cada proyecto enlaza al servicio que de verdad demuestra:
 // un caso de automatización no puede terminar vendiendo el pack de ecommerce.
 // Prioridad: CTA propio del caso, y si no, el servicio de su categoría.
-const CTA_POR_SERVICIO: Record<Caso["service"], { title: string; body: string; label: string; href: string }> = {
+type Cta = { title: string; body: string; label: string; href: string }
+const CTA_POR_SERVICIO: Record<Caso["service"], Cta> = {
   crecimiento: {
     title: "Esto es el pack Crecimiento en acción.",
     body: "Más tráfico que compra y más visitas que convierten, sobre tu propia plataforma.",
@@ -680,8 +731,36 @@ const CTA_POR_SERVICIO: Record<Caso["service"], { title: string; body: string; l
   },
 }
 
+const CTA_POR_SERVICIO_CA: Record<Caso["service"], Cta> = {
+  crecimiento: {
+    title: "Això és el pack Creixement en acció.",
+    body: "Més trànsit que compra i més visites que converteixen, sobre la teva pròpia plataforma.",
+    label: "Veure el pack Creixement",
+    href: "/servicios/crecimiento-ecommerce",
+  },
+  seo: {
+    title: "Això és posicionament que porta clients.",
+    body: "Visibilitat a Google i als cercadors d'IA per a la gent que ja busca el que fas.",
+    label: "Veure l'auditoria SEO i GEO",
+    href: "/servicios/auditoria-seo-geo",
+  },
+  automatizacion: {
+    title: "La teva operativa, en sistemes que s'executen sols.",
+    body: "n8n orquestrant la feina repetitiva que avui es menja el dia del teu equip.",
+    label: "Veure automatitzacions",
+    href: "/servicios/automatizaciones",
+  },
+  amedida: {
+    title: "Quan l'stack estàndard no arriba.",
+    body: "Plataformes pròpies construïdes des de zero, de la idea a producció.",
+    label: "Veure aplicacions a mida",
+    href: "/servicios/a-medida",
+  },
+}
+
 function CrossLinks({ c, deep }: { c: Caso; deep?: CasoDeep }) {
-  const base = CTA_POR_SERVICIO[c.service]
+  const locale = useLocale()
+  const base = (locale === "ca" ? CTA_POR_SERVICIO_CA : CTA_POR_SERVICIO)[c.service]
   const href = deep?.cta?.href ?? base.href
   const title = deep?.cta?.title ?? base.title
   const body = deep?.cta?.body ?? base.body
@@ -701,7 +780,7 @@ function CrossLinks({ c, deep }: { c: Caso; deep?: CasoDeep }) {
               {label} <Box component="span" sx={{ color: tokens.petrol, ml: 0.75 }}>↗</Box>
             </Button>
             <Button component={Link} href="/casos-de-exito" sx={{ color: tokens.ink, fontWeight: 700, "&:hover": { bgcolor: "transparent", color: tokens.petrol } }}>
-              Ver más casos
+              {T[locale].masCasos}
             </Button>
           </Stack>
         </Reveal>
@@ -711,11 +790,12 @@ function CrossLinks({ c, deep }: { c: Caso; deep?: CasoDeep }) {
 }
 
 export default function CasoDetalleMui({ caso }: { caso: Caso }) {
-  const deep = getCasoDeep(caso.slug)
+  const locale = useLocale()
+  const deep = getCasoDeep(caso.slug, locale)
   return (
     <Box sx={{ bgcolor: tokens.paper, color: tokens.body, fontFamily: fonts.sans }}>
       <SiteHeader />
-      <Crumbs items={[{ label: "Casos de éxito", href: "/casos-de-exito" }, { label: caso.client }]} />
+      <Crumbs items={[{ label: T[locale].crumb, href: "/casos-de-exito" }, { label: caso.client }]} />
       <Hero c={caso} deep={deep} />
       {deep ? (
         <>

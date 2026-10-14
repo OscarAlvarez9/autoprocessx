@@ -9,6 +9,7 @@ import Button from "@mui/material/Button"
 import Paper from "@mui/material/Paper"
 import { siNodedotjs, siPython, siShopify, siWoocommerce, siGooglesheets, siWhatsapp, siMeta, siGoogle } from "simple-icons"
 import { tokens, fonts } from "@/lib/mui/theme"
+import { useLocale } from "@/components/LocaleProvider"
 
 /* ---------- helpers ---------- */
 function Frame({ tag, right, minH, children }: { tag: string; right?: React.ReactNode; minH?: number; children: React.ReactNode }) {
@@ -26,8 +27,10 @@ function Frame({ tag, right, minH, children }: { tag: string; right?: React.Reac
   )
 }
 
-function LivePill({ label = "en vivo" }: { label?: string }) {
+function LivePill({ label: labelProp }: { label?: string }) {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
+  const label = labelProp ?? (ca ? "en directe" : "en vivo")
   return (
     <Stack direction="row" spacing={0.75} sx={{ alignItems: "center" }}>
       <Box component={motion.span} animate={reduce ? {} : { opacity: [1, 0.35, 1] }} transition={{ duration: 1.4, repeat: Infinity }} sx={{ width: 7, height: 7, borderRadius: 999, bgcolor: tokens.teal }} />
@@ -58,8 +61,28 @@ const LOGLINES = [
   "09:41:04  informe   fila añadida · ok",
 ]
 
+const NODES_CA: typeof NODES = [
+  { label: "Webhook", sub: "comanda", x: 12, y: 22 },
+  { label: "Validar", sub: "codi", x: 40, y: 22 },
+  { label: "ERP", sub: "estoc -1", x: 70, y: 22 },
+  { label: "Estoc", sub: "sync botiga", x: 70, y: 74 },
+  { label: "WhatsApp", sub: "client", x: 40, y: 74 },
+  { label: "Informe", sub: "afegeix fila", x: 12, y: 74 },
+]
+const LOGLINES_CA = [
+  "09:41:02  webhook   comanda #1042",
+  "09:41:02  validar   regles de negoci · ok",
+  "09:41:03  erp       estoc -1 · ref SKU-1042",
+  "09:41:03  botiga    142 SKUs sincronitzats",
+  "09:41:04  whatsapp  confirmació enviada",
+  "09:41:04  informe   fila afegida · ok",
+]
+
 export function FlowRunSimulator() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
+  const nodes = ca ? NODES_CA : NODES
+  const loglines = ca ? LOGLINES_CA : LOGLINES
   const [active, setActive] = useState(reduce ? NODES.length : 0)
   const [paused, setPaused] = useState(false)
 
@@ -71,17 +94,17 @@ export function FlowRunSimulator() {
 
   return (
     <Box onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-      <Frame tag="workflow · n8n + código propio" right={<LivePill label="ejecutando" />}>
+      <Frame tag={ca ? "workflow · n8n + codi propi" : "workflow · n8n + código propio"} right={<LivePill label={ca ? "executant" : "ejecutando"} />}>
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1.7fr 1fr" } }}>
           {/* canvas */}
           <Box sx={{ position: "relative", aspectRatio: "16 / 11", p: { xs: 1.5, sm: 2.5 }, borderRight: { sm: `1px solid ${tokens.lineSoft}` }, borderBottom: { xs: `1px solid ${tokens.lineSoft}`, sm: "none" }, bgcolor: "#FAFBFB" }}>
             <Box component="svg" viewBox="0 0 100 100" preserveAspectRatio="none" sx={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
               {EDGES.map(([a, b], i) => (
-                <line key={i} x1={NODES[a].x} y1={NODES[a].y} x2={NODES[b].x} y2={NODES[b].y}
+                <line key={i} x1={nodes[a].x} y1={nodes[a].y} x2={nodes[b].x} y2={nodes[b].y}
                   stroke={active > i ? tokens.teal : tokens.line} strokeWidth={0.6} />
               ))}
             </Box>
-            {NODES.map((n, i) => {
+            {nodes.map((n, i) => {
               const done = i < active
               const on = i === active && active < NODES.length
               return (
@@ -101,20 +124,20 @@ export function FlowRunSimulator() {
           {/* log */}
           <Box sx={{ bgcolor: "#0F1922", p: 1.5, minHeight: { xs: 120, sm: 150 } }}>
             <Stack spacing={0.4}>
-              {LOGLINES.slice(0, active).map((l, i) => (
+              {loglines.slice(0, active).map((l, i) => (
                 <Box key={i} component={motion.div} initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }}
                   sx={{ fontFamily: fonts.mono, fontSize: { xs: 9, sm: 9.5 }, color: i === active - 1 ? "#C9D0D6" : "#8A97A3", whiteSpace: "pre" }}>
                   {l}
                 </Box>
               ))}
               {active > 0 && active >= NODES.length && (
-                <Typography sx={{ fontFamily: fonts.mono, fontSize: { xs: 9, sm: 9.5 }, color: tokens.teal, mt: 0.5 }}>run completado · 0 errores</Typography>
+                <Typography sx={{ fontFamily: fonts.mono, fontSize: { xs: 9, sm: 9.5 }, color: tokens.teal, mt: 0.5 }}>{ca ? "run completat · 0 errors" : "run completado · 0 errores"}</Typography>
               )}
             </Stack>
           </Box>
         </Box>
         <Box sx={{ borderTop: `1px solid ${tokens.lineSoft}`, px: 2, py: 1 }}>
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>{`// se ejecuta solo, en tu servidor · hecho a mano, no generado`}</Typography>
+          <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>{ca ? `// s'executa sol, al teu servidor · fet a mà, no generat` : `// se ejecuta solo, en tu servidor · hecho a mano, no generado`}</Typography>
         </Box>
       </Frame>
     </Box>
@@ -132,13 +155,21 @@ const MANUAL = [
   { t: "Corregir un descuadre a las 23:00", h: "a mano" },
 ]
 
+const MANUAL_CA: typeof MANUAL = [
+  { t: "Copiar comandes a l'ERP a mà", h: "a mà" },
+  { t: "Quadrar l'estoc entre el web i el magatzem", h: "a mà" },
+  { t: "Muntar l'informe setmanal en Excel", h: "a mà" },
+  { t: "Corregir un desquadrament a les 23:00", h: "a mà" },
+]
+
 export function ManualOpsStrip() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   return (
-    <Frame tag="tareas a mano · cada semana">
+    <Frame tag={ca ? "tasques a mà · cada setmana" : "tareas a mano · cada semana"}>
       <Box sx={{ p: 2 }}>
         <Stack>
-          {MANUAL.map((r, i) => (
+          {(ca ? MANUAL_CA : MANUAL).map((r, i) => (
             <Box key={r.t} component={motion.div} initial={reduce ? false : { opacity: 0, x: -8 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12 }}
               sx={{ display: "flex", alignItems: "center", gap: 1.5, py: 1.5, borderTop: i === 0 ? "none" : `1px solid ${tokens.lineSoft}` }}>
               <Box sx={{ width: 8, height: 8, borderRadius: 999, bgcolor: tokens.brick, flexShrink: 0 }} />
@@ -150,8 +181,8 @@ export function ManualOpsStrip() {
           ))}
         </Stack>
         <Box sx={{ mt: 2, pt: 2, borderTop: `1px dashed ${tokens.line}`, display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted }}>cada semana</Typography>
-          <Typography sx={{ fontFamily: fonts.serif, fontSize: 22, fontWeight: 600, color: tokens.brick }}>horas que no vuelven</Typography>
+          <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted }}>{ca ? "cada setmana" : "cada semana"}</Typography>
+          <Typography sx={{ fontFamily: fonts.serif, fontSize: 22, fontWeight: 600, color: tokens.brick }}>{ca ? "hores que no tornen" : "horas que no vuelven"}</Typography>
         </Box>
       </Box>
     </Frame>
@@ -176,9 +207,24 @@ const SNIPPET = [
   "}",
 ]
 
+const SNIPPET_CA = [
+  "// regla: enviament gratuït només si el marge > 18%",
+  "export function decidirEnviament(comanda) {",
+  "  const cost = comanda.items.reduce(",
+  "    (s, i) => s + i.cost * i.quantitat, 0)",
+  "  const marge = (comanda.total - cost) / comanda.total",
+  "  if (marge < 0.18)",
+  "    return { enviament: 'estandard', gratuit: false }",
+  "  if (comanda.pais !== 'ES')",
+  "    return { enviament: 'internacional', gratuit: false }",
+  "  return { enviament: 'express', gratuit: true }",
+  "}",
+]
+
 export function CodeNodeReveal() {
   const reduce = useReducedMotion()
   const [code, setCode] = useState(true)
+  const ca = useLocale() === "ca"
 
   const Node = ({ label, state }: { label: string; state: "ok" | "block" | "plain" }) => (
     <Box sx={{ px: 1.25, py: 0.75, borderRadius: 1.5, bgcolor: tokens.win, border: `1.5px solid ${state === "ok" ? tokens.teal : state === "block" ? tokens.brick : tokens.line}`, textAlign: "center", minWidth: 78 }}>
@@ -188,10 +234,10 @@ export function CodeNodeReveal() {
 
   return (
     <Frame
-      tag="lógica · código propio en el flujo"
+      tag={ca ? "lògica · codi propi al flux" : "lógica · código propio en el flujo"}
       right={
         <Stack direction="row" spacing={0.5} sx={{ bgcolor: tokens.surface, borderRadius: 999, p: 0.4 }}>
-          {[["solo nodos", false], ["nodos + código", true]].map(([lb, v]) => (
+          {[[ca ? "només nodes" : "solo nodos", false], [ca ? "nodes + codi" : "nodos + código", true]].map(([lb, v]) => (
             <Button key={String(v)} onClick={() => setCode(v as boolean)} disableRipple
               sx={{ minWidth: 0, px: { xs: 1, sm: 1.25 }, py: 0.25, borderRadius: 999, fontFamily: fonts.mono, fontSize: { xs: 9.5, sm: 10.5 }, fontWeight: 600, textTransform: "none", color: code === v ? "#fff" : tokens.muted, bgcolor: code === v ? tokens.petrol : "transparent" }}>
               {lb as string}
@@ -202,17 +248,17 @@ export function CodeNodeReveal() {
     >
       <Box sx={{ p: 2 }}>
         <Stack direction="row" spacing={1.5} sx={{ alignItems: "center", justifyContent: "center", mb: 2, flexWrap: "wrap", gap: 1 }}>
-          <Node label="Pedido" state="plain" />
+          <Node label={ca ? "Comanda" : "Pedido"} state="plain" />
           <Box component="span" sx={{ color: tokens.petrol }}>→</Box>
-          <Node label={code ? "código propio" : "regla compleja"} state={code ? "ok" : "block"} />
+          <Node label={code ? (ca ? "codi propi" : "código propio") : (ca ? "regla complexa" : "regla compleja")} state={code ? "ok" : "block"} />
           <Box component="span" sx={{ color: code ? tokens.teal : tokens.muted }}>→</Box>
-          <Node label={code ? "Envío resuelto" : "bloqueado"} state={code ? "ok" : "block"} />
+          <Node label={code ? (ca ? "Enviament resolt" : "Envío resuelto") : (ca ? "bloquejat" : "bloqueado")} state={code ? "ok" : "block"} />
         </Stack>
 
         {code ? (
           <Box key="code" component={motion.div} initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
             sx={{ bgcolor: tokens.ink, borderRadius: 2, p: 2, overflow: "auto" }}>
-            {SNIPPET.map((ln, i) => (
+            {(ca ? SNIPPET_CA : SNIPPET).map((ln, i) => (
               <Typography key={i} sx={{ fontFamily: fonts.mono, fontSize: 11.5, lineHeight: 1.7, whiteSpace: "pre", color: ln.trim().startsWith("//") ? "#6E8B84" : "#CFD6DC" }}>
                 <Box component="span" sx={{ color: "#3E4A54", mr: 1.5, userSelect: "none" }}>{String(i + 1).padStart(2, "0")}</Box>{ln}
               </Typography>
@@ -221,13 +267,13 @@ export function CodeNodeReveal() {
         ) : (
           <Box key="plain" component={motion.div} initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }}
             sx={{ bgcolor: tokens.surface, borderRadius: 2, p: 3, textAlign: "center", border: `1px solid ${tokens.line}` }}>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.brick, mb: 1 }}>no soportado</Typography>
+            <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.brick, mb: 1 }}>{ca ? "no suportat" : "no soportado"}</Typography>
             <Typography variant="body2" sx={{ color: tokens.body, maxWidth: 420, mx: "auto" }}>
-              Arrastrar nodos no resuelve una regla de negocio real (márgenes, condiciones de envío, casos límite). Sin código, el flujo se queda a medias.
+              {ca ? "Arrossegar nodes no resol una regla de negoci real (marges, condicions d'enviament, casos límit). Sense codi, el flux es queda a mitges." : "Arrastrar nodos no resuelve una regla de negocio real (márgenes, condiciones de envío, casos límite). Sin código, el flujo se queda a medias."}
             </Typography>
           </Box>
         )}
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, mt: 1.5 }}>{`// la mayoría de agencias no escriben una línea · aquí la lógica va en Node/Python`}</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, mt: 1.5 }}>{ca ? `// la majoria d'agències no escriuen ni una línia · aquí la lògica va en Node/Python` : `// la mayoría de agencias no escriben una línea · aquí la lógica va en Node/Python`}</Typography>
       </Box>
     </Frame>
   )
@@ -254,13 +300,14 @@ export function StockSyncDiff() {
   }, [reduce])
   const changedRow = tick % SKUS.length
   const newVal = 142 - (tick % 5) - 1
+  const ca = useLocale() === "ca"
 
   return (
-    <Frame tag="sync · ERP ↔ tienda" right={<Box sx={{ bgcolor: `${tokens.teal}25`, borderRadius: 999, px: 1.25, py: 0.35 }}><Typography sx={{ fontFamily: fonts.mono, fontSize: 11.5, fontWeight: 700, color: tokens.teal }}>0 descuadres</Typography></Box>}>
+    <Frame tag={ca ? "sync · ERP ↔ botiga" : "sync · ERP ↔ tienda"} right={<Box sx={{ bgcolor: `${tokens.teal}25`, borderRadius: 999, px: 1.25, py: 0.35 }}><Typography sx={{ fontFamily: fonts.mono, fontSize: 11.5, fontWeight: 700, color: tokens.teal }}>{ca ? "0 desquadraments" : "0 descuadres"}</Typography></Box>}>
       <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
         {(["ERP", "Tienda"] as const).map((side) => (
           <Box key={side} sx={{ p: 1.5, borderRight: side === "ERP" ? `1px solid ${tokens.lineSoft}` : "none" }}>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, mb: 1 }}>{side}</Typography>
+            <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, mb: 1 }}>{side === "Tienda" && ca ? "Botiga" : side}</Typography>
             {SKUS.map((r, i) => {
               const hot = !reduce && i === changedRow
               const val = i === changedRow ? newVal : r.erp
@@ -286,11 +333,12 @@ export function StockSyncDiff() {
 
 export function FeedBuilder() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   return (
-    <Frame tag="feeds · catálogo → destinos">
+    <Frame tag={ca ? "feeds · catàleg → destinacions" : "feeds · catálogo → destinos"}>
       <Box sx={{ p: 2, display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", gap: { xs: 1, sm: 1.5 }, minHeight: 150 }}>
         <Stack spacing={0.75}>
-          {["Producto A", "Producto B", "Producto C"].map((p, i) => (
+          {(ca ? ["Producte A", "Producte B", "Producte C"] : ["Producto A", "Producto B", "Producto C"]).map((p, i) => (
             <Box key={p} component={motion.div} initial={reduce ? false : { opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }}
               sx={{ border: `1px solid ${tokens.lineSoft}`, borderRadius: 1, px: 1, py: 0.6 }}>
               <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: tokens.body }}>{p}</Typography>
@@ -300,7 +348,7 @@ export function FeedBuilder() {
         <Box sx={{ textAlign: "center" }}>
           <Box sx={{ border: `1.5px solid ${tokens.petrol}`, borderRadius: 1.5, px: 1, py: 0.75 }}>
             <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, color: tokens.petrol, whiteSpace: "nowrap" }}>transformar</Typography>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 8.5, color: tokens.muted }}>código</Typography>
+            <Typography sx={{ fontFamily: fonts.mono, fontSize: 8.5, color: tokens.muted }}>{ca ? "codi" : "código"}</Typography>
           </Box>
         </Box>
         <Stack spacing={1} sx={{ alignItems: "flex-start" }}>
@@ -308,7 +356,7 @@ export function FeedBuilder() {
             <Box key={i} component={motion.div} initial={reduce ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.5 + i * 0.12 }}
               sx={{ display: "flex", alignItems: "center", gap: 0.75 }}>
               <Box component="svg" viewBox="0 0 24 24" sx={{ width: 15, height: 15 }}><path d={ic.path} fill={tokens.muted} /></Box>
-              <Typography sx={{ fontFamily: fonts.mono, fontSize: { xs: 8.5, sm: 9.5 }, color: tokens.muted }}>{i === 0 ? "Google Shopping" : i === 1 ? "Shopify" : "Catálogo WA"}</Typography>
+              <Typography sx={{ fontFamily: fonts.mono, fontSize: { xs: 8.5, sm: 9.5 }, color: tokens.muted }}>{i === 0 ? "Google Shopping" : i === 1 ? "Shopify" : ca ? "Catàleg WA" : "Catálogo WA"}</Typography>
             </Box>
           ))}
         </Stack>
@@ -323,12 +371,15 @@ export function FeedBuilder() {
 
 const POST = ["Pedido confirmado", "Confirmación por WhatsApp", "Seguimiento del envío", "Reseña a los 7 días"]
 
+const POST_CA = ["Comanda confirmada", "Confirmació per WhatsApp", "Seguiment de l'enviament", "Ressenya als 7 dies"]
+
 export function PostPurchaseFlow() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   return (
-    <Frame tag="post-compra · secuencia">
+    <Frame tag={ca ? "postcompra · seqüència" : "post-compra · secuencia"}>
       <Box sx={{ p: 2, minHeight: 150 }}>
-        {POST.map((s, i) => (
+        {(ca ? POST_CA : POST).map((s, i) => (
           <Stack key={s} direction="row" spacing={1.5} component={motion.div} initial={reduce ? false : { opacity: 0, y: 6 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.25 }}
             sx={{ alignItems: "center", py: 0.9 }}>
             <Box sx={{ width: 20, height: 20, borderRadius: 999, bgcolor: `${tokens.teal}18`, display: "grid", placeItems: "center", flexShrink: 0 }}>
@@ -348,15 +399,16 @@ export function PostPurchaseFlow() {
 
 export function ReportSnippet() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   const pts = [12, 18, 15, 22, 19, 26, 24]
   const d = pts.map((p, i) => `${(i / (pts.length - 1)) * 100},${30 - p}`).join(" ")
   return (
-    <Frame tag="reporting · llega solo">
+    <Frame tag={ca ? "reporting · arriba sol" : "reporting · llega solo"}>
       <Box sx={{ p: 2, minHeight: 150 }}>
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: tokens.petrol, mb: 1 }}>{`// informe semanal · ventas y stock`}</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: tokens.petrol, mb: 1 }}>{ca ? `// informe setmanal · vendes i estoc` : `// informe semanal · ventas y stock`}</Typography>
         <Stack spacing={0.6} sx={{ mb: 2 }}>
           {/* Qué trae el informe, sin cifras: unos números de ejemplo pasarían por resultados. */}
-          {["Pedidos procesados", "SKUs sin stock", "Carritos recuperados"].map((l) => (
+          {(ca ? ["Comandes processades", "SKUs sense estoc", "Cistelles recuperades"] : ["Pedidos procesados", "SKUs sin stock", "Carritos recuperados"]).map((l) => (
             <Typography key={l} sx={{ fontSize: 12.5, color: tokens.body }}>{l}</Typography>
           ))}
         </Stack>
@@ -381,11 +433,21 @@ const RUNLOG = [
   { t: "09:41:05", m: "ERROR · timeout ERP", st: "err" },
   { t: "09:41:05", m: "retry 1/3", st: "warn" },
   { t: "09:41:07", m: "ERP · stock sincronizado", st: "ok" },
-  { t: "09:41:07", m: "alerta enviada a [[ canal ]]", st: "info" },
+  { t: "09:41:07", m: "alerta enviada al equipo", st: "info" },
+]
+
+const RUNLOG_CA: typeof RUNLOG = [
+  { t: "09:41:02", m: "webhook · comanda #1042", st: "ok" },
+  { t: "09:41:03", m: "ERP · sincronitzant estoc", st: "ok" },
+  { t: "09:41:05", m: "ERROR · timeout ERP", st: "err" },
+  { t: "09:41:05", m: "retry 1/3", st: "warn" },
+  { t: "09:41:07", m: "ERP · estoc sincronitzat", st: "ok" },
+  { t: "09:41:07", m: "alerta enviada a l'equip", st: "info" },
 ]
 
 export function RunLogConsole() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   const [n, setN] = useState(reduce ? RUNLOG.length : 0)
   useEffect(() => {
     if (reduce) return
@@ -394,10 +456,10 @@ export function RunLogConsole() {
   }, [reduce])
   const col = (st: string) => (st === "ok" ? tokens.teal : st === "err" ? tokens.brick : st === "warn" ? tokens.bronze : "#8A97A3")
   return (
-    <Frame tag="ejecución · monitorización" right={<LivePill label="reintentos + alertas" />}>
+    <Frame tag={ca ? "execució · monitoratge" : "ejecución · monitorización"} right={<LivePill label={ca ? "reintents + alertes" : "reintentos + alertas"} />}>
       <Box sx={{ p: 2, bgcolor: "#0F1922", minHeight: 210 }}>
         <Stack spacing={0.4}>
-          {RUNLOG.slice(0, n).map((l, i) => (
+          {(ca ? RUNLOG_CA : RUNLOG).slice(0, n).map((l, i) => (
             <Box key={i} component={motion.div} initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }}
               sx={{ display: "flex", gap: 1.5, fontFamily: fonts.mono, fontSize: 11.5 }}>
               <Box component="span" sx={{ color: "#5C6773" }}>{l.t}</Box>
@@ -423,8 +485,18 @@ const BULK = [
   { n: "Deportivo GMT", stock: "9 uds" },
 ]
 
+const BULK_CA: typeof BULK = [
+  { n: "Automàtic Acer", stock: "3 u." },
+  { n: "Cronògraf Pell", stock: "7 u." },
+  { n: "Diver 200m", stock: "2 u." },
+  { n: "Minimal 38mm", stock: "12 u." },
+  { n: "Clàssic Or 40mm", stock: "5 u." },
+  { n: "Esportiu GMT", stock: "9 u." },
+]
+
 export function BulkProductSim() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   const [i, setI] = useState(reduce ? BULK.length : 0)
   useEffect(() => {
     if (reduce) return
@@ -433,28 +505,28 @@ export function BulkProductSim() {
   }, [reduce])
   const pct = Math.round((i / BULK.length) * 100)
   return (
-    <Frame tag="marea.es · enriquecido masivo" right={<LivePill label={`${i}/${BULK.length}`} />}>
+    <Frame tag={ca ? "marea.es · enriquiment massiu" : "marea.es · enriquecido masivo"} right={<LivePill label={`${i}/${BULK.length}`} />}>
       <Box sx={{ p: 2 }}>
         <Box sx={{ height: 8, borderRadius: 999, bgcolor: tokens.surface, overflow: "hidden", mb: 2 }}>
           <Box component={motion.div} animate={{ width: `${pct}%` }} transition={{ duration: 0.5 }} sx={{ height: "100%", bgcolor: tokens.teal }} />
         </Box>
         <Box sx={{ display: "grid", gridTemplateColumns: "1.5fr 0.7fr 1fr", px: 1, pb: 0.75, borderBottom: `1px solid ${tokens.lineSoft}` }}>
-          {["producto", "stock", "descripción"].map((h) => <Typography key={h} sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>{h}</Typography>)}
+          {(ca ? ["producte", "estoc", "descripció"] : ["producto", "stock", "descripción"]).map((h) => <Typography key={h} sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>{h}</Typography>)}
         </Box>
-        {BULK.map((r, k) => {
+        {(ca ? BULK_CA : BULK).map((r, k) => {
           const done = k < i
           const now = k === i
           return (
             <Box key={r.n} sx={{ display: "grid", gridTemplateColumns: "1.5fr 0.7fr 1fr", alignItems: "center", px: 1, py: 0.9, borderBottom: `1px solid ${tokens.lineSoft}` }}>
               <Typography sx={{ fontSize: 12.5, color: done ? tokens.ink : tokens.muted }}>{r.n}</Typography>
               <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: done ? tokens.teal : tokens.muted }}>{done ? r.stock : "·"}</Typography>
-              <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: done ? tokens.teal : now ? tokens.bronze : tokens.muted }}>{done ? "✓ generada" : now ? "generando…" : "en cola"}</Typography>
+              <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: done ? tokens.teal : now ? tokens.bronze : tokens.muted }}>{done ? "✓ generada" : now ? (ca ? "generant…" : "generando…") : (ca ? "a la cua" : "en cola")}</Typography>
             </Box>
           )
         })}
       </Box>
       <Box sx={{ borderTop: `1px solid ${tokens.lineSoft}`, px: 2, py: 1 }}>
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>{`// inyección de stock + descripciones IA, todo el catálogo en lote`}</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>{ca ? `// injecció d'estoc + descripcions IA, tot el catàleg en lot` : `// inyección de stock + descripciones IA, todo el catálogo en lote`}</Typography>
       </Box>
     </Frame>
   )
@@ -478,13 +550,14 @@ const RAIL = [
 const N8N_PINK = "#EA4B71" // color oficial de n8n
 
 export function AutomationRail() {
+  const ca = useLocale() === "ca"
   return (
     <Stack direction="row" spacing={{ xs: 2.5, md: 3.5 }} sx={{ alignItems: "center", justifyContent: { xs: "flex-start", md: "center" }, flexWrap: "wrap", rowGap: 2 }}>
       <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
         <Box sx={{ px: 0.75, py: 0.15, borderRadius: 1, border: `1px solid ${N8N_PINK}55` }}>
           <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, color: N8N_PINK }}>n8n</Typography>
         </Box>
-        <Typography sx={{ fontSize: 13, fontWeight: 600, color: tokens.ink }}>orquestación</Typography>
+        <Typography sx={{ fontSize: 13, fontWeight: 600, color: tokens.ink }}>{ca ? "orquestració" : "orquestación"}</Typography>
       </Stack>
       {RAIL.map((b) => (
         <Stack key={b.label} direction="row" spacing={1} sx={{ alignItems: "center" }}>

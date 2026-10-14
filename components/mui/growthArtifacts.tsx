@@ -7,6 +7,7 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import Paper from "@mui/material/Paper"
 import { tokens, fonts } from "@/lib/mui/theme"
+import { useLocale } from "@/components/LocaleProvider"
 
 /* ---------- helpers ---------- */
 function Frame({ tag, right, minH, children }: { tag: string; right?: React.ReactNode; minH?: number; children: React.ReactNode }) {
@@ -34,10 +35,17 @@ const SERP_OTHERS = [
   "blog-agregador.es",
   "directorio-tiendas.com",
 ]
+const SERP_OTHERS_CA = [
+  "competidor-gran.com",
+  "marketplace-generic.com",
+  "blog-agregador.cat",
+  "directori-botigues.com",
+]
 const CLIMB_STEPS = [4, 3, 1, 0] // posición (índice) de tu tienda en cada paso
 
 export function RankClimb() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   const [step, setStep] = useState(reduce ? CLIMB_STEPS.length - 1 : 0)
 
   useEffect(() => {
@@ -50,19 +58,19 @@ export function RankClimb() {
   const rows: { label: string; me: boolean }[] = []
   let o = 0
   for (let i = 0; i < 5; i++) {
-    if (i === mine) rows.push({ label: "tu-tienda.com", me: true })
-    else rows.push({ label: SERP_OTHERS[o++], me: false })
+    if (i === mine) rows.push({ label: ca ? "la-teva-botiga.com" : "tu-tienda.com", me: true })
+    else rows.push({ label: (ca ? SERP_OTHERS_CA : SERP_OTHERS)[o++], me: false })
   }
 
   return (
-    <Frame tag="serp · tu ficha subiendo" right={
+    <Frame tag={ca ? "serp · la teva fitxa pujant" : "serp · tu ficha subiendo"} right={
       <Box sx={{ bgcolor: `${tokens.teal}25`, borderRadius: 999, px: 1.25, py: 0.35 }}>
         <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, color: tokens.teal }}>pos. {mine + 1}</Typography>
       </Box>
     }>
       <Box sx={{ p: 2 }}>
         <Box sx={{ border: `1px solid ${tokens.lineSoft}`, borderRadius: 1.5, px: 1.25, py: 0.75, mb: 1.5, bgcolor: "#FAFBFB" }}>
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted }}>🔍 comprar reloj automático</Typography>
+          <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted }}>{ca ? "🔍 comprar rellotge automàtic" : "🔍 comprar reloj automático"}</Typography>
         </Box>
         <Stack spacing={0.75}>
           {rows.map((r, i) => (
@@ -82,11 +90,11 @@ export function RankClimb() {
                 <Typography sx={{ fontSize: { xs: 11, sm: 12 }, fontWeight: r.me ? 700 : 500, color: r.me ? tokens.ink : tokens.muted, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.label}</Typography>
                 <Box sx={{ height: 4, mt: 0.5, borderRadius: 999, width: r.me ? "72%" : "56%", bgcolor: r.me ? `${tokens.teal}33` : tokens.surface }} />
               </Box>
-              {r.me && <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.teal, flexShrink: 0, display: { xs: "none", sm: "inline" } }}>↑ tu ficha</Typography>}
+              {r.me && <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.teal, flexShrink: 0, display: { xs: "none", sm: "inline" } }}>{ca ? "↑ la teva fitxa" : "↑ tu ficha"}</Typography>}
             </Box>
           ))}
         </Stack>
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, mt: 1.5 }}>{`// SEO de producto + GEO · posiciones ilustrativas, el dato real sale del diagnóstico`}</Typography>
+        <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, mt: 1.5 }}>{ca ? `// SEO de producte + GEO · posicions il·lustratives, la dada real surt del diagnòstic` : `// SEO de producto + GEO · posiciones ilustrativas, el dato real sale del diagnóstico`}</Typography>
       </Box>
     </Frame>
   )
@@ -104,8 +112,11 @@ const STAGES = [
   { label: "Compra", wBefore: 8, wAfter: 26 },
 ]
 
+const STAGE_LABELS_CA = ["Visites", "Fitxa de producte", "Cistella", "Checkout", "Compra"]
+
 export function FunnelLeakFix() {
   const reduce = useReducedMotion()
+  const ca = useLocale() === "ca"
   const [fixed, setFixed] = useState(reduce)
 
   useEffect(() => {
@@ -115,10 +126,10 @@ export function FunnelLeakFix() {
   }, [reduce])
 
   return (
-    <Frame tag="funnel · antes ↔ después del CRO" right={
+    <Frame tag={ca ? "funnel · abans ↔ després del CRO" : "funnel · antes ↔ después del CRO"} right={
       <Box sx={{ bgcolor: fixed ? `${tokens.teal}25` : `${tokens.brick}22`, borderRadius: 999, px: 1.25, py: 0.35 }}>
         <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, color: fixed ? tokens.teal : tokens.brick }}>
-          {fixed ? "fuga sellada" : "fuga detectada"}
+          {fixed ? (ca ? "fuita segellada" : "fuga sellada") : (ca ? "fuita detectada" : "fuga detectada")}
         </Typography>
       </Box>
     }>
@@ -130,8 +141,8 @@ export function FunnelLeakFix() {
             return (
               <Box key={s.label}>
                 <Stack direction="row" sx={{ justifyContent: "space-between", mb: 0.4 }}>
-                  <Typography sx={{ fontSize: 11.5, fontWeight: 600, color: tokens.ink }}>{s.label}</Typography>
-                  {leak && <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, color: tokens.brick }}>fuga</Typography>}
+                  <Typography sx={{ fontSize: 11.5, fontWeight: 600, color: tokens.ink }}>{ca ? STAGE_LABELS_CA[i] : s.label}</Typography>
+                  {leak && <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, color: tokens.brick }}>{ca ? "fuita" : "fuga"}</Typography>}
                 </Stack>
                 <Box sx={{ height: 12, borderRadius: 999, bgcolor: tokens.surface, overflow: "hidden" }}>
                   <Box
@@ -146,7 +157,7 @@ export function FunnelLeakFix() {
           })}
         </Stack>
         <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted, mt: 2 }}>
-          {`// fichas, carrito y checkout sin fricción · proporciones ilustrativas, no una promesa`}
+          {ca ? `// fitxes, cistella i checkout sense fricció · proporcions il·lustratives, no una promesa` : `// fichas, carrito y checkout sin fricción · proporciones ilustrativas, no una promesa`}
         </Typography>
       </Box>
     </Frame>

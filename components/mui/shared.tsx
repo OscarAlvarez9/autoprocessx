@@ -1,7 +1,11 @@
 "use client"
 
 import { useRef, useState } from "react"
-import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useLocale } from "@/components/LocaleProvider"
+import { hasCatalan, localizePath, stripLocale, type Locale } from "@/lib/i18n"
+import Link from "@/components/LocaleLink"
+import NextLink from "next/link"
 import Image from "next/image"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import emailjs from "@emailjs/browser"
@@ -22,6 +26,168 @@ import ListItemButton from "@mui/material/ListItemButton"
 import ListItemText from "@mui/material/ListItemText"
 import Divider from "@mui/material/Divider"
 import { tokens, fonts } from "@/lib/mui/theme"
+
+/* ---------- textos de las partes comunes, en castellano y catalán ---------- */
+
+const T = {
+  es: {
+    home: "Inicio", crumbsAria: "Migas de pan", logoAria: "SEOscar · inicio",
+    cta: "Reserva tu diagnóstico", services: "Servicios", servicesMobile: "// servicios",
+    navAria: "Navegación principal", openMenu: "Abrir menú de navegación", closeMenu: "Cerrar menú de navegación",
+    packs: [
+      { label: "Crecimiento ecommerce", href: "/servicios/crecimiento-ecommerce", tag: "el pack que lo une todo" },
+      { label: "Posicionamiento GEO", href: "/posicionamiento-geo", tag: "que ChatGPT y Google AI te citen" },
+      { label: "Agente de ventas IA", href: "/servicios/agente-ventas-ia", tag: "anclado a tu catálogo, también suelto" },
+      { label: "Automatización", href: "/servicios/automatizaciones", tag: "n8n y código propio, también suelta" },
+      { label: "Auditoría SEO/GEO", href: "/servicios/auditoria-seo-geo", tag: "con fugas de conversión, para empezar" },
+    ],
+    nav: [
+      { label: "Casos", href: "/casos-de-exito" },
+      { label: "Método", href: "/metodo" },
+      { label: "Blog", href: "/blog" },
+      { label: "Quién hay detrás", href: "/sobre-nosotros" },
+    ],
+    frenos: [
+      { v: "Entra tráfico pero no compra", d: "conversión" },
+      { v: "Llega poca gente a la tienda", d: "tráfico y visibilidad" },
+      { v: "Tareas manuales que me comen el día", d: "operativa" },
+      { v: "El ticket medio se queda corto", d: "ingreso por pedido" },
+      { v: "Aún no lo tengo claro", d: "lo vemos juntos" },
+    ],
+    facturacion: ["Menos de 10k€/mes", "10-50k€/mes", "50-200k€/mes", "Más de 200k€/mes"],
+    questions: ["¿Qué es lo que más te frena hoy?", "¿Cuánto factura tu tienda al mes, más o menos?", "¿Cuál es tu tienda?", "¿Dónde te enviamos el diagnóstico?"],
+    doneTag: "diagnóstico reservado", doneTitle: "Recibido. Te respondo yo, Óscar.",
+    doneBody: "En 24-48 h. Miro tu tienda antes de escribirte, no es una respuesta automática.",
+    step: (n: number, t: number) => `Paso ${n} de ${t}`, back: "← Atrás",
+    webPlaceholder: "mitienda.com", next: "Continuar", webHelp: "Pega la URL o el nombre. Miro la tienda antes de la llamada.",
+    emailPlaceholder: "tu@email.com", emailError: "Revisa el email, algo no cuadra.", sending: "Enviando…",
+    emailHelp: "Respuesta en 24-48 h, sin compromiso. Sin spam, solo tu diagnóstico.",
+    ctaTitle: "Hagamos que tu tienda facture más.",
+    ctaBody: "Cuatro respuestas rápidas y te digo dónde se te escapan las ventas, con un plan claro de tráfico, conversión y automatización. Sin rellenar formularios eternos y sin promesas de precio por email.",
+    footServices: [
+      ["Crecimiento ecommerce", "/servicios/crecimiento-ecommerce"],
+      ["Agente de ventas IA", "/servicios/agente-ventas-ia"],
+      ["Automatización", "/servicios/automatizaciones"],
+      ["Auditoría SEO/GEO", "/servicios/auditoria-seo-geo"],
+      ["Posicionamiento GEO", "/posicionamiento-geo"],
+      ["Plataformas internas a medida", "/servicios/a-medida"],
+    ] as [string, string][],
+    footCompany: [
+      ["Agencia Shopify", "/agencia-shopify"],
+      ["Agencia WooCommerce", "/agencia-woocommerce"],
+      ["Agencia Magento", "/agencia-magento"],
+      ["SEO local en Catalunya", "/seo-catalunya"],
+      ["SEO en Barcelona", "/consultor-seo-barcelona"],
+      ["SEO en el Maresme", "/agencia-seo-maresme"],
+      ["SEO en el Vallès Oriental", "/consultor-seo-valles-oriental"],
+      ["Método", "/metodo"],
+      ["Casos de éxito", "/casos-de-exito"],
+      ["Blog", "/blog"],
+      ["Quién hay detrás", "/sobre-nosotros"],
+    ] as [string, string][],
+    footLegal: [["Aviso legal", "/aviso-legal"], ["Privacidad", "/privacidad"], ["Cookies", "/cookies"]] as [string, string][],
+    footTagline: "Consultor SEO para ecommerce y negocios locales. Hago que tu tienda venda más sin migrar de plataforma.",
+    footCtaTitle: "¿Dónde estás dejando ventas?",
+    footCtaBody: "Diagnóstico gratis de tu tienda, con datos reales y respuesta en 24 a 48h.",
+    footServicesTitle: "Servicios", footCompanyTitle: "Plataformas y empresa",
+    madeByHand: "Hecho a mano, no generado.",
+    langSwitch: "Versió en català", langLabel: "CA",
+  },
+  ca: {
+    home: "Inici", crumbsAria: "Fil d'Ariadna", logoAria: "SEOscar · inici",
+    cta: "Reserva el teu diagnòstic", services: "Serveis", servicesMobile: "// serveis",
+    navAria: "Navegació principal", openMenu: "Obre el menú de navegació", closeMenu: "Tanca el menú de navegació",
+    packs: [
+      { label: "Creixement ecommerce", href: "/servicios/crecimiento-ecommerce", tag: "el pack que ho uneix tot" },
+      { label: "Posicionament GEO", href: "/posicionamiento-geo", tag: "que ChatGPT i Google AI et citin" },
+      { label: "Agent de vendes IA", href: "/servicios/agente-ventas-ia", tag: "ancorat al teu catàleg, també per separat" },
+      { label: "Automatització", href: "/servicios/automatizaciones", tag: "n8n i codi propi, també per separat" },
+      { label: "Auditoria SEO/GEO", href: "/servicios/auditoria-seo-geo", tag: "amb fuites de conversió, per començar" },
+    ],
+    nav: [
+      { label: "Casos", href: "/casos-de-exito" },
+      { label: "Mètode", href: "/metodo" },
+      { label: "Blog", href: "/blog" },
+      { label: "Qui hi ha darrere", href: "/sobre-nosotros" },
+    ],
+    frenos: [
+      { v: "Entra trànsit però no compra", d: "conversió" },
+      { v: "Arriba poca gent a la botiga", d: "trànsit i visibilitat" },
+      { v: "Tasques manuals que em mengen el dia", d: "operativa" },
+      { v: "El tiquet mitjà es queda curt", d: "ingrés per comanda" },
+      { v: "Encara no ho tinc clar", d: "ho mirem junts" },
+    ],
+    facturacion: ["Menys de 10k€/mes", "10-50k€/mes", "50-200k€/mes", "Més de 200k€/mes"],
+    questions: ["Què és el que més et frena avui?", "Quant factura la teva botiga al mes, més o menys?", "Quina és la teva botiga?", "On t'enviem el diagnòstic?"],
+    doneTag: "diagnòstic reservat", doneTitle: "Rebut. Et responc jo, l'Òscar.",
+    doneBody: "En 24-48 h. Miro la teva botiga abans d'escriure't, no és una resposta automàtica.",
+    step: (n: number, t: number) => `Pas ${n} de ${t}`, back: "← Enrere",
+    webPlaceholder: "lamevabotiga.com", next: "Continua", webHelp: "Enganxa l'URL o el nom. Miro la botiga abans de la trucada.",
+    emailPlaceholder: "el.teu@correu.com", emailError: "Revisa el correu, alguna cosa no quadra.", sending: "Enviant…",
+    emailHelp: "Resposta en 24-48 h, sense compromís. Sense correu brossa, només el teu diagnòstic.",
+    ctaTitle: "Fem que la teva botiga facturi més.",
+    ctaBody: "Quatre respostes ràpides i et dic on se t'escapen les vendes, amb un pla clar de trànsit, conversió i automatització. Sense formularis eterns i sense promeses de preu per correu.",
+    footServices: [
+      ["Creixement ecommerce", "/servicios/crecimiento-ecommerce"],
+      ["Agent de vendes IA", "/servicios/agente-ventas-ia"],
+      ["Automatització", "/servicios/automatizaciones"],
+      ["Auditoria SEO/GEO", "/servicios/auditoria-seo-geo"],
+      ["Posicionament GEO", "/posicionamiento-geo"],
+      ["Plataformes internes a mida", "/servicios/a-medida"],
+    ] as [string, string][],
+    footCompany: [
+      ["Agència Shopify", "/agencia-shopify"],
+      ["Agència WooCommerce", "/agencia-woocommerce"],
+      ["Agència Magento", "/agencia-magento"],
+      ["SEO local a Catalunya", "/seo-catalunya"],
+      ["SEO a Barcelona", "/consultor-seo-barcelona"],
+      ["SEO al Maresme", "/agencia-seo-maresme"],
+      ["SEO al Vallès Oriental", "/consultor-seo-valles-oriental"],
+      ["Mètode", "/metodo"],
+      ["Casos d'èxit", "/casos-de-exito"],
+      ["Blog (en castellà)", "/blog"],
+      ["Qui hi ha darrere", "/sobre-nosotros"],
+    ] as [string, string][],
+    footLegal: [["Avís legal", "/aviso-legal"], ["Privadesa", "/privacidad"], ["Galetes", "/cookies"]] as [string, string][],
+    footTagline: "Consultor SEO per a ecommerce i negocis locals. Faig que la teva botiga vengui més sense migrar de plataforma.",
+    footCtaTitle: "On estàs deixant vendes?",
+    footCtaBody: "Diagnòstic gratuït de la teva botiga, amb dades reals i resposta en 24-48 h.",
+    footServicesTitle: "Serveis", footCompanyTitle: "Plataformes i empresa",
+    madeByHand: "Fet a mà, no generat.",
+    langSwitch: "Versión en castellano", langLabel: "ES",
+  },
+}
+
+/** Textos de las partes comunes en el idioma de la página. */
+function useT() {
+  return T[useLocale()]
+}
+
+// Enlace a la misma página en el otro idioma. Si la página no tiene versión
+// en catalán (el blog), no se muestra.
+function LangSwitch({ onClick }: { onClick?: () => void }) {
+  const locale = useLocale()
+  const t = useT()
+  const path = usePathname() || "/"
+  const base = stripLocale(path)
+  if (!hasCatalan(base)) return null
+  const other: Locale = locale === "es" ? "ca" : "es"
+  return (
+    // NextLink y no Link: Link volvería a poner la ruta en el idioma actual.
+    <Box
+      component={NextLink}
+      href={localizePath(base, other)}
+      hrefLang={other}
+      lang={other}
+      aria-label={t.langSwitch}
+      title={t.langSwitch}
+      onClick={onClick}
+      sx={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, color: tokens.body, textDecoration: "none", border: `1px solid ${tokens.line}`, borderRadius: 999, px: 1, py: 0.35, "&:hover": { color: tokens.ink, borderColor: tokens.petrol } }}
+    >
+      {t.langLabel}
+    </Box>
+  )
+}
 
 export const EMAILJS = { service: "service_yqv95mt", template: "template_4tp4wat", publicKey: "WGplfo4snkyBY6ZQo" }
 export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -141,7 +307,9 @@ export function ServiceHero({ title, sub, specs, note, artifact }: {
 // Migas de pan: visual discreto + BreadcrumbList JSON-LD. Un item sin href
 // (p. ej. "Servicios", que no tiene página propia) se muestra como texto.
 export function Crumbs({ items }: { items: { label: string; href?: string }[] }) {
-  const trail = [{ label: "Inicio", href: "/" }, ...items]
+  const t = useT()
+  const locale = useLocale()
+  const trail = [{ label: t.home, href: "/" }, ...items]
   const schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -149,13 +317,13 @@ export function Crumbs({ items }: { items: { label: string; href?: string }[] })
       "@type": "ListItem",
       position: i + 1,
       name: c.label,
-      ...(c.href ? { item: `https://www.seoscar.com${c.href === "/" ? "" : c.href}` } : {}),
+      ...(c.href ? { item: `https://www.seoscar.com${localizePath(c.href, locale) === "/" ? "" : localizePath(c.href, locale)}` } : {}),
     })),
   }
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <Container component="nav" aria-label="Migas de pan" sx={{ pt: { xs: 2, md: 2.5 } }}>
+      <Container component="nav" aria-label={t.crumbsAria} sx={{ pt: { xs: 2, md: 2.5 } }}>
         <Stack direction="row" spacing={0.75} sx={{ alignItems: "center", flexWrap: "wrap", rowGap: 0.5 }}>
           {trail.map((c, i) => {
             const last = i === trail.length - 1
@@ -223,16 +391,17 @@ export function Kicker({ children, centered }: { children: React.ReactNode; cent
 }
 
 export function PrimaryCTA({ variant = "solid", href = "/diagnostico" }: { variant?: "solid" | "text"; href?: string }) {
+  const t = useT()
   if (variant === "text") {
     return (
       <Button component={Link} href={href} sx={{ color: tokens.ink, fontWeight: 700, px: 0, "&:hover": { bgcolor: "transparent", color: tokens.bronze } }}>
-        Reserva tu diagnóstico <Box component="span" sx={{ color: tokens.bronze, ml: 0.5 }}>↗</Box>
+        {t.cta} <Box component="span" sx={{ color: tokens.bronze, ml: 0.5 }}>↗</Box>
       </Button>
     )
   }
   return (
     <Button component={Link} href={href} variant="contained" color="primary" sx={{ borderRadius: 2, width: { xs: "100%", sm: "auto" } }}>
-      Reserva tu diagnóstico <Box component="span" sx={{ ml: 0.75 }}>↗</Box>
+      {t.cta} <Box component="span" sx={{ ml: 0.75 }}>↗</Box>
     </Button>
   )
 }
@@ -255,25 +424,12 @@ export function ArtifactWindow({ tag, children, ratio = "4 / 3" }: { tag: string
 
 /* ---------- navbar compartido ---------- */
 
-// Los servicios bajo "Servicios" (escritorio y menú móvil).
-const PACKS = [
-  { label: "Crecimiento ecommerce", href: "/servicios/crecimiento-ecommerce", tag: "el pack que lo une todo" },
-  { label: "Posicionamiento GEO", href: "/posicionamiento-geo", tag: "que ChatGPT y Google AI te citen" },
-  { label: "Agente de ventas IA", href: "/servicios/agente-ventas-ia", tag: "anclado a tu catálogo, también suelto" },
-  { label: "Automatización", href: "/servicios/automatizaciones", tag: "n8n y código propio, también suelta" },
-  { label: "Auditoría SEO/GEO", href: "/servicios/auditoria-seo-geo", tag: "con fugas de conversión, para empezar" },
-]
-
-const NAV_LINKS = [
-  { label: "Casos", href: "/casos-de-exito" },
-  { label: "Método", href: "/metodo" },
-  { label: "Blog", href: "/blog" },
-  { label: "Quién hay detrás", href: "/sobre-nosotros" },
-]
+// Servicios y enlaces del menú: viven en T (castellano y catalán).
 
 function Logo() {
+  const t = useT()
   return (
-    <Box component={Link} href="/" aria-label="SEOscar · inicio" sx={{ display: "inline-flex", alignItems: "center", "&:focus-visible": { outline: `2px solid ${tokens.petrol}`, outlineOffset: 3, borderRadius: 1 } }}>
+    <Box component={Link} href="/" aria-label={t.logoAria} sx={{ display: "inline-flex", alignItems: "center", "&:focus-visible": { outline: `2px solid ${tokens.petrol}`, outlineOffset: 3, borderRadius: 1 } }}>
       <Image src="/logo-seoscar.png" alt="SEOscar" width={380} height={112} priority style={{ height: 30, width: "auto" }} />
     </Box>
   )
@@ -300,6 +456,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
 
 // Dropdown "Servicios" de desktop con los 3 packs (MUI Menu, accesible).
 function ServicesMenu() {
+  const t = useT()
   const [anchor, setAnchor] = useState<null | HTMLElement>(null)
   const open = Boolean(anchor)
   return (
@@ -316,7 +473,7 @@ function ServicesMenu() {
           "&:hover": { bgcolor: "transparent", color: tokens.ink },
         }}
       >
-        Servicios
+        {t.services}
         <Box component="span" sx={{ ml: 0.5, fontSize: 10, color: tokens.petrol, transition: "transform .2s", transform: open ? "rotate(180deg)" : "none" }}>▾</Box>
       </Button>
       <Menu
@@ -331,7 +488,7 @@ function ServicesMenu() {
           paper: { elevation: 2, sx: { mt: 1, borderRadius: 2, border: `1px solid ${tokens.line}`, minWidth: 268 } },
         }}
       >
-        {PACKS.map((p) => (
+        {t.packs.map((p) => (
           <MenuItem key={p.href} component={Link} href={p.href} onClick={() => setAnchor(null)} sx={{ py: 1.15, px: 2, display: "block" }}>
             <Typography sx={{ fontFamily: fonts.sans, fontWeight: 700, fontSize: 14.5, color: tokens.ink }}>{p.label}</Typography>
             <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, mt: 0.25 }}>{p.tag}</Typography>
@@ -357,6 +514,7 @@ function MenuToggleIcon({ open }: { open: boolean }) {
 }
 
 export function SiteHeader() {
+  const t = useT()
   const [open, setOpen] = useState(false)
   const reduce = useReducedMotion()
   const close = () => setOpen(false)
@@ -391,15 +549,16 @@ export function SiteHeader() {
           <Logo />
           <Stack
             component="nav"
-            aria-label="Navegación principal"
+            aria-label={t.navAria}
             direction="row"
             spacing={0.25}
             sx={{ display: { xs: "none", md: "flex" }, mx: "auto", alignItems: "center" }}
           >
             <ServicesMenu />
-            {NAV_LINKS.map((l) => <NavLink key={l.href} href={l.href} label={l.label} />)}
+            {t.nav.map((l) => <NavLink key={l.href} href={l.href} label={l.label} />)}
           </Stack>
-          <Box sx={{ display: { xs: "none", md: "block" } }}>
+          <Stack direction="row" spacing={1.25} sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}>
+            <LangSwitch />
             <Button
               component={Link}
               href="/diagnostico"
@@ -407,13 +566,13 @@ export function SiteHeader() {
               color="primary"
               sx={{ borderRadius: 999, px: 2.25, py: 0.9, fontSize: 13.5, whiteSpace: "nowrap" }}
             >
-              Reserva tu diagnóstico <Box component="span" sx={{ ml: 0.6 }}>↗</Box>
+              {t.cta} <Box component="span" sx={{ ml: 0.6 }}>↗</Box>
             </Button>
-          </Box>
+          </Stack>
           <IconButton
             edge="end"
             onClick={() => setOpen(true)}
-            aria-label="Abrir menú de navegación"
+            aria-label={t.openMenu}
             aria-expanded={open}
             aria-controls="mobile-nav-drawer"
             sx={{ display: { md: "none" }, ml: "auto", color: tokens.ink }}
@@ -433,14 +592,17 @@ export function SiteHeader() {
       >
         <Stack direction="row" sx={{ alignItems: "center", justifyContent: "space-between", mb: 2 }}>
           <Logo />
-          <IconButton onClick={close} aria-label="Cerrar menú de navegación" sx={{ color: tokens.ink }}>
+          <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+          <LangSwitch onClick={close} />
+          <IconButton onClick={close} aria-label={t.closeMenu} sx={{ color: tokens.ink }}>
             <MenuToggleIcon open />
           </IconButton>
+          </Stack>
         </Stack>
         <Divider sx={{ borderColor: tokens.lineSoft, mb: 1 }} />
         <List sx={{ py: 0 }}>
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, px: 2, pt: 1, pb: 0.5 }}>{`// servicios`}</Typography>
-          {PACKS.map((p, i) => (
+          <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, px: 2, pt: 1, pb: 0.5 }}>{t.servicesMobile}</Typography>
+          {t.packs.map((p, i) => (
             <Box
               key={p.href}
               component={motion.div}
@@ -455,13 +617,13 @@ export function SiteHeader() {
             </Box>
           ))}
           <Divider sx={{ borderColor: tokens.lineSoft, my: 1 }} />
-          {NAV_LINKS.map((l, i) => (
+          {t.nav.map((l, i) => (
             <Box
               key={l.href}
               component={motion.div}
               initial={reduce ? false : { opacity: 0, x: 18 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: reduce ? 0 : 0.06 + (PACKS.length + i) * 0.05, duration: 0.24 }}
+              transition={{ delay: reduce ? 0 : 0.06 + (t.packs.length + i) * 0.05, duration: 0.24 }}
             >
               <ListItemButton component={Link} href={l.href} onClick={close} sx={{ borderRadius: 2, py: 1 }}>
                 <ListItemText primary={l.label} slotProps={{ primary: { sx: { fontFamily: fonts.serif, fontSize: 18, fontWeight: 600, color: tokens.ink } } }} />
@@ -471,7 +633,7 @@ export function SiteHeader() {
           ))}
         </List>
         <Button component={Link} href="/diagnostico" onClick={close} variant="contained" color="primary" fullWidth sx={{ mt: 3, borderRadius: 2 }}>
-          Reserva tu diagnóstico <Box component="span" sx={{ ml: 0.75 }}>↗</Box>
+          {t.cta} <Box component="span" sx={{ ml: 0.75 }}>↗</Box>
         </Button>
       </Drawer>
     </>
@@ -519,20 +681,14 @@ function ChoiceButton({ label, sub, onClick }: { label: string; sub?: string; on
   )
 }
 
-const FRENOS = [
-  { v: "Entra tráfico pero no compra", d: "conversión" },
-  { v: "Llega poca gente a la tienda", d: "tráfico y visibilidad" },
-  { v: "Tareas manuales que me comen el día", d: "operativa" },
-  { v: "El ticket medio se queda corto", d: "ingreso por pedido" },
-  { v: "Aún no lo tengo claro", d: "lo vemos juntos" },
-]
-const FACTURACION = ["Menos de 10k€/mes", "10-50k€/mes", "50-200k€/mes", "Más de 200k€/mes"]
 const TOTAL_PASOS = 4
 
 // Diagnóstico conversacional: una pregunta por pantalla, respuestas clicables
 // donde se puede, email al final (pedimos el contacto cuando ya han invertido
 // tres respuestas). Reutilizable en la sección inline y en la página /diagnostico.
 export function DiagnosticoFlow() {
+  const t = useT()
+  const locale = useLocale()
   const reduce = useReducedMotion()
   const [form, setForm] = useState({ web: "", email: "", facturacion: "", freno: "" })
   const [step, setStep] = useState(0)
@@ -553,7 +709,7 @@ export function DiagnosticoFlow() {
       await emailjs.send(EMAILJS.service, EMAILJS.template, {
         name: form.web || "Diagnóstico ecommerce",
         email: form.email.trim(),
-        message: `Web/plataforma: ${form.web}\nFacturación aprox: ${form.facturacion}\nQué le frena: ${form.freno}`,
+        message: `Web/plataforma: ${form.web}\nFacturación aprox: ${form.facturacion}\nQué le frena: ${form.freno}\nIdioma: ${locale === "ca" ? "catalán" : "castellano"}`,
       }, EMAILJS.publicKey)
       setStatus("done")
     } catch { setStatus("error") }
@@ -566,25 +722,25 @@ export function DiagnosticoFlow() {
     form.web && step > 2 ? { label: form.web, at: 2 } : null,
   ].filter(Boolean) as { label: string; at: number }[]
 
-  const question = ["¿Qué es lo que más te frena hoy?", "¿Cuánto factura tu tienda al mes, más o menos?", "¿Cuál es tu tienda?", "¿Dónde te enviamos el diagnóstico?"][step]
+  const question = t.questions[step]
 
   return (
     <Paper elevation={2} sx={{ position: "relative", p: { xs: 3, md: 4 }, borderRadius: 3, border: `1px solid ${tokens.lineSoft}`, minHeight: { md: 360 }, display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <Box aria-hidden sx={{ position: "absolute", left: -9999 }}><input ref={hp} tabIndex={-1} autoComplete="off" /></Box>
             {status === "done" ? (
               <Box sx={{ textAlign: "center", py: 2 }}>
-                <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.teal, mb: 1 }}>diagnóstico reservado</Typography>
-                <Typography variant="h5" component="p" sx={{ fontFamily: fonts.serif, color: tokens.ink, mb: 1 }}>Recibido. Te respondo yo, Óscar.</Typography>
-                <Typography sx={{ color: tokens.body }}>En 24-48 h. Miro tu tienda antes de escribirte, no es una respuesta automática.</Typography>
+                <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.teal, mb: 1 }}>{t.doneTag}</Typography>
+                <Typography variant="h5" component="p" sx={{ fontFamily: fonts.serif, color: tokens.ink, mb: 1 }}>{t.doneTitle}</Typography>
+                <Typography sx={{ color: tokens.body }}>{t.doneBody}</Typography>
               </Box>
             ) : (
               <>
                 {/* progreso: cada paso completado es un microcompromiso a la vista */}
                 <Stack direction="row" sx={{ alignItems: "center", justifyContent: "space-between", mb: 1.25 }}>
-                  <Typography sx={{ fontFamily: fonts.mono, fontSize: 11.5, color: tokens.muted }}>Paso {step + 1} de {TOTAL_PASOS}</Typography>
+                  <Typography sx={{ fontFamily: fonts.mono, fontSize: 11.5, color: tokens.muted }}>{t.step(step + 1, TOTAL_PASOS)}</Typography>
                   {step > 0 && (
                     <Box component="button" type="button" onClick={() => go(step - 1)} sx={{ font: "inherit", cursor: "pointer", bgcolor: "transparent", border: "none", p: 0, fontFamily: fonts.mono, fontSize: 11.5, color: tokens.muted, "&:hover": { color: tokens.ink } }}>
-                      ← Atrás
+                      {t.back}
                     </Box>
                   )}
                 </Stack>
@@ -618,34 +774,34 @@ export function DiagnosticoFlow() {
 
                     {step === 0 && (
                       <Stack spacing={1}>
-                        {FRENOS.map((f) => <ChoiceButton key={f.v} label={f.v} sub={f.d} onClick={() => choose("freno", f.v)} />)}
+                        {t.frenos.map((f) => <ChoiceButton key={f.v} label={f.v} sub={f.d} onClick={() => choose("freno", f.v)} />)}
                       </Stack>
                     )}
 
                     {step === 1 && (
                       <Stack spacing={1}>
-                        {FACTURACION.map((r) => <ChoiceButton key={r} label={r} onClick={() => choose("facturacion", r)} />)}
+                        {t.facturacion.map((r) => <ChoiceButton key={r} label={r} onClick={() => choose("facturacion", r)} />)}
                       </Stack>
                     )}
 
                     {step === 2 && (
                       <Stack component="form" spacing={1.5} onSubmit={(e) => { e.preventDefault(); if (form.web.trim()) go(step + 1) }}>
-                        <TextField id="diag-web" hiddenLabel autoFocus placeholder="mitienda.com" value={form.web} onChange={set("web")} size="small" fullWidth sx={fieldSx} />
+                        <TextField id="diag-web" hiddenLabel autoFocus placeholder={t.webPlaceholder} value={form.web} onChange={set("web")} size="small" fullWidth sx={fieldSx} />
                         <Button type="submit" variant="contained" color="primary" disabled={!form.web.trim()} sx={{ borderRadius: 2, py: 1.15 }}>
-                          Continuar <Box component="span" sx={{ ml: 0.75 }}>→</Box>
+                          {t.next} <Box component="span" sx={{ ml: 0.75 }}>→</Box>
                         </Button>
-                        <Typography sx={{ fontSize: 12, color: tokens.muted, textAlign: "center" }}>Pega la URL o el nombre. Miro la tienda antes de la llamada.</Typography>
+                        <Typography sx={{ fontSize: 12, color: tokens.muted, textAlign: "center" }}>{t.webHelp}</Typography>
                       </Stack>
                     )}
 
                     {step === 3 && (
                       <Stack component="form" spacing={1.5} onSubmit={submit} noValidate>
-                        <TextField id="diag-email" hiddenLabel autoFocus placeholder="tu@email.com" type="email" value={form.email} onChange={set("email")} size="small" fullWidth error={status === "error"} sx={fieldSx} />
-                        {status === "error" && <Typography role="alert" sx={{ fontSize: 12, color: tokens.red }}>Revisa el email, algo no cuadra.</Typography>}
+                        <TextField id="diag-email" hiddenLabel autoFocus placeholder={t.emailPlaceholder} type="email" value={form.email} onChange={set("email")} size="small" fullWidth error={status === "error"} sx={fieldSx} />
+                        {status === "error" && <Typography role="alert" sx={{ fontSize: 12, color: tokens.red }}>{t.emailError}</Typography>}
                         <Button type="submit" variant="contained" color="primary" disabled={status === "sending"} sx={{ borderRadius: 2, py: 1.25 }}>
-                          {status === "sending" ? "Enviando…" : <>Reserva tu diagnóstico <Box component="span" sx={{ ml: 0.75 }}>↗</Box></>}
+                          {status === "sending" ? t.sending : <>{t.cta} <Box component="span" sx={{ ml: 0.75 }}>↗</Box></>}
                         </Button>
-                        <Typography sx={{ fontSize: 12, color: tokens.muted, textAlign: "center" }}>Respuesta en 24-48 h, sin compromiso. Sin spam, solo tu diagnóstico.</Typography>
+                        <Typography sx={{ fontSize: 12, color: tokens.muted, textAlign: "center" }}>{t.emailHelp}</Typography>
                       </Stack>
                     )}
                   </Box>
@@ -657,7 +813,9 @@ export function DiagnosticoFlow() {
 }
 
 // Sección inline de diagnóstico al fondo de las páginas (conserva el ancla #diagnostico).
-export function DiagnosticoCTA() {
+// title/body opcionales: las páginas locales no hablan solo de tiendas.
+export function DiagnosticoCTA({ title, body }: { title?: string; body?: string } = {}) {
+  const t = useT()
   return (
     <Box component="section" id="diagnostico" sx={{ position: "relative", overflow: "hidden", py: { xs: 9, md: 14 }, scrollMarginTop: 72 }}>
       <Blueprint />
@@ -665,10 +823,10 @@ export function DiagnosticoCTA() {
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 5, md: 8 }, alignItems: "center" }}>
           <Box>
             <Typography variant="h2" sx={{ fontSize: { xs: 30, md: 46 }, color: tokens.ink, mb: 2 }}>
-              Hagamos que tu tienda facture más.
+              {title ?? t.ctaTitle}
             </Typography>
             <Typography variant="body1" sx={{ color: tokens.body, maxWidth: 460 }}>
-              Cuatro respuestas rápidas y te digo dónde se te escapan las ventas, con un plan claro de tráfico, conversión y automatización. Sin rellenar formularios eternos y sin promesas de precio por email.
+              {body ?? t.ctaBody}
             </Typography>
           </Box>
           <DiagnosticoFlow />
@@ -686,32 +844,10 @@ export function DiagnosticoCTA() {
 // coincide con el visual y con el foco de teclado); desktop reordena con `order`.
 export function SiteFooter() {
   const cream = tokens.paper
-  const SERVICIOS: [string, string][] = [
-    ["Crecimiento ecommerce", "/servicios/crecimiento-ecommerce"],
-    ["Agente de ventas IA", "/servicios/agente-ventas-ia"],
-    ["Automatización", "/servicios/automatizaciones"],
-    ["Auditoría SEO/GEO", "/servicios/auditoria-seo-geo"],
-    ["Posicionamiento GEO", "/posicionamiento-geo"],
-    ["Plataformas internas a medida", "/servicios/a-medida"],
-  ]
-  const EMPRESA: [string, string][] = [
-    ["Agencia Shopify", "/agencia-shopify"],
-    ["Agencia WooCommerce", "/agencia-woocommerce"],
-    ["Agencia Magento", "/agencia-magento"],
-    ["SEO local en Catalunya", "/seo-catalunya"],
-    ["SEO en Barcelona", "/consultor-seo-barcelona"],
-    ["SEO en el Maresme", "/agencia-seo-maresme"],
-    ["SEO en el Vallès Oriental", "/consultor-seo-valles-oriental"],
-    ["Método", "/metodo"],
-    ["Casos de éxito", "/casos-de-exito"],
-    ["Blog", "/blog"],
-    ["Quién hay detrás", "/sobre-nosotros"],
-  ]
-  const LEGAL: [string, string][] = [
-    ["Aviso legal", "/aviso-legal"],
-    ["Privacidad", "/privacidad"],
-    ["Cookies", "/cookies"],
-  ]
+  const t = useT()
+  const SERVICIOS = t.footServices
+  const EMPRESA = t.footCompany
+  const LEGAL = t.footLegal
   const focus = { "&:focus-visible": { outline: `2px solid ${cream}`, outlineOffset: 2, borderRadius: 2 } }
   const linkSx = { color: cream, textDecoration: "none", fontSize: 14, lineHeight: 2.1, transition: "color .15s", "&:hover": { color: tokens.accentSoft }, ...focus }
   const colTitleSx = { fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, letterSpacing: ".08em", textTransform: "uppercase" as const, color: tokens.onDarkMuted, mb: 1.5 }
@@ -728,11 +864,11 @@ export function SiteFooter() {
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1.5fr 1fr 1.1fr 1.2fr" }, gap: { xs: 5, md: 5 } }}>
           {/* Columna 1 · marca y contacto (NAP) */}
           <Box sx={{ order: { md: 1 } }}>
-            <Box component={Link} href="/" aria-label="SEOscar · inicio" sx={{ display: "inline-flex", alignItems: "center", ...focus }}>
+            <Box component={Link} href="/" aria-label={t.logoAria} sx={{ display: "inline-flex", alignItems: "center", ...focus }}>
               <Image src="/logo-seoscar-cream.png" alt="SEOscar" width={380} height={112} style={{ height: 32, width: "auto" }} />
             </Box>
             <Typography sx={{ color: tokens.onDarkMuted, fontSize: 14, mt: 1.5, maxWidth: 320, lineHeight: 1.6 }}>
-              Agencia de ecommerce en Barcelona. Hago que tu tienda venda más sin migrar de plataforma.
+              {t.footTagline}
             </Typography>
             <Stack spacing={0.75} sx={{ mt: 2.5 }}>
               <Typography sx={{ fontFamily: fonts.mono, fontSize: 12.5, color: tokens.onDarkMuted }}>Premià de Mar, Barcelona</Typography>
@@ -742,22 +878,22 @@ export function SiteFooter() {
 
           {/* Columna 4 · CTA de cierre (segundo en móvil, no puede quedar enterrado) */}
           <Box sx={{ order: { md: 4 } }}>
-            <Typography component="p" sx={{ fontFamily: fonts.serif, fontSize: { xs: 22, md: 24 }, fontWeight: 600, color: cream, mb: 1.25, lineHeight: 1.2 }}>¿Dónde estás dejando ventas?</Typography>
-            <Typography sx={{ color: tokens.onDarkMuted, fontSize: 14, mb: 2.5, maxWidth: 300, lineHeight: 1.6 }}>Diagnóstico gratis de tu tienda, con datos reales y respuesta en 24 a 48h.</Typography>
+            <Typography component="p" sx={{ fontFamily: fonts.serif, fontSize: { xs: 22, md: 24 }, fontWeight: 600, color: cream, mb: 1.25, lineHeight: 1.2 }}>{t.footCtaTitle}</Typography>
+            <Typography sx={{ color: tokens.onDarkMuted, fontSize: 14, mb: 2.5, maxWidth: 300, lineHeight: 1.6 }}>{t.footCtaBody}</Typography>
             <Button component={Link} href="/diagnostico" disableElevation sx={{ bgcolor: tokens.accentSoft, color: tokens.petrol, fontWeight: 700, borderRadius: 2, px: 2.5, py: 1, textTransform: "none", "&:hover": { bgcolor: "#FFDA5C" }, "&:focus-visible": { outline: `2px solid ${cream}`, outlineOffset: 2 } }}>
-              Reserva tu diagnóstico <Box component="span" sx={{ ml: 0.75 }}>→</Box>
+              {t.cta} <Box component="span" sx={{ ml: 0.75 }}>→</Box>
             </Button>
           </Box>
 
           {/* Columna 2 · servicios (tercero en móvil) */}
           <Box sx={{ order: { md: 2 } }}>
-            <Typography sx={colTitleSx}>Servicios</Typography>
+            <Typography sx={colTitleSx}>{t.footServicesTitle}</Typography>
             {linkCol(SERVICIOS)}
           </Box>
 
           {/* Columna 3 · plataformas y empresa (cuarto en móvil) */}
           <Box sx={{ order: { md: 3 } }}>
-            <Typography sx={colTitleSx}>Plataformas y empresa</Typography>
+            <Typography sx={colTitleSx}>{t.footCompanyTitle}</Typography>
             {linkCol(EMPRESA)}
           </Box>
         </Box>
@@ -765,7 +901,7 @@ export function SiteFooter() {
         {/* Barra inferior */}
         <Box sx={{ mt: { xs: 5, md: 7 }, pt: 3, borderTop: `1px solid ${tokens.paper}1f`, display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, justifyContent: "space-between", alignItems: { sm: "center" } }}>
           <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.onDarkMuted }}>
-            {`Hecho a mano, no generado. © ${new Date().getFullYear()} SEOscar`}
+            {`${t.madeByHand} © ${new Date().getFullYear()} SEOscar`}
           </Typography>
           <Stack direction="row" spacing={2.5} sx={{ flexWrap: "wrap" }}>
             {LEGAL.map(([l, h]) => (

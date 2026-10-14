@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next'
 import { allCaseSlugs } from '@/lib/casesEcom'
 import { blogCategories } from '@/lib/blog'
 import { getAllPosts } from '@/lib/contentful'
+import { hasCatalan, localizePath } from '@/lib/i18n'
 
 // Sin esto el sitemap se genera solo en build y los posts nuevos de Contentful
 // no entran hasta el siguiente deploy. Con revalidate se refresca como el blog.
@@ -61,5 +62,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
-  return [...staticRoutes, ...caseRoutes, ...blogCategoryRoutes, ...blogPostRoutes]
+  // Versión en catalán: cada página con traducción sale dos veces (es y ca) y
+  // las dos llevan la referencia cruzada de idiomas, igual que el hreflang
+  // de su <head>. El blog solo existe en castellano.
+  const withCatalan = (routes: MetadataRoute.Sitemap): MetadataRoute.Sitemap =>
+    routes.flatMap((r) => {
+      const path = r.url.replace(baseUrl, '') || '/'
+      if (!hasCatalan(path)) return [r]
+      const es = `${baseUrl}${path === '/' ? '' : path}`
+      const ca = `${baseUrl}${localizePath(path, 'ca')}`
+      const alternates = { languages: { es, ca, 'x-default': es } }
+      return [
+        { ...r, url: es, alternates },
+        { ...r, url: ca, alternates },
+      ]
+    })
+
+  return [...withCatalan(staticRoutes), ...withCatalan(caseRoutes), ...blogCategoryRoutes, ...blogPostRoutes]
 }
