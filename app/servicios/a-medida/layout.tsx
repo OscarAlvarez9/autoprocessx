@@ -43,12 +43,12 @@ const serviceSchema = {
 
 export const metadata: Metadata = {
   title: { absolute: "Plataformas internas a medida con IA y RAG | SEOscar" },
-  description: "Plataformas internas y aplicaciones RAG a medida, ancladas a tus documentos y con la fuente citada. Next.js, PostgreSQL y n8n. El código es tuyo desde el día uno.",
+  description: "Plataformas internas y aplicaciones RAG a medida que responden con tus documentos y citan la fuente. Next.js, PostgreSQL y n8n. El código es tuyo.",
   keywords: ["plataformas a medida con IA", "aplicaciones RAG a medida", "software a medida ecommerce", "arquitectura RAG para negocio", "agentes autónomos IA", "desarrollo a medida Barcelona", "IA para tu negocio", "aplicaciones internas con IA"],
   openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
     title: "Plataformas internas a medida con IA y RAG | SEOscar",
-    description: "Plataformas internas y aplicaciones RAG a medida, ancladas a tus documentos y con la fuente citada. Next.js, PostgreSQL y n8n. El código es tuyo desde el día uno.",
+    description: "Plataformas internas y aplicaciones RAG a medida que responden con tus documentos y citan la fuente. Next.js, PostgreSQL y n8n. El código es tuyo.",
     type: "website",
     locale: "es_ES",
     url: "https://www.seoscar.com/servicios/a-medida",

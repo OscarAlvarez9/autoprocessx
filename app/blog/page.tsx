@@ -12,14 +12,14 @@ export const revalidate = 300
 const FEATURED_SLUG = "rag-en-produccion-arquitectura-real"
 
 export const metadata: Metadata = {
-    title: { absolute: "Blog de IA para ecommerce: SEO, GEO y n8n | SEOscar" },
+    title: { absolute: "Blog de SEO, GEO y CRO para tiendas online | SEOscar" },
     description:
-        "Análisis técnico de ecommerce: SEO y GEO para los motores generativos, automatización de procesos, arquitecturas RAG y agentes de ventas reales en producción.",
+        "SEO y GEO para tiendas online: cómo posicionar en Google y ChatGPT, CRO y automatización, explicado por quien lo implementa. Casos y datos reales.",
     alternates: { canonical: `${SITE_URL}/blog` },
     openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
-        title: "Blog de IA para ecommerce: SEO, GEO y n8n | SEOscar",
-        description: "Análisis técnico de ecommerce: SEO y GEO para los motores generativos, automatización de procesos, arquitecturas RAG y agentes de ventas reales en producción.",
+        title: "Blog de SEO, GEO y CRO para tiendas online | SEOscar",
+        description: "SEO y GEO para tiendas online: cómo posicionar en Google y ChatGPT, CRO y automatización, explicado por quien lo implementa. Casos y datos reales.",
         type: "website",
         url: `${SITE_URL}/blog`,
     },

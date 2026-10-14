@@ -43,13 +43,13 @@ const serviceSchema = {
 
 
 export const metadata: Metadata = {
-  title: { absolute: "Automatización de ecommerce con n8n y código | SEOscar" },
-  description: "Automatiza la operativa de tu tienda con n8n y código propio en Node y Python: pedidos, stock, carritos y reporting. Trazable, self-hosted y sin cuota por tarea.",
+  title: { absolute: "Automatización ecommerce con n8n: pedidos y stock | SEOscar" },
+  description: "Automatiza pedidos, stock, carritos y reporting de tu tienda con n8n y código propio en Node y Python. Self-hosted, trazable y sin cuota por tarea.",
   keywords: ["automatización ecommerce", "automatización de procesos", "n8n automatización", "automatizar pedidos tienda online", "sincronización de stock", "workflow automation Barcelona", "automatizar tareas repetitivas", "n8n self-hosted"],
   openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
-    title: "Automatización de ecommerce con n8n y código | SEOscar",
-    description: "Automatiza la operativa de tu tienda con n8n y código propio en Node y Python: pedidos, stock, carritos y reporting. Trazable, self-hosted y sin cuota por tarea.",
+    title: "Automatización ecommerce con n8n: pedidos y stock | SEOscar",
+    description: "Automatiza pedidos, stock, carritos y reporting de tu tienda con n8n y código propio en Node y Python. Self-hosted, trazable y sin cuota por tarea.",
     type: "website",
     locale: "es_ES",
     url: "https://www.seoscar.com/servicios/automatizaciones",

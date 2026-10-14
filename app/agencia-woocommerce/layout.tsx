@@ -1,13 +1,13 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: { absolute: "Agencia WooCommerce: SEO, CRO e IA para tu tienda | SEOscar" },
-  description: "Hago que tu WooCommerce venda más con el tráfico que ya tienes: SEO técnico, visibilidad en IA, CRO y automatización. Reserva tu diagnóstico gratis.",
+  title: { absolute: "Consultor SEO WordPress y WooCommerce, sin migrar | SEOscar" },
+  description: "Haz que tu WooCommerce venda más sin rehacer tu WordPress: SEO técnico, visibilidad en ChatGPT y Google, CRO y automatización. Diagnóstico gratis 24-48 h.",
   keywords: ["agencia WooCommerce", "SEO WooCommerce", "optimizar WooCommerce", "WooCommerce lento", "experto WooCommerce", "WordPress ecommerce SEO", "CRO WooCommerce"],
   openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
-    title: "Agencia WooCommerce: SEO, CRO e IA para tu tienda | SEOscar",
-    description: "Hago que tu WooCommerce venda más con el tráfico que ya tienes: SEO técnico, visibilidad en IA, CRO y automatización. Reserva tu diagnóstico gratis.",
+    title: "Consultor SEO WordPress y WooCommerce, sin migrar | SEOscar",
+    description: "Haz que tu WooCommerce venda más sin rehacer tu WordPress: SEO técnico, visibilidad en ChatGPT y Google, CRO y automatización. Diagnóstico gratis 24-48 h.",
     type: "website",
     locale: "es_ES",
     url: "https://www.seoscar.com/agencia-woocommerce",

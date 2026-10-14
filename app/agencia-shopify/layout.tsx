@@ -1,13 +1,13 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: { absolute: "Agencia Shopify: SEO, GEO, CRO e IA para tu tienda | SEOscar" },
-  description: "Hago que tu tienda Shopify venda más con el tráfico que ya tienes: SEO técnico, visibilidad en IA, CRO y automatización. Reserva tu diagnóstico gratis.",
+  title: { absolute: "Agencia Shopify: SEO, GEO y CRO sin migrar | SEOscar" },
+  description: "Haz que tu Shopify venda más con el tráfico que ya tienes: SEO técnico, visibilidad en ChatGPT y Google, CRO y automatización. Diagnóstico gratis 24-48 h.",
   keywords: ["agencia Shopify", "SEO Shopify", "CRO Shopify", "optimizar tienda Shopify", "experto Shopify España", "Shopify Plus SEO", "GEO Shopify"],
   openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
-    title: "Agencia Shopify: SEO, GEO, CRO e IA para tu tienda | SEOscar",
-    description: "Hago que tu tienda Shopify venda más con el tráfico que ya tienes: SEO técnico, visibilidad en IA, CRO y automatización. Reserva tu diagnóstico gratis.",
+    title: "Agencia Shopify: SEO, GEO y CRO sin migrar | SEOscar",
+    description: "Haz que tu Shopify venda más con el tráfico que ya tienes: SEO técnico, visibilidad en ChatGPT y Google, CRO y automatización. Diagnóstico gratis 24-48 h.",
     type: "website",
     locale: "es_ES",
     url: "https://www.seoscar.com/agencia-shopify",

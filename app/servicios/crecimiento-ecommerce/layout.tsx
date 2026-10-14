@@ -43,13 +43,13 @@ const serviceSchema = {
 
 
 export const metadata: Metadata = {
-  title: { absolute: "Crecimiento ecommerce: consultoría SEO, GEO y CRO | SEOscar" },
-  description: "Pack Crecimiento ecommerce: SEO técnico y GEO que traen tráfico que compra, CRO y agente de ventas IA que lo convierten, y automatización.",
+  title: { absolute: "Consultoría ecommerce: SEO, GEO y CRO que vende | SEOscar" },
+  description: "¿Tu tienda tiene visitas pero no vende? SEO y GEO que traen tráfico que compra, CRO que lo convierte y automatización, sin migrar. Diagnóstico gratis.",
   keywords: ["crecimiento ecommerce", "SEO ecommerce", "GEO", "CRO ecommerce", "optimización de conversión", "agente de ventas IA", "SEO Barcelona", "automatización n8n ecommerce"],
   openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
-    title: "Crecimiento ecommerce: consultoría SEO, GEO y CRO | SEOscar",
-    description: "Pack Crecimiento ecommerce: SEO técnico y GEO que traen tráfico que compra, CRO y agente de ventas IA que lo convierten, y automatización.",
+    title: "Consultoría ecommerce: SEO, GEO y CRO que vende | SEOscar",
+    description: "¿Tu tienda tiene visitas pero no vende? SEO y GEO que traen tráfico que compra, CRO que lo convierte y automatización, sin migrar. Diagnóstico gratis.",
     type: "website",
     locale: "es_ES",
     url: "https://www.seoscar.com/servicios/crecimiento-ecommerce",

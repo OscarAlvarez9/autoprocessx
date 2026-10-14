@@ -298,8 +298,8 @@ export const CASE_TITLES: Record<string, string> = {
   "pelican-catchy-infraestructura-ia": "Caso Pelican Catchy: marketing con multi-agente IA | SEOscar",
   "totfinestra": "Caso Totfinestra: web de ventanas a medida | SEOscar",
   "controltemp": "Caso ControlTemp: SEO B2B industrial | SEOscar",
-  "clinica-de-la-ansiedad": "Clínica de la Ansiedad: 1 de cada 5 visitas pide cita | SEOscar",
-  "clinica-de-la-ansiedad-blog-automatizado": "Clínica de la Ansiedad: blog automatizado con IA | SEOscar",
+  "clinica-de-la-ansiedad": "Clínica de la Ansiedad: 1 de cada 5 visitas pide cita",
+  "clinica-de-la-ansiedad-blog-automatizado": "Clínica de la Ansiedad: del calendario a Contentful con n8n",
 }
 
 /** Title de una ficha: el escrito a mano, y si no, la fórmula anterior. */
@@ -315,6 +315,7 @@ export function caseTitle(caso: Caso): string {
  * usando el resumen.
  */
 export const CASE_DESCRIPTIONS: Record<string, string> = {
+  "farmacia-garcia-del-cerro": "Tienda Shopify hecha desde cero que hoy vende de forma independiente gracias a la estrategia SEO, el calendario editorial y el seguimiento en Search Console.",
   "marea-es": "Pack Crecimiento ecommerce sobre WooCommerce: estrategia SEO de venta y catálogo de 2.293 referencias que llegan solas del proveedor a la tienda.",
   "opoai-plataforma-estudio-oposiciones": "SaaS de oposiciones de Justicia con tutor jurídico que cita el BOE, y la estrategia de contenido y GEO para que deje de depender de su propia marca.",
   "quad-studios": "SEO local para Quad Studios: creación y optimización avanzada de su ficha de Google Business Profile para captar clientes de su zona.",
@@ -322,7 +323,7 @@ export const CASE_DESCRIPTIONS: Record<string, string> = {
   "regalalo-io": "Digitalización y lanzamiento de un recomendador de regalos basado en IA, con estrategia de pre-lanzamiento y posicionamiento desde el primer día.",
   "totfinestra": "Web de ventanas de aluminio a medida diseñada para captar y cualificar solicitudes de presupuesto.",
   "clinica-de-la-ansiedad": "De una web que no traía pacientes a una en la que 1 de cada 5 visitantes pulsa Reservar en el primer mes. Web nueva, contenido y medición.",
-  "clinica-de-la-ansiedad-blog-automatizado": "Workflow en n8n que convierte una fila del calendario editorial en un artículo completo en Contentful: texto revisado, imagen, SEO y autor.",
+  "clinica-de-la-ansiedad-blog-automatizado": "Workflow en n8n que lleva cada fila del calendario editorial a Contentful con imagen, SEO y autor, y deja el texto listo para revisión antes de publicar.",
 }
 
 /** Meta description de una ficha: la escrita a mano, y si no, el resumen. */

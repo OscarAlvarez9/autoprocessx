@@ -21,13 +21,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const cat = getCategory(slug as CategorySlug)
     if (!cat) return {}
     return {
-        title: `${cat.name} · Blog`,
-        description: cat.description,
+        title: { absolute: cat.seoTitle },
+        description: cat.seoDescription,
         alternates: { canonical: `${SITE_URL}/blog/categoria/${cat.slug}` },
         openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
-            title: `${cat.name} · Blog SEOscar`,
-            description: cat.description,
+            title: cat.seoTitle,
+            description: cat.seoDescription,
             type: "website",
             url: `${SITE_URL}/blog/categoria/${cat.slug}`,
         },

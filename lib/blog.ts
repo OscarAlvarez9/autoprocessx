@@ -12,6 +12,10 @@ export interface BlogCategory {
     name: string
     shortName: string
     description: string
+    /** Title de la página de categoría (absoluto, sin plantilla). */
+    seoTitle: string
+    /** Meta description de la categoría. `description` es texto visible en la página. */
+    seoDescription: string
     accent: "pink" | "emerald" | "orange" | "red" | "blue"
     /** Servicio al que empuja la categoría: caja al final de cada post. */
     service: { href: string; label: string; pitch: string }
@@ -23,6 +27,8 @@ export interface BlogCategory {
 export const blogCategories: BlogCategory[] = [
     {
         slug: "seo",
+        seoTitle: "SEO para ecommerce: guías y casos reales | Blog SEOscar",
+        seoDescription: "Guías de SEO para tiendas online: arquitectura de categorías, fichas de producto que venden, migraciones sin perder tráfico y SEO local, con casos reales.",
         name: "SEO y Ecommerce",
         shortName: "SEO",
         description: "SEO técnico, para tiendas online y local: arquitectura, migraciones sin perder tráfico, categorías y fichas de producto que venden.",
@@ -35,6 +41,8 @@ export const blogCategories: BlogCategory[] = [
     },
     {
         slug: "geo",
+        seoTitle: "GEO: cómo aparecer en ChatGPT y Google AI | Blog SEOscar",
+        seoDescription: "Generative Engine Optimization para tiendas online: qué hacer para que ChatGPT, Perplexity y los AI Overviews de Google citen tu marca y tus productos.",
         name: "GEO",
         shortName: "GEO",
         description: "Generative Engine Optimization. Cómo aparecer citado en ChatGPT, Perplexity y AI Overviews de Google.",
@@ -47,6 +55,8 @@ export const blogCategories: BlogCategory[] = [
     },
     {
         slug: "automatizaciones",
+        seoTitle: "Automatizaciones para ecommerce con n8n | Blog SEOscar",
+        seoDescription: "Workflows reales con n8n para tiendas online: pedidos, stock, facturas, carritos abandonados, CRM y reporting: lo que hoy se hace a mano, automatizado.",
         name: "Automatizaciones",
         shortName: "Automation",
         description: "Workflows reales con n8n, Claude y APIs externas: facturas, formularios, CRM y todo lo que hoy se hace a mano.",
@@ -59,6 +69,8 @@ export const blogCategories: BlogCategory[] = [
     },
     {
         slug: "agentes-ia",
+        seoTitle: "Chatbots de ventas para ecommerce y WhatsApp | Blog SEOscar",
+        seoDescription: "Chatbots y agentes que atienden, cualifican y venden en tu tienda online y en WhatsApp: cómo funcionan, cuánto cuestan y qué exige el AI Act.",
         name: "Agentes y chatbots IA",
         shortName: "Agentes",
         description: "Agentes y chatbots con IA que atienden, cualifican y venden: WhatsApp, web y sistemas con más de un agente.",
@@ -71,6 +83,8 @@ export const blogCategories: BlogCategory[] = [
     },
     {
         slug: "ia-empresas",
+        seoTitle: "IA en empresas: casos, datos y regulación | Blog SEOscar",
+        seoDescription: "Qué puede hacer hoy la IA en una empresa, sin hype: plataformas propias, RAG, datos del mercado español y lo que exige el AI Act. Con casos reales.",
         name: "IA para empresas",
         shortName: "IA empresa",
         description: "Qué puede hacer la IA en una empresa hoy: plataformas propias, RAG, regulación y datos del mercado sin hype.",

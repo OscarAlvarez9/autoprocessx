@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { POST_SEO } from "@/lib/postSeo"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { Clock, ArrowLeft, ArrowRight } from "lucide-react"
@@ -36,14 +37,17 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const result = await getPostWithBody(slug)
     if (!result) return {}
     const post = result.post
+    const seo = POST_SEO[post.slug]
+    const title = seo?.title ?? post.title
+    const description = seo?.description ?? post.excerpt
     return {
-        title: post.title,
-        description: post.excerpt,
+        title: seo?.title ? { absolute: seo.title } : post.title,
+        description,
         alternates: { canonical: `${SITE_URL}/blog/${post.slug}` },
         openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
-            title: post.title,
-            description: post.excerpt,
+            title,
+            description,
             type: "article",
             url: `${SITE_URL}/blog/${post.slug}`,
             publishedTime: post.date,

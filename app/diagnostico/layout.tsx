@@ -1,12 +1,12 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: { absolute: "Auditoría SEO gratis de tu ecommerce: el diagnóstico | SEOscar" },
+  title: { absolute: "Auditoría SEO gratis de tu ecommerce en 24-48 h | SEOscar" },
   description: "Diagnóstico gratis de tu tienda online: respondes cuatro preguntas, reviso tu web y en 24-48 h te digo dónde se te escapan las ventas. Sin compromiso.",
   keywords: ["auditoría SEO gratis", "auditoría SEO gratis ecommerce", "auditoría tienda online gratis", "diagnóstico ecommerce", "diagnóstico SEO ecommerce", "análisis de conversión ecommerce"],
   openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
-    title: "Auditoría SEO gratis de tu ecommerce: el diagnóstico | SEOscar",
+    title: "Auditoría SEO gratis de tu ecommerce en 24-48 h | SEOscar",
     description: "Diagnóstico gratis de tu tienda online: respondes cuatro preguntas, reviso tu web y en 24-48 h te digo dónde se te escapan las ventas. Sin compromiso.",
     type: "website",
     locale: "es_ES",

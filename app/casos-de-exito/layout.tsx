@@ -42,13 +42,13 @@ const caseStudiesSchema = {
 
 
 export const metadata: Metadata = {
-  title: { absolute: "Casos de éxito: ecommerce creciendo con IA | SEOscar" },
-  description: "Casos reales en Shopify, WooCommerce y web nativa: agente de ventas IA, SEO que trae tráfico que compra y CRO. El código, siempre del cliente.",
+  title: { absolute: "Casos de éxito SEO y ecommerce: resultados reales" },
+  description: "Casos reales en Shopify, WooCommerce y web a medida: SEO que trae tráfico que compra, CRO, automatización y chatbot de ventas. El código, del cliente.",
   keywords: ["casos de éxito ecommerce", "crecimiento tienda online", "agente de ventas IA caso", "SEO ecommerce resultados", "CRO tienda online", "casos IA ecommerce Barcelona"],
   openGraph: {
             images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SEOscar, agencia de ecommerce en Barcelona" }],
-    title: "Casos de éxito: ecommerce creciendo con IA | SEOscar",
-    description: "Casos reales en Shopify, WooCommerce y web nativa: agente de ventas IA, SEO que trae tráfico que compra y CRO. El código, siempre del cliente.",
+    title: "Casos de éxito SEO y ecommerce: resultados reales",
+    description: "Casos reales en Shopify, WooCommerce y web a medida: SEO que trae tráfico que compra, CRO, automatización y chatbot de ventas. El código, del cliente.",
     type: "website",
     locale: "es_ES",
     url: "https://www.seoscar.com/casos-de-exito",
