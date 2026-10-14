@@ -355,7 +355,8 @@ export function ReportSnippet() {
       <Box sx={{ p: 2, minHeight: 150 }}>
         <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: tokens.petrol, mb: 1 }}>{`// informe semanal · ventas y stock`}</Typography>
         <Stack spacing={0.6} sx={{ mb: 2 }}>
-          {["Pedidos procesados: [[ n ]]", "SKUs sin stock: [[ n ]]", "Carritos recuperados: [[ n ]]"].map((l) => (
+          {/* Qué trae el informe, sin cifras: unos números de ejemplo pasarían por resultados. */}
+          {["Pedidos procesados", "SKUs sin stock", "Carritos recuperados"].map((l) => (
             <Typography key={l} sx={{ fontSize: 12.5, color: tokens.body }}>{l}</Typography>
           ))}
         </Stack>

@@ -32,10 +32,13 @@ const options: Options = {
                 {children}
             </p>
         ),
+        // La página ya tiene su H1 (el título del post). Un heading-1 del cuerpo
+        // nunca debe salir como h1; lib/contentful.ts los renumera, y esto es
+        // la red por si llega alguno sin pasar por ahí.
         [BLOCKS.HEADING_1]: (_node, children) => (
-            <h1 className="text-3xl md:text-4xl font-[family-name:var(--font-fraunces)] font-semibold text-[#14201D] tracking-tight mt-12 mb-5">
+            <h2 className="text-2xl md:text-3xl font-[family-name:var(--font-fraunces)] font-semibold text-[#14201D] tracking-tight mt-10 mb-4">
                 {children}
-            </h1>
+            </h2>
         ),
         [BLOCKS.HEADING_2]: (_node, children) => (
             <h2 className="text-2xl md:text-3xl font-[family-name:var(--font-fraunces)] font-semibold text-[#14201D] tracking-tight mt-10 mb-4">
@@ -51,6 +54,11 @@ const options: Options = {
             <h4 className="text-lg md:text-xl font-[family-name:var(--font-fraunces)] font-semibold text-[#14201D] tracking-tight mt-6 mb-3">
                 {children}
             </h4>
+        ),
+        [BLOCKS.HEADING_5]: (_node, children) => (
+            <h5 className="text-base md:text-lg font-[family-name:var(--font-fraunces)] font-semibold text-[#14201D] tracking-tight mt-6 mb-2">
+                {children}
+            </h5>
         ),
         [BLOCKS.UL_LIST]: (_node, children) => (
             <ul className="list-disc list-outside pl-6 space-y-2 mb-6 text-[#26332F] marker:text-[#013E37]">

@@ -96,8 +96,60 @@ function rebrand<T>(value: T): T {
     return value
 }
 
+// Enlaces internos que los artículos traen escritos a mano y que hoy dan 404
+// o pasan por una redirección: se reescriben a su destino final. También se
+// pasan a ruta relativa los enlaces absolutos a la propia web (o al dominio
+// antiguo), para que no salgan de la página en una pestaña nueva.
+const INTERNAL_LINKS: Record<string, string> = {
+    "/contacto": "/diagnostico",
+    "/tecnologia": "/metodo",
+    "/que-es-geo": "/blog/que-es-geo",
+    "/servicios/ai-chatbot": "/servicios/agente-ventas-ia",
+    "/servicios/aplicaciones-ia": "/servicios/a-medida",
+    "/servicios/geo-seo-generative-engine-optimization": "/posicionamiento-geo",
+    "/servicios/automatizacion": "/servicios/automatizaciones",
+    "/servicios/seo-geo": "/servicios/crecimiento-ecommerce",
+    "/servicios": "/servicios/crecimiento-ecommerce",
+    "/pricing": "/diagnostico",
+}
+const OWN_HOST = /^https?:\/\/(?:www\.)?(?:seoscar|autoprocessx)\.com(?=\/|$)/i
+
+function fixLink(uri: string): string {
+    const rel = uri.replace(OWN_HOST, "") || "/"
+    if (rel === uri && !uri.startsWith("/")) return uri
+    const [path, rest = ""] = rel.split(/(?=[?#])/)
+    const clean = path.length > 1 ? path.replace(/\/$/, "") : path
+    return (INTERNAL_LINKS[clean] ?? clean) + rest
+}
+
+type RtNode = { nodeType: string; data?: { uri?: string }; content?: RtNode[] }
+
+// El cuerpo trae encabezados al nivel que eligió quien lo escribió: H1 que
+// duplican el de la página y saltos de H1 a H3. Se renumeran: el nivel más
+// alto que use el artículo pasa a H2 y el resto le sigue sin huecos.
+function normalizeBody(doc: Document): Document {
+    const used = new Set<number>()
+    const scan = (n: RtNode) => {
+        const m = /^heading-(\d)$/.exec(n.nodeType)
+        if (m) used.add(Number(m[1]))
+        n.content?.forEach(scan)
+    }
+    scan(doc as unknown as RtNode)
+    const order = [...used].sort()
+    const level = (l: number) => Math.min(2 + order.indexOf(l), 6)
+    const walk = (n: RtNode): RtNode => {
+        const m = /^heading-(\d)$/.exec(n.nodeType)
+        const next: RtNode = { ...n }
+        if (m) next.nodeType = `heading-${level(Number(m[1]))}`
+        if (n.nodeType === "hyperlink" && n.data?.uri) next.data = { ...n.data, uri: fixLink(n.data.uri) }
+        if (n.content) next.content = n.content.map(walk)
+        return next
+    }
+    return walk(doc as unknown as RtNode) as unknown as Document
+}
+
 const extractBody = (fields: RawFields): Document | string | undefined => {
-    return rebrand(
+    const body = rebrand(
         fields.texto ??
         fields.cuerpo ??
         fields.contenido ??
@@ -105,6 +157,7 @@ const extractBody = (fields: RawFields): Document | string | undefined => {
         fields.content ??
         fields.descripcion
     )
+    return body && typeof body === "object" && Array.isArray(body.content) ? normalizeBody(body) : body
 }
 
 interface RawEntry {

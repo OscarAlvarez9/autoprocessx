@@ -613,7 +613,7 @@ export function DiagnosticoFlow() {
                     exit={reduce ? { opacity: 0 } : { opacity: 0, x: dir * -26 }}
                     transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Typography variant="h5" component="h3" sx={{ fontFamily: fonts.serif, fontSize: { xs: 20, md: 23 }, color: tokens.ink, mb: 2 }}>{question}</Typography>
+                    <Typography variant="h5" component="p" sx={{ fontFamily: fonts.serif, fontSize: { xs: 20, md: 23 }, color: tokens.ink, mb: 2 }}>{question}</Typography>
 
                     {step === 0 && (
                       <Stack spacing={1}>

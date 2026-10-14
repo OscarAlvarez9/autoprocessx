@@ -503,7 +503,7 @@ export function AgentDemo() {
   }
 
   return (
-    <Frame tag="demo · pruébalo" right={<Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>[[ endpoint RAG ]]</Typography>}>
+    <Frame tag="demo · pruébalo">
       <Box ref={scRef} sx={{ height: 260, overflowY: "auto", p: 2, display: "flex", flexDirection: "column", gap: 1.1 }}>
         {msgs.map((m, k) => (
           <Box key={k} component={motion.div} initial={reduce ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} sx={{ display: "flex", flexDirection: "column", alignItems: m.side === "user" ? "flex-end" : "flex-start" }}>

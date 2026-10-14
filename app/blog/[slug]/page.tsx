@@ -41,7 +41,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const title = seo?.title ?? post.title
     const description = seo?.description ?? post.excerpt
     return {
-        title: seo?.title ? { absolute: seo.title } : post.title,
+        // Con el sufijo " | SEOscar" (10) un título de más de 50 pasa de 60 y
+        // Google lo corta: a partir de ahí va sin marca.
+        title: seo?.title || post.title.length > 50 ? { absolute: title } : post.title,
         description,
         alternates: { canonical: `${SITE_URL}/blog/${post.slug}` },
         openGraph: {

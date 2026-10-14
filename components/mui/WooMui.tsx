@@ -187,7 +187,7 @@ const FAQS = [
 function Hero() {
   return (
     <ServiceHero
-      title="Agencia WooCommerce: más ventas sin tocar tu WordPress."
+      title="Consultor SEO para WordPress y WooCommerce. Más ventas sin tocar tu web."
       sub="Trabajo tiendas WooCommerce que ya facturan y quieren más, sobre tu instalación actual. Sin migrar ni rehacer la web, y con una ventaja que ninguna otra plataforma te da: el código ya es 100% tuyo."
       specs={[
         ["plataforma", "WooCommerce sobre tu WordPress"],
