@@ -81,8 +81,23 @@ interface RawFields {
     [key: string]: unknown
 }
 
+// AutoProcessX es el nombre anterior de SEOscar. Los artículos escritos con
+// esa marca se publican con la actual: se cambia en cualquier texto del post
+// (cuerpo, título, resumen, firma). Variantes vistas en Contentful:
+// "AutoProcessX", "AutoProcess X" y "Auto Process BCN".
+const OLD_BRAND = /Auto\s?Process(?:\s?X|\s+BCN)/g
+
+function rebrand<T>(value: T): T {
+    if (typeof value === "string") return value.replace(OLD_BRAND, "SEOscar") as T
+    if (Array.isArray(value)) return value.map(rebrand) as T
+    if (value && typeof value === "object") {
+        return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, rebrand(v)])) as T
+    }
+    return value
+}
+
 const extractBody = (fields: RawFields): Document | string | undefined => {
-    return (
+    return rebrand(
         fields.texto ??
         fields.cuerpo ??
         fields.contenido ??
@@ -178,18 +193,17 @@ const mapEntry = (entry: RawEntry): BlogPost => {
     const minutes = f.minutosLectura ?? Math.max(1, Math.round(words / 220))
     return {
         slug: cleanSlug(f.slug),
-        // Posts heredados de AutoProcessX: la marca vieja no puede salir en
-        // títulos, resúmenes ni firmas. El cuerpo se trata aparte.
-        title: (f.titulo ?? "").replace(/\s*\|\s*AutoProcessX\s*$/i, ""),
-        excerpt: POST_SEO[cleanSlug(f.slug)]?.description ?? f.metadescripcion ?? "",
+        // " | AutoProcessX" al final del título sobra: la plantilla ya añade la marca.
+        title: rebrand((f.titulo ?? "").replace(/\s*\|\s*AutoProcessX\s*$/i, "")),
+        excerpt: rebrand(POST_SEO[cleanSlug(f.slug)]?.description ?? f.metadescripcion ?? ""),
         category: normalizeCategory(f.categoria),
         date:
             typeof f.fecha === "string"
                 ? f.fecha.slice(0, 10)
                 : new Date().toISOString().slice(0, 10),
         readingMinutes: minutes,
-        tags: f.tags ?? [],
-        author: f.autor && !/autoprocessx/i.test(f.autor) ? f.autor : "SEOscar",
+        tags: rebrand(f.tags ?? []),
+        author: f.autor ? rebrand(f.autor) : "SEOscar",
         cover: buildCoverUrl(f.imagen),
     }
 }
