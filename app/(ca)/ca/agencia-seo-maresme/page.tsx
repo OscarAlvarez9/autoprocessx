@@ -5,9 +5,9 @@ import JsonLd from "@/components/JsonLd"
 import { ORG_ID, SITE_URL } from "@/lib/seo"
 import { i18nAlternates } from "@/lib/i18n"
 
-const TITLE = "Consultor SEO al Maresme, des de Premià de Mar | SEOscar"
+const TITLE = "Consultor SEO al Maresme: SEO local a la comarca | SEOscar"
 const DESCRIPTION =
-  "Consultor i agència SEO al Maresme, des de Premià de Mar: posicionament web per a negocis de la comarca a Google, al mapa i a ChatGPT. Diagnòstic gratuït."
+  "Consultor SEO al Maresme: posiciono negocis de tota la comarca, de Montgat a Malgrat de Mar, a Google, al mapa i a ChatGPT. Diagnòstic gratuït."
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

@@ -5,9 +5,9 @@ import VallesMui from "@/components/mui/VallesMui"
 import JsonLd from "@/components/JsonLd"
 import { ORG_ID, SITE_URL } from "@/lib/seo"
 
-const TITLE = "Consultor SEO en el Vallès Oriental y Granollers | SEOscar"
+const TITLE = "Consultor SEO en el Vallès Oriental | SEOscar"
 const DESCRIPTION =
-  "Consultor SEO para negocios de Granollers, Mollet, Sant Celoni, Cardedeu y todo el Vallès Oriental: Google, mapa y ChatGPT. Diagnóstico gratis."
+  "Consultor SEO para negocios del Vallès Oriental: Mollet, Sant Celoni, Cardedeu, La Garriga y toda la comarca, en Google, en el mapa y en ChatGPT."
 const URL = `${SITE_URL}/consultor-seo-valles-oriental`
 
 // Publicada el 14-oct-2026 con el visto bueno de Óscar.

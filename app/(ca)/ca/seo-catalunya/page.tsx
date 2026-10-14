@@ -5,9 +5,9 @@ import JsonLd from "@/components/JsonLd"
 import { ORG_ID, SITE_URL } from "@/lib/seo"
 import { i18nAlternates } from "@/lib/i18n"
 
-const TITLE = "Consultor SEO a Catalunya: Barcelona, Maresme i Vallès"
+const TITLE = "Consultor SEO a Catalunya: SEO local i ecommerce | SEOscar"
 const DESCRIPTION =
-  "Consultor SEO i posicionament web a Catalunya per a negocis i botigues de Barcelona, el Maresme i el Vallès: Google, mapa i ChatGPT. Diagnòstic gratuït."
+  "Consultor SEO a Catalunya per a negocis locals i botigues en línia: posicionament a Google, al mapa i a ChatGPT, amb dades. Diagnòstic gratuït."
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

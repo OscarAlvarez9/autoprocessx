@@ -5,9 +5,9 @@ import VallesMuiCa from "@/components/mui/ca/VallesMuiCa"
 import JsonLd from "@/components/JsonLd"
 import { ORG_ID, SITE_URL } from "@/lib/seo"
 
-const TITLE = "Consultor SEO al Vallès Oriental i Granollers | SEOscar"
+const TITLE = "Consultor SEO al Vallès Oriental | SEOscar"
 const DESCRIPTION =
-  "Consultor SEO i posicionament web per a negocis de Granollers, Mollet, Sant Celoni, Cardedeu i tot el Vallès Oriental: Google, mapa i ChatGPT."
+  "Consultor SEO per a negocis del Vallès Oriental: Mollet, Sant Celoni, Cardedeu, la Garriga i tota la comarca, a Google, al mapa i a ChatGPT."
 const URL = `${SITE_URL}/ca/consultor-seo-valles-oriental`
 
 export const metadata: Metadata = {

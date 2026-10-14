@@ -247,7 +247,9 @@ const mapEntry = (entry: RawEntry): BlogPost => {
     return {
         slug: cleanSlug(f.slug),
         // " | AutoProcessX" al final del título sobra: la plantilla ya añade la marca.
-        title: rebrand((f.titulo ?? "").replace(/\s*\|\s*AutoProcessX\s*$/i, "")),
+        // Y sin espacio delante de los signos ("agente de IA : explicado"), que
+        // en castellano y en catalán no lleva.
+        title: rebrand((f.titulo ?? "").replace(/\s*\|\s*AutoProcessX\s*$/i, "")).replace(/\s+([:;,.!?])/g, "$1"),
         excerpt: rebrand(POST_SEO[cleanSlug(f.slug)]?.description ?? f.metadescripcion ?? ""),
         category: normalizeCategory(f.categoria),
         date:
