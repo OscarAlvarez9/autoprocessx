@@ -35,7 +35,7 @@ function Hero() {
             Consultor SEO per a <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>botigues en línia</Box>. Més vendes amb el trànsit que ja tens.
           </Typography>
           <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 580, mx: "auto", mb: 4 }}>
-            {"Sóc l'Òscar Álvarez, consultor SEO d'ecommerce. Treballo el SEO, la visibilitat a la IA, la conversió i l'automatització de botigues que ja facturen, sobre la teva plataforma actual i sense migrar res. Enginyeria, no fum."}
+            {"Sóc l'Òscar Álvarez, consultor SEO d'ecommerce. Treballo el SEO, la visibilitat a la IA, la conversió i l'automatització de botigues que ja facturen, sobre la teva plataforma actual i sense migrar res."}
           </Typography>
           <Stack direction={{ xs: "column", sm: "row" }} spacing={2.5} sx={{ alignItems: "center", justifyContent: "center" }}>
             <PrimaryCTA />

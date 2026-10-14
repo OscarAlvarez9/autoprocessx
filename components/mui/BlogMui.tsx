@@ -297,14 +297,18 @@ function Indice({ posts, catName, titulo }: { posts: BlogPost[]; catName: (s: st
   )
 }
 
-export default function BlogMui({ posts, categories, featuredSlug, activeSlug }: { posts: BlogPost[]; categories: BlogCategory[]; featuredSlug?: string; activeSlug?: string }) {
+// allPosts: todos los artículos del blog, para los contadores del menú. En una
+// categoría `posts` trae solo los suyos; si el menú contaba con esa lista, el
+// resto de categorías salían a 0 y desaparecían, y para cambiar de sección
+// había que volver antes a "Todo".
+export default function BlogMui({ posts, allPosts, categories, featuredSlug, activeSlug }: { posts: BlogPost[]; allPosts?: BlogPost[]; categories: BlogCategory[]; featuredSlug?: string; activeSlug?: string }) {
   const catName = (slug: string) => categories.find((c) => c.slug === slug)?.shortName ?? categories.find((c) => c.slug === slug)?.name
   const activa = categories.find((c) => c.slug === activeSlug)
   const featured = posts.find((p) => p.slug === featuredSlug) ?? posts[0]
   const resto = posts.filter((p) => p.slug !== featured?.slug)
   const laterales = resto.slice(0, 3)
   const indice = resto.slice(3)
-  const counts = posts.reduce<Record<string, number>>((acc, p) => { acc[p.category] = (acc[p.category] ?? 0) + 1; return acc }, {})
+  const counts = (allPosts ?? posts).reduce<Record<string, number>>((acc, p) => { acc[p.category] = (acc[p.category] ?? 0) + 1; return acc }, {})
 
   return (
     <Box sx={{ bgcolor: tokens.paper, color: tokens.body, fontFamily: fonts.sans }}>

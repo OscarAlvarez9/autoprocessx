@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import ThemeRegistry from "@/components/mui/ThemeRegistry"
 import { blogCategories, getCategory, type CategorySlug } from "@/lib/blog"
 import BlogMui from "@/components/mui/BlogMui"
-import { getPostsByCategory } from "@/lib/contentful"
+import { getPostsByCategory, getAllPosts } from "@/lib/contentful"
 import { SITE_URL } from "@/lib/seo"
 
 export const revalidate = 300
@@ -39,12 +39,13 @@ export default async function CategoryPage({ params }: Params) {
     const cat = getCategory(slug as CategorySlug)
     if (!cat) notFound()
     const posts = await getPostsByCategory(cat.slug)
+    const allPosts = await getAllPosts()
 
     // Mismo componente que /blog: una sola maqueta de diario para el blog
     // entero. Antes la categoría tenía su propio diseño, heredado y distinto.
     return (
         <ThemeRegistry>
-            <BlogMui posts={posts} categories={blogCategories} activeSlug={cat.slug} />
+            <BlogMui posts={posts} allPosts={allPosts} categories={blogCategories} activeSlug={cat.slug} />
         </ThemeRegistry>
     )
 }
