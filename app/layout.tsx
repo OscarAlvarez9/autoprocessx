@@ -141,7 +141,7 @@ const websiteSchema = {
   "@id": `${SITE_URL}/#website`,
   name: "SEOscar",
   url: SITE_URL,
-  description: "Agencia de inteligencia artificial y automatización con n8n en Barcelona. Agentes autónomos, arquitecturas RAG y flujos inteligentes para empresas.",
+  description: "Consultoría SEO para tiendas online y negocios locales de Óscar Álvarez, desde Premià de Mar: SEO, GEO, CRO y automatización.",
   inLanguage: "es-ES",
   publisher: { "@id": ORG_ID },
 };

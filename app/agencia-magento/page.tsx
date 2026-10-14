@@ -7,7 +7,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "@id": `${SITE_URL}/agencia-magento/#service`,
-  name: "Agencia Magento: SEO, GEO, CRO e IA para ecommerce",
+  name: "Agencia Magento: SEO, GEO y CRO para tiendas Magento",
   description:
     "Ingeniería de crecimiento para tiendas Magento y Adobe Commerce: SEO técnico a escala de catálogo, visibilidad en buscadores de IA (GEO), optimización de conversión y automatización, sobre la plataforma actual y sin migrar.",
   serviceType: "Magento ecommerce growth engineering",

@@ -7,7 +7,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "@id": `${SITE_URL}/agencia-woocommerce/#service`,
-  name: "Agencia WooCommerce: SEO, CRO e IA para ecommerce",
+  name: "Consultor SEO para WordPress y WooCommerce",
   description:
     "Optimización de tiendas WooCommerce sobre WordPress: SEO técnico, limpieza de plugins y rendimiento, visibilidad en buscadores de IA (GEO), CRO y automatización, sobre la instalación actual y sin migrar.",
   serviceType: "Optimización de tiendas WooCommerce",

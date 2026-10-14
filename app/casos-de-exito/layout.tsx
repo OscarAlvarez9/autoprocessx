@@ -1,44 +1,5 @@
 import type { Metadata } from "next";
 
-const caseStudiesSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "Casos de éxito en crecimiento de ecommerce con IA",
-  description: "Tiendas online creciendo sobre su propia plataforma con SEO, conversión y agente de ventas IA de SEOscar.",
-  url: "https://www.seoscar.com/casos-de-exito",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      item: {
-        "@type": "Article",
-        name: "marea.es: automatización de catálogo y estrategia SEO de venta sobre WooCommerce",
-        description: "Tienda de relojes con 2.293 referencias: 19 automatizaciones que llevan el catálogo del proveedor a la tienda, y estrategia SEO de venta sobre WooCommerce.",
-        author: { "@type": "Organization", name: "SEOscar" },
-      },
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      item: {
-        "@type": "Article",
-        name: "Farmacia García del Cerro: contenido SEO automatizado sobre Shopify",
-        description: "Motor de contenido SEO autónomo para captar tráfico orgánico que llega a comprar, sobre Shopify.",
-        author: { "@type": "Organization", name: "SEOscar" },
-      },
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      item: {
-        "@type": "Article",
-        name: "Totfinestra: web de ventanas a medida orientada a presupuesto",
-        description: "Web enfocada a captar y cualificar solicitudes de presupuesto de ventanas de aluminio a medida, con SEO local.",
-        author: { "@type": "Organization", name: "SEOscar" },
-      },
-    },
-  ],
-};
 
 
 export const metadata: Metadata = {
@@ -59,13 +20,7 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudiesSchema) }}
-      />
-      {children}
-    </>
-  );
+  // El ItemList de casos vivía aquí y se heredaba a las 15 fichas. Ahora está
+  // solo en app/casos-de-exito/page.tsx, generado a partir de los casos.
+  return children;
 }

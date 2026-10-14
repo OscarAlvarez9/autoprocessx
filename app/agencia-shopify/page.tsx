@@ -7,7 +7,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "@id": `${SITE_URL}/agencia-shopify/#service`,
-  name: "Agencia Shopify: SEO, GEO, CRO e IA para ecommerce",
+  name: "Agencia Shopify: SEO, GEO y CRO para tiendas Shopify",
   description:
     "Optimización de tiendas Shopify y Shopify Plus: SEO técnico sobre el tema, visibilidad en buscadores de IA (GEO), optimización de conversión y automatización, sobre la plataforma actual y sin migrar.",
   serviceType: "Optimización de tiendas Shopify",

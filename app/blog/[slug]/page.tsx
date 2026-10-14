@@ -18,7 +18,7 @@ import {
     getPostWithBody,
     getPostsByCategory,
 } from "@/lib/contentful"
-import { ORG_ID, SITE_URL } from "@/lib/seo"
+import { ORG_ID, SITE_URL, FOUNDER_ID } from "@/lib/seo"
 import RichText from "@/components/RichText"
 
 export const revalidate = 300
@@ -104,8 +104,11 @@ export default async function BlogPostPage({ params }: Params) {
         datePublished: post.date,
         dateModified: post.date,
         articleSection: cat.name,
-        keywords: post.tags.join(", "),
-        author: { "@type": "Organization", name: post.author, "@id": ORG_ID },
+        ...(post.tags.length > 0 && { keywords: post.tags.join(", ") }),
+        ...(post.cover && { image: post.cover }),
+        // El autor es Óscar (la persona), no la marca: es lo que Google y los
+        // asistentes usan para saber quién firma el contenido.
+        author: { "@id": FOUNDER_ID },
         publisher: { "@id": ORG_ID },
         mainEntityOfPage: {
             "@type": "WebPage",

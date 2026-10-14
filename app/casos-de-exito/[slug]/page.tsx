@@ -58,10 +58,11 @@ export default async function CasoDetallePage({ params }: Props) {
 
   // Las cifras del caso, en formato que una máquina pueda leer. Un modelo que
   // cita esta página necesita poder sacar el dato sin interpretar el maquetado.
-  const cifras = [
-    ...caso.metrics.filter((m) => m.value).map((m) => ({ label: m.label, value: m.value as string, note: m.note })),
-    ...(deep?.kpis.flatMap((b) => b.items) ?? []).map((k) => ({ label: k.label, value: k.value, note: k.note })),
-  ]
+  // Si hay ficha larga, sus bandas ya contienen las cifras de la tarjeta (con
+  // otra etiqueta): sumar las dos listas duplicaba datos en el schema.
+  const cifras = deep?.kpis.length
+    ? deep.kpis.flatMap((b) => b.items).map((k) => ({ label: k.label, value: k.value, note: k.note }))
+    : caso.metrics.filter((m) => m.value).map((m) => ({ label: m.label, value: m.value as string, note: m.note }))
 
   const articleSchema = {
     "@context": "https://schema.org",

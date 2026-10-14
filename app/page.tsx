@@ -17,7 +17,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "@id": `${SITE_URL}/#service-home`,
-  name: "Crecimiento de ecommerce con IA",
+  name: "Crecimiento ecommerce: SEO, GEO y CRO",
   description:
     "SEO técnico y GEO/AI Search, optimización de conversión (CRO), agente de ventas IA anclado al catálogo y automatización con n8n para tiendas online.",
   serviceType: "Ecommerce growth engineering",

@@ -1,27 +1,13 @@
-import JsonLd from "@/components/JsonLd"
-import { ORG_ID, SITE_URL } from "@/lib/seo"
 import ThemeRegistry from "@/components/mui/ThemeRegistry"
 import SobreNosotrosMui from "@/components/mui/SobreNosotrosMui"
 
-const LINKEDIN_OSCAR = "https://www.linkedin.com/in/oscar-alvarez-romani-7882302b3"
-
-const personSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${SITE_URL}/#founder`,
-  name: "Oscar Álvarez",
-  jobTitle: "Fundador e ingeniero",
-  worksFor: { "@id": ORG_ID },
-  sameAs: [LINKEDIN_OSCAR],
-}
-
+// La Person de Óscar va una sola vez, en el layout raíz (founderSchema en
+// lib/seo.ts). Aquí había una segunda con el mismo @id y otros datos
+// ("Oscar" sin tilde, otro cargo), que se contradecían.
 export default function SobreNosotrosPage() {
   return (
-    <>
-      <JsonLd data={personSchema} />
-      <ThemeRegistry>
-        <SobreNosotrosMui />
-      </ThemeRegistry>
-    </>
+    <ThemeRegistry>
+      <SobreNosotrosMui />
+    </ThemeRegistry>
   )
 }

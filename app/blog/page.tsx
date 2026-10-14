@@ -4,7 +4,7 @@ import ThemeRegistry from "@/components/mui/ThemeRegistry"
 import BlogMui from "@/components/mui/BlogMui"
 import { blogCategories } from "@/lib/blog"
 import { getAllPosts } from "@/lib/contentful"
-import { ORG_ID, SITE_URL } from "@/lib/seo"
+import { ORG_ID, SITE_URL, FOUNDER_ID } from "@/lib/seo"
 
 export const revalidate = 300
 
@@ -42,7 +42,7 @@ export default async function BlogIndex() {
             url: `${SITE_URL}/blog/${p.slug}`,
             datePublished: p.date,
             articleSection: p.category,
-            author: { "@type": "Organization", name: p.author },
+            author: { "@id": FOUNDER_ID },
         })),
     }
 
