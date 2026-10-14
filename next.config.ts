@@ -97,8 +97,14 @@ const nextConfig: NextConfig = {
       { source: "/terminos", destination: "/aviso-legal", permanent: true },
       // Producto/plataforma del seoscar viejo: sin equivalente directo, la página
       // de tecnología es lo más afín.
-      { source: "/plataforma", destination: "/tecnologia", permanent: true },
-      { source: "/roadmap", destination: "/tecnologia", permanent: true },
+      { source: "/plataforma", destination: "/metodo", permanent: true },
+      { source: "/roadmap", destination: "/metodo", permanent: true },
+      // /tecnologia y /contacto eran páginas de AutoProcessX con el diseño y el
+      // menú antiguos. Sin tráfico en GSC (90 días hasta el 14-oct-2026: 1
+      // impresión y 0 clics entre las dos), así que se borraron y redirigen a
+      // su equivalente en la web nueva.
+      { source: "/tecnologia", destination: "/metodo", permanent: true },
+      { source: "/contacto", destination: "/diagnostico", permanent: true },
 
       // Posts retirados y categorías antiguas del blog: la lista vive en lib/blog-retired.json
       // (el blog y el sitemap usan la misma para excluirlos).

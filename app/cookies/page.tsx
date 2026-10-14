@@ -18,7 +18,7 @@ export default function CookiesPage() {
         <LegalShell
             title="Política de cookies"
             intro="Qué cookies usamos, para qué, y cómo puedes aceptarlas o rechazarlas."
-            updatedAt="TODO: fecha de publicación"
+            updatedAt="14 de octubre de 2026"
         >
             <section>
                 <h2>1. Qué son las cookies</h2>

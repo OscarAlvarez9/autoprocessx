@@ -18,7 +18,7 @@ export default function PrivacidadPage() {
         <LegalShell
             title="Política de privacidad"
             intro="Cómo tratamos tus datos personales conforme al RGPD (UE 2016/679) y la LOPDGDD."
-            updatedAt="TODO: fecha de publicación"
+            updatedAt="14 de octubre de 2026"
         >
             <section>
                 <h2>1. Responsable del tratamiento</h2>
@@ -44,7 +44,7 @@ export default function PrivacidadPage() {
                 <h2>3. Legitimación</h2>
                 <p>
                     La base jurídica es tu <strong>consentimiento</strong> (art. 6.1.a RGPD) al
-                    enviar un formulario o aceptar cookies, y el <strong>interés legítimo</strong>
+                    enviar un formulario o aceptar cookies, y el <strong>interés legítimo</strong>{" "}
                     en responder a tus solicitudes y mantener la seguridad del sitio.
                 </p>
             </section>

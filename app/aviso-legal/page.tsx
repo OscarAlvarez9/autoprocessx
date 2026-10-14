@@ -17,7 +17,7 @@ export default function AvisoLegalPage() {
         <LegalShell
             title="Aviso legal"
             intro="Condiciones generales de acceso y uso de este sitio web."
-            updatedAt="TODO: fecha de publicación"
+            updatedAt="14 de octubre de 2026"
         >
             <section>
                 <h2>1. Datos identificativos del titular</h2>

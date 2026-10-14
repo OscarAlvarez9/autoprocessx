@@ -701,7 +701,6 @@ export function SiteFooter() {
     ["Método", "/metodo"],
     ["Casos de éxito", "/casos-de-exito"],
     ["Blog", "/blog"],
-    ["Tecnología", "/tecnologia"],
     ["Quién hay detrás", "/sobre-nosotros"],
   ]
   const LEGAL: [string, string][] = [
