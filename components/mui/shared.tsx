@@ -690,6 +690,7 @@ export function SiteFooter() {
     ["Agente de ventas IA", "/servicios/agente-ventas-ia"],
     ["Automatización", "/servicios/automatizaciones"],
     ["Auditoría SEO/GEO", "/servicios/auditoria-seo-geo"],
+    ["Posicionamiento GEO", "/posicionamiento-geo"],
     ["Plataformas internas a medida", "/servicios/a-medida"],
   ]
   const EMPRESA: [string, string][] = [

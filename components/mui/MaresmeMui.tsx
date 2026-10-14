@@ -213,11 +213,33 @@ function Trabajo() {
   )
 }
 
+// Un dato por municipio, comprobado en Idescat (El municipio en cifras).
+// Página publicada: solo cifras verificadas en la fuente. Sin dato, sin bloque.
+const emex = (id: string) => `https://www.idescat.cat/emex/?id=${id}`
+
+const MUNICIPIOS: { name: string; id: string; dato: string; text: string }[] = [
+  { name: "Vilassar de Mar", id: "082191", dato: "21.234 habitantes (2025)", text: "Con más de veinte mil vecinos, en casi cualquier sector compites con varios negocios en el mapa: gana quien tiene la ficha de Google más completa y las reseñas mejor trabajadas." },
+  { name: "Vilassar de Dalt", id: "082140", dato: "9.433 habitantes (2025)", text: "En un pueblo de este tamaño te conocen de boca en boca, pero quien llega nuevo te busca en Google. Tu ficha tiene que estar a la altura de tu reputación." },
+  { name: "El Masnou", id: "081189", dato: "7.294,1 habitantes por km² (2025)", text: "Con tanta densidad, las búsquedas son de proximidad pura: lo que importa es salir cuando alguien busca a pocas calles de tu negocio." },
+  { name: "Alella", id: "080039", dato: "10.251 habitantes (2025)", text: "Quien ya te conoce te encuentra por tu nombre. El reto es que te encuentre quien no te conoce y busca por lo que haces." },
+  { name: "Teià", id: "082819", dato: "6.894 habitantes (2025)", text: "Con un mercado local pequeño, la web tiene que ayudarte a captar clientes de los municipios de al lado, no solo del tuyo." },
+  { name: "Montgat", id: "081265", dato: "2,91 km² de término municipal (2025)", text: "El término más pequeño de esta lista. Parte de tus clientes te buscarán desde los municipios de al lado, y tu web debería responder también a esas búsquedas." },
+  { name: "Arenys de Mar", id: "080060", dato: "16.982 habitantes (2025)", text: "Si tu negocio lleva años funcionando por el boca a boca, el primer salto suele ser pasar ese prestigio a Google: reseñas, fotos y una web que se entienda en el móvil." },
+  { name: "Canet de Mar", id: "080403", dato: "15.191 habitantes (2025)", text: "Tu web tiene que hacer de escaparate: horarios, qué ofreces y un botón para llamar o reservar sin tener que buscarlo." },
+  { name: "Pineda de Mar", id: "081635", dato: "30.071 habitantes (2025)", text: "El municipio más poblado de esta lista. Con tanta oferta en cada sector, posicionar por servicio concreto, y no solo por “Pineda”, es lo que te separa del resto." },
+  { name: "Calella", id: "080351", dato: "43 hoteles con 10.845 plazas (2025)", text: "Para restauración, ocio y comercio que vive del turista, la clave es salir cuando alguien busca desde el hotel dónde comer o qué hacer, también en varios idiomas." },
+  { name: "Malgrat de Mar", id: "081108", dato: "4.821 plazas de camping (2025)", text: "Mucho visitante que llega sin conocer la zona y busca en el móvil. Una ficha de Google bien montada es lo que lo lleva hasta tu puerta." },
+  { name: "Sant Andreu de Llavaneres", id: "081976", dato: "11.910 habitantes (2025)", text: "Si ofreces servicios profesionales o para el hogar, tu web tiene que transmitir confianza antes de la primera llamada: casos, reseñas y explicaciones claras." },
+  { name: "Argentona", id: "080095", dato: "25,40 km² de término municipal (2025)", text: "El término más extenso de esta lista. Si tu negocio está fuera del centro, lo primero es que tu ubicación en el mapa sea exacta y fácil de encontrar." },
+  { name: "Cabrils", id: "080305", dato: "7.755 habitantes (2025)", text: "Cada vez más gente pregunta a ChatGPT o Perplexity por un buen profesional de la zona. Que te mencionen depende de lo que se dice de ti en tu web y fuera de ella." },
+  { name: "Premià de Dalt", id: "082303", dato: "10.601 habitantes (2025)", text: "Muchas búsquedas se hacen sin el nombre del pueblo, del tipo “cerca de mí”. Es ahí donde una ficha de Google bien montada marca la diferencia." },
+]
+
 function Comarca() {
   return (
     <Box component="section" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Container>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.05fr 0.95fr" }, gap: { xs: 4, md: 7 }, alignItems: "center" }}>
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.05fr 0.95fr" }, gap: { xs: 4, md: 7 }, alignItems: "center", mb: { xs: 6, md: 8 } }}>
           <Reveal>
             <Box>
               <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, mb: 2.5, maxWidth: 560 }}>
@@ -227,7 +249,7 @@ function Comarca() {
                 Vivir aquí no es un detalle de marketing: es saber cómo compra la gente de la comarca, qué busca y a quién ya conoce. Esa ventaja se nota en cada proyecto, tengas una tienda a pie de calle en Mataró o vendas a toda España desde un local en Vilassar.
               </Typography>
               <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 520 }}>
-                Estoy en la comarca y me muevo por ella: Mataró, Premià de Mar, Vilassar de Mar, Sant Celoni, Canet, Arenys, Pineda. Y si lo prefieres, todo por videollamada, que el SEO no necesita coche.
+                Trabajo con negocios de Mataró y de Premià de Mar, donde vivo, y del resto de la comarca. Debajo, un dato de cada municipio con su fuente oficial, y lo que significa para tu SEO.
               </Typography>
             </Box>
           </Reveal>
@@ -236,6 +258,21 @@ function Comarca() {
               <Image src="/assets/gen/photo-maresme-negocio.png" alt="Dueño de un pequeño negocio del Maresme en la puerta de su tienda" fill sizes="(max-width: 900px) 100vw, 44vw" style={{ objectFit: "cover" }} />
             </Box>
           </Reveal>
+        </Box>
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(3, 1fr)" }, columnGap: { sm: 4, md: 5 }, rowGap: { xs: 4, md: 5 } }}>
+          {MUNICIPIOS.map((m) => (
+            <Box key={m.id} component="article" sx={{ borderTop: `2px solid ${tokens.line}`, pt: 2.5 }}>
+              <Typography component="h3" sx={{ fontFamily: fonts.serif, fontSize: { xs: 20, md: 21 }, fontWeight: 600, color: tokens.ink, mb: 0.75 }}>{m.name}</Typography>
+              <Typography sx={{ fontFamily: fonts.mono, fontSize: 12.5, color: tokens.petrol, mb: 1 }}>{m.dato}</Typography>
+              <Typography variant="body2" sx={{ color: tokens.body, mb: 1 }}>{m.text}</Typography>
+              <Typography variant="body2" sx={{ color: tokens.muted }}>
+                Fuente:{" "}
+                <Box component="a" href={emex(m.id)} target="_blank" rel="noopener noreferrer" sx={{ color: tokens.muted, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { color: tokens.petrol } }}>
+                  Idescat, El municipio en cifras
+                </Box>
+              </Typography>
+            </Box>
+          ))}
         </Box>
       </Container>
     </Box>

@@ -20,6 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/servicios/crecimiento-ecommerce`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/servicios/agente-ventas-ia`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/servicios/auditoria-seo-geo`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/posicionamiento-geo`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/agencia-magento`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/agencia-shopify`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/agencia-woocommerce`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
