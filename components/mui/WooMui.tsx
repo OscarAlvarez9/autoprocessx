@@ -373,7 +373,7 @@ function MetodoLink() {
             Mismo método, mismo responsable.
           </Typography>
           <Typography variant="body1" sx={{ color: tokens.body, mb: 3 }}>
-            En cada proyecto hablas directamente con el experto en WooCommerce que implementa, no con un gestor de cuenta. Diagnóstico con tus datos reales, plan priorizado por impacto y ejecución sobre tu WordPress, con Roger en backend e infraestructura cuando el proyecto lo pide.
+            En cada proyecto hablas directamente con el experto en WooCommerce que implementa, no con un gestor de cuenta. Diagnóstico con tus datos reales, plan priorizado por impacto y ejecución sobre tu WordPress.
           </Typography>
           <Button component={Link} href="/metodo" sx={{ color: tokens.ink, fontWeight: 700, px: 0, "&:hover": { bgcolor: "transparent", color: tokens.petrol } }}>
             Ver el método completo <Box component="span" sx={{ color: tokens.petrol, ml: 0.5 }}>↗</Box>

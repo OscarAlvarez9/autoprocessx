@@ -29,7 +29,7 @@ SEOscar es una agencia de ecommerce, no una consultora de IA abstracta. El objet
 - [regalalo.io](https://www.seoscar.com/casos-de-exito/regalalo-io): recomendador de regalos con IA local. 1.900 usuarios en dos días y posición media en el top 3.
 - [Peritando.es](https://www.seoscar.com/casos-de-exito/peritando-es): peritajes judiciales. Refactorización técnica y arquitectura de servicios por tipo de peritaje: x4 leads mensuales y +45 % de CTR.
 - [Controltemp](https://www.seoscar.com/casos-de-exito/controltemp): climatización industrial. SEO internacional que abrió tres países nuevos y multiplicó por cuatro los leads.
-- [Diomento Homelift](https://www.seoscar.com/casos-de-exito/diomento-homelift): salvaescaleras y ascensores domésticos. Posicionamiento de marca premium con +60 % de leads cualificados.
+- [Dimonte Homelift](https://www.seoscar.com/casos-de-exito/dimonte-homelift): salvaescaleras y ascensores domésticos. Posicionamiento de marca premium con +60 % de leads cualificados.
 - [Quad Studios](https://www.seoscar.com/casos-de-exito/quad-studios): estudios de grabación. SEO local en el top 3 del local pack y duplicación de llamadas directas.
 - [BeBubble Ibiza](https://www.seoscar.com/casos-de-exito/bebubbleibiza): eventos en Ibiza. Visibilidad en Maps y captación multiidioma de lead premium.
 - [Salvador Mendoza](https://www.seoscar.com/casos-de-exito/salvador-mendoza): marca personal y autoridad profesional, con posición local en el top 3.

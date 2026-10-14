@@ -103,6 +103,9 @@ const nextConfig: NextConfig = {
       // menú antiguos. Sin tráfico en GSC (90 días hasta el 14-oct-2026: 1
       // impresión y 0 clics entre las dos), así que se borraron y redirigen a
       // su equivalente en la web nueva.
+      // El cliente es Dimonte Homelift (dimontehomelift.com); el caso salió
+      // publicado como "Diomento".
+      { source: "/casos-de-exito/diomento-homelift", destination: "/casos-de-exito/dimonte-homelift", permanent: true },
       { source: "/tecnologia", destination: "/metodo", permanent: true },
       { source: "/contacto", destination: "/diagnostico", permanent: true },
 

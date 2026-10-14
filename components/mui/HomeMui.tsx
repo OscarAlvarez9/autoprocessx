@@ -31,8 +31,8 @@ function Hero() {
       <Blueprint />
       <Container sx={{ position: "relative", zIndex: 1, pt: { xs: 8, md: 12 }, pb: { xs: 6, md: 8 }, textAlign: "center" }}>
         <HeroReveal>
-          <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 56, md: 72 }, letterSpacing: "-0.025em", color: tokens.ink, maxWidth: 980, mx: "auto", mb: 3 }}>
-            Consultor SEO para <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>tiendas online</Box>: más ventas con el tráfico que ya tienes.
+          <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 56, md: 72 }, letterSpacing: "-0.025em", color: tokens.ink, maxWidth: 980, mx: "auto", mb: 3, textWrap: "balance" }}>
+            Consultor SEO para <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>tiendas online</Box>. Más ventas con el tráfico que ya tienes.
           </Typography>
           <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 580, mx: "auto", mb: 4 }}>
             Soy Óscar Álvarez, consultor SEO de ecommerce. Trabajo el SEO, la visibilidad en IA, la conversión y la automatización de tiendas que ya facturan, sobre tu plataforma actual y sin migrar nada. Ingeniería, no humo.
@@ -707,7 +707,7 @@ function RoiCalc() {
 const FAQS = [
   { q: "¿Tengo que migrar mi tienda?", a: "No. Trabajo sobre tu plataforma actual, sea Shopify o WooCommerce. Y si estás en otra, la auditoría te dice igualmente dónde estás dejando ventas." },
   { q: "¿La IA se inventa cosas? ¿El agente puede dar precios falsos?", a: "El agente está anclado a tu catálogo real por RAG: solo responde con tus datos de producto, precio y stock. Si no sabe algo, lo dice y escala a un humano." },
-  { q: "¿Trabajas solo? ¿Podrás con mi proyecto?", a: "Trabajo con Roger en backend e infraestructura, y buena parte de la operativa corre automatizada. Equipo pequeño a propósito: hablas siempre con quien implementa." },
+  { q: "¿Trabajas solo? ¿Podrás con mi proyecto?", a: "Sí. Trabajo solo y a propósito: hablas siempre con quien implementa, sin gestores de cuenta por medio. Y buena parte de la operativa corre automatizada, así que mi tiempo va a tu proyecto." },
   { q: "¿Cuánto cuesta?", a: "Cada tienda es distinta, así que no hay tarifas de catálogo: el precio sale del diagnóstico, con un plan priorizado para que sepas qué pagas y por qué." },
   { q: "¿Qué incluye el diagnóstico?", a: "Cuatro respuestas rápidas por tu parte y un análisis de tu tienda por la mía: dónde se te escapan las ventas y un plan de tráfico, conversión y automatización. En 24 a 48 horas y sin compromiso." },
 ]

@@ -287,7 +287,7 @@ export const CASE_TITLES: Record<string, string> = {
   "bebubbleibiza": "Caso BebubbleIbiza: SEO local para lujo en Ibiza | SEOscar",
   "quad-studios": "Caso Quad Studios: SEO local con Google Business | SEOscar",
   "peritando-es": "Caso Peritando.es: SEO para el sector pericial | SEOscar",
-  "diomento-homelift": "Caso Diomento Homelift: SEO para ascensores | SEOscar",
+  "dimonte-homelift": "Caso Dimonte Homelift: SEO para ascensores | SEOscar",
   "growmybiss": "Caso GrowMyBiss: web y SEO para términos de IA | SEOscar",
   "opoai-plataforma-estudio-oposiciones": "Caso OpoAI: SaaS de oposiciones con IA y GEO | SEOscar",
   "marea-es": "Caso marea.es: Pack Crecimiento ecommerce | SEOscar",

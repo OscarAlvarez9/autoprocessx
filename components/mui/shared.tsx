@@ -574,7 +574,7 @@ export function DiagnosticoFlow() {
               <Box sx={{ textAlign: "center", py: 2 }}>
                 <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.teal, mb: 1 }}>diagnóstico reservado</Typography>
                 <Typography variant="h5" component="p" sx={{ fontFamily: fonts.serif, color: tokens.ink, mb: 1 }}>Recibido. Te respondo yo, Óscar.</Typography>
-                <Typography sx={{ color: tokens.body }}>Menos de 24h. Miro tu tienda antes de escribirte, no es una respuesta automática.</Typography>
+                <Typography sx={{ color: tokens.body }}>En 24-48 h. Miro tu tienda antes de escribirte, no es una respuesta automática.</Typography>
               </Box>
             ) : (
               <>
@@ -644,7 +644,7 @@ export function DiagnosticoFlow() {
                         <Button type="submit" variant="contained" color="primary" disabled={status === "sending"} sx={{ borderRadius: 2, py: 1.25 }}>
                           {status === "sending" ? "Enviando…" : <>Reserva tu diagnóstico <Box component="span" sx={{ ml: 0.75 }}>↗</Box></>}
                         </Button>
-                        <Typography sx={{ fontSize: 12, color: tokens.muted, textAlign: "center" }}>Respuesta en 24h, sin compromiso. Sin spam, solo tu diagnóstico.</Typography>
+                        <Typography sx={{ fontSize: 12, color: tokens.muted, textAlign: "center" }}>Respuesta en 24-48 h, sin compromiso. Sin spam, solo tu diagnóstico.</Typography>
                       </Stack>
                     )}
                   </Box>

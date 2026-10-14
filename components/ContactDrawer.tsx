@@ -22,7 +22,7 @@ function FounderStrip() {
         <span className="text-base font-black text-primary">ÓA</span>
       </div>
       <div className="min-w-0 flex-1">
-        <p className="text-white font-bold text-sm leading-tight">Te responde Óscar en 24h</p>
+        <p className="text-white font-bold text-sm leading-tight">Te responde Óscar en 24-48 h</p>
         <p className="text-white/50 text-xs font-mono truncate">Fundador · ingeniero</p>
       </div>
       <Link

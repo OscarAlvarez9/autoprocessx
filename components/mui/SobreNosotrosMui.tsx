@@ -59,95 +59,11 @@ const PRINCIPIOS = [
   { t: "Hecho a mano, no generado", d: "Cada pieza está construida y medida para tu caso, no sacada de una plantilla. Se nota cuando lo ves funcionar." },
 ]
 
-const LINKEDIN_OSCAR = "https://www.linkedin.com/in/oscar-alvarez-romani-7882302b3"
 
-const TEAM = [
-  { name: "Oscar Álvarez", role: "Fundador e ingeniería", sketch: "oscar" as const, bio: "Diseña y construye los sistemas: SEO, conversión, agentes y automatización. Es quien se sienta contigo en el diagnóstico.", linkedin: LINKEDIN_OSCAR },
-  { name: "Roger", role: "Desarrollo backend", sketch: "roger" as const, bio: "Levanta la infraestructura que sostiene todo: APIs, datos y workflows que aguantan en producción." },
-  { name: "Sam", role: "Guardián de la empresa", sketch: "sam" as const, bio: "El único del equipo con cuatro patas. Vigila la oficina y supervisa cada release desde la alfombra." },
-]
-
-// Retratos sketch dibujados a mano, provisionales hasta tener las fotos reales.
 // Line-art en la lengua de los artefactos: tinta para el trazo principal, muted
 // para lo secundario y un toque de pino (auriculares, collar). Bustos genéricos
 // a propósito: son un hueco con carácter, no un parecido.
-function PersonSketch({ who }: { who: "oscar" | "roger" | "sam" }) {
-  const common = { fill: "none", stroke: tokens.ink, strokeWidth: 2.4, strokeLinecap: "round" as const, strokeLinejoin: "round" as const }
-  return (
-    <Box component="svg" viewBox="0 0 96 96" sx={{ width: "58%", height: "58%" }} aria-hidden>
-      {who !== "sam" && (
-        <>
-          {/* hombros y cuello */}
-          <path d="M14 88 Q17 68 34 64 L40 62 M82 88 Q79 68 62 64 L56 62" {...common} />
-          <path d="M41 52 L41 62 M55 52 L55 62" {...common} stroke={tokens.muted} strokeWidth={2} />
-          {/* cuello de la camiseta */}
-          <path d="M40 63 Q48 69 56 63" {...common} stroke={tokens.muted} strokeWidth={2} />
-          {/* cabeza */}
-          <path d="M48 12 Q67 12 67 33 Q67 54 48 56 Q29 54 29 33 Q29 12 48 12 Z" {...common} fill={tokens.win} />
-          {/* orejas */}
-          <path d="M29 34 Q26 34 27 38 Q28 41 30 40 M67 34 Q70 34 69 38 Q68 41 66 40" {...common} strokeWidth={2} />
-          {/* ojos y cejas */}
-          <circle cx="41" cy="33" r="1.8" fill={tokens.ink} stroke="none" />
-          <circle cx="55" cy="33" r="1.8" fill={tokens.ink} stroke="none" />
-          <path d="M37.5 28 Q41 26.5 44 28 M52 28 Q55 26.5 58.5 28" {...common} strokeWidth={1.8} />
-          {/* nariz y sonrisa */}
-          <path d="M48 34 L47 40 Q47.5 41 49 40.5" {...common} strokeWidth={1.8} stroke={tokens.muted} />
-          <path d="M42 46 Q48 50 54 46" {...common} strokeWidth={2} />
-        </>
-      )}
-      {who === "oscar" && (
-        <>
-          {/* pelo corto con trazos sueltos */}
-          <path d="M30 30 Q29 13 48 13 Q67 13 66 30 Q62 19 48 19 Q34 19 30 30 Z" fill={tokens.ink} stroke="none" opacity="0.85" />
-          <path d="M35 15 Q37 13 40 12.5 M56 12.5 Q59 13 61 15" {...common} strokeWidth={1.6} />
-        </>
-      )}
-      {who === "roger" && (
-        <>
-          {/* pelo con más onda */}
-          <path d="M30 31 Q27 12 48 12 Q69 12 66 31 Q66 24 60 21 Q61 25 56 23 Q57 19 50 20 Q44 20 42 18 Q42 22 36 22 Q32 24 30 31 Z" fill={tokens.ink} stroke="none" opacity="0.85" />
-          {/* auriculares de backend: banda y cazoletas en pino */}
-          <path d="M27 34 Q26 10 48 10 Q70 10 69 34" fill="none" stroke={tokens.petrol} strokeWidth={3} strokeLinecap="round" />
-          <rect x="22" y="31" width="8" height="13" rx="3" fill={tokens.petrol} stroke="none" />
-          <rect x="66" y="31" width="8" height="13" rx="3" fill={tokens.petrol} stroke="none" />
-        </>
-      )}
-      {who === "sam" && (
-        <>
-          {/* orejas caídas */}
-          <path d="M28 22 Q18 24 18 40 Q18 50 25 48 Q29 46 30 40 M68 22 Q78 24 78 40 Q78 50 71 48 Q67 46 66 40" {...common} fill={tokens.win} />
-          {/* cabeza */}
-          <path d="M48 16 Q68 16 68 38 Q68 58 48 58 Q28 58 28 38 Q28 16 48 16 Z" {...common} fill={tokens.win} />
-          {/* ojos y cejas expresivas */}
-          <circle cx="40" cy="35" r="2" fill={tokens.ink} stroke="none" />
-          <circle cx="56" cy="35" r="2" fill={tokens.ink} stroke="none" />
-          <path d="M36.5 29.5 Q40 28 43 29.5 M53 29.5 Q56 28 59.5 29.5" {...common} strokeWidth={1.8} />
-          {/* hocico, trufa y lengua */}
-          <path d="M48 40 L48 46 M48 46 Q44 49 41.5 46.5 M48 46 Q52 49 54.5 46.5" {...common} strokeWidth={2} />
-          <ellipse cx="48" cy="40" rx="3" ry="2.2" fill={tokens.ink} stroke="none" />
-          <path d="M45 48.5 Q48 54 51 48.5 Q49.5 50.5 48 50.5 Q46.5 50.5 45 48.5 Z" fill={tokens.red} stroke="none" opacity="0.75" />
-          {/* collar en pino con chapa */}
-          <path d="M34 56 Q48 63 62 56 L62 61 Q48 68 34 61 Z" fill={tokens.petrol} stroke="none" />
-          <circle cx="48" cy="66" r="3" fill="none" stroke={tokens.petrol} strokeWidth={2} />
-        </>
-      )}
-    </Box>
-  )
-}
 
-function TeamAvatar({ m }: { m: (typeof TEAM)[number] }) {
-  return (
-    <Box sx={{ position: "relative", aspectRatio: "1 / 1", borderRadius: 3, bgcolor: tokens.surface, border: `1px solid ${tokens.line}`, display: "grid", placeItems: "center", overflow: "hidden" }}>
-      <Blueprint />
-      <Box sx={{ position: "relative", zIndex: 1, width: "100%", height: "100%", display: "grid", placeItems: "center" }}>
-        <PersonSketch who={m.sketch} />
-      </Box>
-      <Box sx={{ position: "absolute", zIndex: 1, bottom: 8, left: 8, bgcolor: `${tokens.win}cc`, border: `1px solid ${tokens.lineSoft}`, borderRadius: 1, px: 0.75, py: 0.25 }}>
-        <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.muted }}>[[ foto ]] · retrato provisional</Typography>
-      </Box>
-    </Box>
-  )
-}
 
 function Hero() {
   return (
@@ -182,7 +98,7 @@ function FounderNote() {
             Aquí lo hago al revés: prefiero enseñarte un flujo funcionando que un PDF con promesas. Construyo sobre tu plataforma, te dejo el código, y mido con tus datos reales. Si algo no lo sé, te lo digo. Si un dato no lo tengo, no me lo invento.
           </Typography>
           <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 680, mb: 4 }}>
-            No quiero ser tu proveedor de humo con siglas. Quiero ser el técnico que hace que tu tienda venda más, con Roger levantando la infraestructura y procesos que corren solos detrás, y que puedas mirar por dentro cuando quieras.
+            No quiero ser tu proveedor de humo con siglas. Quiero ser el técnico que hace que tu tienda venda más, con procesos que corren solos detrás y que puedas mirar por dentro cuando quieras.
           </Typography>
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
             <Box sx={{ width: 44, height: 44, borderRadius: 999, bgcolor: tokens.surface, border: `1px solid ${tokens.line}`, display: "grid", placeItems: "center" }}>
@@ -225,41 +141,6 @@ function Principios() {
   )
 }
 
-function Equipo() {
-  return (
-    <Box component="section" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
-      <Container>
-        <Reveal>
-          <Box sx={{ maxWidth: 620, mb: { xs: 5, md: 7 } }}>
-            <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, mb: 2 }}>
-              Pocos, técnicos y con perro.
-            </Typography>
-            <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body }}>
-              No somos una plantilla de cuarenta personas. Somos quien de verdad toca tu proyecto: tú hablas con quien lo construye.
-            </Typography>
-          </Box>
-        </Reveal>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(3, 1fr)" }, gap: { xs: 4, md: 4 } }}>
-          {TEAM.map((m, i) => (
-            <Reveal key={m.name} delay={i * 0.08}>
-              <Box>
-                <TeamAvatar m={m} />
-                <Typography sx={{ fontFamily: fonts.serif, fontSize: 22, fontWeight: 600, color: tokens.ink, mt: 2.5 }}>{m.name}</Typography>
-                <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.petrol, mb: 1 }}>{m.role}</Typography>
-                <Typography variant="body2" sx={{ color: tokens.body }}>{m.bio}</Typography>
-                {m.linkedin && (
-                  <Typography component="a" href={m.linkedin} target="_blank" rel="noopener noreferrer" sx={{ display: "inline-block", mt: 1.25, fontFamily: fonts.mono, fontSize: 12, fontWeight: 600, color: tokens.ink, textDecoration: "none", "&:hover": { color: tokens.petrol } }}>
-                    LinkedIn <Box component="span" sx={{ color: tokens.petrol }}>↗</Box>
-                  </Typography>
-                )}
-              </Box>
-            </Reveal>
-          ))}
-        </Box>
-      </Container>
-    </Box>
-  )
-}
 
 // Fortalezas del fundador: la especialidad (SEO/GEO), la base de datos, la capa
 // de estrategia y el método. Sin cifras inventadas: lo que hay es formación y
@@ -291,7 +172,7 @@ function Fortalezas() {
       <>
         Estudio machine learning, prompting y arquitectura de agentes desde que salió ChatGPT, y no me quedo en la teoría:{" "}
         <Box component={Link} href="/casos-de-exito" sx={{ color: tokens.ink, fontWeight: 600, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { textDecorationColor: tokens.petrol } }}>tengo productos propios de IA en producción</Box>.
-        Todo se apoya en ingeniería real: código en Node y Python, flujos n8n y agentes anclados a tus datos, con Roger en backend cuando el proyecto lo pide.
+        Todo se apoya en ingeniería real: código en Node y Python, flujos n8n y agentes anclados a tus datos.
       </>,
     ],
   ]
@@ -360,7 +241,7 @@ function Donde() {
           <Box sx={{ position: "relative", borderRadius: 3, overflow: "hidden", border: `1px solid ${tokens.line}`, aspectRatio: "21 / 9", mb: { xs: 4, md: 6 } }}>
             <Image src="/assets/gen/photo-estudio.png" alt="El estudio de SEOscar trabajando" fill sizes="(max-width: 820px) 100vw, 820px" style={{ objectFit: "cover" }} />
             <Box sx={{ position: "absolute", bottom: 10, left: 10, bgcolor: `${tokens.win}cc`, border: `1px solid ${tokens.lineSoft}`, borderRadius: 1, px: 0.75, py: 0.25 }}>
-              <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.muted }}>ambiente de estudio · fotos reales del equipo, pronto</Typography>
+              <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.muted }}>ambiente de estudio · foto real, pronto</Typography>
             </Box>
           </Box>
         </Reveal>
@@ -404,7 +285,6 @@ export default function SobreNosotrosMui() {
       <FounderNote />
       <Fortalezas />
       <Principios />
-      {/* <Equipo /> oculta hasta tener las fotos reales del equipo */}
       <Donde />
       <DiagnosticoCTA />
       <SiteFooter />

@@ -339,7 +339,7 @@ export default function CrecimientoMui() {
       <FeaturedCases
         title="Tiendas que ya crecen así."
         sub="Cada caso enlaza a su ficha con lo que hice y su resultado."
-        slugs={["totfinestra", "farmacia-garcia-del-cerro"]}
+        slugs={["marea-es", "farmacia-garcia-del-cerro"]}
       />
       <Faq />
       <DiagnosticoCTA />

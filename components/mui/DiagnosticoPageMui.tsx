@@ -24,14 +24,14 @@ const LLEVAS = [
   "Dónde se te escapan las ventas hoy, con nombre y apellido.",
   "Un plan ordenado por impacto en ventas, no una lista genérica.",
   "Sobre tu plataforma actual. No te hago migrar.",
-  "Respuesta humana en menos de 24h, mirando tu tienda de verdad.",
+  "Respuesta humana en 24-48 h, mirando tu tienda de verdad.",
 ]
 
 const TRUST = ["Sobre tu plataforma, sin migrar", "El código es tuyo", "Sin permanencia", "Sin promesas de precio por email"]
 
 const PASOS = [
   { n: "01", t: "Miro tu tienda", d: "Antes de escribirte reviso tu web de verdad. No es una respuesta automática." },
-  { n: "02", t: "Te escribo en 24h", d: "Con las primeras señales de por dónde se te están escapando las ventas." },
+  { n: "02", t: "Te escribo en 24-48 h", d: "Con las primeras señales de por dónde se te están escapando las ventas." },
   { n: "03", t: "Llamada de diagnóstico", d: "Repaso contigo tráfico, conversión y operativa. Sin compromiso." },
   { n: "04", t: "Plan priorizado", d: "Te queda un plan ordenado por impacto. Lo ejecutes conmigo o por tu cuenta." },
 ]

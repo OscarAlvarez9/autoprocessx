@@ -107,7 +107,7 @@ export default function ContactForm({ location = "contact_page" }: ContactFormPr
         </div>
         <h3 className="text-xl font-bold tracking-tight text-[#09090B]">Recibido. Gracias.</h3>
         <p className="text-zinc-600 text-sm leading-relaxed">
-          Óscar revisa cada solicitud en persona. Te respondemos en menos de 24h con un primer diagnóstico o una propuesta de llamada.
+          Óscar revisa cada solicitud en persona. Te respondemos en 24-48 h con un primer diagnóstico o una propuesta de llamada.
         </p>
       </div>
     )
@@ -221,7 +221,7 @@ export default function ContactForm({ location = "contact_page" }: ContactFormPr
           )}
         </button>
         <p className="mt-3 text-center text-[11px] font-mono text-zinc-500">
-          Respuesta en 24h · sin compromiso · tus datos no se comparten
+          Respuesta en 24-48 h · sin compromiso · tus datos no se comparten
         </p>
       </div>
     </form>

@@ -26,10 +26,18 @@ export const POST_SEO: Record<string, { title?: string; description?: string }> 
     title: "Arquitectura SEO: cómo arreglar una web que es un laberinto",
     description: "Tu arquitectura web decide qué posiciona y qué queda enterrado. Cómo detectar páginas huérfanas, profundidad excesiva y canibalizaciones en tu auditoría.",
   },
-  "automatizacion-facturas-ia": { title: "Automatizar facturas con IA: 1.000 al mes sin teclear" },
+  // Sin el "ROI 6-8 meses" ni las "1000+ facturas/mes" de la meta de Contentful: no están respaldados.
+  "automatizacion-facturas-ia": {
+    title: "Automatizar facturas con IA: OCR, clasificación y ERP",
+    description: "Cómo automatizar la gestión de facturas con IA: OCR, clasificación y envío al ERP con un pipeline de n8n, Claude y Supabase, paso a paso.",
+  },
   "automatizaciones-black-friday": { title: "Black Friday 2026: 7 automatizaciones para tu tienda online" },
   "automatizaciones-ia-empresas": { title: "Automatizaciones IA en empresas: qué son y cuándo compensan" },
-  "chatbot-whatsapp-empresa": { title: "Chatbot WhatsApp para empresa: cómo montar uno que venda" },
+  // Sin el "72 % de conversión" de la meta de Contentful: no está demostrado.
+  "chatbot-whatsapp-empresa": {
+    title: "Chatbot WhatsApp para empresa: cómo montar uno que venda",
+    description: "Guía para montar un chatbot de WhatsApp con IA que cualifique leads 24/7 en tu empresa: stack con n8n y Claude y cómo conectarlo a tu CRM.",
+  },
   "chatgpt-ads-espana": { title: "ChatGPT Ads en España: qué es y qué significa para tu tienda" },
   "claude-seo-es-tan-bueno-como-parece-o-nos-va-a-quitar-el-trabajo": {
     title: "Claude para SEO: qué hace bien y dónde no llega",

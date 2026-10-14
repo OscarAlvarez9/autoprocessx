@@ -1,5 +1,6 @@
 import { createClient } from "contentful"
 import { CATEGORIES, CATEGORY_ALIASES, CATEGORY_FALLBACK } from "./blogCategories"
+import { POST_SEO } from "./postSeo"
 import type { Document } from "@contentful/rich-text-types"
 import {
     blogPosts as seedPosts,
@@ -177,8 +178,10 @@ const mapEntry = (entry: RawEntry): BlogPost => {
     const minutes = f.minutosLectura ?? Math.max(1, Math.round(words / 220))
     return {
         slug: cleanSlug(f.slug),
-        title: f.titulo ?? "",
-        excerpt: f.metadescripcion ?? "",
+        // Posts heredados de AutoProcessX: la marca vieja no puede salir en
+        // títulos, resúmenes ni firmas. El cuerpo se trata aparte.
+        title: (f.titulo ?? "").replace(/\s*\|\s*AutoProcessX\s*$/i, ""),
+        excerpt: POST_SEO[cleanSlug(f.slug)]?.description ?? f.metadescripcion ?? "",
         category: normalizeCategory(f.categoria),
         date:
             typeof f.fecha === "string"
@@ -186,7 +189,7 @@ const mapEntry = (entry: RawEntry): BlogPost => {
                 : new Date().toISOString().slice(0, 10),
         readingMinutes: minutes,
         tags: f.tags ?? [],
-        author: f.autor ?? "SEOscar",
+        author: f.autor && !/autoprocessx/i.test(f.autor) ? f.autor : "SEOscar",
         cover: buildCoverUrl(f.imagen),
     }
 }
