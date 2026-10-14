@@ -255,9 +255,10 @@ export function ArtifactWindow({ tag, children, ratio = "4 / 3" }: { tag: string
 
 /* ---------- navbar compartido ---------- */
 
-// Los 3 packs bajo "Servicios".
+// Los servicios bajo "Servicios" (escritorio y menú móvil).
 const PACKS = [
   { label: "Crecimiento ecommerce", href: "/servicios/crecimiento-ecommerce", tag: "el pack que lo une todo" },
+  { label: "Posicionamiento GEO", href: "/posicionamiento-geo", tag: "que ChatGPT y Google AI te citen" },
   { label: "Agente de ventas IA", href: "/servicios/agente-ventas-ia", tag: "anclado a tu catálogo, también suelto" },
   { label: "Automatización", href: "/servicios/automatizaciones", tag: "n8n y código propio, también suelta" },
   { label: "Auditoría SEO/GEO", href: "/servicios/auditoria-seo-geo", tag: "con fugas de conversión, para empezar" },

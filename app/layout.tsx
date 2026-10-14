@@ -73,7 +73,7 @@ const organizationSchema = {
     "@type": "ContactPoint",
     contactType: "sales",
     areaServed: ["ES", "EU"],
-    availableLanguage: ["Spanish", "English"],
+    availableLanguage: ["Spanish", "Catalan", "English"],
   },
   knowsAbout: [
     "SEO para ecommerce",

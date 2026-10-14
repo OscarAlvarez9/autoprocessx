@@ -26,7 +26,10 @@ export const founderSchema = {
   "@id": FOUNDER_ID,
   name: "Óscar Álvarez",
   jobTitle: "Consultor SEO",
-  description: "Consultor SEO para ecommerce. Máster en Machine Learning y en Big Data. Creador de OpoAI.",
+  // SEOscar como marca existe desde 2025 (foundingDate de la Organization);
+  // Óscar trabaja como consultor desde 2022, cuatro años a fecha de oct-2026.
+  description: "Consultor SEO desde 2022, especializado en ecommerce. Máster en Machine Learning y en Big Data. Creador de OpoAI.",
+  knowsLanguage: ["es", "ca", "en"],
   worksFor: { "@id": ORG_ID },
   address: { "@type": "PostalAddress", addressLocality: "Premià de Mar", addressRegion: "Barcelona", addressCountry: "ES" },
   url: `${SITE_URL}/sobre-nosotros`,
@@ -56,7 +59,7 @@ export function buildServiceSchema({ slug, name, description, serviceType, offer
             { "@type": "Country", name: "España" },
             { "@type": "AdministrativeArea", name: "Unión Europea" },
         ],
-        availableLanguage: ["Spanish", "English"],
+        availableLanguage: ["Spanish", "Catalan", "English"],
         hasOfferCatalog: {
             "@type": "OfferCatalog",
             name: `Modalidades de ${name}`,
