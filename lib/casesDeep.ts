@@ -880,8 +880,8 @@ export const casosDeep: Record<string, CasoDeep> = {
         ],
       },
     ],
-    evidenciaTitulo: "También en las respuestas de la IA",
-    evidenciaIntro: "Captura real de una respuesta de búsqueda con IA sobre psicoanálisis en el Maresme. Recortada para no mostrar a otros profesionales.",
+    evidenciaTitulo: "Primera en Google y en las respuestas de la IA",
+    evidenciaIntro: "Capturas reales de búsquedas en Google y de una respuesta con IA. Recortadas para no mostrar a otros profesionales.",
     evidencia: [
       {
         src: "/assets/casos/clinica-ai-search.png",
@@ -889,6 +889,20 @@ export const casosDeep: Record<string, CasoDeep> = {
         h: 352,
         alt: "Respuesta de un buscador con IA sobre psicoanálisis en el Maresme con la Clínica de la Ansiedad en primer lugar",
         caption: "La clínica sale la primera de la lista, descrita con sus datos reales (quién la dirige, qué trata, dónde atiende) y con enlace a su web.",
+      },
+      {
+        src: "/assets/casos/clinica-google-mataro.png",
+        w: 1642,
+        h: 260,
+        alt: "Primer resultado de Google en una búsqueda sobre Mataró: la página de la clínica para quien vive en Mataró",
+        caption: "Buscando sobre Mataró, el primer resultado es la página local que la clínica tiene para quien vive allí: «Psicoanalista cerca de Mataró».",
+      },
+      {
+        src: "/assets/casos/clinica-google-canet.png",
+        w: 2518,
+        h: 1441,
+        alt: "Resultados de Google en Canet de Mar con la clínica en las primeras posiciones y su ficha de empresa a la derecha",
+        caption: "En Canet de Mar, la clínica ocupa los primeros resultados con su portada y su página del Maresme, y su ficha de Google sale a la derecha.",
       },
     ],
     contexto: [
