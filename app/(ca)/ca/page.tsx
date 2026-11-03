@@ -5,7 +5,7 @@ import JsonLd from "@/components/JsonLd"
 import { ORG_ID, SITE_URL } from "@/lib/seo"
 import { i18nAlternates } from "@/lib/i18n"
 
-const TITLE = "Consultor SEO d'ecommerce · Barcelona i Maresme | SEOscar"
+const TITLE = "Consultor SEO E-commerce | SEOscar"
 const DESCRIPTION =
   "Òscar Álvarez, consultor SEO per a ecommerce. SEO i GEO que porten trànsit que compra, CRO que el converteix i automatització que t'estalvia hores."
 

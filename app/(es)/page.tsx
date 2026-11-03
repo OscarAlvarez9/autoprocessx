@@ -7,7 +7,7 @@ import { ORG_ID, SITE_URL } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Consultor SEO para ecommerce · Barcelona y Maresme | SEOscar",
+    absolute: "Consultor SEO E-commerce | SEOscar",
   },
   description:
     "Óscar Álvarez, consultor SEO para ecommerce. SEO y GEO que traen tráfico que compra, CRO que lo convierte y automatización que te ahorra horas.",
