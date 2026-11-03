@@ -850,6 +850,16 @@ export const casosDeep: Record<string, CasoDeep> = {
     shotCaption: "clinicadelansiedad.com en producción.",
     kpis: [
       {
+        title: "Dónde está hoy",
+        note: "Google y búsqueda con IA, capturas de noviembre de 2026",
+        items: [
+          { value: "1.º", label: "en Google para psicoanalista en Mataró y en Canet", note: "en Mataró con una página local, aunque la consulta está en Canet" },
+          { value: "1.º y 3.º", label: "para psicoanalista en el Maresme", note: "con dos páginas distintas de la web" },
+          { value: "1.ª", label: "en la respuesta con IA", note: "sobre psicoanálisis en el Maresme, con enlace a la web" },
+          { value: "100 %", label: "ficha de Google completada", note: "con sus 5,0 estrellas y 159 reseñas a la vista" },
+        ],
+      },
+      {
         title: "Primer mes con la estrategia asentada",
         note: "GA4, eventos propios de reserva, de septiembre a octubre de 2026",
         items: [
@@ -880,76 +890,93 @@ export const casosDeep: Record<string, CasoDeep> = {
         ],
       },
     ],
-    evidenciaTitulo: "Primera en Google y en las respuestas de la IA",
-    evidenciaIntro: "Capturas reales de búsquedas en Google y de una respuesta con IA. Recortadas para no mostrar a otros profesionales.",
+    evidenciaTitulo: "Primera en su zona, en Google y en la IA",
+    evidenciaIntro: "Capturas reales de Google y de una respuesta con IA, hechas en noviembre de 2026. Están recortadas para no enseñar a otros profesionales.",
     evidencia: [
       {
         src: "/assets/casos/clinica-ai-search.png",
         w: 1432,
         h: 352,
         alt: "Respuesta de un buscador con IA sobre psicoanálisis en el Maresme con la Clínica de la Ansiedad en primer lugar",
-        caption: "La clínica sale la primera de la lista, descrita con sus datos reales (quién la dirige, qué trata, dónde atiende) y con enlace a su web.",
+        caption: "Preguntando por psicoanálisis en el Maresme, la clínica sale la primera de la lista, descrita con sus datos reales (quién la dirige, qué trata, dónde atiende) y con enlace a su web.",
+      },
+      {
+        src: "/assets/casos/clinica-google-maresme.png",
+        w: 1726,
+        h: 260,
+        alt: "Primer resultado de Google para psicoanalista en el Maresme: la página de la clínica para el Maresme y Canet de Mar",
+        caption: "Buscando psicoanalista en el Maresme, el primer resultado es la página de la clínica para la comarca. La portada sale también en tercera posición.",
       },
       {
         src: "/assets/casos/clinica-google-mataro.png",
         w: 1642,
         h: 260,
         alt: "Primer resultado de Google en una búsqueda sobre Mataró: la página de la clínica para quien vive en Mataró",
-        caption: "Buscando sobre Mataró, el primer resultado es la página local que la clínica tiene para quien vive allí: «Psicoanalista cerca de Mataró».",
+        caption: "Buscando psicoanalista en Mataró, el primer resultado es la página local que la clínica tiene para quien vive allí, por delante de profesionales que tienen la consulta en Mataró.",
       },
       {
         src: "/assets/casos/clinica-google-canet.png",
         w: 2518,
         h: 1441,
         alt: "Resultados de Google en Canet de Mar con la clínica en las primeras posiciones y su ficha de empresa a la derecha",
-        caption: "En Canet de Mar, la clínica ocupa los primeros resultados con su portada y su página del Maresme, y su ficha de Google sale a la derecha.",
+        caption: "Buscando psicoanalista en Canet de Mar, la clínica sale la primera, con su portada y su página del Maresme en los primeros resultados, y a la derecha sale su ficha de Google con 5,0 estrellas, 159 reseñas y el botón de reservar.",
       },
     ],
     contexto: [
-      "Clínica de la Ansiedad es una consulta privada de psicoanálisis en el Maresme. Tenía una web en WordPress que no funcionaba como canal: no estaba dada de alta en Search Console, no tenía analítica y no le llegaban pacientes por ahí. Para Google, la clínica casi no existía.",
-      "En salud mental Google es especialmente exigente. Es contenido que afecta a decisiones delicadas, y sin señales claras de quién firma, con qué titulación y dónde atiende, una web no sale por nada que no sea su propio nombre.",
-      "Lo primero fue medir. Lo segundo, construir una web que pudiera posicionar y convertir. Lo tercero, migrar sin perder lo poco que había y montar un blog que creciera sin quitarle tiempo a la clínica.",
+      "Clínica de la Ansiedad es la consulta de un psicoanalista en Canet de Mar que atiende desde 1993, trabaja solo y también hace terapia online. Cuando empecé tenía una web en WordPress que no funcionaba como canal, porque no estaba dada de alta en Search Console, no tenía analítica y nadie sabía si le llegaba algún paciente por ahí.",
+      "Lo primero que miré fue contra quién competía, y aquí había dos problemas. El primero es que no es psicólogo, es psicoanalista, así que la palabra que más busca alguien con ansiedad no se podía usar, y no por estrategia sino porque no sería verdad. El segundo es que en Barcelona hay un centro grande con un nombre casi igual y mucha más autoridad, que se queda con la mayoría de búsquedas de «clínica de la ansiedad» y de ansiedad en Barcelona.",
+      "Así que decidí no pelear donde no se podía ganar y centrar la estrategia en su nicho y en su zona: psicoanálisis en el Maresme, de Canet a Mataró, Arenys y el resto de pueblos de la costa, y la terapia online para todo lo demás.",
     ],
     queHiceIntro:
-      "Web nueva en React, rehecha desde cero, más rápida y diseñada para convertir, con la reserva y el WhatsApp siempre a mano. Encima, una estrategia de contenido completa: páginas de servicio orientadas a lo que buscan los pacientes y un blog automatizado con plan editorial propio. Y todo medido: cada clic en Reservar y en WhatsApp queda registrado.",
+      "Una web nueva en React rehecha desde cero, páginas locales por zona del Maresme, la ficha de Google completa, un blog que se escribe solo y la medición de cada clic en Reservar y en WhatsApp. Todo pensado para que quien busca un psicoanalista cerca lo encuentre a él y, sobre todo, le pida cita.",
     capitulos: [
       {
         n: "01",
-        title: "Medición",
-        body: "Alta de la propiedad de dominio en Search Console y de GA4 con Consent Mode v2: el consentimiento se deniega por defecto y solo se mide a quien acepta. Eventos propios para cada clic en Reservar y en WhatsApp, para saber qué página lleva a pedir cita y cuál no.",
+        title: "Elegir dónde se puede ganar",
+        body: "Una consulta de una sola persona no tiene autoridad para ganarle a un centro grande de Barcelona las búsquedas generales, y encima aquí no se podía usar «psicólogo». Así que el objetivo fue ser el primero en psicoanálisis en el Maresme, que es donde están sus pacientes de consulta, y dejar que la terapia online recogiera el resto. Son menos búsquedas, pero son justo las de alguien que quiere lo que él hace.",
       },
       {
         n: "02",
-        title: "Web nueva, pensada para convertir",
-        body: "Rehecha desde cero en React (Next.js), más rápida que el WordPress anterior y con la reserva y el WhatsApp siempre a mano, en cualquier página y en móvil. Español y catalán como rutas espejadas, con hreflang y x-default, para que Google sirva el idioma correcto sin tratar las dos versiones como contenido duplicado. Páginas locales por zona del Maresme, que son las que captan a quien busca cerca.",
+        title: "Medición",
+        body: "Di de alta la propiedad de dominio en Search Console y GA4 con Consent Mode v2, así que el consentimiento se deniega por defecto y solo se mide a quien acepta. Encima implementé una estrategia de trackeo con píxeles y eventos propios para cada clic en Reservar y en WhatsApp, para ver las conversiones y las fugas de la web: qué página lleva a pedir cita y dónde se va la gente sin pedirla.",
       },
       {
         n: "03",
-        title: "Datos estructurados de salud",
-        body: "MedicalClinic para el centro y Person para el profesional, con titulación, centro donde se formó y terapias que ofrece. Horario de consulta y dirección en el mismo bloque. Es lo que convierte una web de psicología en una entidad que Google puede fiarse de enseñar.",
+        title: "Web nueva, pensada para convertir",
+        body: "La rehíce desde cero en React (Next.js), más rápida que el WordPress y con la reserva y el WhatsApp siempre a mano, en cualquier página y en móvil. Español y catalán van como rutas espejadas con hreflang y x-default, para que Google sirva el idioma correcto sin tratarlas como contenido duplicado. Y cada zona del Maresme tiene su página local, porque son las que captan a quien busca cerca: la de Mataró sale hoy la primera aunque la consulta está en Canet.",
       },
       {
         n: "04",
-        title: "Migración",
-        body: "Redirecciones 301 de cada URL antigua a su equivalente, canonicals en todas las páginas y sitemap limpio. El bache de junio es el precio normal de una migración; la recuperación en tres meses es la prueba de que se hizo bien.",
+        title: "Ficha de Google",
+        body: "Tenía acceso a su ficha de Google Business y la dejé completa al 100 %, con la reserva online enlazada. Las 159 reseñas con un 5,0 son mérito suyo y de sus pacientes, pero una ficha completa es lo que hace que se vean, y hoy sale a la derecha en las búsquedas de la zona.",
       },
       {
         n: "05",
-        title: "Títulos y descripciones",
-        body: "Reescritura de title y meta description de la home y las páginas de servicio para decir qué es la clínica y dónde está, no solo cómo se llama. La home dobló los clics y triplicó el CTR en el mes siguiente al cambio.",
+        title: "Datos estructurados de salud",
+        body: "MedicalClinic para el centro y Person para el profesional, con titulación, dónde se formó y las terapias que ofrece, y el horario y la dirección en el mismo bloque. En salud mental Google es muy exigente, y esto es lo que hace que una web pequeña sea una entidad de la que Google se fía y que la IA puede describir con sus datos reales, como se ve en la primera captura.",
       },
       {
         n: "06",
+        title: "Migración",
+        body: "Redirecciones 301 de cada URL antigua a su equivalente, canonicals en todas las páginas y un sitemap limpio. El bache de junio es el precio normal de una migración, y en tres meses estaba recuperado.",
+      },
+      {
+        n: "07",
+        title: "Títulos y descripciones",
+        body: "Reescribí los title y las meta description de la home y de las páginas de servicio para que digan qué es la clínica y dónde está, no solo cómo se llama. La home dobló los clics y triplicó el CTR el mes siguiente al cambio.",
+      },
+      {
+        n: "08",
         title: "Blog automatizado",
-        body: "Plan editorial propio sobre problemas concretos: qué es, cómo se manifiesta, cuándo pedir ayuda, enlace al servicio. El blog se escribe solo: de una fila del calendario a un artículo listo en Contentful, sin quitarle tiempo a la clínica, y cada artículo va firmado por un psicólogo colegiado con página de autor. El primero, sobre celos patológicos, entró en posición 8,6 a los 30 días.",
+        body: "Un plan editorial propio sobre problemas concretos (qué es, cómo se manifiesta, cuándo pedir ayuda) con enlace al servicio. El blog se escribe solo, de una fila del calendario a un artículo en Contentful, para que no le quite tiempo a la consulta, y cada artículo va firmado con su página de autor. El primero, sobre celos patológicos, entró en posición 8,6 a los 30 días.",
       },
     ],
     tecnico: {
       title: "La migración, en números",
       body: [
-        "Migrar una web es perder tráfico durante unas semanas y recuperarlo con intereses si se hace bien. Esto es lo que pasó entre junio, el mes del cambio, y septiembre.",
-        "Las impresiones bajan y los clics suben. Es la señal de que Google dejó de enseñar la web en consultas que no eran suyas y empezó a enseñarla en las que sí.",
-        "Y todo esto es mes y medio después de dejar la estrategia acabada y asentada. El blog sigue publicando y cada artículo tarda meses en posicionar del todo, así que lo esperable es que las visitas y las reservas sigan creciendo en los próximos meses.",
+        "Migrar una web es perder tráfico durante unas semanas y recuperarlo si se hace bien. Esto es lo que pasó entre junio, el mes del cambio, y septiembre.",
+        "Las impresiones bajan y los clics suben, y eso es buena señal, porque Google dejó de enseñar la web en búsquedas de otras ciudades donde no tenía nada que hacer y empezó a enseñarla en las de su zona, que son las que traen pacientes.",
+        "Los clics totales son modestos y es lo normal en un nicho tan pequeño. Lo importante es de quién son: de alguien que busca un psicoanalista cerca de casa.",
       ],
       tabla: [
         { label: "Clics al mes", antes: "36", despues: "77" },
@@ -961,18 +988,23 @@ export const casosDeep: Record<string, CasoDeep> = {
       ],
     },
     hallazgos: {
-      title: "Lo que apareció sin buscarlo",
-      intro: "Dar de alta la medición destapó cosas que nadie había visto.",
+      title: "Lo que apareció por el camino",
+      intro: "Medir destapó cosas que nadie había visto.",
       items: [
+        {
+          value: "12",
+          title: "solicitudes por formulario la primera semana",
+          body: "Con la web nueva recién salida llegaron 12 solicitudes de cita por el formulario en siete días. Después él prefirió centralizar las citas en WhatsApp y en su app de reservas, así que implementé una estrategia de trackeo con píxeles para seguir viendo las conversiones y las fugas de la web en esos dos canales.",
+        },
         {
           value: "304",
           title: "impresiones en 30 días de un solo artículo",
-          body: "El primer artículo del plan editorial, sobre celos patológicos, es la tercera página más vista del sitio al mes de publicarse. El blog funciona cuando se publica.",
+          body: "El primer artículo del plan editorial, sobre celos patológicos, era la tercera página más vista de la web al mes de publicarse. El blog funciona cuando se publica.",
         },
         {
           value: "1",
-          title: "URL antigua que Google sigue prefiriendo",
-          body: "Tras la migración, Google siguió mostrando la URL http antigua para las búsquedas de marca durante meses. No es un error: es el tiempo que tarda en trasladar la confianza. Se resuelve solo.",
+          title: "URL antigua que Google seguía prefiriendo",
+          body: "Después de la migración, Google siguió enseñando la URL http antigua en las búsquedas de marca durante meses. No es un error, es lo que tarda en trasladar la confianza a la URL nueva.",
         },
       ],
     },
@@ -993,8 +1025,12 @@ export const casosDeep: Record<string, CasoDeep> = {
       intro: "",
       reglas: [
         {
-          title: "Medir antes de tocar",
-          body: "Sin Search Console ni eventos de reserva no hay antes, y sin antes no hay forma de saber si algo funcionó. Hoy cada cita que empieza en la web se ve.",
+          title: "Elegir el mercado antes que las keywords",
+          body: "Un profesional que trabaja solo no le gana a un centro grande las búsquedas generales. Gana en su nicho y en su zona, y ahí tiene que estar el objetivo desde el primer día.",
+        },
+        {
+          title: "Medir conversiones y fugas",
+          body: "No basta con saber cuántos piden cita, también hay que ver dónde se va la gente sin pedirla. Y si se cambia un canal, el nuevo se mide igual desde el primer día.",
         },
         {
           title: "Migrar con red",
@@ -1002,17 +1038,13 @@ export const casosDeep: Record<string, CasoDeep> = {
         },
         {
           title: "Firmar el contenido",
-          body: "En salud, un artículo sin autor identificable posiciona peor que ninguno. Nombre, colegiado y página de autor en cada pieza.",
-        },
-        {
-          title: "Que el contenido no dependa de la agenda",
-          body: "El crecimiento de una consulta pequeña depende del contenido, y una clínica no tiene tiempo para escribir. Por eso el blog publica solo, sobre un plan editorial cerrado.",
+          body: "En salud, un artículo sin autor identificable posiciona peor que ninguno. Nombre y página de autor en cada pieza.",
         },
       ],
     },
     cta: {
-      title: "¿Tu web trae clientes y no lo sabes?",
-      body: "Lo primero que hago en cualquier proyecto es medir. Lo segundo, decirte qué está pasando de verdad.",
+      title: "¿Compites contra alguien más grande que tú?",
+      body: "Casi siempre hay un nicho y una zona donde se puede ser el primero. Lo primero que hago es encontrarlo y medir si de verdad te trae clientes.",
       label: "Pide un diagnóstico",
       href: "/diagnostico",
     },

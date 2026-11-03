@@ -749,6 +749,16 @@ export const casosDeepCa: Record<string, CasoDeep> = {
     shotCaption: "clinicadelansiedad.com en producció.",
     kpis: [
       {
+        title: "On és avui",
+        note: "Google i cerca amb IA, captures de novembre de 2026",
+        items: [
+          { value: "1r", label: "a Google per a psicoanalista a Mataró i a Canet", note: "a Mataró amb una pàgina local, tot i que la consulta és a Canet" },
+          { value: "1r i 3r", label: "per a psicoanalista al Maresme", note: "amb dues pàgines diferents del web" },
+          { value: "1a", label: "a la resposta amb IA", note: "sobre psicoanàlisi al Maresme, amb enllaç al web" },
+          { value: "100 %", label: "fitxa de Google completada", note: "amb les seves 5,0 estrelles i 159 ressenyes a la vista" },
+        ],
+      },
+      {
         title: "Primer mes amb l'estratègia assentada",
         note: "GA4, esdeveniments propis de reserva, de setembre a octubre de 2026",
         items: [
@@ -779,76 +789,93 @@ export const casosDeepCa: Record<string, CasoDeep> = {
         ],
       },
     ],
-    evidenciaTitulo: "Primera a Google i a les respostes de la IA",
-    evidenciaIntro: "Captures reals de cerques a Google i d'una resposta amb IA. Retallades per no mostrar altres professionals.",
+    evidenciaTitulo: "Primera a la seva zona, a Google i a la IA",
+    evidenciaIntro: "Captures reals de Google i d'una resposta amb IA, fetes el novembre de 2026. Estan retallades per no mostrar altres professionals.",
     evidencia: [
       {
         src: "/assets/casos/clinica-ai-search.png",
         w: 1432,
         h: 352,
         alt: "Resposta d'un cercador amb IA sobre psicoanàlisi al Maresme amb la Clínica de la Ansiedad en primer lloc",
-        caption: "La clínica surt la primera de la llista, descrita amb les seves dades reals (qui la dirigeix, què tracta, on atén) i amb enllaç al seu web.",
+        caption: "Preguntant per psicoanàlisi al Maresme, la clínica surt la primera de la llista, descrita amb les seves dades reals (qui la dirigeix, què tracta, on atén) i amb enllaç al seu web.",
+      },
+      {
+        src: "/assets/casos/clinica-google-maresme.png",
+        w: 1726,
+        h: 260,
+        alt: "Primer resultat de Google per a psicoanalista al Maresme: la pàgina de la clínica per al Maresme i Canet de Mar",
+        caption: "Cercant psicoanalista al Maresme, el primer resultat és la pàgina de la clínica per a la comarca. La portada surt també en tercera posició.",
       },
       {
         src: "/assets/casos/clinica-google-mataro.png",
         w: 1642,
         h: 260,
         alt: "Primer resultat de Google en una cerca sobre Mataró: la pàgina de la clínica per a qui viu a Mataró",
-        caption: "Cercant sobre Mataró, el primer resultat és la pàgina local que la clínica té per a qui hi viu: «Psicoanalista cerca de Mataró».",
+        caption: "Cercant psicoanalista a Mataró, el primer resultat és la pàgina local que la clínica té per a qui hi viu, per davant de professionals que tenen la consulta a Mataró.",
       },
       {
         src: "/assets/casos/clinica-google-canet.png",
         w: 2518,
         h: 1441,
         alt: "Resultats de Google a Canet de Mar amb la clínica a les primeres posicions i la seva fitxa d'empresa a la dreta",
-        caption: "A Canet de Mar, la clínica ocupa els primers resultats amb la portada i la pàgina del Maresme, i la seva fitxa de Google surt a la dreta.",
+        caption: "Cercant psicoanalista a Canet de Mar, la clínica surt la primera, amb la portada i la pàgina del Maresme als primers resultats, i a la dreta surt la seva fitxa de Google amb 5,0 estrelles, 159 ressenyes i el botó de reservar.",
       },
     ],
     contexto: [
-      "Clínica de la Ansiedad és una consulta privada de psicoanàlisi al Maresme. Tenia una web en WordPress que no funcionava com a canal: no estava donada d'alta a Search Console, no tenia analítica i no hi arribaven pacients per aquí. Per a Google, la clínica gairebé no existia.",
-      "En salut mental Google és especialment exigent. És contingut que afecta decisions delicades, i sense senyals clars de qui signa, amb quina titulació i on atén, una web no surt per res que no sigui el seu propi nom.",
-      "El primer va ser mesurar. El segon, construir una web que pogués posicionar i convertir. El tercer, migrar sense perdre el poc que hi havia i muntar un blog que creixés sense treure temps a la clínica.",
+      "Clínica de la Ansiedad és la consulta d'un psicoanalista a Canet de Mar que atén des del 1993, treballa sol i també fa teràpia en línia. Quan vaig començar tenia una web en WordPress que no funcionava com a canal, perquè no estava donada d'alta a Search Console, no tenia analítica i ningú no sabia si li arribava cap pacient per aquí.",
+      "El primer que vaig mirar va ser contra qui competia, i aquí hi havia dos problemes. El primer és que no és psicòleg, és psicoanalista, així que la paraula que més cerca algú amb ansietat no es podia fer servir, i no per estratègia sinó perquè no seria veritat. El segon és que a Barcelona hi ha un centre gran amb un nom gairebé igual i molta més autoritat, que es queda la majoria de cerques de «clínica de la ansiedad» i d'ansietat a Barcelona.",
+      "Així que vaig decidir no lluitar on no es podia guanyar i centrar l'estratègia en el seu nínxol i la seva zona: psicoanàlisi al Maresme, de Canet a Mataró, Arenys i la resta de pobles de la costa, i la teràpia en línia per a tota la resta.",
     ],
     queHiceIntro:
-      "Web nova en React, refeta des de zero, més ràpida i dissenyada per convertir, amb la reserva i el WhatsApp sempre a mà. A sobre, una estratègia de contingut completa: pàgines de servei orientades al que busquen els pacients i un blog automatitzat amb pla editorial propi. I tot mesurat: cada clic a Reservar i a WhatsApp queda registrat.",
+      "Una web nova en React refeta des de zero, pàgines locals per zona del Maresme, la fitxa de Google completa, un blog que s'escriu sol i la mesura de cada clic a Reservar i a WhatsApp. Tot pensat perquè qui cerca un psicoanalista a prop el trobi a ell i, sobretot, li demani cita.",
     capitulos: [
       {
         n: "01",
-        title: "Mesura",
-        body: "Alta de la propietat de domini a Search Console i de GA4 amb Consent Mode v2: el consentiment es denega per defecte i només es mesura qui accepta. Esdeveniments propis per a cada clic a Reservar i a WhatsApp, per saber quina pàgina porta a demanar cita i quina no.",
+        title: "Triar on es pot guanyar",
+        body: "Una consulta d'una sola persona no té autoritat per guanyar a un centre gran de Barcelona les cerques generals, i a sobre aquí no es podia fer servir «psicòleg». Així que l'objectiu va ser ser el primer en psicoanàlisi al Maresme, que és on hi ha els seus pacients de consulta, i deixar que la teràpia en línia recollís la resta. Són menys cerques, però són just les d'algú que vol el que ell fa.",
       },
       {
         n: "02",
-        title: "Web nova, pensada per convertir",
-        body: "Refeta des de zero en React (Next.js), més ràpida que el WordPress anterior i amb la reserva i el WhatsApp sempre a mà, a qualsevol pàgina i al mòbil. Castellà i català com a rutes en mirall, amb hreflang i x-default, perquè Google serveixi l'idioma correcte sense tractar les dues versions com a contingut duplicat. Pàgines locals per zona del Maresme, que són les que capten qui busca a prop.",
+        title: "Mesura",
+        body: "Vaig donar d'alta la propietat de domini a Search Console i GA4 amb Consent Mode v2, així que el consentiment es denega per defecte i només es mesura qui accepta. A sobre vaig implementar una estratègia de traçabilitat amb píxels i esdeveniments propis per a cada clic a Reservar i a WhatsApp, per veure les conversions i les fugues del web: quina pàgina porta a demanar cita i on se'n va la gent sense demanar-la.",
       },
       {
         n: "03",
-        title: "Dades estructurades de salut",
-        body: "MedicalClinic per al centre i Person per al professional, amb titulació, centre on es va formar i teràpies que ofereix. Horari de consulta i adreça al mateix bloc. És el que converteix una web de psicologia en una entitat que Google es pot refiar d'ensenyar.",
+        title: "Web nova, pensada per convertir",
+        body: "La vaig refer des de zero en React (Next.js), més ràpida que el WordPress i amb la reserva i el WhatsApp sempre a mà, a qualsevol pàgina i al mòbil. El castellà i el català van com a rutes en mirall amb hreflang i x-default, perquè Google serveixi l'idioma correcte sense tractar-les com a contingut duplicat. I cada zona del Maresme té la seva pàgina local, perquè són les que capten qui cerca a prop: la de Mataró surt avui la primera tot i que la consulta és a Canet.",
       },
       {
         n: "04",
-        title: "Migració",
-        body: "Redireccions 301 de cada URL antiga al seu equivalent, canonicals a totes les pàgines i sitemap net. El sotrac de juny és el preu normal d'una migració; la recuperació en tres mesos és la prova que es va fer bé.",
+        title: "Fitxa de Google",
+        body: "Tenia accés a la seva fitxa de Google Business i la vaig deixar completa al 100 %, amb la reserva en línia enllaçada. Les 159 ressenyes amb un 5,0 són mèrit seu i dels seus pacients, però una fitxa completa és el que fa que es vegin, i avui surt a la dreta a les cerques de la zona.",
       },
       {
         n: "05",
-        title: "Títols i descripcions",
-        body: "Reescriptura del title i la meta description de la home i de les pàgines de servei per dir què és la clínica i on és, no només com es diu. La home va doblar els clics i va triplicar el CTR el mes següent al canvi.",
+        title: "Dades estructurades de salut",
+        body: "MedicalClinic per al centre i Person per al professional, amb titulació, on es va formar i les teràpies que ofereix, i l'horari i l'adreça al mateix bloc. En salut mental Google és molt exigent, i això és el que fa que una web petita sigui una entitat de la qual Google es refia i que la IA pot descriure amb les seves dades reals, com es veu a la primera captura.",
       },
       {
         n: "06",
+        title: "Migració",
+        body: "Redireccions 301 de cada URL antiga al seu equivalent, canonicals a totes les pàgines i un sitemap net. El sotrac de juny és el preu normal d'una migració, i en tres mesos estava recuperat.",
+      },
+      {
+        n: "07",
+        title: "Títols i descripcions",
+        body: "Vaig reescriure els title i les meta description de la home i de les pàgines de servei perquè diguin què és la clínica i on és, no només com es diu. La home va doblar els clics i va triplicar el CTR el mes següent al canvi.",
+      },
+      {
+        n: "08",
         title: "Blog automatitzat",
-        body: "Pla editorial propi sobre problemes concrets: què és, com es manifesta, quan demanar ajuda, enllaç al servei. El blog s'escriu sol: d'una fila del calendari a un article llest a Contentful, sense treure temps a la clínica, i cada article va signat per un psicòleg col·legiat amb pàgina d'autor. El primer, sobre gelosia patològica, va entrar en posició 8,6 als 30 dies.",
+        body: "Un pla editorial propi sobre problemes concrets (què és, com es manifesta, quan demanar ajuda) amb enllaç al servei. El blog s'escriu sol, d'una fila del calendari a un article a Contentful, perquè no li tregui temps a la consulta, i cada article va signat amb la seva pàgina d'autor. El primer, sobre gelosia patològica, va entrar en posició 8,6 als 30 dies.",
       },
     ],
     tecnico: {
       title: "La migració, en xifres",
       body: [
-        "Migrar una web és perdre trànsit durant unes setmanes i recuperar-lo amb interessos si es fa bé. Això és el que va passar entre juny, el mes del canvi, i setembre.",
-        "Les impressions baixen i els clics pugen. És el senyal que Google va deixar d'ensenyar la web en consultes que no eren seves i va començar a ensenyar-la en les que sí.",
-        "I tot això és mes i mig després de deixar l'estratègia acabada i assentada. El blog continua publicant i cada article triga mesos a posicionar del tot, així que el que és esperable és que les visites i les reserves continuïn creixent els propers mesos.",
+        "Migrar una web és perdre trànsit durant unes setmanes i recuperar-lo si es fa bé. Això és el que va passar entre juny, el mes del canvi, i setembre.",
+        "Les impressions baixen i els clics pugen, i això és bon senyal, perquè Google va deixar d'ensenyar la web en cerques d'altres ciutats on no hi tenia res a fer i va començar a ensenyar-la en les de la seva zona, que són les que porten pacients.",
+        "Els clics totals són modestos i és el normal en un nínxol tan petit. L'important és de qui són: d'algú que cerca un psicoanalista a prop de casa.",
       ],
       tabla: [
         { label: "Clics al mes", antes: "36", despues: "77" },
@@ -860,18 +887,23 @@ export const casosDeepCa: Record<string, CasoDeep> = {
       ],
     },
     hallazgos: {
-      title: "El que va aparèixer sense buscar-ho",
-      intro: "Donar d'alta la mesura va destapar coses que ningú no havia vist.",
+      title: "El que va aparèixer pel camí",
+      intro: "Mesurar va destapar coses que ningú no havia vist.",
       items: [
+        {
+          value: "12",
+          title: "sol·licituds per formulari la primera setmana",
+          body: "Amb la web nova acabada de sortir van arribar 12 sol·licituds de cita pel formulari en set dies. Després ell va preferir centralitzar les cites a WhatsApp i a la seva app de reserves, així que vaig implementar una estratègia de traçabilitat amb píxels per continuar veient les conversions i les fugues del web en aquests dos canals.",
+        },
         {
           value: "304",
           title: "impressions en 30 dies d'un sol article",
-          body: "El primer article del pla editorial, sobre gelosia patològica, és la tercera pàgina més vista del lloc al cap d'un mes de publicar-se. El blog funciona quan es publica.",
+          body: "El primer article del pla editorial, sobre gelosia patològica, era la tercera pàgina més vista del web al cap d'un mes de publicar-se. El blog funciona quan es publica.",
         },
         {
           value: "1",
-          title: "URL antiga que Google continua preferint",
-          body: "Després de la migració, Google va continuar mostrant la URL http antiga per a les cerques de marca durant mesos. No és un error: és el temps que triga a traslladar la confiança. Es resol sol.",
+          title: "URL antiga que Google continuava preferint",
+          body: "Després de la migració, Google va continuar ensenyant la URL http antiga a les cerques de marca durant mesos. No és un error, és el que triga a traslladar la confiança a la URL nova.",
         },
       ],
     },
@@ -892,8 +924,12 @@ export const casosDeepCa: Record<string, CasoDeep> = {
       intro: "",
       reglas: [
         {
-          title: "Mesurar abans de tocar",
-          body: "Sense Search Console ni esdeveniments de reserva no hi ha un abans, i sense un abans no hi ha manera de saber si alguna cosa ha funcionat. Avui es veu cada cita que comença a la web.",
+          title: "Triar el mercat abans que les keywords",
+          body: "Un professional que treballa sol no guanya a un centre gran les cerques generals. Guanya en el seu nínxol i a la seva zona, i aquí ha de ser l'objectiu des del primer dia.",
+        },
+        {
+          title: "Mesurar conversions i fugues",
+          body: "No n'hi ha prou de saber quants demanen cita, també cal veure on se'n va la gent sense demanar-la. I si es canvia un canal, el nou es mesura igual des del primer dia.",
         },
         {
           title: "Migrar amb xarxa",
@@ -901,17 +937,13 @@ export const casosDeepCa: Record<string, CasoDeep> = {
         },
         {
           title: "Signar el contingut",
-          body: "En salut, un article sense autor identificable posiciona pitjor que cap. Nom, número de col·legiat i pàgina d'autor a cada peça.",
-        },
-        {
-          title: "Que el contingut no depengui de l'agenda",
-          body: "El creixement d'una consulta petita depèn del contingut, i una clínica no té temps per escriure. Per això el blog publica sol, sobre un pla editorial tancat.",
+          body: "En salut, un article sense autor identificable posiciona pitjor que cap. Nom i pàgina d'autor a cada peça.",
         },
       ],
     },
     cta: {
-      title: "La teva web porta clients i no ho saps?",
-      body: "El primer que faig en qualsevol projecte és mesurar. El segon, dir-te què està passant de debò.",
+      title: "Competeixes contra algú més gran que tu?",
+      body: "Gairebé sempre hi ha un nínxol i una zona on es pot ser el primer. El primer que faig és trobar-lo i mesurar si de debò et porta clients.",
       label: "Demana un diagnòstic",
       href: "/diagnostico",
     },

@@ -212,19 +212,19 @@ export const cases: Caso[] = [
     platform: "Next.js",
     service: "seo",
     visual: { art: "geo" },
-    summary: "1 de cada 5 visitantes pide cita en el primer mes de la nueva estrategia. Web nueva, contenido, blog automatizado y medición de conversiones desde cero.",
-    reto: "La clínica tenía una web en WordPress que no funcionaba como canal. No estaba dada de alta en Search Console, no tenía analítica y no le llegaban pacientes por ahí. Para Google, la clínica casi no existía.",
-    solucion: "Web nueva en React, rehecha desde cero y diseñada para convertir, con la reserva y el WhatsApp siempre a mano. Encima, una estrategia de contenido completa con un blog que publica solo y medición de cada clic en \"Reservar\" y en WhatsApp. En el primer mes con la estrategia asentada, 11 de los 51 visitantes pulsaron \"Reservar\". Y solo lleva mes y medio con la estrategia acabada: lo esperable es que siga creciendo en los próximos meses.",
+    summary: "Primera en Google para psicoanalista en Mataró y en el Maresme, y primera en la respuesta con IA. Web nueva, SEO local, ficha de Google y blog automatizado.",
+    reto: "Una consulta de psicoanálisis de un solo profesional en Canet de Mar, con un WordPress sin Search Console ni analítica. No podía usar \"psicólogo\", la palabra que más se busca, y en Barcelona compite un centro grande con un nombre casi igual.",
+    solucion: "Elegí el mercado que se podía ganar, psicoanálisis en el Maresme, y monté encima una web nueva en React con páginas locales por zona, la ficha de Google completa, un blog que se escribe solo y la medición de cada clic en \"Reservar\". Hoy es la primera en Google en Mataró y en el Maresme y la primera en la respuesta con IA, y en el primer mes con la estrategia asentada 11 de los 51 visitantes pulsaron \"Reservar\".",
     did: [
-      "Web nueva en React, más rápida y con la reserva y el WhatsApp siempre a mano.",
-      "Páginas de servicio orientadas a lo que buscan los pacientes y blog con plan editorial propio.",
-      "Blog automatizado que publica de forma constante sin quitarle tiempo a la clínica.",
+      "Estrategia centrada en el nicho y la zona que se podían ganar: psicoanálisis en el Maresme.",
+      "Web nueva en React con páginas locales por zona y la reserva y el WhatsApp siempre a mano.",
+      "Ficha de Google Business completada al 100 % y blog automatizado con plan editorial propio.",
       "Search Console y medición de conversiones: cada clic en Reservar y en WhatsApp queda registrado.",
     ],
     stack: ["Next.js", "React", "Vercel", "Search Console", "GA4", "Schema.org", "SEO local"],
     metrics: [
+      { value: "1.º", label: "en Google para psicoanalista en Mataró, Canet y el Maresme", note: "y primera en la respuesta con IA. Capturas de noviembre de 2026" },
       { value: "1 de cada 5", label: "visitantes pulsa Reservar", note: "11 de 51 usuarios en el primer mes con la estrategia asentada. GA4, septiembre a octubre de 2026" },
-      { value: "17", label: "clics para pedir cita en un mes", note: "15 en Reservar y 2 en WhatsApp, en una web que antes no traía pacientes" },
     ],
     publishedAt: "2026-10-05",
   },
@@ -317,7 +317,7 @@ export const CASE_TITLES: Record<string, string> = {
   "pelican-catchy-infraestructura-ia": "Caso Pelican Catchy: marketing con multi-agente IA | SEOscar",
   "totfinestra": "Caso Totfinestra: web de ventanas a medida | SEOscar",
   "controltemp": "Caso ControlTemp: SEO B2B industrial | SEOscar",
-  "clinica-de-la-ansiedad": "Clínica de la Ansiedad: 1 de cada 5 visitas pide cita",
+  "clinica-de-la-ansiedad": "Clínica de la Ansiedad: n.º 1 en psicoanálisis en el Maresme",
   "clinica-de-la-ansiedad-blog-automatizado": "Clínica de la Ansiedad: del calendario a Contentful con n8n",
 }
 
@@ -345,7 +345,7 @@ export const CASE_DESCRIPTIONS: Record<string, string> = {
   "growmybiss": "Web completa, arquitectura y estrategia SEO para posicionar a GrowMyBiss en búsquedas de IA y Growth Marketing.",
   "regalalo-io": "Digitalización y lanzamiento de un recomendador de regalos basado en IA, con estrategia de pre-lanzamiento y posicionamiento desde el primer día.",
   "totfinestra": "Web de ventanas de aluminio a medida diseñada para captar y cualificar solicitudes de presupuesto.",
-  "clinica-de-la-ansiedad": "De una web que no traía pacientes a una en la que 1 de cada 5 visitantes pulsa Reservar en el primer mes. Web nueva, contenido y medición.",
+  "clinica-de-la-ansiedad": "Primera en Google en psicoanálisis en Mataró y el Maresme y en la respuesta con IA. Web nueva, SEO local, ficha de Google y medición de reservas.",
   "clinica-de-la-ansiedad-blog-automatizado": "Workflow en n8n que lleva cada fila del calendario editorial a Contentful con imagen, SEO y autor, y deja el texto listo para revisión antes de publicar.",
 }
 
