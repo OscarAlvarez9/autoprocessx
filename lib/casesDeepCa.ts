@@ -779,6 +779,17 @@ export const casosDeepCa: Record<string, CasoDeep> = {
         ],
       },
     ],
+    evidenciaTitulo: "També a les respostes de la IA",
+    evidenciaIntro: "Captura real d'una resposta de cerca amb IA sobre psicoanàlisi al Maresme. Retallada per no mostrar altres professionals.",
+    evidencia: [
+      {
+        src: "/assets/casos/clinica-ai-search.png",
+        w: 1432,
+        h: 352,
+        alt: "Resposta d'un cercador amb IA sobre psicoanàlisi al Maresme amb la Clínica de la Ansiedad en primer lloc",
+        caption: "La clínica surt la primera de la llista, descrita amb les seves dades reals (qui la dirigeix, què tracta, on atén) i amb enllaç al seu web.",
+      },
+    ],
     contexto: [
       "Clínica de la Ansiedad és una consulta privada de psicoanàlisi al Maresme. Tenia una web en WordPress que no funcionava com a canal: no estava donada d'alta a Search Console, no tenia analítica i no hi arribaven pacients per aquí. Per a Google, la clínica gairebé no existia.",
       "En salut mental Google és especialment exigent. És contingut que afecta decisions delicades, i sense senyals clars de qui signa, amb quina titulació i on atén, una web no surt per res que no sigui el seu propi nom.",

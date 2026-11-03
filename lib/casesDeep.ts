@@ -880,6 +880,17 @@ export const casosDeep: Record<string, CasoDeep> = {
         ],
       },
     ],
+    evidenciaTitulo: "También en las respuestas de la IA",
+    evidenciaIntro: "Captura real de una respuesta de búsqueda con IA sobre psicoanálisis en el Maresme. Recortada para no mostrar a otros profesionales.",
+    evidencia: [
+      {
+        src: "/assets/casos/clinica-ai-search.png",
+        w: 1432,
+        h: 352,
+        alt: "Respuesta de un buscador con IA sobre psicoanálisis en el Maresme con la Clínica de la Ansiedad en primer lugar",
+        caption: "La clínica sale la primera de la lista, descrita con sus datos reales (quién la dirige, qué trata, dónde atiende) y con enlace a su web.",
+      },
+    ],
     contexto: [
       "Clínica de la Ansiedad es una consulta privada de psicoanálisis en el Maresme. Tenía una web en WordPress que no funcionaba como canal: no estaba dada de alta en Search Console, no tenía analítica y no le llegaban pacientes por ahí. Para Google, la clínica casi no existía.",
       "En salud mental Google es especialmente exigente. Es contenido que afecta a decisiones delicadas, y sin señales claras de quién firma, con qué titulación y dónde atiende, una web no sale por nada que no sea su propio nombre.",
