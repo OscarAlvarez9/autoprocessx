@@ -34,9 +34,9 @@ export const casesCa: Record<string, CasoTexto> = {
     sector: "Rellotgeria · ecommerce",
     summary: "Automatització del catàleg complet i estratègia SEO de venda sobre WooCommerce: 2.293 referències que ara arriben soles del proveïdor a la botiga.",
     reto: "Un catàleg de més de 2.200 referències gestionat a mà des de fulls de càlcul del proveïdor. Les fitxes es creaven una a una i les fotos es pujaven a mà, de manera que les dades que l'equip de producte mantenia al full no arribaven mai a la botiga. A més, els deu filtres de la barra lateral no funcionaven: WooCommerce només filtra per atributs globals i tot el catàleg els tenia com a locals.",
-    solucion: "Un ecosistema de 19 automatitzacions a n8n que cobreix tot el cicle de vida del producte, des de l'alta amb descripció i meta generades amb IA fins a les fotos, l'estoc i la publicació controlada. En paral·lel, migració dels atributs a globals amb normalització del vocabulari per deixar els filtres operatius, i feina d'estructura i disseny sobre la mateixa botiga.",
+    solucion: "Un ecosistema de 25 automatitzacions a n8n que cobreix tot el cicle de vida del producte, des de l'alta amb descripció i meta generades amb IA fins a les fotos, l'estoc i la publicació controlada. En paral·lel, migració dels atributs a globals amb normalització del vocabulari per deixar els filtres operatius, i feina d'estructura i disseny sobre la mateixa botiga.",
     did: [
-      "19 automatitzacions a n8n: alta de producte, imatges, estoc, noms, categories i variants.",
+      "25 automatitzacions a n8n: alta de producte, imatges, estoc, noms, categories i variants.",
       "Descripció llarga i meta description generades amb IA a partir del full del proveïdor.",
       "Migració d'atributs locals a globals amb normalització del vocabulari: filtres operatius per fi.",
       "Estructura i disseny de la botiga, i sanejament de slugs per tallar la canibalització.",

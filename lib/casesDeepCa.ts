@@ -24,7 +24,7 @@ export const casosDeepCa: Record<string, CasoDeep> = {
         title: "L'enginyeria que hi ha darrere",
         note: "informe de treball sobre el catàleg",
         items: [
-          { value: "19", label: "automatitzacions a n8n", note: "cicle de vida complet del producte" },
+          { value: "25", label: "automatitzacions a n8n", note: "cicle de vida complet del producte" },
           { value: "9.500", label: "escriptures verificades", note: "amb simulació prèvia i rollback" },
           { value: "2.293", label: "referències al catàleg", note: "rellotges, smartwatch i joieria" },
           { value: "0", label: "errors en passades massives", note: "totes les tandes" },
@@ -67,7 +67,7 @@ export const casosDeepCa: Record<string, CasoDeep> = {
       "A això s'hi afegia un bloqueig tècnic: el hosting havia vetat permanentment la IP de la instància de n8n al núvol, així que tota l'automatització es va haver de reconstruir contra una instància local.",
     ],
     queHiceIntro:
-      "Vaig muntar un ecosistema de 19 automatitzacions a n8n que cobreix el cicle de vida complet d'un producte, des que el proveïdor el posa al seu full de càlcul fins que està publicat a la botiga amb fotos, categories, estoc i SEO. A més de la feina d'estructura i disseny sobre la mateixa web. Aquests són els sis circuits.",
+      "Vaig muntar un ecosistema de 25 automatitzacions a n8n que cobreix el cicle de vida complet d'un producte, des que el proveïdor el posa al seu full de càlcul fins que està publicat a la botiga amb fotos, categories, estoc i SEO. A més de la feina d'estructura i disseny sobre la mateixa web. Aquests són els sis circuits.",
     capitulos: [
       {
         n: "01",

@@ -125,7 +125,7 @@ export const casosDeep: Record<string, CasoDeep> = {
         title: "La ingeniería que hay detrás",
         note: "informe de trabajo sobre el catálogo",
         items: [
-          { value: "19", label: "automatizaciones en n8n", note: "ciclo de vida completo del producto" },
+          { value: "25", label: "automatizaciones en n8n", note: "ciclo de vida completo del producto" },
           { value: "9.500", label: "escrituras verificadas", note: "con simulación previa y rollback" },
           { value: "2.293", label: "referencias en catálogo", note: "relojes, smartwatch y joyería" },
           { value: "0", label: "errores en pasadas masivas", note: "todas las tandas" },
@@ -168,7 +168,7 @@ export const casosDeep: Record<string, CasoDeep> = {
       "A eso se sumaba un bloqueo técnico: el hosting había baneado permanentemente la IP de la instancia de n8n en la nube, así que toda la automatización tuvo que reconstruirse contra una instancia local.",
     ],
     queHiceIntro:
-      "Monté un ecosistema de 19 automatizaciones en n8n que cubre el ciclo de vida completo de un producto, desde que el proveedor lo pone en su hoja de cálculo hasta que está publicado en la tienda con fotos, categorías, stock y SEO. Además del trabajo de estructura y diseño sobre la propia web. Estos son los seis circuitos.",
+      "Monté un ecosistema de 25 automatizaciones en n8n que cubre el ciclo de vida completo de un producto, desde que el proveedor lo pone en su hoja de cálculo hasta que está publicado en la tienda con fotos, categorías, stock y SEO. Además del trabajo de estructura y diseño sobre la propia web. Estos son los seis circuitos.",
     capitulos: [
       {
         n: "01",

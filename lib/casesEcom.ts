@@ -51,9 +51,9 @@ export const cases: Caso[] = [
     visual: { mock: "marea" },
     summary: "Automatización del catálogo completo y Estrategia SEO de venta sobre WooCommerce: 2.293 referencias que ahora llegan solas del proveedor a la tienda.",
     reto: "Un catálogo de más de 2.200 referencias gestionado a mano desde hojas de cálculo del proveedor. Las fichas se creaban una a una y las fotos se subían a mano, así que los datos que producto mantenía en el sheet nunca llegaban a la tienda. Además, los diez filtros de la barra lateral no funcionaban: WooCommerce solo filtra por atributos globales y todo el catálogo los tenía como locales.",
-    solucion: "Un ecosistema de 19 automatizaciones en n8n que cubre el ciclo de vida completo del producto, desde el alta con descripción y meta generadas con IA hasta las fotos, el stock y la publicación controlada. En paralelo, migración de atributos a globales con normalización de vocabulario para dejar los filtros operativos, y trabajo de estructura y diseño sobre la propia tienda.",
+    solucion: "Un ecosistema de 25 automatizaciones en n8n que cubre el ciclo de vida completo del producto, desde el alta con descripción y meta generadas con IA hasta las fotos, el stock y la publicación controlada. En paralelo, migración de atributos a globales con normalización de vocabulario para dejar los filtros operativos, y trabajo de estructura y diseño sobre la propia tienda.",
     did: [
-      "19 automatizaciones en n8n: alta de producto, imágenes, stock, nombres, categorías y variantes.",
+      "25 automatizaciones en n8n: alta de producto, imágenes, stock, nombres, categorías y variantes.",
       "Descripción larga y meta description generadas con IA a partir del sheet del proveedor.",
       "Migración de atributos locales a globales con normalización de vocabulario: filtros operativos por fin.",
       "Estructura y diseño de la tienda, y saneado de slugs para cortar la canibalización.",
