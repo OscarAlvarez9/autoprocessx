@@ -24,7 +24,7 @@ const USE_CASES = [
   { title: "Sincronització d'estoc i comandes", desc: "ERP i botiga sempre quadrats, sense sobrevenda ni fitxes desfasades.", el: <StockSyncDiff /> },
   { title: "Recuperació de cistella", desc: "El nudge surt a temps i amb l'estoc real, no quan ja és tard.", el: <CartRecovery /> },
   { title: "Feeds de producte", desc: "Catàleg formatat per a cada destinació (Google, Meta, marketplaces).", el: <FeedBuilder /> },
-  { title: "Alta massiva de productes", desc: "Pujo el catàleg sencer de cop, amb descripcions generades i estoc real. Sense carregar fitxa a fitxa a mà.", el: <BulkProductSim /> },
+  { title: "Alta massiva de productes", desc: "Pujo el catàleg sencer de cop, amb descripcions generades i estoc real. Sense carregar fitxa a fitxa a mà.", el: <BulkProductSim />, href: "/servicios/automatizacion-gestion-productos", link: "Veure el sistema de gestió de productes" },
   { title: "Postcompra", desc: "Confirmació, seguiment i ressenya surten sols, en el moment que toca.", el: <PostPurchaseFlow /> },
   { title: "Reporting", desc: "L'informe setmanal de vendes i estoc arriba fet, sense obrir l'Excel.", el: <ReportSnippet /> },
 ]
@@ -133,6 +133,11 @@ function QueAutomatizamos() {
                 <Box sx={{ p: { xs: 2.5, md: 3 } }}>
                   <Typography sx={{ fontFamily: fonts.serif, fontSize: 20, fontWeight: 600, color: tokens.ink, mb: 0.5 }}>{u.title}</Typography>
                   <Typography variant="body2" sx={{ color: tokens.body, maxWidth: 420 }}>{u.desc}</Typography>
+                  {u.href && (
+                    <Box component={Link} href={u.href} sx={{ display: "inline-block", mt: 1, fontSize: 14, fontWeight: 700, color: tokens.ink, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { textDecorationColor: tokens.petrol } }}>
+                      {u.link} <Box component="span" sx={{ color: tokens.petrol }}>↗</Box>
+                    </Box>
+                  )}
                 </Box>
                 <Box sx={{ mt: "auto", p: { xs: 2, md: 2.5 }, pt: 0, minWidth: 0 }}>
                   <Box sx={{ minWidth: 0, "& > *": { width: "100%" } }}>{u.el}</Box>

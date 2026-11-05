@@ -17,6 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/`, lastModified, changeFrequency: 'weekly', priority: 1.0 },
     { url: `${baseUrl}/diagnostico`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/servicios/automatizaciones`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/servicios/automatizacion-gestion-productos`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/servicios/a-medida`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/servicios/crecimiento-ecommerce`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/servicios/agente-ventas-ia`, lastModified, changeFrequency: 'monthly', priority: 0.8 },

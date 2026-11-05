@@ -23,7 +23,7 @@ const USE_CASES = [
   { title: "Sync de stock y pedidos", desc: "ERP y tienda siempre cuadrados, sin sobreventa ni fichas viejas.", el: <StockSyncDiff /> },
   { title: "Recuperación de carrito", desc: "El nudge sale a tiempo y con el stock real, no cuando ya es tarde.", el: <CartRecovery /> },
   { title: "Feeds de producto", desc: "Catálogo formateado para cada destino (Google, Meta, marketplaces).", el: <FeedBuilder /> },
-  { title: "Alta de productos en masa", desc: "Subo el catálogo entero de golpe, con descripciones generadas y stock real. Sin cargar ficha a ficha a mano.", el: <BulkProductSim /> },
+  { title: "Alta de productos en masa", desc: "Subo el catálogo entero de golpe, con descripciones generadas y stock real. Sin cargar ficha a ficha a mano.", el: <BulkProductSim />, href: "/servicios/automatizacion-gestion-productos", link: "Ver el sistema de gestión de productos" },
   { title: "Post-compra", desc: "Confirmación, seguimiento y reseña salen solos, en su momento.", el: <PostPurchaseFlow /> },
   { title: "Reporting", desc: "El informe semanal de ventas y stock llega hecho, sin abrir Excel.", el: <ReportSnippet /> },
 ]
@@ -140,6 +140,11 @@ function QueAutomatizamos() {
                 <Box sx={{ p: { xs: 2.5, md: 3 } }}>
                   <Typography sx={{ fontFamily: fonts.serif, fontSize: 20, fontWeight: 600, color: tokens.ink, mb: 0.5 }}>{u.title}</Typography>
                   <Typography variant="body2" sx={{ color: tokens.body, maxWidth: 420 }}>{u.desc}</Typography>
+                  {u.href && (
+                    <Box component={Link} href={u.href} sx={{ display: "inline-block", mt: 1, fontSize: 14, fontWeight: 700, color: tokens.ink, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { textDecorationColor: tokens.petrol } }}>
+                      {u.link} <Box component="span" sx={{ color: tokens.petrol }}>↗</Box>
+                    </Box>
+                  )}
                 </Box>
                 <Box sx={{ mt: "auto", p: { xs: 2, md: 2.5 }, pt: 0, minWidth: 0 }}>
                   <Box sx={{ minWidth: 0, "& > *": { width: "100%" } }}>{u.el}</Box>
