@@ -16,6 +16,8 @@ import { SiteHeader, SiteFooter, DiagnosticoCTA, ServiceHero, Reveal, ArtifactWi
 import { casosDeep } from "@/lib/casesDeep"
 import { GESTION_PRODUCTOS_FAQS } from "@/lib/gestionProductosFaqs"
 import MareaFlowViewer from "@/components/mui/MareaFlowViewer"
+import BrandCaseCard from "@/components/mui/BrandCaseCard"
+import { getCase, casePhoto, caseVertical } from "@/lib/casesEcom"
 
 // Página de producto del sistema de gestión de productos. El argumento no es
 // "mira este caso", es el reparto del trabajo: el sistema prepara cada
@@ -317,40 +319,42 @@ function Control() {
   )
 }
 
-// Prueba breve, no ficha de caso: las cifras de ingeniería verificadas de
-// marea.es y un enlace al caso para quien quiera el detalle.
+// Caso de éxito de Marea: card de marca (la misma del resto de servicios),
+// las cifras de ingeniería verificadas y enlace al caso completo.
 function EnProduccion() {
   const marea = casosDeep["marea-es"]
+  const caso = getCase("marea-es")
   const cifras = marea?.kpis[1]?.items ?? []
-  if (!cifras.length) return null
+  if (!cifras.length || !caso) return null
   return (
     <Box component="section" sx={{ py: { xs: 8, md: 11 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Container>
-        <Reveal>
-          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr auto" }, gap: { xs: 2, md: 6 }, alignItems: "end", mb: { xs: 4, md: 6 } }}>
-            <Box sx={{ maxWidth: 640 }}>
-              <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, mb: 2 }}>
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "0.85fr 1.15fr" }, gap: { xs: 4, md: 7 }, alignItems: "center" }}>
+          <Reveal>
+            <BrandCaseCard name={caso.client} vertical={caseVertical(caso)} href="/casos-de-exito/marea-es" photo={casePhoto(caso)} ratio="1 / 1" />
+          </Reveal>
+          <Reveal delay={0.08}>
+            <Box>
+              <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 38 }, color: tokens.ink, mb: 2 }}>
                 Ya gestiona un catálogo de relojes y joyería en producción.
               </Typography>
-              <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body }}>
+              <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 17 }, color: tokens.body, mb: { xs: 3.5, md: 4.5 }, maxWidth: 560 }}>
                 En marea.es el producto llega solo desde las hojas del proveedor hasta la tienda, con todas las escrituras simuladas, respaldadas y verificadas.
               </Typography>
-            </Box>
-            <Button component={Link} href="/casos-de-exito/marea-es" sx={{ color: tokens.ink, fontWeight: 700, px: 0, justifyContent: "flex-start", "&:hover": { bgcolor: "transparent", color: tokens.petrol } }}>
-              Ver el caso de marea.es <Box component="span" sx={{ color: tokens.petrol, ml: 0.5 }}>↗</Box>
-            </Button>
-          </Box>
-        </Reveal>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr 1fr", md: "repeat(4, 1fr)" }, rowGap: 4 }}>
-          {cifras.map((m, i) => (
-            <Reveal key={m.label} delay={i * 0.05}>
-              <Box sx={{ pl: { xs: i % 2 === 0 ? 0 : 2.5, md: i === 0 ? 0 : 3 }, borderLeft: { xs: i % 2 === 0 ? "none" : `1px solid ${tokens.lineSoft}`, md: i === 0 ? "none" : `1px solid ${tokens.lineSoft}` } }}>
-                <Typography sx={{ fontFamily: fonts.serif, fontSize: { xs: 36, md: 48 }, fontWeight: 600, lineHeight: 1, color: tokens.petrol }}>{m.value}</Typography>
-                <Typography sx={{ fontSize: 14.5, fontWeight: 700, color: tokens.ink, mt: 1 }}>{m.label}</Typography>
-                {m.note && <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, mt: 0.4 }}>{m.note}</Typography>}
+              <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: 3.5 }}>
+                {cifras.map((m, i) => (
+                  <Box key={m.label} sx={{ pl: i % 2 === 0 ? 0 : 3, borderLeft: i % 2 === 0 ? "none" : `1px solid ${tokens.lineSoft}` }}>
+                    <Typography sx={{ fontFamily: fonts.serif, fontSize: { xs: 34, md: 42 }, fontWeight: 600, lineHeight: 1, color: tokens.petrol }}>{m.value}</Typography>
+                    <Typography sx={{ fontSize: 14.5, fontWeight: 700, color: tokens.ink, mt: 1 }}>{m.label}</Typography>
+                    {m.note && <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, mt: 0.4 }}>{m.note}</Typography>}
+                  </Box>
+                ))}
               </Box>
-            </Reveal>
-          ))}
+              <Button component={Link} href="/casos-de-exito/marea-es" sx={{ color: tokens.ink, fontWeight: 700, px: 0, mt: { xs: 3.5, md: 4.5 }, "&:hover": { bgcolor: "transparent", color: tokens.petrol } }}>
+                Ver el caso de éxito de Marea <Box component="span" sx={{ color: tokens.petrol, ml: 0.5 }}>↗</Box>
+              </Button>
+            </Box>
+          </Reveal>
         </Box>
       </Container>
     </Box>
