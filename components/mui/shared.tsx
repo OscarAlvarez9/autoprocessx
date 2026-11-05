@@ -39,6 +39,7 @@ const T = {
       { label: "Posicionamiento GEO", href: "/posicionamiento-geo", tag: "que ChatGPT y Google AI te citen" },
       { label: "Agente de ventas IA", href: "/servicios/agente-ventas-ia", tag: "anclado a tu catálogo, también suelto" },
       { label: "Automatización", href: "/servicios/automatizaciones", tag: "n8n y código propio, también suelta" },
+      { label: "Sistema de catálogo e-commerce", href: "/servicios/automatizacion-gestion-productos", tag: "del proveedor a la ficha, sin cargar a mano" },
       { label: "Auditoría SEO/GEO", href: "/servicios/auditoria-seo-geo", tag: "con fugas de conversión, para empezar" },
     ],
     nav: [
@@ -68,7 +69,7 @@ const T = {
       ["Crecimiento ecommerce", "/servicios/crecimiento-ecommerce"],
       ["Agente de ventas IA", "/servicios/agente-ventas-ia"],
       ["Automatización", "/servicios/automatizaciones"],
-      ["Gestión de productos automatizada", "/servicios/automatizacion-gestion-productos"],
+      ["Sistema de catálogo e-commerce", "/servicios/automatizacion-gestion-productos"],
       ["Auditoría SEO/GEO", "/servicios/auditoria-seo-geo"],
       ["Posicionamiento GEO", "/posicionamiento-geo"],
       ["Plataformas internas a medida", "/servicios/a-medida"],
@@ -103,6 +104,7 @@ const T = {
       { label: "Posicionament GEO", href: "/posicionamiento-geo", tag: "que ChatGPT i Google AI et citin" },
       { label: "Agent de vendes IA", href: "/servicios/agente-ventas-ia", tag: "ancorat al teu catàleg, també per separat" },
       { label: "Automatització", href: "/servicios/automatizaciones", tag: "n8n i codi propi, també per separat" },
+      { label: "Sistema de catàleg e-commerce", href: "/servicios/automatizacion-gestion-productos", tag: "del proveïdor a la fitxa, sense carregar a mà" },
       { label: "Auditoria SEO/GEO", href: "/servicios/auditoria-seo-geo", tag: "amb fuites de conversió, per començar" },
     ],
     nav: [
@@ -132,7 +134,7 @@ const T = {
       ["Creixement ecommerce", "/servicios/crecimiento-ecommerce"],
       ["Agent de vendes IA", "/servicios/agente-ventas-ia"],
       ["Automatització", "/servicios/automatizaciones"],
-      ["Gestió de productes automatitzada", "/servicios/automatizacion-gestion-productos"],
+      ["Sistema de catàleg e-commerce", "/servicios/automatizacion-gestion-productos"],
       ["Auditoria SEO/GEO", "/servicios/auditoria-seo-geo"],
       ["Posicionament GEO", "/posicionamiento-geo"],
       ["Plataformes internes a mida", "/servicios/a-medida"],
