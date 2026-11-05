@@ -236,6 +236,8 @@ function Evidencia({ deep }: { deep: CasoDeep }) {
                   onClick={() => setZoom(e)}
                   sx={{
                     ...zoomBtn,
+                    // Capturas altas (lista entera de resultados): ancho de lectura, no de pantalla.
+                    maxWidth: e.h / e.w > 0.7 ? 760 : "none",
                     border: `1px solid ${tokens.line}`,
                     borderRadius: 3,
                     overflow: "hidden",

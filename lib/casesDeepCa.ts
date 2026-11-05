@@ -790,7 +790,7 @@ export const casosDeepCa: Record<string, CasoDeep> = {
       },
     ],
     evidenciaTitulo: "Primera a la seva zona, a Google i a la IA",
-    evidenciaIntro: "Captures reals de Google i d'una resposta amb IA, fetes el novembre de 2026. Estan retallades per no mostrar altres professionals.",
+    evidenciaIntro: "Captures reals de Google i d'una resposta amb IA, fetes el novembre de 2026. Es veu la llista sencera de resultats, tal com surt.",
     evidencia: [
       {
         src: "/assets/casos/clinica-ai-search.png",
@@ -801,15 +801,15 @@ export const casosDeepCa: Record<string, CasoDeep> = {
       },
       {
         src: "/assets/casos/clinica-google-maresme.png",
-        w: 1726,
-        h: 260,
+        w: 1430,
+        h: 1364,
         alt: "Primer resultat de Google per a psicoanalista al Maresme: la pàgina de la clínica per al Maresme i Canet de Mar",
         caption: "Cercant psicoanalista al Maresme, el primer resultat és la pàgina de la clínica per a la comarca. La portada surt també en tercera posició.",
       },
       {
         src: "/assets/casos/clinica-google-mataro.png",
-        w: 1642,
-        h: 260,
+        w: 1582,
+        h: 1342,
         alt: "Primer resultat de Google en una cerca sobre Mataró: la pàgina de la clínica per a qui viu a Mataró",
         caption: "Cercant psicoanalista a Mataró, el primer resultat és la pàgina local que la clínica té per a qui hi viu, per davant de professionals que tenen la consulta a Mataró.",
       },
