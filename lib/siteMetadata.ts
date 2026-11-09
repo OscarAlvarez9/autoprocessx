@@ -25,10 +25,14 @@ export const baseMetadata: Metadata = {
     canonical: "https://www.seoscar.com",
   },
   icons: {
-    icon: "/faviconseoscar.jpg",
-    apple: "/faviconseoscar.jpg",
-    shortcut: "/faviconseoscar.jpg",
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.ico",
   },
+  manifest: "/site.webmanifest",
   robots: {
     index: true,
     follow: true,
