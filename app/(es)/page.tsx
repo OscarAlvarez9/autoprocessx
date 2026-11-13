@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     absolute: "Consultor SEO E-commerce | SEOscar",
   },
   description:
-    "Óscar Álvarez, consultor SEO para ecommerce. SEO y GEO que traen tráfico que compra, CRO que lo convierte y automatización que te ahorra horas.",
+    "Óscar Álvarez, analista de datos y consultor SEO de ecommerce. Posicionamiento, conversión y catálogo de tu tienda, del diagnóstico a la implementación.",
   alternates: i18nAlternates("/", "es"),
 }
 
@@ -18,9 +18,9 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "@id": `${SITE_URL}/#service-home`,
-  name: "Crecimiento ecommerce: SEO, GEO y CRO",
+  name: "SEO y optimización para tiendas online",
   description:
-    "SEO técnico y GEO/AI Search, optimización de conversión (CRO), agente de ventas IA anclado al catálogo y automatización con n8n para tiendas online.",
+    "SEO técnico, arquitectura y contenidos, analítica y optimización de la conversión, y gestión y automatización del catálogo para tiendas online, del diagnóstico a la implementación.",
   serviceType: "Ecommerce growth engineering",
   provider: { "@id": ORG_ID },
   areaServed: [{ "@type": "Country", name: "España" }],

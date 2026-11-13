@@ -11,12 +11,11 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
 import Paper from "@mui/material/Paper"
-import Slider from "@mui/material/Slider"
 import Accordion from "@mui/material/Accordion"
 import AccordionSummary from "@mui/material/AccordionSummary"
 import AccordionDetails from "@mui/material/AccordionDetails"
 import { tokens, fonts } from "@/lib/mui/theme"
-import { RoasChart, StoreTemplate, ShopifyPhone, Funnel, AovOrbit, Gauge, DatosIntuicion, StockDesync, N8nFlow, ConversionChart, GeoAnswer, UnnecessaryApps, PlatformsInteractive, AgentChatRich, ToolsScatter } from "@/components/mui/artifacts"
+import { RoasChart, StoreTemplate, Funnel, Gauge, DatosIntuicion, StockDesync, N8nFlow, ConversionChart, UnnecessaryApps, ToolsScatter } from "@/components/mui/artifacts"
 import { SiteHeader, SiteFooter, DiagnosticoCTA, Blueprint, StatementBand, Reveal, HeroReveal, PrimaryCTA, ArtifactWindow } from "@/components/mui/shared"
 import ScrollSteps, { type ScrollStep } from "@/components/mui/ScrollSteps"
 import ClientShowcase from "@/components/mui/ClientShowcase"
@@ -32,10 +31,10 @@ function Hero() {
       <Container sx={{ position: "relative", zIndex: 1, pt: { xs: 8, md: 12 }, pb: { xs: 6, md: 8 }, textAlign: "center" }}>
         <HeroReveal>
           <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 56, md: 72 }, letterSpacing: "-0.025em", color: tokens.ink, maxWidth: 980, mx: "auto", mb: 3, textWrap: "balance" }}>
-            Consultor SEO para <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>tiendas online</Box>. Más ventas con el tráfico que ya tienes.
+            SEO y optimización para <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>tiendas online</Box>, del dato a la implementación.
           </Typography>
-          <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 580, mx: "auto", mb: 4 }}>
-            Soy Óscar Álvarez, consultor SEO de ecommerce. Trabajo el SEO, la visibilidad en IA, la conversión y la automatización de tiendas que ya facturan, sobre tu plataforma actual y sin migrar nada.
+          <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 620, mx: "auto", mb: 4 }}>
+            Soy Óscar Álvarez, analista de datos y consultor SEO de ecommerce. Analizo dónde pierde oportunidades tu tienda y trabajo el posicionamiento, la conversión y el catálogo, desde el diagnóstico hasta la implementación y sobre tu plataforma actual.
           </Typography>
           <Stack direction={{ xs: "column", sm: "row" }} spacing={2.5} sx={{ alignItems: "center", justifyContent: "center" }}>
             <PrimaryCTA />
@@ -63,103 +62,6 @@ function MiniWindow({ tag, right, children }: { tag: string; right?: React.React
   )
 }
 
-// Reloj dibujado a mano, identidad de marea.es.
-function WatchMini({ size = 22 }: { size?: number }) {
-  return (
-    <Box component="svg" viewBox="0 0 40 40" sx={{ width: size, height: size }} aria-hidden>
-      <circle cx="20" cy="20" r="10" fill="#fff" stroke={tokens.ink} strokeWidth="2" />
-      <rect x="17" y="4" width="6" height="4" rx="1" fill={tokens.muted} />
-      <rect x="17" y="32" width="6" height="4" rx="1" fill={tokens.muted} />
-      <line x1="20" y1="20" x2="20" y2="14" stroke={tokens.ink} strokeWidth="1.6" strokeLinecap="round" />
-      <line x1="20" y1="20" x2="24" y2="22" stroke={tokens.bronze} strokeWidth="1.6" strokeLinecap="round" />
-      <circle cx="31" cy="20" r="1.6" fill={tokens.muted} />
-    </Box>
-  )
-}
-
-// Agente: una conversación que cierra la venta. El carrito marca 1 y aparece
-// el "añadido al carrito".
-function AgenteArt() {
-  const reduce = useReducedMotion()
-  const cartBadge = (
-    <Stack direction="row" spacing={0.55} sx={{ alignItems: "center" }}>
-      <Box component="span" sx={{ fontSize: 13 }}>🛒</Box>
-      <Box component={motion.span} initial={reduce ? false : { scale: 0.3, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ type: "spring", stiffness: 420, damping: 15, delay: 0.55 }}
-        sx={{ minWidth: 15, height: 15, px: 0.4, borderRadius: 999, bgcolor: tokens.red, color: "#fff", fontFamily: fonts.mono, fontSize: 9.5, fontWeight: 700, display: "grid", placeItems: "center" }}>1</Box>
-    </Stack>
-  )
-  return (
-    <MiniWindow tag="agente · catálogo real" right={cartBadge}>
-      <Stack spacing={0.9} sx={{ width: "100%" }}>
-        <Stack direction="row" spacing={0.7} sx={{ alignItems: "center" }}>
-          <Box component={motion.span} animate={reduce ? {} : { opacity: [1, 0.4, 1] }} transition={{ duration: 1.6, repeat: Infinity }} sx={{ width: 6, height: 6, borderRadius: 999, bgcolor: tokens.teal }} />
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>en línea · web y WhatsApp</Typography>
-        </Stack>
-        <Box sx={{ alignSelf: "flex-end", maxWidth: "82%", bgcolor: "#EEF0EC", borderRadius: "13px 13px 4px 13px", px: 1.3, py: 0.8 }}>
-          <Typography sx={{ fontSize: 12.5, color: tokens.ink }}>Busco un automático sobre 250€.</Typography>
-        </Box>
-        <Stack direction="row" spacing={1} sx={{ alignItems: "center", alignSelf: "flex-start", maxWidth: "94%", bgcolor: "#F4FAF7", border: `1px solid ${tokens.teal}22`, borderRadius: "13px 13px 13px 4px", px: 1, py: 0.8 }}>
-          <Box sx={{ width: 30, height: 30, borderRadius: 1.5, bgcolor: "#E7EAE6", display: "grid", placeItems: "center", flexShrink: 0 }}><WatchMini size={21} /></Box>
-          <Box sx={{ flex: 1, minWidth: 0 }}>
-            <Typography sx={{ fontSize: 12.5, fontWeight: 700, color: tokens.ink, whiteSpace: "nowrap" }}>Automático Acero</Typography>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 9.5, color: tokens.muted, whiteSpace: "nowrap" }}>del catálogo, stock real</Typography>
-          </Box>
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: 12.5, fontWeight: 700, color: tokens.teal }}>249€</Typography>
-        </Stack>
-        <Box component={motion.div} initial={reduce ? false : { opacity: 0, y: 5 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.55, duration: 0.35 }}
-          sx={{ alignSelf: "flex-start", display: "inline-flex", alignItems: "center", bgcolor: `${tokens.teal}14`, borderRadius: 999, px: 1.1, py: 0.35 }}>
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, fontWeight: 700, color: tokens.teal }}>✓ añadido al carrito</Typography>
-        </Box>
-      </Stack>
-    </MiniWindow>
-  )
-}
-
-// Diagrama del pack: las piezas dentro de un marco "Crecimiento ecommerce",
-// cada una marcada con si se vende suelta o solo dentro del pack, y la suma
-// apuntando a ventas. Explica el modelo comercial de un vistazo.
-function PackDiagram() {
-  const reduce = useReducedMotion()
-  const PIEZAS = [
-    { l: "Auditoría SEO/GEO + CRO", s: "también suelta", suelta: true },
-    { l: "SEO y diseño CRO en continuo", s: "dentro del pack", suelta: false },
-    { l: "Agente de ventas IA", s: "también suelto", suelta: true },
-    { l: "Automatización", s: "también suelta", suelta: true },
-  ]
-  return (
-    <ArtifactWindow tag="crecimiento ecommerce · qué incluye" ratio="2 / 1">
-      <Stack sx={{ height: "100%" }} spacing={1.25}>
-        <Box sx={{ position: "relative", flex: 1, border: `1.5px solid ${tokens.petrol}55`, borderRadius: 2, p: 1.5, pt: 1.75 }}>
-          <Typography sx={{ position: "absolute", top: -9, left: 12, bgcolor: tokens.win, px: 0.75, fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, color: tokens.petrol }}>
-            el pack, todo dentro
-          </Typography>
-          <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, height: "100%" }}>
-            {PIEZAS.map((p, i) => (
-              <Box
-                key={p.l}
-                component={motion.div}
-                initial={reduce ? false : { opacity: 0, y: 6 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.35 }}
-                sx={{ border: `1px solid ${tokens.lineSoft}`, borderRadius: 1.5, px: 1.25, py: 0.9, bgcolor: tokens.win, display: "flex", flexDirection: "column", justifyContent: "center", minWidth: 0 }}
-              >
-                <Typography sx={{ fontSize: { xs: 10.5, md: 12 }, fontWeight: 700, color: tokens.ink, lineHeight: 1.25 }}>{p.l}</Typography>
-                <Typography sx={{ fontFamily: fonts.mono, fontSize: { xs: 8.5, md: 9.5 }, color: p.suelta ? tokens.teal : tokens.muted, mt: 0.25 }}>{p.s}</Typography>
-              </Box>
-            ))}
-          </Box>
-        </Box>
-        <Stack direction="row" spacing={1.25} sx={{ alignItems: "center" }}>
-          <Box sx={{ flex: 1, height: 2, bgcolor: tokens.line, borderRadius: 999 }} />
-          <Typography sx={{ fontFamily: fonts.mono, fontSize: { xs: 10.5, md: 11.5 }, fontWeight: 700, color: tokens.teal, bgcolor: `${tokens.teal}14`, borderRadius: 999, px: 1.25, py: 0.4, whiteSpace: "nowrap" }}>
-            = más tráfico que compra y más conversión
-          </Typography>
-        </Stack>
-      </Stack>
-    </ArtifactWindow>
-  )
-}
 
 // Automatización: un flujo que corre solo. Pipeline horizontal con logos
 // oficiales, pulso viajando entre nodos y log de ejecución con checks.
@@ -170,7 +72,7 @@ function AutoArt() {
     { path: null as string | null, hex: null as string | null, label: "código", sub: "Node/Python" },
     { path: siWoocommerce.path, hex: siWoocommerce.hex, label: "WooCommerce", sub: "stock" },
   ]
-  const LOG = ["stock sincronizado en las dos tiendas", "carrito recuperado, email enviado"]
+  const LOG = ["stock sincronizado en las dos tiendas", "fichas nuevas creadas en borrador"]
   return (
     <MiniWindow tag="n8n · operativa" right={
       <Stack direction="row" spacing={0.5} sx={{ alignItems: "center" }}>
@@ -243,24 +145,28 @@ function AuditArt() {
   )
 }
 
-function CodeMini() {
+
+/* ---------- Tres áreas de trabajo ---------- */
+// Lo que antes eran cinco cards por pack ahora son las tres necesidades del
+// cliente. Los packs y servicios siguen existiendo: cada área enlaza a su
+// página, y las herramientas (agente, automatización, a medida) se nombran
+// debajo como medios, no como titulares.
+type Area = { result: string; badge: string; how: string; chips: string[]; cta: string; href: string; artifact: React.ReactNode; meta?: string }
+function FunnelMini() {
   return (
-    <Box sx={{ height: "100%", width: "100%", bgcolor: "#FBFBF9", borderRadius: 1.5, border: `1px solid ${tokens.lineSoft}`, p: 1.75, display: "flex", flexDirection: "column", justifyContent: "center", gap: 0.6 }}>
-      <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted }}>{`// a medida`}</Typography>
-      <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.ink }}><Box component="span" sx={{ color: tokens.bronze }}>const</Box> app = build(<Box component="span" sx={{ color: tokens.teal }}>tu_caso</Box>)</Typography>
-      <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.ink }}>app.<Box component="span" sx={{ color: tokens.teal }}>rag</Box>(docs).<Box component="span" sx={{ color: tokens.teal }}>deploy</Box>()</Typography>
-    </Box>
+    <MiniWindow tag="conversión · embudo" right={<Typography sx={{ fontFamily: fonts.mono, fontSize: 10, color: tokens.muted }}>medido</Typography>}>
+      <Box sx={{ width: "100%", height: "100%" }}><Funnel /></Box>
+    </MiniWindow>
   )
 }
-const SERVICES = [
-  { tag: "Pack completo, lo une todo", badge: "Pack completo", result: "Crecimiento ecommerce", how: "SEO técnico + GEO/AI Search + CRO, con el agente y la automatización dentro. Más tráfico que compra y más visitas que convierten.", meta: "Sobre tu plataforma actual · Shopify, WooCommerce, sin migrar", chips: ["SEO técnico", "GEO/AI Search", "CRO", "Agente incluido", "Automatización incluida"], cta: "Ver el pack", href: "/servicios/crecimiento-ecommerce", artifact: <PackDiagram /> },
-  { tag: "Punta de lanza, también suelto", badge: "También suelto", result: "Agente de ventas IA", how: "Anclado a tu catálogo real: recomienda, resuelve y cierra, en tu web y en WhatsApp. El chatbot que no inventa precios ni stock, porque no es un chatbot: es un agente conectado a tus datos.", chips: ["RAG anclado", "Web + WhatsApp", "Recomienda", "Recupera carrito"], cta: "Ver el agente", href: "/servicios/agente-ventas-ia", artifact: <AgenteArt /> },
-  { tag: "Operativa, también suelta", badge: "También suelta", result: "Automatización", how: "n8n orquestando código propio en Node y Python: pedidos, stock, carritos y reporting. La automatización de tu ecommerce corre sola y el código es tuyo.", chips: ["n8n self-hosted", "Node/Python", "Feeds & APIs", "Reporting"], cta: "Ver la automatización", href: "/servicios/automatizaciones", artifact: <AutoArt /> },
-  { tag: "Para empezar, también suelta", badge: "Para empezar", result: "Auditoría SEO/GEO + fugas de conversión", how: "Radiografía de tu tienda: visibilidad en Google y en la IA, y dónde se te escapa la conversión. Con plan priorizado por impacto en ventas.", chips: ["SEO técnico", "GEO/AI Search", "Fugas de conversión", "Plan priorizado"], cta: "Ver la auditoría", href: "/servicios/auditoria-seo-geo", artifact: <AuditArt /> },
-  { tag: "A medida", badge: "A medida", result: "Plataformas internas", how: "RAG sobre tus documentos y apps internas cuando el stack estándar no llega.", chips: ["RAG", "Auth.js", "Prisma", "Bajo demanda"], cta: "Ver más", href: "/servicios/a-medida", artifact: <CodeMini /> },
+const AREAS: Area[] = [
+  { badge: "01", result: "Visibilidad", how: "Que Google entienda y posicione tus categorías y fichas: SEO técnico, arquitectura de la tienda y contenidos que responden a lo que busca tu cliente.", chips: ["SEO técnico", "Arquitectura y categorías", "Fichas y contenidos", "Buscadores con IA"], cta: "Empezar por la auditoría", href: "/servicios/auditoria-seo-geo", artifact: <AuditArt /> },
+  { badge: "02", result: "Conversión", how: "Encontrar dónde se pierde la venta y corregirlo: medición fiable, detección de fricciones en ficha, carrito y checkout, y mejoras de la experiencia de compra.", chips: ["Analítica y eventos", "Fricciones", "UX/UI de compra", "Medición antes y después"], cta: "Ver crecimiento ecommerce", href: "/servicios/crecimiento-ecommerce", artifact: <FunnelMini /> },
+  { badge: "03", result: "Operativa de catálogo", how: "Datos de producto limpios y procesos que no dependen de cargar fichas a mano: altas, fotos, variantes, categorías y stock.", chips: ["Calidad de datos", "Gestión de productos", "Automatizaciones", "Integraciones"], cta: "Ver el sistema de catálogo", href: "/servicios/automatizacion-gestion-productos", artifact: <AutoArt /> },
 ]
+
 // Card de servicio: misma anatomía en todas, tamaño según jerarquía comercial.
-function ServiceCard({ s, featured }: { s: (typeof SERVICES)[number]; featured?: boolean }) {
+function ServiceCard({ s, featured }: { s: Area; featured?: boolean }) {
   return (
     <Paper component={Link} href={s.href} elevation={0}
       sx={{
@@ -323,7 +229,7 @@ function LooseCarousel({ items }: { items: React.ReactNode[] }) {
         ref={trackRef}
         onScroll={onScroll}
         role="group"
-        aria-label="Servicios que también se contratan sueltos"
+        aria-label="Áreas de trabajo"
         sx={{
           display: "flex", alignItems: "stretch", gap: 2, overflowX: "auto", overscrollBehaviorX: "contain",
           scrollSnapType: "x mandatory", scrollPaddingLeft: "24px",
@@ -347,85 +253,48 @@ function LooseCarousel({ items }: { items: React.ReactNode[] }) {
   )
 }
 
-function Services() {
-  const [principal, agente, automatizacion, auditoria, amedida] = SERVICES
+function Areas() {
+  const [vis, conv, cat] = AREAS
+  const linkSx = { color: tokens.ink, fontWeight: 600, textDecoration: "underline", textDecorationColor: tokens.line, "&:hover": { textDecorationColor: tokens.petrol } }
   return (
-    <Box component="section" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
+    <Box component="section" id="areas" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}`, scrollMarginTop: 72 }}>
       <Container>
-        {/* Cabecera con foto: titular a la izquierda, estudio trabajando a la derecha */}
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.1fr 0.9fr" }, gap: { xs: 4, md: 7 }, alignItems: "center", mb: { xs: 5, md: 7 } }}>
-          <Reveal>
-            <Box>
-              <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, mb: 2 }}>
-                Una sola ingeniería, al servicio de que tu tienda venda más.
-              </Typography>
-              <Typography variant="body1" sx={{ color: tokens.body, maxWidth: 520 }}>
-                El pack Crecimiento lo une todo. Y si prefieres ir pieza a pieza, sin pack, también se contratan sueltos el agente de ventas, la automatización y la auditoría SEO/GEO con fugas de conversión.
-              </Typography>
-            </Box>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <Box sx={{ position: "relative", borderRadius: 3, overflow: "hidden", border: `1px solid ${tokens.line}`, aspectRatio: "16 / 9" }}>
-              <Image src="/assets/gen/photo-oficina.png" alt="La agencia trabajando sobre tiendas online" fill sizes="(max-width: 900px) 100vw, 44vw" style={{ objectFit: "cover" }} />
-            </Box>
-          </Reveal>
-        </Box>
-
-        {/* Jerarquía: pack principal a lo ancho → 2 palancas → a medida discreto */}
+        <Reveal>
+          <Box sx={{ maxWidth: 680, mb: { xs: 5, md: 7 } }}>
+            <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, mb: 2 }}>
+              Tres frentes donde una tienda online gana o pierde ventas.
+            </Typography>
+            <Typography variant="body1" sx={{ color: tokens.body }}>
+              Trabajo los tres con el mismo método y, si hace falta, a la vez. Por dónde empezar lo deciden tus datos, no una lista de servicios.
+            </Typography>
+          </Box>
+        </Reveal>
         <Stack spacing={2.5}>
-          <Reveal><ServiceCard s={principal} featured /></Reveal>
-          {/* Móvil: carrusel snap con las tres piezas sueltas. */}
-          <Reveal delay={0.06}>
+          {/* Móvil: carrusel snap con las tres áreas. */}
+          <Reveal>
             <LooseCarousel items={[
-              <ServiceCard key="agente" s={agente} />,
-              <ServiceCard key="automatizacion" s={automatizacion} />,
-              <ServiceCard key="auditoria" s={auditoria} />,
+              <ServiceCard key="vis" s={vis} />,
+              <ServiceCard key="conv" s={conv} />,
+              <ServiceCard key="cat" s={cat} />,
             ]} />
           </Reveal>
           {/* Desktop: fila de tres columnas. */}
           <Box sx={{ display: { xs: "none", sm: "grid" }, gridTemplateColumns: { sm: "1fr 1fr", md: "1fr 1fr 1fr" }, gap: 2.5 }}>
-            <Reveal delay={0.06}><ServiceCard s={agente} /></Reveal>
-            <Reveal delay={0.12}><ServiceCard s={automatizacion} /></Reveal>
-            <Reveal delay={0.18}><ServiceCard s={auditoria} /></Reveal>
+            <Reveal delay={0.06}><ServiceCard s={vis} /></Reveal>
+            <Reveal delay={0.12}><ServiceCard s={conv} /></Reveal>
+            <Reveal delay={0.18}><ServiceCard s={cat} /></Reveal>
           </Box>
-          <Reveal delay={0.16}>
-            <Paper component={Link} href={amedida.href} elevation={0}
-              sx={{
-                display: "flex", flexWrap: "wrap", alignItems: "center", gap: 2, textDecoration: "none",
-                px: 3, py: 2, borderRadius: 3, border: `1px dashed ${tokens.line}`, bgcolor: "transparent",
-                transition: "border-color .2s", "&:hover": { borderColor: `${tokens.petrol}66` },
-                "&:hover .svc-arrow": { transform: "translateX(3px)" },
-              }}
-            >
-              <Typography sx={{ fontSize: 12.5, fontWeight: 600, color: tokens.petrol }}>{amedida.tag}</Typography>
-              <Typography component="h3" sx={{ fontFamily: fonts.serif, fontSize: 18, fontWeight: 600, color: tokens.ink }}>{amedida.result}</Typography>
-              <Typography variant="body2" sx={{ color: tokens.muted, flex: 1, minWidth: 220 }}>{amedida.how}</Typography>
-              <Stack direction="row" spacing={0.75} sx={{ alignItems: "center", color: tokens.ink }}>
-                <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 600 }}>Ver más</Typography>
-                <Box className="svc-arrow" component="span" sx={{ color: tokens.petrol, transition: "transform .2s" }}>→</Box>
-              </Stack>
-            </Paper>
+          <Reveal delay={0.1}>
+            <Typography variant="body2" sx={{ color: tokens.muted, maxWidth: 760, pt: 1 }}>
+              Para implementar, uso lo que el problema pide:{" "}
+              <Box component={Link} href="/servicios/automatizaciones" sx={linkSx}>automatizaciones</Box>, integraciones con el ERP o el proveedor, un{" "}
+              <Box component={Link} href="/servicios/agente-ventas-ia" sx={linkSx}>agente de ventas conectado al catálogo</Box> o una{" "}
+              <Box component={Link} href="/servicios/a-medida" sx={linkSx}>aplicación a medida</Box>. Son herramientas para resolver uno de estos tres frentes, no un fin en sí mismas.
+            </Typography>
           </Reveal>
         </Stack>
       </Container>
     </Box>
-  )
-}
-
-const METHOD_STEPS: ScrollStep[] = [
-  { label: "Diagnóstico", meta: "Semana 1", title: "Diagnóstico", tag: "diagnóstico · herramientas", desc: "Analizo tu tienda, tu tráfico y tus cuellos de botella con tus datos reales (GA4, Search Console, Clarity…). Sales con un plan claro, sigamos o no.", artifact: <ToolsScatter /> },
-  { label: "Estrategia", meta: "Semana 1-2", title: "Estrategia de conversión", tag: "estrategia · customer journey", desc: "Diseño el customer journey optimizado: upsells, bundles y los puntos de conversión priorizados por impacto en ventas.", artifact: <StoreTemplate /> },
-  { label: "Implementación", meta: "Semana 2-5", title: "Implementación", tag: "implementación · sobre tu stack", desc: "Sobre tu plataforma actual: SEO técnico, CRO, agente de ventas y automatización. Código limpio, medible y todo tuyo.", artifact: <N8nFlow /> },
-  { label: "Seguimiento", meta: "continuo", title: "Seguimiento", tag: "seguimiento · resultados", desc: "Mido y optimizo con datos reales. Itero mes a mes: el sistema no se queda quieto.", artifact: <ConversionChart /> },
-]
-function Methodology() {
-  return (
-    <ScrollSteps
-      id="metodo"
-      title="Mi metodología: del diagnóstico a vender más, con datos en cada paso"
-      subtitle="Cuatro etapas y un único responsable. Tus datos guían cada decisión."
-      steps={METHOD_STEPS}
-    />
   )
 }
 
@@ -444,16 +313,22 @@ function ProblemCard({ title, desc, children }: { title: string; desc: string; c
     </Reveal>
   )
 }
+// Seis problemas concretos, dos por cada área de trabajo (visibilidad,
+// conversión y catálogo), en ese orden.
 function Problems() {
   return (
     <Box component="section" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Container>
-        {/* Cabecera con foto: el dueño desbordado, el dolor con cara humana */}
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.1fr 0.9fr" }, gap: { xs: 4, md: 7 }, alignItems: "center", mb: { xs: 5, md: 7 } }}>
           <Reveal>
-            <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, maxWidth: 620 }}>
-              Los problemas que hacen que tu tienda pierda dinero cada día.
-            </Typography>
+            <Box>
+              <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, maxWidth: 620, mb: 2 }}>
+                Dónde suele perder ventas una tienda online.
+              </Typography>
+              <Typography variant="body1" sx={{ color: tokens.body, maxWidth: 520 }}>
+                Casi nunca es un solo problema. Suele ser una mezcla de páginas que Google no entiende, fricciones al comprar y un catálogo que cuesta mantener.
+              </Typography>
+            </Box>
           </Reveal>
           <Reveal delay={0.1}>
             <Box sx={{ position: "relative", borderRadius: 3, overflow: "hidden", border: `1px solid ${tokens.line}`, aspectRatio: "16 / 9" }}>
@@ -462,23 +337,23 @@ function Problems() {
           </Reveal>
         </Box>
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" }, gap: 2.5 }}>
-          <ProblemCard title="Una plantilla genérica" desc="No está pensada para tu cliente real: tienes algo genérico que no te diferencia de tu competencia.">
-            <ArtifactWindow tag="tienda · plantilla" ratio="4 / 3"><StoreTemplate /></ArtifactWindow>
+          <ProblemCard title="Categorías y fichas que no posicionan" desc="Contenido duplicado, filtros que generan URLs sin fin o fichas sin datos estructurados. Google no sabe qué página enseñar.">
+            <ArtifactWindow tag="tienda · fichas" ratio="4 / 3"><StoreTemplate /></ArtifactWindow>
           </ProblemCard>
-          <ProblemCard title="Cambios sin saber si funcionan" desc="Modificas colores, botones y textos por intuición, sin datos de dónde estás perdiendo dinero. Por eso tu tienda online no vende lo que debería.">
-            <ArtifactWindow tag="cambios · a ciegas" ratio="4 / 3"><DatosIntuicion /></ArtifactWindow>
-          </ProblemCard>
-          <ProblemCard title="Aplicaciones innecesarias" desc="Apps de terceros cobrándote cada mes, frenando tu web y sin integrarse entre sí. Puedes prescindir del 90%.">
-            <ArtifactWindow tag="apps · terceros" ratio="4 / 3"><UnnecessaryApps /></ArtifactWindow>
-          </ProblemCard>
-          <ProblemCard title="Inviertes más y no ganas más" desc="El CAC sube y el retorno baja. Metes dinero en ads pero la cuenta ya no cuadra.">
+          <ProblemCard title="Depender cada mes de los anuncios" desc="Si casi todas las ventas llegan pagando, cada subida del coste por clic se come el margen. El tráfico orgánico no se paga por visita.">
             <ArtifactWindow tag="roas · 12 meses" ratio="4 / 3"><RoasChart /></ArtifactWindow>
           </ProblemCard>
-          <ProblemCard title="Una tienda online lenta" desc="Cada segundo de carga de más es una venta que se va. Core Web Vitals en rojo es abandono.">
+          <ProblemCard title="Una tienda lenta en el móvil" desc="Las páginas pesadas posicionan peor y hacen que el cliente se vaya antes de ver el producto.">
             <ArtifactWindow tag="core web vitals" ratio="4 / 3"><Gauge /></ArtifactWindow>
           </ProblemCard>
-          <ProblemCard title="Stock descuadrado" desc="El almacén dice 3 y la web dice 12: vendes lo que no tienes y acabas anulando pedidos.">
+          <ProblemCard title="Cambios hechos sin datos" desc="Se tocan textos, colores y botones por intuición, sin medir dónde se abandona: en la ficha, en el carrito o en el checkout.">
+            <ArtifactWindow tag="cambios · a ciegas" ratio="4 / 3"><DatosIntuicion /></ArtifactWindow>
+          </ProblemCard>
+          <ProblemCard title="Stock y datos de producto descuadrados" desc="El almacén dice una cosa y la web otra. Se venden productos sin existencias y hay que anular pedidos.">
             <ArtifactWindow tag="stock · almacén vs tienda" ratio="4 / 3"><StockDesync /></ArtifactWindow>
+          </ProblemCard>
+          <ProblemCard title="Apps y plugins que se solapan" desc="Varias apps de pago que hacen casi lo mismo, frenan la web y no se hablan entre sí.">
+            <ArtifactWindow tag="apps · terceros" ratio="4 / 3"><UnnecessaryApps /></ArtifactWindow>
           </ProblemCard>
         </Box>
       </Container>
@@ -486,93 +361,25 @@ function Problems() {
   )
 }
 
-/* ---------- Soluciones (artefactos ricos) ---------- */
-function Stage({ children }: { children: React.ReactNode }) {
+
+/* ---------- Método ---------- */
+const METHOD_STEPS: ScrollStep[] = [
+  { label: "Analizar", meta: "con tus datos", title: "Analizar", tag: "análisis · tus datos", desc: "Reviso tu tienda con tus datos reales: Search Console, analítica, mapas de calor y el propio catálogo. Busco dónde se pierden visitas, ventas y horas de trabajo.", artifact: <ToolsScatter /> },
+  { label: "Priorizar", meta: "por impacto", title: "Priorizar", tag: "plan · por impacto", desc: "Ordeno lo que encuentro por impacto y esfuerzo. Sales con un plan claro de qué hacer primero, sigamos trabajando juntos o no.", artifact: <AuditArt /> },
+  { label: "Implementar", meta: "sobre tu plataforma", title: "Implementar", tag: "implementación · tu plataforma", desc: "Hago yo los cambios sobre tu plataforma actual: SEO técnico, mejoras de conversión, automatizaciones de catálogo o integraciones. El código queda en tu poder.", artifact: <N8nFlow /> },
+  { label: "Medir", meta: "y ajustar", title: "Medir", tag: "medición · antes y después", desc: "Compruebo con datos si cada cambio ha funcionado y ajusto lo que no. Te digo qué está medido y qué sigue siendo un objetivo.", artifact: <ConversionChart /> },
+]
+function Methodology() {
   return (
-    <Box sx={{ flexShrink: 0, borderRadius: 2.5, border: `1px solid ${tokens.lineSoft}`, bgcolor: "#F3F4F1", aspectRatio: "4 / 3", overflow: "hidden", p: 1.5, display: "grid", placeItems: "center" }}>
-      {children}
-    </Box>
-  )
-}
-// height:100% + texto flexible dejan el Stage siempre abajo, así los artefactos
-// cuadran en la fila aunque los títulos/descripciones ocupen distinto alto.
-function SolutionCard({ artifact, title, desc }: { artifact: React.ReactNode; title: string; desc: string }) {
-  return (
-    <Reveal>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 2, height: "100%" }}>
-        <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="h5" component="h3" sx={{ fontSize: 20, lineHeight: 1.25, color: tokens.ink, mb: 0.75 }}>{title}</Typography>
-          <Typography variant="body2" sx={{ color: tokens.muted, lineHeight: 1.5 }}>{desc}</Typography>
-        </Box>
-        <Stage>{artifact}</Stage>
-      </Box>
-    </Reveal>
-  )
-}
-const fill = (n: React.ReactNode) => <Box sx={{ width: "100%", height: "100%" }}>{n}</Box>
-function Solutions() {
-  return (
-    <Box component="section" id="solucion" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}`, scrollMarginTop: 72 }}>
-      <Container>
-        <Reveal>
-          <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, maxWidth: 680, mb: 1.5 }}>
-            Sé cómo aumentar las ventas de tu tienda sin que gastes más.
-          </Typography>
-          <Typography variant="body1" sx={{ color: tokens.muted, mb: 6, maxWidth: 520 }}>
-            Traer tráfico que compra, convertir mejor a quien ya entra y que la operativa corra sola.
-          </Typography>
-        </Reveal>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(3, 1fr)" }, gap: 2.5, mb: 3 }}>
-          <SolutionCard artifact={fill(<Funnel />)} title="Más ventas con el mismo tráfico" desc="Quito fricción y optimizo el user journey: cada punto de decisión, del landing al checkout." />
-          <SolutionCard artifact={fill(<AovOrbit />)} title="Clientes que compran más por pedido" desc="Cross-sells, bundles nativos y estrategias de envío que suben el ticket medio." />
-          <SolutionCard artifact={<Box sx={{ transform: "scale(.66)" }}><ShopifyPhone /></Box>} title="Que vuelvan a comprar" desc="Post-compra y recurrencia: una web que hace fácil repetir genera más pedidos sin esfuerzo." />
-        </Box>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(3, 1fr)" }, gap: 2.5 }}>
-          <SolutionCard artifact={fill(<ConversionChart />)} title="Más ingresos, mismo tráfico" desc="Mido y optimizo la conversión: los ingresos suben aunque las sesiones no crezcan." />
-          <SolutionCard artifact={fill(<GeoAnswer />)} title="Que te cite la IA (GEO)" desc="GEO, el SEO de los buscadores de IA: apareces citado cuando alguien pregunta a ChatGPT o Perplexity qué comprar." />
-          <SolutionCard artifact={fill(<N8nFlow />)} title="Automatización que corre sola" desc="n8n orquestando código propio: carrito, stock, pedidos y post-compra sin trabajo manual." />
-        </Box>
-      </Container>
-    </Box>
+    <ScrollSteps
+      id="metodo"
+      title="Mi método: analizar, priorizar, implementar y medir."
+      subtitle="Un único responsable de principio a fin. Hablas siempre con quien hace el trabajo."
+      steps={METHOD_STEPS}
+    />
   )
 }
 
-/* ---------- Agente de ventas: chat + texto ---------- */
-function AgentShowcase() {
-  const bullets = [
-    "Recomienda producto según lo que busca el cliente.",
-    "No se inventa precios ni stock: anclado a tu catálogo real.",
-    "Funciona en tu web y en WhatsApp, 24/7.",
-    "Si no lo sabe, lo dice y escala a un humano.",
-  ]
-  return (
-    <Box component="section" id="agente" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}`, scrollMarginTop: 72 }}>
-      <Container>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 5, md: 8 }, alignItems: "center" }}>
-          <Box>
-            <Reveal>
-              <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 42 }, color: tokens.ink, mb: 3 }}>
-                Un asistente que vende, no un chatbot que molesta.
-              </Typography>
-              <Stack spacing={1.5} sx={{ mb: 4 }}>
-                {bullets.map((b) => (
-                  <Stack key={b} direction="row" spacing={1.25} sx={{ alignItems: "flex-start" }}>
-                    <Box component="span" sx={{ color: tokens.bronze, fontWeight: 800, lineHeight: 1.6 }}>✓</Box>
-                    <Typography variant="body1" sx={{ color: tokens.body }}>{b}</Typography>
-                  </Stack>
-                ))}
-              </Stack>
-              <Button component={Link} href="/servicios/agente-ventas-ia" sx={{ color: tokens.ink, fontWeight: 700, px: 0, "&:hover": { bgcolor: "transparent", color: tokens.petrol } }}>
-                Conoce el agente de ventas <Box component="span" sx={{ color: tokens.petrol, ml: 0.5 }}>→</Box>
-              </Button>
-            </Reveal>
-          </Box>
-          <Reveal delay={0.1}><AgentChatRich /></Reveal>
-        </Box>
-      </Container>
-    </Box>
-  )
-}
 
 /* ---------- Plataformas (interactivo) ---------- */
 function PlatformsBlock() {
@@ -632,7 +439,6 @@ function PlatformsBlock() {
             y la automatización trabajan sobre cualquier stack.
           </Typography>
         </Reveal>
-        <Reveal delay={0.05}><Box sx={{ mt: { xs: 5, md: 7 } }}><PlatformsInteractive /></Box></Reveal>
       </Container>
     </Box>
   )
@@ -710,79 +516,63 @@ function DondeTrabajo() {
   )
 }
 
-/* ---------- ROI calculator (MUI) ---------- */
-function RoiCalc() {
-  const [v, setV] = useState(20000)
-  const [cvr, setCvr] = useState(1.5)
-  const [aov, setAov] = useState(60)
-  const eur = (n: number) => n.toLocaleString("es-ES")
-  const current = Math.round(v * (cvr / 100) * aov)
-  const improved = Math.round(v * ((cvr * 1.3) / 100) * aov) // estimación: +30% de conversión
-  const delta = improved - current
+/* ---------- Sobre Óscar ---------- */
+// Solo hechos publicados en el portfolio (máster, base en Premià). Sin años ni
+// cifras nuevas.
+function SobreMi() {
+  const filas: [string, string][] = [
+    ["formación", "Analista de datos, con un máster en Big Data."],
+    ["trabajo", "SEO, analítica, CRO y desarrollo de automatizaciones e integraciones."],
+    ["cómo", "Solo, sin gestores de cuenta: hablas con quien implementa."],
+    ["dónde", "Desde Premià de Mar, para tiendas de toda España."],
+  ]
   return (
-    <Box component="section" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
+    <Box component="section" id="sobre-mi" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}`, scrollMarginTop: 72 }}>
       <Container>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 4, md: 8 }, alignItems: "center" }}>
-          <Box>
-            <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, mb: 2 }}>
-              ¿Cuánto te está costando no optimizar?
-            </Typography>
-            <Stack spacing={3} sx={{ maxWidth: 420 }}>
-              {[
-                { l: "Visitas al mes", val: v, set: setV, min: 1000, max: 200000, step: 1000, fmt: (n: number) => eur(n) },
-                { l: "Conversión (%)", val: cvr, set: setCvr, min: 0.3, max: 6, step: 0.1, fmt: (n: number) => `${n.toFixed(1)}%` },
-                { l: "Ticket medio (AOV €)", val: aov, set: setAov, min: 15, max: 300, step: 5, fmt: (n: number) => `${n}€` },
-              ].map((s) => (
-                <Box key={s.l}>
-                  <Stack direction="row" sx={{ justifyContent: "space-between", mb: 0.5 }}>
-                    <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted }}>{s.l}</Typography>
-                    <Typography sx={{ fontFamily: fonts.mono, fontSize: 13, color: tokens.ink, fontWeight: 600 }}>{s.fmt(s.val)}</Typography>
-                  </Stack>
-                  <Slider
-                    value={s.val}
-                    min={s.min}
-                    max={s.max}
-                    step={s.step}
-                    onChange={(_, n) => s.set(n as number)}
-                    // La etiqueta visible de arriba no está asociada al input, así
-                    // que sin esto el control llega sin nombre al árbol de
-                    // accesibilidad (y a los agentes que leen la página).
-                    aria-label={s.l}
-                    getAriaValueText={(n) => `${s.l}: ${s.fmt(n)}`}
-                    sx={{ color: tokens.ink, "& .MuiSlider-thumb": { boxShadow: "none" } }}
-                  />
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.1fr 0.9fr" }, gap: { xs: 4, md: 8 }, alignItems: "start" }}>
+          <Reveal>
+            <Box>
+              <Typography variant="h2" sx={{ fontSize: { xs: 28, md: 40 }, color: tokens.ink, mb: 2.5 }}>
+                Datos, SEO y la capacidad de implementarlo.
+              </Typography>
+              <Typography variant="body1" sx={{ color: tokens.body, mb: 2, maxWidth: 560 }}>
+                Soy analista de datos y consultor especializado en ecommerce. Combino SEO, analítica y desarrollo para detectar problemas e implementar soluciones.
+              </Typography>
+              <Typography variant="body1" sx={{ color: tokens.body, mb: 3.5, maxWidth: 560 }}>
+                No me quedo en la auditoría ni en una lista de recomendaciones. Si el problema es técnico, de conversión o de catálogo, puedo desarrollar e implantar la mejora o el sistema que hace falta, y medir después si ha funcionado.
+              </Typography>
+              <Button component={Link} href="/portfolio-oscar-alvarez" sx={{ color: tokens.ink, fontWeight: 700, px: 0, "&:hover": { bgcolor: "transparent", color: tokens.petrol } }}>
+                Ver mi portfolio <Box component="span" sx={{ color: tokens.petrol, ml: 0.5 }}>↗</Box>
+              </Button>
+            </Box>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <Box component="dl" sx={{ m: 0, borderTop: `1px solid ${tokens.line}` }}>
+              {filas.map(([k, v]) => (
+                <Box key={k} sx={{ display: "grid", gridTemplateColumns: "96px 1fr", gap: 2, py: 2, borderBottom: `1px solid ${tokens.line}` }}>
+                  <Typography component="dt" sx={{ fontFamily: fonts.mono, fontSize: 12.5, color: tokens.muted, pt: 0.3 }}>{k}</Typography>
+                  <Typography component="dd" sx={{ m: 0, color: tokens.ink, fontWeight: 600 }}>{v}</Typography>
                 </Box>
               ))}
-            </Stack>
-          </Box>
-          <Paper elevation={2} sx={{ p: 4, borderRadius: 3, border: `1px solid ${tokens.lineSoft}` }}>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.muted }}>Ingresos anuales estimados hoy</Typography>
-            <Typography sx={{ fontFamily: fonts.serif, fontSize: 32, fontWeight: 600, color: tokens.ink, mb: 2 }}>{eur(current * 12)}€</Typography>
-            <Box sx={{ borderRadius: 2, bgcolor: `${tokens.teal}0e`, border: `1px solid ${tokens.teal}33`, p: 2 }}>
-              <Typography sx={{ fontFamily: fonts.mono, fontSize: 12, color: tokens.teal }}>Escenario: +30% de conversión</Typography>
-              <Typography sx={{ fontFamily: fonts.serif, fontSize: 34, fontWeight: 700, color: tokens.teal }}>+{eur(delta * 12)}€/año</Typography>
             </Box>
-            <Typography sx={{ fontFamily: fonts.mono, fontSize: 10.5, color: tokens.muted, mt: 2 }}>
-              {"Asunción visible, no un benchmark citado ni una promesa. El +30% es un escenario ilustrativo; tu cifra real sale del diagnóstico, con datos de tu tienda."}
-            </Typography>
-            <Button component="a" href="#diagnostico" variant="contained" color="primary" fullWidth sx={{ mt: 2, borderRadius: 2 }}>
-              Reserva tu diagnóstico <Box component="span" sx={{ ml: 0.75 }}>→</Box>
-            </Button>
-          </Paper>
+          </Reveal>
         </Box>
       </Container>
     </Box>
   )
 }
 
-/* ---------- FAQ (MUI accordion) + testimonios ---------- */
+
+/* ---------- FAQ ---------- */
 const FAQS = [
-  { q: "¿Tengo que migrar mi tienda?", a: "No. Trabajo sobre tu plataforma actual, sea Shopify o WooCommerce. Y si estás en otra, la auditoría te dice igualmente dónde estás dejando ventas." },
-  { q: "¿La IA se inventa cosas? ¿El agente puede dar precios falsos?", a: "El agente está anclado a tu catálogo real por RAG: solo responde con tus datos de producto, precio y stock. Si no sabe algo, lo dice y escala a un humano." },
-  { q: "¿Trabajas solo? ¿Podrás con mi proyecto?", a: "Sí. Trabajo solo y a propósito: hablas siempre con quien implementa, sin gestores de cuenta por medio. Y buena parte de la operativa corre automatizada, así que mi tiempo va a tu proyecto." },
+  { q: "¿Solo haces auditorías o también lo implementas?", a: "Las dos cosas. El diagnóstico te dice qué falla y en qué orden atacarlo. Si quieres, después lo implemento yo: cambios técnicos de SEO, mejoras de conversión o automatizaciones del catálogo." },
+  { q: "¿Tengo que migrar mi tienda?", a: "No. Trabajo sobre tu plataforma actual, sea Shopify o WooCommerce. Si estás en otra, el diagnóstico te dice igualmente dónde estás dejando ventas." },
+  { q: "¿Me garantizas posiciones o ventas?", a: "No. Las posiciones y las ventas dependen de tu mercado, tu competencia y tu punto de partida. Lo que sí hago es medir antes y después de cada cambio y enseñarte qué ha funcionado y qué no." },
+  { q: "¿Trabajas solo? ¿Podrás con mi proyecto?", a: "Sí. Trabajo solo y a propósito: hablas siempre con quien implementa, sin gestores de cuenta por medio. Si un proyecto necesita más manos de las que tengo, te lo digo antes de empezar." },
   { q: "¿Cuánto cuesta?", a: "Cada tienda es distinta, así que no hay tarifas de catálogo: el precio sale del diagnóstico, con un plan priorizado para que sepas qué pagas y por qué." },
-  { q: "¿Qué incluye el diagnóstico?", a: "Cuatro respuestas rápidas por tu parte y un análisis de tu tienda por la mía: dónde se te escapan las ventas y un plan de tráfico, conversión y automatización. En 24 a 48 horas y sin compromiso." },
+  { q: "¿Qué incluye el diagnóstico?", a: "Cuatro respuestas rápidas por tu parte y un análisis de tu tienda por la mía: dónde se te escapan visitas y ventas, y qué haría primero en visibilidad, conversión y catálogo. En 24 a 48 horas y sin compromiso." },
 ]
+
 function Faq() {
   return (
     <Box component="section" sx={{ py: { xs: 8, md: 12 }, borderBottom: `1px solid ${tokens.lineSoft}` }}>
@@ -809,22 +599,17 @@ export default function HomeMui() {
   return (
     <Box sx={{ bgcolor: tokens.paper, color: tokens.body, fontFamily: fonts.sans }}>
       <SiteHeader />
-      {/* TOFU · atención: promesa y confianza mínima; la oferta entra pronto */}
       <Hero />
       <ClientShowcase />
-      <Services />
-      {/* MOFU · consideración: dolor → solución → plataforma → palanca estrella → método */}
       <Problems />
-      <Solutions />
+      <Areas />
       <PlatformsBlock />
-      <DondeTrabajo />
-      <AgentShowcase />
       <Methodology />
-      {/* BOFU · decisión: prueba real → herramienta de decisión → objeciones → manifiesto → único CTA */}
-      <FeaturedCases id="casos" title="Tiendas creciendo sobre su propia plataforma." slugs={["marea-es", "farmacia-garcia-del-cerro", "totfinestra"]} />
-      <RoiCalc />
+      <FeaturedCases id="casos" title="Proyectos reales, con lo que se hizo y lo que se midió." slugs={["marea-es", "farmacia-garcia-del-cerro", "totfinestra"]} />
+      <SobreMi />
       <Faq />
-      <StatementBand title="Ingeniería, no humo. Al servicio de que tu tienda venda más." photo="/assets/gen/photo-estudio.png" />
+      <DondeTrabajo />
+      <StatementBand title="Del dato a la implementación, con un único responsable." photo="/assets/gen/photo-estudio.png" />
       <DiagnosticoCTA />
       <SiteFooter />
     </Box>

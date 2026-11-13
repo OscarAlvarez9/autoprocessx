@@ -88,7 +88,7 @@ const T = {
       ["Quién hay detrás", "/sobre-nosotros"],
     ] as [string, string][],
     footLegal: [["Aviso legal", "/aviso-legal"], ["Privacidad", "/privacidad"], ["Cookies", "/cookies"]] as [string, string][],
-    footTagline: "Consultor SEO para ecommerce y negocios locales. Hago que tu tienda venda más sin migrar de plataforma.",
+    footTagline: "Analista de datos y consultor SEO para tiendas online. Del diagnóstico a la implementación, sin migrar de plataforma.",
     footCtaTitle: "¿Dónde estás dejando ventas?",
     footCtaBody: "Diagnóstico gratis de tu tienda, con datos reales y respuesta en 24 a 48h.",
     footServicesTitle: "Servicios", footCompanyTitle: "Plataformas y empresa",
