@@ -7,7 +7,7 @@ import { i18nAlternates } from "@/lib/i18n"
 
 const TITLE = "Consultor SEO E-commerce | SEOscar"
 const DESCRIPTION =
-  "Òscar Álvarez, consultor SEO per a ecommerce. SEO i GEO que porten trànsit que compra, CRO que el converteix i automatització que t'estalvia hores."
+  "Òscar Álvarez, analista de dades i consultor SEO d'ecommerce. Posicionament, conversió i catàleg de la teva botiga, del diagnòstic a la implementació."
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

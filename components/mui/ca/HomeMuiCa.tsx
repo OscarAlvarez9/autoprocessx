@@ -32,10 +32,10 @@ function Hero() {
       <Container sx={{ position: "relative", zIndex: 1, pt: { xs: 8, md: 12 }, pb: { xs: 6, md: 8 }, textAlign: "center" }}>
         <HeroReveal>
           <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 56, md: 72 }, letterSpacing: "-0.025em", color: tokens.ink, maxWidth: 980, mx: "auto", mb: 3, textWrap: "balance" }}>
-            Consultor SEO per a <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>botigues en línia</Box>. Més vendes amb el trànsit que ja tens.
+            SEO i optimització per a <Box component="em" sx={{ fontStyle: "italic", color: tokens.petrol }}>botigues en línia</Box>, de les dades a la implementació.
           </Typography>
-          <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 580, mx: "auto", mb: 4 }}>
-            {"Sóc l'Òscar Álvarez, consultor SEO d'ecommerce. Treballo el SEO, la visibilitat a la IA, la conversió i l'automatització de botigues que ja facturen, sobre la teva plataforma actual i sense migrar res."}
+          <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 18 }, color: tokens.body, maxWidth: 620, mx: "auto", mb: 4 }}>
+            {"Sóc l'Òscar Álvarez, analista de dades i consultor SEO d'ecommerce. Analitzo on perd oportunitats la teva botiga i treballo el posicionament, la conversió i el catàleg, des del diagnòstic fins a la implementació i sobre la teva plataforma actual."}
           </Typography>
           <Stack direction={{ xs: "column", sm: "row" }} spacing={2.5} sx={{ alignItems: "center", justifyContent: "center" }}>
             <PrimaryCTA />
