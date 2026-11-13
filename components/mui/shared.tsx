@@ -270,38 +270,51 @@ export function ServiceHero({ title, sub, specs, note, artifact }: {
   note: string
   artifact: React.ReactNode
 }) {
+  // Primera pantalla en dos columnas: el texto (H1, sub, CTA y ficha técnica)
+  // a la izquierda y el artefacto a la derecha, ambos visibles sin hacer
+  // scroll en un portátil. En móvil se apila: texto, CTA, artefacto y specs.
   return (
     <Box component="section" sx={{ position: "relative", overflow: "hidden", borderBottom: `1px solid ${tokens.lineSoft}` }}>
       <Blueprint />
-      <Container sx={{ position: "relative", zIndex: 1, pt: { xs: 6, md: 9 }, pb: { xs: 7, md: 10 } }}>
-        <HeroReveal>
-          <Typography variant="h1" sx={{ fontSize: { xs: 34, sm: 54, md: 70 }, letterSpacing: "-0.025em", color: tokens.ink, maxWidth: 1000, mb: { xs: 3.5, md: 5 } }}>
-            {title}
-          </Typography>
-        </HeroReveal>
-        {/* franja técnica: el sub y el CTA viven entre hairlines, no flotando */}
-        <Reveal delay={0.06}>
-          <Box sx={{ borderTop: `1px solid ${tokens.line}`, borderBottom: `1px solid ${tokens.line}`, py: { xs: 2.5, md: 3 }, display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.25fr auto" }, gap: { xs: 2.5, md: 5 }, alignItems: "center" }}>
-            <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 17 }, color: tokens.body, maxWidth: 560 }}>{sub}</Typography>
-            <PrimaryCTA />
+      <Container sx={{ position: "relative", zIndex: 1, pt: { xs: 5, md: 6 }, pb: { xs: 7, md: 9 } }}>
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "minmax(0, 1fr)", md: "minmax(0, 1.12fr) minmax(0, 1fr)" }, gap: { xs: 4.5, md: 6 }, alignItems: "center" }}>
+          <Box sx={{ minWidth: 0 }}>
+            <HeroReveal>
+              <Typography variant="h1" sx={{ fontSize: { xs: 32, sm: 42, md: 44, lg: 50 }, lineHeight: 1.08, letterSpacing: "-0.022em", color: tokens.ink, mb: { xs: 2.5, md: 3 }, textWrap: "balance" }}>
+                {title}
+              </Typography>
+            </HeroReveal>
+            <Reveal delay={0.06}>
+              <Box>
+                <Typography variant="body1" sx={{ fontSize: { xs: 16, md: 17 }, color: tokens.body, maxWidth: 540, mb: { xs: 3, md: 3.5 } }}>{sub}</Typography>
+                <PrimaryCTA />
+              </Box>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <Box component="dl" sx={{ display: { xs: "none", md: "block" }, m: 0, mt: 4.5, borderTop: `1px solid ${tokens.line}`, maxWidth: 540 }}>
+                {specs.map(([k, v]) => (
+                  <Box key={k} sx={{ display: "grid", gridTemplateColumns: "92px minmax(0, 1fr)", gap: 2, py: 1.1, borderBottom: `1px solid ${tokens.lineSoft}` }}>
+                    <Typography component="dt" sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, pt: 0.35 }}>{k}</Typography>
+                    <Typography component="dd" sx={{ m: 0, fontSize: 14, fontWeight: 600, color: tokens.ink }}>{v}</Typography>
+                  </Box>
+                ))}
+              </Box>
+              <Typography sx={{ display: { xs: "none", md: "block" }, fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, mt: 1.75, maxWidth: 540 }}>{note}</Typography>
+            </Reveal>
           </Box>
-        </Reveal>
-        {/* composición asimétrica: specs al margen izquierdo, artefacto dominando la derecha */}
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "0.8fr 1.2fr" }, gap: { xs: 4, md: 8 }, alignItems: "start", mt: { xs: 4, md: 6 } }}>
-          <Reveal delay={0.12}>
-            <Box sx={{ pt: { md: 3 }, order: { xs: 2, md: 1 } }}>
-              {specs.map(([k, v], i) => (
-                <Box key={k} sx={{ py: 1.75, borderTop: i === 0 ? "none" : `1px solid ${tokens.lineSoft}` }}>
-                  <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, mb: 0.4 }}>{k}</Typography>
-                  <Typography sx={{ fontSize: 14.5, fontWeight: 600, color: tokens.ink }}>{v}</Typography>
-                </Box>
-              ))}
-              <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, mt: 2.5 }}>{note}</Typography>
-            </Box>
+          <Reveal delay={0.16}>
+            <Box sx={{ minWidth: 0 }}>{artifact}</Box>
           </Reveal>
-          <Reveal delay={0.18}>
-            <Box sx={{ order: { xs: 1, md: 2 }, minWidth: 0 }}>{artifact}</Box>
-          </Reveal>
+          {/* móvil: la ficha técnica va después del artefacto */}
+          <Box sx={{ display: { xs: "block", md: "none" } }}>
+            {specs.map(([k, v], i) => (
+              <Box key={k} sx={{ py: 1.5, borderTop: i === 0 ? "none" : `1px solid ${tokens.lineSoft}` }}>
+                <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, mb: 0.4 }}>{k}</Typography>
+                <Typography sx={{ fontSize: 14.5, fontWeight: 600, color: tokens.ink }}>{v}</Typography>
+              </Box>
+            ))}
+            <Typography sx={{ fontFamily: fonts.mono, fontSize: 11, color: tokens.muted, mt: 2 }}>{note}</Typography>
+          </Box>
         </Box>
       </Container>
     </Box>

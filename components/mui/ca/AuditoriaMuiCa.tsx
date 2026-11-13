@@ -13,9 +13,10 @@ import AccordionSummary from "@mui/material/AccordionSummary"
 import AccordionDetails from "@mui/material/AccordionDetails"
 import { tokens, fonts } from "@/lib/mui/theme"
 import { AUDITORIA_FAQS_CA, AUDITORIA_LINK_TEXT_CA } from "@/lib/serviciosFaqsCa"
+import AuditReportArt from "@/components/mui/AuditReportArt"
 import { SiteHeader, SiteFooter, DiagnosticoCTA, ServiceHero, StatementBand, Reveal, ArtifactWindow, Crumbs } from "@/components/mui/shared"
 import FeaturedCases from "@/components/mui/FeaturedCases"
-import { GeoAnswer, Gauge, StoreTemplate, DatosIntuicion } from "@/components/mui/artifacts"
+import { GeoAnswer, StoreTemplate, DatosIntuicion } from "@/components/mui/artifacts"
 import { RankClimb, FunnelLeakFix } from "@/components/mui/growthArtifacts"
 
 /* ---------- datos ---------- */
@@ -82,9 +83,7 @@ function Hero() {
       ]}
       note="Si després contractes el pack Creixement, el pla ja està fet."
       artifact={
-        <ArtifactWindow tag="auditoria · estat real de la botiga" ratio="16 / 10">
-          <Gauge />
-        </ArtifactWindow>
+        <AuditReportArt />
       }
     />
   )

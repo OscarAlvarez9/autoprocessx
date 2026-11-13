@@ -12,9 +12,10 @@ import Accordion from "@mui/material/Accordion"
 import AccordionSummary from "@mui/material/AccordionSummary"
 import AccordionDetails from "@mui/material/AccordionDetails"
 import { tokens, fonts } from "@/lib/mui/theme"
+import AuditReportArt from "@/components/mui/AuditReportArt"
 import { SiteHeader, SiteFooter, DiagnosticoCTA, ServiceHero, StatementBand, Reveal, ArtifactWindow, Crumbs } from "@/components/mui/shared"
 import FeaturedCases from "@/components/mui/FeaturedCases"
-import { GeoAnswer, Gauge, StoreTemplate, DatosIntuicion } from "@/components/mui/artifacts"
+import { GeoAnswer, StoreTemplate, DatosIntuicion } from "@/components/mui/artifacts"
 import { RankClimb, FunnelLeakFix } from "@/components/mui/growthArtifacts"
 
 /* ---------- datos ---------- */
@@ -96,9 +97,7 @@ function Hero() {
       ]}
       note="Si después contratas el pack Crecimiento, el plan ya está hecho."
       artifact={
-        <ArtifactWindow tag="auditoría · estado real de la tienda" ratio="16 / 10">
-          <Gauge />
-        </ArtifactWindow>
+        <AuditReportArt />
       }
     />
   )
